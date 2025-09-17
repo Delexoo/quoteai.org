@@ -919,3 +919,385 @@ footer {
 	transform: translateY(-2px);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+	/* Navigation adjustments */
+	.minimal-navbar {
+		padding: 2rem 1rem 2rem 1rem;
+		flex-wrap: wrap;
+	}
+	
+	.logo {
+		font-size: 1.4rem;
+	}
+	
+	.nav-and-menu {
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+	
+	#global-search {
+		width: 160px;
+		font-size: 0.75rem;
+		padding: 0.3rem 0.6rem 0.3rem 1.8rem;
+	}
+	
+	.search-icon {
+		width: 16px;
+		height: 16px;
+		left: 8px;
+	}
+	
+	.minimal-nav {
+		gap: 1.5rem;
+	}
+	
+	.nav-icon {
+		width: 20px;
+		height: 20px;
+	}
+	
+	.donate-button {
+		padding: 0.4rem 0.8rem;
+		font-size: 0.8rem;
+	}
+	
+	.menu-icon span {
+		width: 24px;
+		height: 2px;
+	}
+	
+	/* Hero section mobile */
+	.abstract-hero {
+		min-height: 60vh;
+		padding-left: 1rem;
+		padding-right: 1rem;
+		text-align: center;
+	}
+	
+	.hero-content {
+		max-width: 100%;
+	}
+	
+	.hero-content h1 {
+		font-size: 2.5rem;
+		white-space: normal;
+		line-height: 1.2;
+	}
+	
+	.hero-content .bold {
+		font-size: 3.5rem;
+	}
+	
+	.hero-content .thin {
+		font-size: 1.3rem;
+	}
+	
+	.hero-content h2 {
+		font-size: 1.6rem;
+	}
+	
+	.hero-content p {
+		font-size: 0.9rem;
+		margin-bottom: 1.8rem;
+	}
+	
+	.minimal-btn {
+		font-size: 1.2rem;
+		padding: 0.6rem 2rem;
+	}
+	
+	/* Content sections mobile */
+	.content-section {
+		padding: 2rem 1rem;
+	}
+	
+	.section-content {
+		padding: 1.8rem;
+		border-radius: 14px;
+	}
+	
+	.section-content h2 {
+		font-size: 1.8rem;
+	}
+	
+	.section-content p {
+		font-size: 0.9rem;
+	}
+	
+	.feature-grid {
+		grid-template-columns: 1fr;
+		gap: 1.5rem;
+	}
+	
+	.feature-item {
+		padding: 1.5rem;
+	}
+	
+	/* Landing page mobile */
+	.landing-hero {
+		min-height: 60vh;
+		padding: 1rem;
+	}
+	
+	.landing-content {
+		max-width: 100%;
+	}
+	
+	.landing-header {
+		padding: 1.2rem 1rem;
+		margin-bottom: 2rem;
+	}
+	
+	.landing-content h1 {
+		font-size: 2.2rem;
+	}
+	
+	.landing-content p {
+		font-size: 1rem;
+		margin-bottom: 2rem;
+	}
+	
+	.path-options {
+		grid-template-columns: 1fr;
+		gap: 1.2rem;
+		margin-top: 1.2rem;
+	}
+	
+	.path-card {
+		padding: 2rem 1.2rem;
+	}
+	
+	.path-icon {
+		font-size: 2.2rem;
+	}
+	
+	.path-card h3 {
+		font-size: 1.3rem;
+	}
+	
+	.path-card p {
+		font-size: 0.9rem;
+	}
+	
+	/* Tools page mobile */
+	.tools-page {
+		padding: 1rem;
+	}
+	
+	.tools-header {
+		padding: 1.2rem 1rem;
+		margin-bottom: 2rem;
+	}
+	
+	.tools-header h1 {
+		font-size: 2rem;
+	}
+	
+	.tools-header p {
+		font-size: 0.9rem;
+	}
+	
+	.tool-section {
+		margin-bottom: 2.5rem;
+	}
+	
+	.tool-section h2 {
+		font-size: 1.7rem;
+	}
+	
+	.section-description {
+		font-size: 0.85rem;
+		margin-bottom: 1.2rem;
+	}
+	
+	.tool-cards {
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+	
+	.tool-item {
+		padding: 1.2rem;
+		min-height: 140px;
+	}
+	
+	.tool-item h3 {
+		font-size: 1rem;
+		margin-bottom: 0.5rem;
+	}
+	
+	.tool-logo {
+		width: 20px;
+		height: 20px;
+	}
+	
+	.tool-item p {
+		font-size: 0.85rem;
+		margin-bottom: 1rem;
+	}
+	
+	/* Dropdown menu mobile */
+	.dropdown-content {
+		flex-direction: column;
+		padding: 1.5rem 1rem;
+		gap: 1rem;
+	}
+	
+	.dropdown-button-item {
+		margin-bottom: 0.5rem;
+		padding: 1rem;
+	}
+	
+	.dropdown-button-item h3 {
+		font-size: 1rem;
+	}
+	
+	.dropdown-button-item p {
+		font-size: 0.85rem;
+	}
+	
+	.dropdown-button {
+		font-size: 0.8rem;
+		padding: 0.5rem 1rem;
+	}
+	
+	/* Home button mobile */
+	.home-button-container {
+		padding: 1rem 0 3rem 0;
+	}
+	
+	.home-button {
+		font-size: 0.9rem;
+		padding: 0.6rem 1.5rem;
+	}
+	
+	/* Contact info mobile */
+	.contact-info {
+		padding: 1.5rem;
+	}
+	
+	.contact-info p {
+		font-size: 1rem;
+	}
+}
+
+/* Extra small devices (phones, 480px and down) */
+@media (max-width: 480px) {
+	.minimal-navbar {
+		padding: 1.5rem 0.8rem;
+	}
+	
+	.logo {
+		font-size: 1.2rem;
+	}
+	
+	#global-search {
+		width: 140px;
+		font-size: 0.7rem;
+	}
+	
+	.minimal-nav {
+		gap: 1rem;
+	}
+	
+	.nav-icon {
+		width: 18px;
+		height: 18px;
+	}
+	
+	.hero-content h1 {
+		font-size: 2rem;
+	}
+	
+	.hero-content .bold {
+		font-size: 3rem;
+	}
+	
+	.hero-content h2 {
+		font-size: 1.4rem;
+	}
+	
+	.minimal-btn {
+		font-size: 1rem;
+		padding: 0.5rem 1.8rem;
+	}
+	
+	.landing-content h1 {
+		font-size: 1.8rem;
+	}
+	
+	.path-card {
+		padding: 1.5rem 1rem;
+	}
+	
+	.path-icon {
+		font-size: 2rem;
+	}
+	
+	.tools-header h1 {
+		font-size: 1.7rem;
+	}
+	
+	.tool-section h2 {
+		font-size: 1.5rem;
+	}
+	
+	.section-content {
+		padding: 1.5rem;
+	}
+	
+	.section-content h2 {
+		font-size: 1.6rem;
+	}
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+	.tool-item:hover,
+	.path-card:hover,
+	.feature-item:hover {
+		transform: none;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+	}
+	
+	.tool-item:active,
+	.path-card:active {
+		transform: scale(0.98);
+		box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+	}
+	
+	.nav-icon:hover,
+	.menu-icon:hover {
+		transform: none;
+	}
+	
+	.donate-button:hover,
+	.minimal-btn:hover,
+	.home-button:hover {
+		transform: none;
+	}
+}
+
+/* Landscape phone orientation */
+@media (max-width: 768px) and (orientation: landscape) {
+	.abstract-hero {
+		min-height: 50vh;
+	}
+	
+	.landing-hero {
+		min-height: 50vh;
+	}
+	
+	.hero-content h1 {
+		font-size: 2.2rem;
+	}
+	
+	.hero-content .bold {
+		font-size: 3.2rem;
+	}
+	
+	.minimal-navbar {
+		padding: 1.5rem 1rem;
+	}
+}
