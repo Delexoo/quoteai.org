@@ -52,10 +52,100 @@ body {
 	gap: 2rem;
 }
 
+/* Search Bar Styles */
+.search-container {
+	position: relative;
+	margin-right: 1rem;
+}
+
+.search-icon {
+	position: absolute;
+	left: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 18px;
+	height: 18px;
+	opacity: 0.6;
+	pointer-events: none;
+	z-index: 1;
+}
+
+#global-search {
+	padding: 0.5rem 1rem 0.5rem 2.5rem;
+	border: 2px solid #e5e5e5;
+	border-radius: 25px;
+	font-size: 0.9rem;
+	width: 250px;
+	background: rgba(255, 255, 255, 0.9);
+	backdrop-filter: blur(10px);
+	transition: all 0.3s ease;
+	outline: none;
+}
+
+#global-search:focus {
+	border-color: #0078ff;
+	box-shadow: 0 0 0 3px rgba(0, 120, 255, 0.1);
+	background: rgba(255, 255, 255, 0.95);
+}
+
+.search-results {
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(10px);
+	border-radius: 12px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+	max-height: 400px;
+	overflow-y: auto;
+	z-index: 1001;
+	margin-top: 0.5rem;
+	display: none;
+}
+
+.search-results.show {
+	display: block;
+}
+
+.search-result-item {
+	padding: 0.75rem 1rem;
+	cursor: pointer;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+	transition: background 0.2s ease;
+}
+
+.search-result-item:hover {
+	background: rgba(0, 120, 255, 0.05);
+}
+
+.search-result-item:last-child {
+	border-bottom: none;
+}
+
+.search-result-title {
+	font-weight: 600;
+	color: #0078ff;
+	margin-bottom: 0.25rem;
+}
+
+.search-result-desc {
+	font-size: 0.85rem;
+	color: #666;
+	margin-bottom: 0.25rem;
+}
+
+.search-result-category {
+	font-size: 0.75rem;
+	color: #999;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
 .minimal-nav {
 	list-style: none;
 	display: flex;
-	gap: 2.5rem;
+	gap: 3rem;
 	margin: 0;
 	padding: 0;
 }
@@ -70,6 +160,37 @@ body {
 .minimal-nav a:hover {
 	color: #0078ff;
 }
+
+/* Navigation Icon Styles */
+.nav-icon {
+	width: 28px;
+	height: 28px;
+	transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-icon:hover {
+	transform: scale(1.1);
+	opacity: 0.8;
+}
+
+/* Donate Button Styles */
+.donate-button {
+	background: #007bff;
+	color: white !important;
+	padding: 0.6rem 1.2rem;
+	border-radius: 6px;
+	font-weight: 600;
+	font-size: 1rem;
+	transition: all 0.3s ease;
+	text-decoration: none;
+}
+
+.donate-button:hover {
+	background: #0056b3;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
 .menu-icon {
 	display: flex;
 	flex-direction: column;
@@ -627,8 +748,8 @@ footer {
 }
 
 .tool-section h2 {
-	font-size: 2rem;
-	font-weight: 600;
+	font-size: 2.5rem;
+	font-weight: 700;
 	margin-bottom: 0.5rem;
 	color: #0078ff;
 	padding-bottom: 0;
@@ -656,12 +777,21 @@ footer {
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 	transition: all 0.3s ease;
 	border: 1px solid #f0f0f0;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	min-height: 200px;
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
 }
 
 .tool-item:hover {
-	transform: translateY(-4px);
-	box-shadow: 0 8px 24px rgba(0, 120, 255, 0.1);
+	transform: translateY(-4px) scale(1.02);
+	box-shadow: 0 8px 24px rgba(0, 120, 255, 0.15);
 	border-color: #0078ff;
+	text-decoration: none;
+	color: inherit;
 }
 
 .tool-item h3 {
@@ -669,6 +799,16 @@ footer {
 	font-weight: 600;
 	margin-bottom: 0.8rem;
 	color: #222;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.tool-logo {
+	width: 30px;
+	height: 30px;
+	object-fit: contain;
+	vertical-align: middle;
 }
 
 .tool-item p {
@@ -676,22 +816,77 @@ footer {
 	color: #666;
 	margin-bottom: 1.5rem;
 	line-height: 1.5;
+	flex-grow: 1;
 }
 
-.tool-link {
+.tool-tag {
 	display: inline-block;
-	padding: 0.6rem 1.5rem;
-	background: #0078ff;
+	padding: 0.4rem 0.8rem;
+	background: #000;
 	color: #fff;
-	text-decoration: none;
-	border-radius: 8px;
-	font-weight: 500;
-	transition: background 0.2s ease;
+	font-size: 0.75rem;
+	font-weight: 600;
+	border-radius: 12px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	transform: scale(1);
+	cursor: default;
+	opacity: 0;
+	pointer-events: none;
 }
 
-.tool-link:hover {
-	background: #005bb5;
+.tool-item:hover .tool-tag {
+	opacity: 1;
+	animation: tagFadeInPulse 0.5s ease-out;
 }
+
+@keyframes tagFadeInPulse {
+	0% {
+		opacity: 0;
+		transform: scale(0.8);
+	}
+	50% {
+		transform: scale(1.05);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+/* Specific tag colors based on functionality */
+.tool-tag.ai { background: #7c3aed; } /* Purple for AI */
+.tool-tag.writing { background: #059669; } /* Green for Writing */
+.tool-tag.research { background: #dc2626; } /* Red for Research */
+.tool-tag.homework { background: #ea580c; } /* Orange for Homework */
+.tool-tag.community { background: #0891b2; } /* Cyan for Community */
+.tool-tag.study { background: #7c2d12; } /* Brown for Study */
+.tool-tag.gpa { background: #be123c; } /* Rose for GPA */
+.tool-tag.citations { background: #4338ca; } /* Indigo for Citations */
+.tool-tag.references { background: #6366f1; } /* Blue for References */
+.tool-tag.audio { background: #f59e0b; } /* Amber for Audio */
+.tool-tag.pdf { background: #ef4444; } /* Red for PDF */
+.tool-tag.converter { background: #8b5cf6; } /* Violet for Converter */
+.tool-tag.scanner { background: #06b6d4; } /* Sky for Scanner */
+.tool-tag.plagiarism { background: #dc2626; } /* Red for Plagiarism */
+.tool-tag.books { background: #16a34a; } /* Green for Books */
+.tool-tag.courses { background: #2563eb; } /* Blue for Courses */
+.tool-tag.certificates { background: #0d9488; } /* Teal for Certificates */
+.tool-tag.mit { background: #991b1b; } /* Dark Red for MIT */
+.tool-tag.skills { background: #c2410c; } /* Orange for Skills */
+.tool-tag.coding { background: #1d4ed8; } /* Blue for Coding */
+.tool-tag.workspace { background: #7c3aed; } /* Purple for Workspace */
+.tool-tag.secure { background: #059669; } /* Green for Secure */
+.tool-tag.tasks { background: #0891b2; } /* Cyan for Tasks */
+.tool-tag.canvas { background: #ea580c; } /* Orange for Canvas */
+.tool-tag.notes { background: #4338ca; } /* Indigo for Notes */
+.tool-tag.mindmap { background: #be123c; } /* Rose for Mind Map */
+.tool-tag.whiteboard { background: #6366f1; } /* Blue for Whiteboard */
+.tool-tag.math { background: #dc2626; } /* Red for Math */
 
 .logo a {
 	color: #222;

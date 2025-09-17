@@ -13,10 +13,16 @@
 		<nav class="navbar minimal-navbar">
 			<div class="logo"><a href="index.html">Quote</a></div>
 			<div class="nav-and-menu">
+				<div class="search-container">
+					<img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Search" class="search-icon">
+					<input type="text" id="global-search" placeholder="Search tools..." autocomplete="off">
+					<div class="search-results" id="search-results"></div>
+				</div>
 				<ul class="nav-links minimal-nav">
-					<li><a href="index.html">HOME</a></li>
-					<li><a href="index.html#about">ABOUT</a></li>
-					<li><a href="index.html#contact">CONTACT</a></li>
+					<li><a href="index.html"><img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Home" class="nav-icon"></a></li>
+					<li><a href="index.html#about"><img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="About" class="nav-icon"></a></li>
+					<li><a href="index.html#contact"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Contact" class="nav-icon"></a></li>
+					<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-button">Donate</a></li>
 				</ul>
 				<div class="menu-icon" id="menu-toggle">
 					<span></span>
@@ -57,26 +63,46 @@
 					<h2>AI Study Assistants</h2>
 					<p class="section-description">Intelligent AI tools to help with homework, research, and academic writing</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>ChatGPT</h3>
-							<p>AI assistant for homework help, explanations, and writing</p>
-							<a href="https://chat.openai.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Perplexity AI</h3>
-							<p>Research assistant with real-time information</p>
-							<a href="https://perplexity.ai" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Cluely</h3>
+						<a href="https://app.cluely.com/" target="_blank" class="tool-item">
+							<h3>Cluely <img src="https://app.cluely.com/favicon.ico" alt="Cluely" class="tool-logo"></h3>
 							<p>AI study assistant for academic support</p>
-							<a href="https://app.cluely.com/" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>SaveMyGPA</h3>
+							<span class="tool-tag study">Study</span>
+						</a>
+						<a href="https://chat.openai.com" target="_blank" class="tool-item">
+							<h3>ChatGPT <img src="https://chat.openai.com/favicon.ico" alt="ChatGPT" class="tool-logo"></h3>
+							<p>AI assistant for homework help, explanations, and writing</p>
+							<span class="tool-tag ai">AI Chat</span>
+						</a>
+						<a href="https://claude.ai" target="_blank" class="tool-item">
+							<h3>Claude <img src="https://claude.ai/favicon.ico" alt="Claude" class="tool-logo"></h3>
+							<p>AI assistant for academic writing and research</p>
+							<span class="tool-tag writing">Writing</span>
+						</a>
+						<a href="https://perplexity.ai" target="_blank" class="tool-item">
+							<h3>Perplexity AI <img src="https://perplexity.ai/favicon.ico" alt="Perplexity" class="tool-logo"></h3>
+							<p>Research assistant with real-time information</p>
+							<span class="tool-tag research">Research</span>
+						</a>
+						<a href="https://gauthmath.com" target="_blank" class="tool-item">
+							<h3>Gauth <img src="https://gauthmath.com/favicon.ico" alt="Gauth" class="tool-logo"></h3>
+							<p>AI-powered study assistant for homework help</p>
+							<span class="tool-tag homework">Homework</span>
+						</a>
+						<a href="https://photomath.com" target="_blank" class="tool-item">
+							<h3>Photomath <img src="https://photomath.com/favicon.ico" alt="Photomath" class="tool-logo"></h3>
+							<p>Camera-based math problem solver with step-by-step solutions</p>
+							<span class="tool-tag math">Math</span>
+						</a>
+						<a href="https://brainly.com" target="_blank" class="tool-item">
+							<h3>Brainly <img src="https://brainly.com/favicon.ico" alt="Brainly" class="tool-logo"></h3>
+							<p>Homework help and study community platform</p>
+							<span class="tool-tag community">Community</span>
+						</a>
+						<a href="https://savemygpa.com" target="_blank" class="tool-item">
+							<h3>SaveMyGPA <img src="https://savemygpa.com/favicon.ico" alt="SaveMyGPA" class="tool-logo"></h3>
 							<p>AI-powered study tool for GPA improvement</p>
-							<a href="https://savemygpa.com" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag gpa">GPA</span>
+						</a>
 					</div>
 				</div>
 
@@ -84,21 +110,21 @@
 					<h2>Research & Citations</h2>
 					<p class="section-description">Academic search engines and citation management tools for scholarly work</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>Citation Machine</h3>
+						<a href="https://citationmachine.net" target="_blank" class="tool-item">
+							<h3>Citation Machine <img src="https://citationmachine.net/favicon.ico" alt="Citation Machine" class="tool-logo"></h3>
 							<p>Automatic citation generator</p>
-							<a href="https://citationmachine.net" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Google Scholar</h3>
+							<span class="tool-tag citations">Citations</span>
+						</a>
+						<a href="https://scholar.google.com" target="_blank" class="tool-item">
+							<h3>Google Scholar <img src="https://scholar.google.com/favicon.ico" alt="Google Scholar" class="tool-logo"></h3>
 							<p>Academic search engine for scholarly literature</p>
-							<a href="https://scholar.google.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Zotero</h3>
+							<span class="tool-tag research">Research</span>
+						</a>
+						<a href="https://zotero.org" target="_blank" class="tool-item">
+							<h3>Zotero <img src="https://zotero.org/favicon.ico" alt="Zotero" class="tool-logo"></h3>
 							<p>Reference management and citation tool</p>
-							<a href="https://zotero.org" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag references">References</span>
+						</a>
 					</div>
 				</div>
 
@@ -106,26 +132,41 @@
 					<h2>PDF & Document Tools</h2>
 					<p class="section-description">PDF editing, splitting, and document management tools for academic work</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>ElevenLabs</h3>
+						<a href="https://elevenlabs.io/" target="_blank" class="tool-item">
+							<h3>ElevenLabs <img src="https://elevenlabs.io/favicon.ico" alt="ElevenLabs" class="tool-logo"></h3>
 							<p>Immersive reader with text-to-speech (mobile free)</p>
-							<a href="https://elevenlabs.io/" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>iLovePDF</h3>
+							<span class="tool-tag audio">Audio</span>
+						</a>
+						<a href="https://www.ilovepdf.com/split_pdf" target="_blank" class="tool-item">
+							<h3>iLovePDF <img src="https://www.ilovepdf.com/favicon.ico" alt="iLovePDF" class="tool-logo"></h3>
 							<p>PDF splitter and comprehensive PDF editing toolkit</p>
-							<a href="https://www.ilovepdf.com/split_pdf" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>.docx to .pdf</h3>
+							<span class="tool-tag pdf">PDF</span>
+						</a>
+						<a href="https://www.ilovepdf.com/word_to_pdf" target="_blank" class="tool-item">
+							<h3>.docx to .pdf <img src="https://www.ilovepdf.com/favicon.ico" alt="iLovePDF" class="tool-logo"></h3>
 							<p>Convert Word documents to PDF format easily</p>
-							<a href="https://www.ilovepdf.com/word_to_pdf" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>OneDrive Mobile</h3>
+							<span class="tool-tag converter">Converter</span>
+						</a>
+						<a href="https://www.microsoft.com/en-us/microsoft-365/onedrive/online-cloud-storage" target="_blank" class="tool-item">
+							<h3>OneDrive Mobile <img src="https://www.microsoft.com/favicon.ico" alt="Microsoft" class="tool-logo"></h3>
 							<p>Scan documents to PDF using your mobile device</p>
-							<a href="https://www.microsoft.com/en-us/microsoft-365/onedrive/online-cloud-storage" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag scanner">Scanner</span>
+						</a>
+						<a href="https://cloudconvert.com" target="_blank" class="tool-item">
+							<h3>CloudConvert <img src="https://cloudconvert.com/favicon.ico" alt="CloudConvert" class="tool-logo"></h3>
+							<p>Multi-format file converter and processing tool</p>
+							<span class="tool-tag converter">Converter</span>
+						</a>
+						<a href="https://freeconvert.com" target="_blank" class="tool-item">
+							<h3>FreeConvert <img src="https://freeconvert.com/favicon.ico" alt="FreeConvert" class="tool-logo"></h3>
+							<p>Multifunctional file converter for various formats</p>
+							<span class="tool-tag converter">Converter</span>
+						</a>
+						<a href="https://speechify.com" target="_blank" class="tool-item">
+							<h3>Speechify <img src="https://speechify.com/favicon.ico" alt="Speechify" class="tool-logo"></h3>
+							<p>Text-to-speech tool for listening to documents</p>
+							<span class="tool-tag audio">Audio</span>
+						</a>
 					</div>
 				</div>
 
@@ -133,21 +174,21 @@
 					<h2>Plagiarism Checkers</h2>
 					<p class="section-description">Free plagiarism detection tools to ensure academic integrity</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>Plagly</h3>
+						<a href="https://plagly.com/?msclkid=1432e4ea364a1c0292458c23e9dcef4a&utm_source=bing&utm_medium=cpc&utm_campaign=plag&utm_term=free%20plagiarism%20checker&utm_content=plagly" target="_blank" class="tool-item">
+							<h3>Plagly <img src="https://plagly.com/favicon.ico" alt="Plagly" class="tool-logo"></h3>
 							<p>Free plagiarism checker for academic writing</p>
-							<a href="https://plagly.com/?msclkid=1432e4ea364a1c0292458c23e9dcef4a&utm_source=bing&utm_medium=cpc&utm_campaign=plag&utm_term=free%20plagiarism%20checker&utm_content=plagly" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Small SEO Tools</h3>
+							<span class="tool-tag plagiarism">Plagiarism</span>
+						</a>
+						<a href="https://smallseotools.com/plagiarism-checker/" target="_blank" class="tool-item">
+							<h3>Small SEO Tools <img src="https://smallseotools.com/favicon.ico" alt="Small SEO Tools" class="tool-logo"></h3>
 							<p>Free online plagiarism detection and checking tool</p>
-							<a href="https://smallseotools.com/plagiarism-checker/" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Scribbr</h3>
+							<span class="tool-tag plagiarism">Plagiarism</span>
+						</a>
+						<a href="https://www.scribbr.com/plagiarism-checker/" target="_blank" class="tool-item">
+							<h3>Scribbr <img src="https://www.scribbr.com/favicon.ico" alt="Scribbr" class="tool-logo"></h3>
 							<p>Academic plagiarism checker with detailed reports</p>
-							<a href="https://www.scribbr.com/plagiarism-checker/" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag plagiarism">Plagiarism</span>
+						</a>
 					</div>
 				</div>
 
@@ -155,16 +196,16 @@
 					<h2>Free Books</h2>
 					<p class="section-description">Free digital libraries and book repositories for academic research</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>Anna's Archive</h3>
+						<a href="https://annas-archive.li" target="_blank" class="tool-item">
+							<h3>Anna's Archive <img src="https://annas-archive.li/favicon.ico" alt="Anna's Archive" class="tool-logo"></h3>
 							<p>Comprehensive free book and academic resource library</p>
-							<a href="https://annas-archive.li" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Library Genesis</h3>
+							<span class="tool-tag books">Books</span>
+						</a>
+						<a href="https://libgen.ac" target="_blank" class="tool-item">
+							<h3>Library Genesis <img src="https://libgen.ac/favicon.ico" alt="Library Genesis" class="tool-logo"></h3>
 							<p>Free scientific and academic book repository</p>
-							<a href="https://libgen.ac" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag books">Books</span>
+						</a>
 					</div>
 				</div>
 
@@ -173,24 +214,46 @@
 					<p class="section-description">High-quality free courses, lectures, and learning materials from top institutions</p>
 					<div class="tool-cards">
 						<div class="tool-item">
-							<h3>edX</h3>
+							<h3>edX <img src="https://edx.org/favicon.ico" alt="edX" class="tool-logo"></h3>
 							<p>Free university courses from top institutions worldwide</p>
 							<a href="https://edx.org" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag courses">Courses</span>
 						</div>
 						<div class="tool-item">
-							<h3>Khan Academy</h3>
+							<h3>Khan Academy <img src="https://khanacademy.org/favicon.ico" alt="Khan Academy" class="tool-logo"></h3>
 							<p>Free courses in math, science, and more</p>
 							<a href="https://khanacademy.org" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag courses">Courses</span>
 						</div>
 						<div class="tool-item">
-							<h3>Coursera</h3>
+							<h3>Coursera <img src="https://coursera.org/favicon.ico" alt="Coursera" class="tool-logo"></h3>
 							<p>University courses and certifications</p>
 							<a href="https://coursera.org" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag certificates">Certificates</span>
 						</div>
 						<div class="tool-item">
-							<h3>MIT OpenCourseWare</h3>
+							<h3>MIT OCW <img src="https://ocw.mit.edu/favicon.ico" alt="MIT OpenCourseWare" class="tool-logo"></h3>
 							<p>Free MIT course materials</p>
 							<a href="https://ocw.mit.edu" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag mit">MIT</span>
+						</div>
+						<div class="tool-item">
+							<h3>Udemy <img src="https://github.com/Delexoo/Quote/raw/refs/heads/main/udemy.ico" alt="Udemy" class="tool-logo"></h3>
+							<p>Online courses on various topics and skills</p>
+							<a href="https://udemy.com" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag skills">Skills</span>
+						</div>
+						<div class="tool-item">
+							<h3>FreeCodeCamp <img src="https://github.com/Delexoo/Quote/raw/refs/heads/main/freecodecamp.ico" alt="FreeCodeCamp" class="tool-logo"></h3>
+							<p>Free programming and coding tutorials</p>
+							<a href="https://freecodecamp.org" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag coding">Coding</span>
+						</div>
+						<div class="tool-item">
+							<h3>FutureLearn <img src="https://futurelearn.com/favicon.ico" alt="FutureLearn" class="tool-logo"></h3>
+							<p>Online courses from universities and institutions</p>
+							<a href="https://futurelearn.com" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag courses">Courses</span>
 						</div>
 					</div>
 				</div>
@@ -200,24 +263,28 @@
 					<p class="section-description">Digital tools for organizing notes, planning studies, and knowledge management</p>
 					<div class="tool-cards">
 						<div class="tool-item">
-							<h3>Notion</h3>
+							<h3>Notion <img src="https://notion.so/favicon.ico" alt="Notion" class="tool-logo"></h3>
 							<p>All-in-one workspace for notes and planning</p>
 							<a href="https://notion.so" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag workspace">Workspace</span>
 						</div>
 						<div class="tool-item">
-							<h3>Standard Notes</h3>
+							<h3>Standard Notes <img src="https://standardnotes.com/favicon.ico" alt="Standard Notes" class="tool-logo"></h3>
 							<p>Safe note-taking with end-to-end encryption</p>
 							<a href="https://standardnotes.com" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag secure">Secure</span>
 						</div>
 						<div class="tool-item">
-							<h3>Microsoft To Do</h3>
+							<h3>Microsoft To Do <img src="https://todo.microsoft.com/favicon.ico" alt="Microsoft To Do" class="tool-logo"></h3>
 							<p>Task management and to-do list organization</p>
 							<a href="https://todo.microsoft.com" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag tasks">Tasks</span>
 						</div>
 						<div class="tool-item">
-							<h3>BetterCampus</h3>
+							<h3>BetterCampus <img src="https://www.bettercanvas.org/favicon.ico" alt="BetterCampus" class="tool-logo"></h3>
 							<p>Formerly BetterCanvas - Chrome extension to enhance Canvas LMS</p>
 							<a href="https://www.bettercanvas.org/" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag canvas">Canvas</span>
 						</div>
 					</div>
 				</div>
@@ -227,99 +294,46 @@
 					<p class="section-description">Additional useful tools for learning, productivity, and academic support</p>
 					<div class="tool-cards">
 						<div class="tool-item">
-							<h3>Udemy</h3>
-							<p>Online courses on various topics and skills</p>
-							<a href="https://udemy.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Gauth</h3>
-							<p>AI-powered study assistant for homework help</p>
-							<a href="https://gauth.co" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Photomath</h3>
-							<p>Camera-based math problem solver with step-by-step solutions</p>
-							<a href="https://photomath.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>FreeCodeCamp</h3>
-							<p>Free programming and coding tutorials</p>
-							<a href="https://freecodecamp.org" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Air Math</h3>
-							<p>AI math solver for complex mathematical problems</p>
-							<a href="https://airmath.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Speechify</h3>
-							<p>Text-to-speech tool for listening to documents</p>
-							<a href="https://speechify.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Brainly</h3>
-							<p>Homework help and study community platform</p>
-							<a href="https://brainly.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Mathway</h3>
+							<h3>Mathway <img src="https://mathway.com/favicon.ico" alt="Mathway" class="tool-logo"></h3>
 							<p>Math problem solver with instant solutions</p>
 							<a href="https://mathway.com" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag math">Math</span>
 						</div>
 						<div class="tool-item">
-							<h3>Character.ai</h3>
+							<h3>Character.ai <img src="https://character.ai/favicon.ico" alt="Character.ai" class="tool-logo"></h3>
 							<p>AI chatbot for creative conversations and learning</p>
 							<a href="https://character.ai" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag ai">AI Chat</span>
 						</div>
 						<div class="tool-item">
-							<h3>FutureLearn</h3>
-							<p>Online courses from universities and institutions</p>
-							<a href="https://futurelearn.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>CNVMP3</h3>
+							<h3>CNVMP3 <img src="https://cnvmp3.com/favicon.ico" alt="CNVMP3" class="tool-logo"></h3>
 							<p>YouTube to MP3 or MP4 converter</p>
 							<a href="https://cnvmp3.com" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag converter">Converter</span>
 						</div>
 						<div class="tool-item">
-							<h3>FreeConvert</h3>
-							<p>Multifunctional file converter for various formats</p>
-							<a href="https://freeconvert.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>CloudConvert</h3>
-							<p>Multi-format file converter and processing tool</p>
-							<a href="https://cloudconvert.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Evernote</h3>
-							<p>Online notepad and document organization</p>
-							<a href="https://evernote.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>OneNote</h3>
+							<h3>OneNote <img src="https://onenote.com/favicon.ico" alt="OneNote" class="tool-logo"></h3>
 							<p>Microsoft's online notepad and collaboration tool</p>
 							<a href="https://onenote.com" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag notes">Notes</span>
 						</div>
 						<div class="tool-item">
-							<h3>Obsidian</h3>
-							<p>Knowledge management and note-taking</p>
-							<a href="https://obsidian.md" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Coggle</h3>
+							<h3>Coggle <img src="https://coggle.it/favicon.ico" alt="Coggle" class="tool-logo"></h3>
 							<p>Mind mapping tool for visual organization</p>
 							<a href="https://coggle.it" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag mindmap">Mind Map</span>
 						</div>
 						<div class="tool-item">
-							<h3>ConceptBoard</h3>
+							<h3>ConceptBoard <img src="https://conceptboard.com/favicon.ico" alt="ConceptBoard" class="tool-logo"></h3>
 							<p>Digital whiteboard and mind mapping platform</p>
 							<a href="https://conceptboard.com" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag whiteboard">Whiteboard</span>
 						</div>
 						<div class="tool-item">
-							<h3>Whiteboard.fi</h3>
+							<h3>Whiteboard.fi <img src="https://whiteboard.fi/favicon.ico" alt="Whiteboard.fi" class="tool-logo"></h3>
 							<p>Interactive online whiteboard for collaboration</p>
 							<a href="https://whiteboard.fi" target="_blank" class="tool-link">Visit</a>
+							<span class="tool-tag whiteboard">Whiteboard</span>
 						</div>
 					</div>
 				</div>

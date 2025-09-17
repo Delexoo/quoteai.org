@@ -13,11 +13,16 @@
 		<nav class="navbar minimal-navbar">
 			<div class="logo">Quote</div>
 			<div class="nav-and-menu">
+				<div class="search-container">
+					<img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Search" class="search-icon">
+					<input type="text" id="global-search" placeholder="Search tools..." autocomplete="off">
+					<div class="search-results" id="search-results"></div>
+				</div>
 				<ul class="nav-links minimal-nav">
-					<li><a href="#">HOME</a></li>
-					<li><a href="#about">ABOUT</a></li>
-					<li><a href="#contact">CONTACT</a></li>
-					<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank">DONATE</a></li>
+					<li><a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Home" class="nav-icon"></a></li>
+					<li><a href="#about"><img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="About" class="nav-icon"></a></li>
+					<li><a href="#contact"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Contact" class="nav-icon"></a></li>
+					<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-button">Donate</a></li>
 				</ul>
 				<div class="menu-icon" id="menu-toggle">
 					<span></span>

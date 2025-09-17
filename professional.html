@@ -13,10 +13,16 @@
 		<nav class="navbar minimal-navbar">
 			<div class="logo"><a href="index.html">Quote</a></div>
 			<div class="nav-and-menu">
+				<div class="search-container">
+					<img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Search" class="search-icon">
+					<input type="text" id="global-search" placeholder="Search tools..." autocomplete="off">
+					<div class="search-results" id="search-results"></div>
+				</div>
 				<ul class="nav-links minimal-nav">
-					<li><a href="index.html">HOME</a></li>
-					<li><a href="index.html#about">ABOUT</a></li>
-					<li><a href="index.html#contact">CONTACT</a></li>
+					<li><a href="index.html"><img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Home" class="nav-icon"></a></li>
+					<li><a href="index.html#about"><img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="About" class="nav-icon"></a></li>
+					<li><a href="index.html#contact"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Contact" class="nav-icon"></a></li>
+					<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-button">Donate</a></li>
 				</ul>
 				<div class="menu-icon" id="menu-toggle">
 					<span></span>
@@ -57,21 +63,21 @@
 					<h2>AI Business Assistants</h2>
 					<p class="section-description">AI-powered tools for professional writing, content creation, and business communication</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>Grammarly</h3>
+						<a href="https://grammarly.com" target="_blank" class="tool-item">
+							<h3>Grammarly <img src="https://grammarly.com/favicon.ico" alt="Grammarly" class="tool-logo"></h3>
 							<p>Writing assistant for professional communication</p>
-							<a href="https://grammarly.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Jasper AI</h3>
+							<span class="tool-tag writing">Writing</span>
+						</a>
+						<a href="https://jasper.ai" target="_blank" class="tool-item">
+							<h3>Jasper AI <img src="https://jasper.ai/favicon.ico" alt="Jasper AI" class="tool-logo"></h3>
 							<p>AI content creation for marketing</p>
-							<a href="https://jasper.ai" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Copy.ai</h3>
+							<span class="tool-tag ai">AI</span>
+						</a>
+						<a href="https://copy.ai" target="_blank" class="tool-item">
+							<h3>Copy.ai <img src="https://copy.ai/favicon.ico" alt="Copy.ai" class="tool-logo"></h3>
 							<p>AI-powered copywriting tool</p>
-							<a href="https://copy.ai" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag ai">AI</span>
+						</a>
 					</div>
 				</div>
 
@@ -79,21 +85,21 @@
 					<h2>Project Management</h2>
 					<p class="section-description">Visual project planning tools and team collaboration platforms for workflow organization</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>Trello</h3>
+						<a href="https://trello.com" target="_blank" class="tool-item">
+							<h3>Trello <img src="https://trello.com/favicon.ico" alt="Trello" class="tool-logo"></h3>
 							<p>Visual project management with boards</p>
-							<a href="https://trello.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Asana</h3>
+							<span class="tool-tag tasks">Project</span>
+						</a>
+						<a href="https://asana.com" target="_blank" class="tool-item">
+							<h3>Asana <img src="https://asana.com/favicon.ico" alt="Asana" class="tool-logo"></h3>
 							<p>Team collaboration and task management</p>
-							<a href="https://asana.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Monday.com</h3>
+							<span class="tool-tag tasks">Project</span>
+						</a>
+						<a href="https://monday.com" target="_blank" class="tool-item">
+							<h3>Monday.com <img src="https://monday.com/favicon.ico" alt="Monday.com" class="tool-logo"></h3>
 							<p>Work operating system for teams</p>
-							<a href="https://monday.com" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag tasks">Project</span>
+						</a>
 					</div>
 				</div>
 
@@ -101,21 +107,21 @@
 					<h2>Communication & Collaboration</h2>
 					<p class="section-description">Team messaging, video conferencing, and scheduling tools for seamless collaboration</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>Slack</h3>
+						<a href="https://slack.com" target="_blank" class="tool-item">
+							<h3>Slack <img src="https://slack.com/favicon.ico" alt="Slack" class="tool-logo"></h3>
 							<p>Team messaging and collaboration</p>
-							<a href="https://slack.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Zoom</h3>
+							<span class="tool-tag community">Team</span>
+						</a>
+						<a href="https://zoom.us" target="_blank" class="tool-item">
+							<h3>Zoom <img src="https://zoom.us/favicon.ico" alt="Zoom" class="tool-logo"></h3>
 							<p>Video conferencing and meetings</p>
-							<a href="https://zoom.us" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Calendly</h3>
+							<span class="tool-tag community">Video</span>
+						</a>
+						<a href="https://calendly.com" target="_blank" class="tool-item">
+							<h3>Calendly <img src="https://calendly.com/favicon.ico" alt="Calendly" class="tool-logo"></h3>
 							<p>Automated scheduling tool</p>
-							<a href="https://calendly.com" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag tasks">Schedule</span>
+						</a>
 					</div>
 				</div>
 
@@ -123,21 +129,21 @@
 					<h2>Analytics & Data</h2>
 					<p class="section-description">Data analysis, visualization, and business intelligence tools for informed decision-making</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>Google Analytics</h3>
+						<a href="https://analytics.google.com" target="_blank" class="tool-item">
+							<h3>Google Analytics <img src="https://analytics.google.com/favicon.ico" alt="Google Analytics" class="tool-logo"></h3>
 							<p>Web analytics and insights</p>
-							<a href="https://analytics.google.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Tableau Public</h3>
+							<span class="tool-tag research">Analytics</span>
+						</a>
+						<a href="https://public.tableau.com" target="_blank" class="tool-item">
+							<h3>Tableau Public <img src="https://public.tableau.com/favicon.ico" alt="Tableau Public" class="tool-logo"></h3>
 							<p>Free data visualization tool</p>
-							<a href="https://public.tableau.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Airtable</h3>
+							<span class="tool-tag research">Data</span>
+						</a>
+						<a href="https://airtable.com" target="_blank" class="tool-item">
+							<h3>Airtable <img src="https://airtable.com/favicon.ico" alt="Airtable" class="tool-logo"></h3>
 							<p>Database and spreadsheet hybrid</p>
-							<a href="https://airtable.com" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag workspace">Database</span>
+						</a>
 					</div>
 				</div>
 			</div>

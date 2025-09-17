@@ -13,10 +13,16 @@
 		<nav class="navbar minimal-navbar">
 			<div class="logo"><a href="index.html">Quote</a></div>
 			<div class="nav-and-menu">
+				<div class="search-container">
+					<img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Search" class="search-icon">
+					<input type="text" id="global-search" placeholder="Search tools..." autocomplete="off">
+					<div class="search-results" id="search-results"></div>
+				</div>
 				<ul class="nav-links minimal-nav">
-					<li><a href="index.html">HOME</a></li>
-					<li><a href="index.html#about">ABOUT</a></li>
-					<li><a href="index.html#contact">CONTACT</a></li>
+					<li><a href="index.html"><img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Home" class="nav-icon"></a></li>
+					<li><a href="index.html#about"><img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="About" class="nav-icon"></a></li>
+					<li><a href="index.html#contact"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Contact" class="nav-icon"></a></li>
+					<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-button">Donate</a></li>
 				</ul>
 				<div class="menu-icon" id="menu-toggle">
 					<span></span>
@@ -27,16 +33,21 @@
 		</nav>
 		<div class="dropdown-menu" id="dropdown-menu">
 			<div class="dropdown-content">
-				<h3>AI Tools</h3>
-				<p>Discover powerful AI tools for education and productivity</p>
-				<h3>Educational Resources</h3>
-				<p>Access free educational content and learning materials</p>
-				<h3>Media Editors</h3>
-				<p>Professional editing tools for images, videos, and documents</p>
-				<h3>Free Books</h3>
-				<p>Comprehensive library of free digital books and resources</p>
-				<h3>Useful Apps & Links</h3>
-				<p>Curated collection of helpful applications and websites</p>
+				<div class="dropdown-button-item">
+					<h3>🎓 Student</h3>
+					<p>Academic tools, research resources, and study aids</p>
+					<a href="student.html" class="dropdown-button">Enter Student Hub</a>
+				</div>
+				<div class="dropdown-button-item">
+					<h3>💼 Professional</h3>
+					<p>Business tools, productivity apps, and career resources</p>
+					<a href="professional.html" class="dropdown-button">Enter Professional Hub</a>
+				</div>
+				<div class="dropdown-button-item">
+					<h3>🎨 Creator</h3>
+					<p>Design tools, content creation, and creative resources</p>
+					<a href="creator.html" class="dropdown-button">Enter Creator Hub</a>
+				</div>
 			</div>
 		</div>
 	</header>

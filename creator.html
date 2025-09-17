@@ -13,10 +13,16 @@
 		<nav class="navbar minimal-navbar">
 			<div class="logo"><a href="index.html">Quote</a></div>
 			<div class="nav-and-menu">
+				<div class="search-container">
+					<img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Search" class="search-icon">
+					<input type="text" id="global-search" placeholder="Search tools..." autocomplete="off">
+					<div class="search-results" id="search-results"></div>
+				</div>
 				<ul class="nav-links minimal-nav">
-					<li><a href="index.html">HOME</a></li>
-					<li><a href="index.html#about">ABOUT</a></li>
-					<li><a href="index.html#contact">CONTACT</a></li>
+					<li><a href="index.html"><img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Home" class="nav-icon"></a></li>
+					<li><a href="index.html#about"><img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="About" class="nav-icon"></a></li>
+					<li><a href="index.html#contact"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Contact" class="nav-icon"></a></li>
+					<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-button">Donate</a></li>
 				</ul>
 				<div class="menu-icon" id="menu-toggle">
 					<span></span>
@@ -57,21 +63,21 @@
 					<h2>AI Art & Design</h2>
 					<p class="section-description">AI-powered image generation and artistic creation tools for digital artists</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>DALL-E 3</h3>
+						<a href="https://openai.com/dall-e-3" target="_blank" class="tool-item">
+							<h3>DALL-E 3 <img src="https://openai.com/favicon.ico" alt="DALL-E 3" class="tool-logo"></h3>
 							<p>AI image generation from text prompts</p>
-							<a href="https://openai.com/dall-e-3" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Midjourney</h3>
+							<span class="tool-tag ai">AI Art</span>
+						</a>
+						<a href="https://midjourney.com" target="_blank" class="tool-item">
+							<h3>Midjourney <img src="https://midjourney.com/favicon.ico" alt="Midjourney" class="tool-logo"></h3>
 							<p>High-quality AI art generation</p>
-							<a href="https://midjourney.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Stable Diffusion</h3>
+							<span class="tool-tag ai">AI Art</span>
+						</a>
+						<a href="https://stability.ai" target="_blank" class="tool-item">
+							<h3>Stable Diffusion <img src="https://stability.ai/favicon.ico" alt="Stable Diffusion" class="tool-logo"></h3>
 							<p>Open-source AI image generator</p>
-							<a href="https://stability.ai" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag ai">AI Art</span>
+						</a>
 					</div>
 				</div>
 
@@ -79,21 +85,21 @@
 					<h2>Graphic Design</h2>
 					<p class="section-description">Professional design platforms and photo editing software for visual content creation</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>Canva</h3>
+						<a href="https://canva.com" target="_blank" class="tool-item">
+							<h3>Canva <img src="https://canva.com/favicon.ico" alt="Canva" class="tool-logo"></h3>
 							<p>Easy-to-use design platform</p>
-							<a href="https://canva.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Figma</h3>
+							<span class="tool-tag workspace">Design</span>
+						</a>
+						<a href="https://figma.com" target="_blank" class="tool-item">
+							<h3>Figma <img src="https://figma.com/favicon.ico" alt="Figma" class="tool-logo"></h3>
 							<p>Collaborative design and prototyping</p>
-							<a href="https://figma.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>GIMP</h3>
+							<span class="tool-tag workspace">Design</span>
+						</a>
+						<a href="https://gimp.org" target="_blank" class="tool-item">
+							<h3>GIMP <img src="https://gimp.org/favicon.ico" alt="GIMP" class="tool-logo"></h3>
 							<p>Free photo editing software</p>
-							<a href="https://gimp.org" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag converter">Photo</span>
+						</a>
 					</div>
 				</div>
 
@@ -101,21 +107,21 @@
 					<h2>Video & Audio</h2>
 					<p class="section-description">Professional video editing, audio production, and streaming software for multimedia creators</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>DaVinci Resolve</h3>
+						<a href="https://blackmagicdesign.com/products/davinciresolve" target="_blank" class="tool-item">
+							<h3>DaVinci Resolve <img src="https://blackmagicdesign.com/favicon.ico" alt="DaVinci Resolve" class="tool-logo"></h3>
 							<p>Professional free video editor</p>
-							<a href="https://blackmagicdesign.com/products/davinciresolve" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Audacity</h3>
+							<span class="tool-tag converter">Video</span>
+						</a>
+						<a href="https://audacityteam.org" target="_blank" class="tool-item">
+							<h3>Audacity <img src="https://audacityteam.org/favicon.ico" alt="Audacity" class="tool-logo"></h3>
 							<p>Free audio editing software</p>
-							<a href="https://audacityteam.org" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>OBS Studio</h3>
+							<span class="tool-tag audio">Audio</span>
+						</a>
+						<a href="https://obsproject.com" target="_blank" class="tool-item">
+							<h3>OBS Studio <img src="https://obsproject.com/favicon.ico" alt="OBS Studio" class="tool-logo"></h3>
 							<p>Free streaming and recording software</p>
-							<a href="https://obsproject.com" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag converter">Stream</span>
+						</a>
 					</div>
 				</div>
 
@@ -123,21 +129,21 @@
 					<h2>Content Creation</h2>
 					<p class="section-description">Stock media resources and specialized tools for content creators and digital marketers</p>
 					<div class="tool-cards">
-						<div class="tool-item">
-							<h3>Unsplash</h3>
+						<a href="https://unsplash.com" target="_blank" class="tool-item">
+							<h3>Unsplash <img src="https://unsplash.com/favicon.ico" alt="Unsplash" class="tool-logo"></h3>
 							<p>Free high-quality stock photos</p>
-							<a href="https://unsplash.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Pexels</h3>
+							<span class="tool-tag books">Photos</span>
+						</a>
+						<a href="https://pexels.com" target="_blank" class="tool-item">
+							<h3>Pexels <img src="https://pexels.com/favicon.ico" alt="Pexels" class="tool-logo"></h3>
 							<p>Free stock photos and videos</p>
-							<a href="https://pexels.com" target="_blank" class="tool-link">Visit</a>
-						</div>
-						<div class="tool-item">
-							<h3>Remove.bg</h3>
+							<span class="tool-tag books">Stock</span>
+						</a>
+						<a href="https://remove.bg" target="_blank" class="tool-item">
+							<h3>Remove.bg <img src="https://remove.bg/favicon.ico" alt="Remove.bg" class="tool-logo"></h3>
 							<p>AI background removal tool</p>
-							<a href="https://remove.bg" target="_blank" class="tool-link">Visit</a>
-						</div>
+							<span class="tool-tag ai">AI Tool</span>
+						</a>
 					</div>
 				</div>
 			</div>
