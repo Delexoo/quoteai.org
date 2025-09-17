@@ -92,7 +92,37 @@ document.addEventListener('DOMContentLoaded', function() {
 	// Database of all tools from all categories
 	const toolsDatabase = [
 		// Student Tools
-		{ name: "Cluely", description: "AI study assistant for academic support", category: "Student - AI Study Assistants", url: "https://app.cluely.com/", page: "student.html" },
+		const toolsDatabase = [
+	// Featured Tools (Student)
+	{
+		name: "Cluely",
+		description: "AI study assistant for academic support",
+		category: "Featured",
+		page: "student.html",
+		url: "https://app.cluely.com/"
+	},
+	{
+		name: "BetterCampus",
+		description: "Chrome extension to enhance Canvas LMS experience", 
+		category: "Featured",
+		page: "student.html",
+		url: "https://www.bettercanvas.org/"
+	},
+	{
+		name: "ElevenLabs",
+		description: "Immersive reader with text-to-speech (mobile free)",
+		category: "Featured", 
+		page: "student.html",
+		url: "https://elevenlabs.io/"
+	},
+	// AI Study Assistants (Student)
+	{
+		name: "Cluely",
+		description: "AI study assistant for academic support",
+		category: "AI Study Assistants",
+		page: "student.html",
+		url: "https://app.cluely.com/"
+	},,
 		{ name: "ChatGPT", description: "AI assistant for homework help and explanations", category: "Student - AI Study Assistants", url: "https://chat.openai.com", page: "student.html" },
 		{ name: "Claude", description: "AI assistant for academic writing and research", category: "Student - AI Study Assistants", url: "https://claude.ai", page: "student.html" },
 		{ name: "Perplexity", description: "AI search engine with source citations", category: "Student - AI Study Assistants", url: "https://perplexity.ai", page: "student.html" },
