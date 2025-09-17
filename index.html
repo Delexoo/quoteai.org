@@ -6,6 +6,13 @@
 	<title>Qoute - Your Free Online University</title>
 	<link rel="stylesheet" href="style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+	<style>
+		@keyframes shine {
+			0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+			50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+			100% { transform: translateX(200%) translateY(200%) rotate(45deg); }
+		}
+	</style>
 </head>
 <body>
 	<canvas id="bg-graph"></canvas>
@@ -58,28 +65,45 @@
 			<div class="blur-circle blur3"></div>
 			<div class="hero-content">
 				<h1>Welcome to Quote</h1>
-				<h2>Your Free Online University</h2>
-				<p>The Internet is your free online university. Discover the latest AI tools, educational resources, media editors, free books, and curated links to enhance your digital learning experience in 2025.</p>
+				
+				<p>The Internet is your Free Online University. Discover the latest AI tools, educational resources, media editors, free books, courses, and tons more tools to enhance your digital learning in 2025. No more wasting time searching, everything you need is here in one place. Learn smarter, not harder.</p>
 				<a href="landing.html" class="cta-btn minimal-btn">Start Here!</a>
 			</div>
 		</section>
 		
 		<section id="about" class="content-section alt-bg">
 			<div class="section-content">
-				<h2>About Qoute</h2>
-				<p>Qoute is your comprehensive digital education platform, designed as "The Internet is your free online university." We provide curated access to the best educational tools, AI resources, and digital utilities available in 2025.</p>
+				<h2>About Quote</h2>
+				<p>No more wasting your time searching for the tools you need most. Quote is an organized digital education platform that provides the best free learning tools, AI resources, and productivity apps available in 2025. We eliminate endless searching by providing everything students, professionals, and creators need all-in one place.</p>
+				
+				<p><strong>What We Offer:</strong></p>
+				<ul>
+					<li><strong>Student Hub:</strong> AI study assistants, research tools, plagiarism checkers, free books and courses</li>
+					<li><strong>Professional Hub:</strong> Project management, analytics, business communication tools</li>
+					<li><strong>Creator Hub:</strong> Design software, video editors, content creation resources</li>
+				</ul>
+				
+				<p><strong>Our Mission:</strong> We believe "The Internet is your free online university." Quote makes quality education and powerful digital tools accessible to everyone, regardless of budget. Our platform helps you learn smarter, work more efficiently, and create better content.</p>
+				
+				<p>Quote bridges the gap between having access to information and having the right tools to use it effectively. Whether you're studying, working, or creating, we provide the essential digital toolkit for success in today's connected world.</p>
+				
 				<div class="feature-grid">
 					<div class="feature-item">
-						<h3>AI-Powered Learning</h3>
-						<p>Access cutting-edge AI tools for enhanced learning and productivity.</p>
+						<h3>🤖 ChatGPT, Claude & Perplexity</h3>
+						<p>Get instant homework help, essay writing assistance, and research support from the world's most advanced AI assistants.</p>
 					</div>
 					<div class="feature-item">
-						<h3>Free Resources</h3>
-						<p>Comprehensive collection of free books, courses, and educational materials.</p>
+						<h3>📚 MIT, Harvard & Stanford Courses</h3>
+						<p>Access thousands of free university courses, textbooks, and educational materials from top institutions worldwide.</p>
 					</div>
 					<div class="feature-item">
-						<h3>Professional Tools</h3>
-						<p>Specialized editors and converters for all your digital needs.</p>
+						<h3>🎨 Canva, Figma & Video Editors</h3>
+						<p>Create stunning presentations, designs, and videos with professional-grade tools that won't cost you a penny.</p>
+					</div>
+					<div class="feature-item" onclick="window.location.href='landing.html'" style="cursor: pointer; border: 2px solid #0078ff; background: linear-gradient(135deg, #0078ff, #00a8ff); color: white !important; box-shadow: 0 8px 25px rgba(0, 120, 255, 0.3); transform: scale(1.02); transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(0, 120, 255, 0.4)'" onmouseout="this.style.transform='scale(1.02)'; this.style.boxShadow='0 8px 25px rgba(0, 120, 255, 0.3)'">
+						<div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent); transform: rotate(45deg); animation: shine 3s infinite;"></div>
+						<h3 style="color: white !important; position: relative; z-index: 2;">🚀 Get Started</h3>
+						<p style="color: white !important; position: relative; z-index: 2;">Click here to get started and choose your learning path to discover the perfect tools for your needs.</p>
 					</div>
 				</div>
 			</div>
