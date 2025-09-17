@@ -118,7 +118,57 @@
 				</div>
 			</div>
 		</section>
+		
+		<footer class="footer-section">
+			<div class="footer-content">
+				<div class="footer-links">
+					<div class="footer-column">
+						<h3>Explore</h3>
+						<ul>
+							<li><a href="student.html">Student Hub</a></li>
+							<li><a href="professional.html">Professional Hub</a></li>
+							<li><a href="creator.html">Creator Hub</a></li>
+							<li><a href="landing.html">Get Started</a></li>
+						</ul>
+					</div>
+					<div class="footer-column">
+						<h3>Legal</h3>
+						<ul>
+							<li><a href="#" onclick="openModal('terms'); return false;">Terms of Service</a></li>
+							<li><a href="#" onclick="openModal('privacy'); return false;">Privacy Policy</a></li>
+							<li><a href="#" onclick="openModal('cookies'); return false;">Cookie Policy</a></li>
+							<li><a href="#" onclick="openModal('disclaimer'); return false;">Disclaimer</a></li>
+						</ul>
+					</div>
+					<div class="footer-column">
+						<h3>Connect</h3>
+						<ul>
+							<li><a href="https://beacons.ai/delexo" target="_blank">Creator Store</a></li>
+							<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank">Donate</a></li>
+							<li><a href="#contact">Contact Us</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<p>&copy; 2025 Quoteai.org. All rights reserved. | "The Internet is your free online university."</p>
+				</div>
+			</div>
+		</footer>
 	</main>
+	
+	<!-- Legal Modals -->
+	<div id="modalOverlay" class="modal-overlay" onclick="closeModal()">
+		<div class="modal-content" onclick="event.stopPropagation()">
+			<div class="modal-header">
+				<h2 id="modalTitle">Legal Information</h2>
+				<button class="modal-close" onclick="closeModal()">&times;</button>
+			</div>
+			<div class="modal-body" id="modalBody">
+				<!-- Content will be populated by JavaScript -->
+			</div>
+		</div>
+	</div>
+	
 	<script src="javascript.js"></script>
 </body>
 </html>

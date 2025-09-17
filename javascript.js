@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.save();
 			ctx.globalAlpha = 0.15;
-			ctx.strokeStyle = '#0078ff';
+			ctx.strokeStyle = '#000000';
 			ctx.lineWidth = 1;
 			
 			let gridSize = 60;
@@ -268,5 +268,161 @@ document.addEventListener('DOMContentLoaded', function() {
 			searchResults.innerHTML = html;
 			searchResults.classList.add('show');
 		}
+	}
+});
+
+// Legal Modal Functionality
+const legalContent = {
+	terms: {
+		title: "Terms of Service",
+		content: `
+			<h3>1. Acceptance of Terms</h3>
+			<p>By accessing and using Quoteai.org, you accept and agree to be bound by the terms and provision of this agreement.</p>
+			
+			<h3>2. Use License</h3>
+			<p>Permission is granted to temporarily download one copy of the materials on Quoteai.org for personal, non-commercial transitory viewing only.</p>
+			<ul>
+				<li>This is the grant of a license, not a transfer of title</li>
+				<li>Under this license you may not modify or copy the materials</li>
+				<li>Use the materials for any commercial purpose or for any public display</li>
+				<li>Attempt to reverse engineer any software contained on the website</li>
+			</ul>
+			
+			<h3>3. Disclaimer</h3>
+			<p>The materials on Quoteai.org are provided on an 'as is' basis. Quoteai.org makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+			
+			<h3>4. Limitations</h3>
+			<p>In no event shall Quoteai.org or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Quoteai.org, even if Quoteai.org or an authorized representative has been notified orally or in writing of the possibility of such damage.</p>
+		`
+	},
+	privacy: {
+		title: "Privacy Policy",
+		content: `
+			<h3>Information We Collect</h3>
+			<p>Quoteai.org is committed to protecting your privacy. We collect minimal information to provide you with the best educational resource experience.</p>
+			
+			<h3>What We Collect:</h3>
+			<ul>
+				<li><strong>Usage Data:</strong> Anonymous analytics about page visits and popular tools</li>
+				<li><strong>Search Queries:</strong> To improve our search functionality and tool recommendations</li>
+				<li><strong>Technical Data:</strong> Browser type, device information for optimization purposes</li>
+			</ul>
+			
+			<h3>What We Don't Collect:</h3>
+			<ul>
+				<li>Personal identification information</li>
+				<li>Email addresses (unless voluntarily provided for contact)</li>
+				<li>Financial information</li>
+				<li>Location data beyond general geographic region</li>
+			</ul>
+			
+			<h3>How We Use Information</h3>
+			<p>Any data collected is used solely to:</p>
+			<ul>
+				<li>Improve website functionality and user experience</li>
+				<li>Analyze which educational tools are most helpful</li>
+				<li>Optimize site performance and loading times</li>
+				<li>Respond to user inquiries when contacted directly</li>
+			</ul>
+			
+			<h3>Data Security</h3>
+			<p>We implement appropriate security measures to protect against unauthorized access, alteration, disclosure, or destruction of information.</p>
+		`
+	},
+	cookies: {
+		title: "Cookie Policy",
+		content: `
+			<h3>What Are Cookies</h3>
+			<p>Cookies are small text files that are placed on your computer or mobile device when you visit a website. They are widely used to make websites work more efficiently and provide information to website owners.</p>
+			
+			<h3>How We Use Cookies</h3>
+			<p>Quoteai.org uses cookies to:</p>
+			<ul>
+				<li><strong>Essential Cookies:</strong> Enable basic website functionality and navigation</li>
+				<li><strong>Analytics Cookies:</strong> Help us understand how visitors interact with our site</li>
+				<li><strong>Preference Cookies:</strong> Remember your search preferences and settings</li>
+			</ul>
+			
+			<h3>Types of Cookies We Use</h3>
+			<ul>
+				<li><strong>Session Cookies:</strong> Temporary cookies that expire when you close your browser</li>
+				<li><strong>Persistent Cookies:</strong> Remain on your device for a set period to remember your preferences</li>
+				<li><strong>Third-party Cookies:</strong> From analytics services to help improve our site</li>
+			</ul>
+			
+			<h3>Managing Cookies</h3>
+			<p>You can control and manage cookies in various ways:</p>
+			<ul>
+				<li>Most browsers allow you to refuse cookies or delete existing ones</li>
+				<li>You can set your browser to notify you when cookies are being sent</li>
+				<li>Some features may not function properly if cookies are disabled</li>
+			</ul>
+			
+			<h3>Contact Us</h3>
+			<p>If you have questions about our cookie policy, please contact us through our Discord: @delexostudios</p>
+		`
+	},
+	disclaimer: {
+		title: "Disclaimer",
+		content: `
+			<h3>Educational Resource Disclaimer</h3>
+			<p>Quoteai.org serves as an educational resource platform that curates and links to external tools, websites, and services. Please read this disclaimer carefully.</p>
+			
+			<h3>External Links and Third-Party Content</h3>
+			<ul>
+				<li>We provide links to external websites and tools for educational purposes</li>
+				<li>We are not responsible for the content, privacy policies, or practices of external sites</li>
+				<li>Links do not constitute endorsement of any specific service or company</li>
+				<li>External sites may have different terms of use and privacy policies</li>
+			</ul>
+			
+			<h3>Information Accuracy</h3>
+			<ul>
+				<li>We strive to provide accurate and up-to-date information</li>
+				<li>Tool availability, features, and pricing may change without notice</li>
+				<li>We recommend verifying information on the official websites</li>
+				<li>Some tools may require registration or have usage limitations</li>
+			</ul>
+			
+			<h3>Educational Purpose</h3>
+			<ul>
+				<li>Our platform is designed for educational and informational purposes</li>
+				<li>Users are responsible for how they use the linked tools and resources</li>
+				<li>We encourage ethical and legal use of all educational resources</li>
+				<li>Academic integrity policies of your institution should be followed</li>
+			</ul>
+			
+			<h3>No Warranty</h3>
+			<p>The information and tools linked on Quoteai.org are provided "as is" without any warranties. We make no guarantees about the effectiveness, availability, or suitability of any external tools for specific educational needs.</p>
+			
+			<h3>Limitation of Liability</h3>
+			<p>Quoteai.org and its operators shall not be liable for any direct, indirect, incidental, consequential, or punitive damages arising from your use of our platform or any linked external resources.</p>
+		`
+	}
+};
+
+function openModal(type) {
+	const modal = document.getElementById('modalOverlay');
+	const title = document.getElementById('modalTitle');
+	const body = document.getElementById('modalBody');
+	
+	if (legalContent[type]) {
+		title.textContent = legalContent[type].title;
+		body.innerHTML = legalContent[type].content;
+		modal.classList.add('show');
+		document.body.style.overflow = 'hidden'; // Prevent background scrolling
+	}
+}
+
+function closeModal() {
+	const modal = document.getElementById('modalOverlay');
+	modal.classList.remove('show');
+	document.body.style.overflow = 'auto'; // Restore scrolling
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+	if (e.key === 'Escape') {
+		closeModal();
 	}
 });

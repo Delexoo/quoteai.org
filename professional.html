@@ -7,7 +7,7 @@
 	<link rel="stylesheet" href="style.css">
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="professional-page">
 	<canvas id="bg-graph"></canvas>
 	<header>
 		<nav class="navbar minimal-navbar">
@@ -51,13 +51,17 @@
 			</div>
 		</div>
 	</header>
+	
+	<!-- Page Notification Sidebar -->
+	<div class="page-notification" id="pageNotification">
+		<div class="notification-icon">💼</div>
+		<div class="notification-text">
+			<span class="notification-title">You are currently viewing professional tools</span>
+		</div>
+	</div>
+	
 	<main>
 		<section class="tools-page">
-			<div class="tools-header">
-				<h1>💼 Professional Tools</h1>
-				<p>Business tools, productivity apps, and career development resources</p>
-			</div>
-			
 			<div class="tools-grid">
 				<div class="tool-section">
 					<h2>AI Business Assistants</h2>
@@ -149,9 +153,53 @@
 			</div>
 		</section>
 		
-		<!-- Home Button -->
-		<div class="home-button-container">
-			<a href="index.html" class="home-button">← Back to Home</a>
+		<footer class="landing-footer">
+			<div class="landing-footer-content">
+				<div class="footer-links">
+					<div class="footer-column">
+						<h3>Explore</h3>
+						<ul>
+							<li><a href="student.html">Student Hub</a></li>
+							<li><a href="professional.html">Professional Hub</a></li>
+							<li><a href="creator.html">Creator Hub</a></li>
+							<li><a href="landing.html">Get Started</a></li>
+						</ul>
+					</div>
+					<div class="footer-column">
+						<h3>Legal</h3>
+						<ul>
+							<li><a href="#" onclick="openModal('terms'); return false;">Terms of Service</a></li>
+							<li><a href="#" onclick="openModal('privacy'); return false;">Privacy Policy</a></li>
+							<li><a href="#" onclick="openModal('cookies'); return false;">Cookie Policy</a></li>
+							<li><a href="#" onclick="openModal('disclaimer'); return false;">Disclaimer</a></li>
+						</ul>
+					</div>
+					<div class="footer-column">
+						<h3>Connect</h3>
+						<ul>
+							<li><a href="https://beacons.ai/delexo" target="_blank">Creator Store</a></li>
+							<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank">Donate</a></li>
+							<li><a href="index.html#contact">Contact Us</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<p>&copy; 2025 Quoteai.org. All rights reserved. | "The Internet is your free online university."</p>
+				</div>
+			</div>
+		</footer>
+		
+		<!-- Legal Modals -->
+		<div id="modalOverlay" class="modal-overlay" onclick="closeModal()">
+			<div class="modal-content" onclick="event.stopPropagation()">
+				<div class="modal-header">
+					<h2 id="modalTitle">Legal Information</h2>
+					<button class="modal-close" onclick="closeModal()">&times;</button>
+				</div>
+				<div class="modal-body" id="modalBody">
+					<!-- Content will be populated by JavaScript -->
+				</div>
+			</div>
 		</div>
 	</main>
 	<script src="javascript.js"></script>
