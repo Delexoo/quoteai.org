@@ -987,78 +987,75 @@ footer {
 	
 	/* Navigation adjustments */
 	.minimal-navbar {
-		padding: 0.5rem 0.3rem !important;
-		flex-direction: column !important;
+		padding: 0.4rem 0.5rem !important;
+		flex-direction: row !important;
+		justify-content: space-between !important;
+		align-items: center !important;
 		gap: 0.5rem;
-		align-items: center;
 	}
 	
-	/* First row: Logo and Search */
+	/* Hide logo on mobile */
 	.logo {
-		font-size: 1.1rem !important;
-		text-align: center;
-		order: 1;
-		margin-bottom: 0.3rem;
+		display: none !important;
 	}
 	
 	.nav-and-menu {
 		width: 100%;
 		display: flex;
-		flex-direction: column;
+		flex-direction: row !important;
 		align-items: center;
-		gap: 0.5rem;
+		justify-content: space-between;
+		gap: 0.6rem;
 	}
 	
 	.search-container {
-		order: 2;
-		width: 100%;
-		max-width: 250px;
-		margin: 0 auto;
+		flex: 1;
+		max-width: 160px;
+		margin: 0;
 	}
 	
 	#global-search {
 		width: 100% !important;
-		font-size: 0.8rem !important;
-		padding: 0.3rem 0.6rem 0.3rem 1.8rem !important;
-		border-radius: 20px;
+		font-size: 0.75rem !important;
+		padding: 0.25rem 0.4rem 0.25rem 1.4rem !important;
+		border-radius: 18px;
 		box-sizing: border-box;
 	}
 	
 	.search-icon {
-		width: 14px !important;
-		height: 14px !important;
-		left: 8px !important;
+		width: 12px !important;
+		height: 12px !important;
+		left: 6px !important;
 	}
 	
-	/* Second row: Navigation items centered */
+	/* Navigation items in a row */
 	.minimal-nav {
-		order: 3;
-		gap: 1rem !important;
-		justify-content: center;
-		flex-wrap: nowrap !important;
-		display: flex;
+		display: flex !important;
+		flex-direction: row !important;
+		gap: 0.8rem !important;
 		align-items: center;
+		flex-shrink: 0;
 	}
 	
 	.nav-icon {
-		width: 18px !important;
-		height: 18px !important;
+		width: 16px !important;
+		height: 16px !important;
 	}
 	
 	.donate-button {
-		padding: 0.3rem 0.8rem !important;
-		font-size: 0.75rem !important;
+		padding: 0.2rem 0.4rem !important;
+		font-size: 0.7rem !important;
 		white-space: nowrap;
+		flex-shrink: 0;
 	}
 	
 	.menu-icon {
-		order: 4;
-		margin-left: 0 !important;
-		margin-top: 0.3rem;
+		flex-shrink: 0;
+		margin-left: 0.6rem !important;
 	}
 	
 	.menu-icon span {
-		width: 20px !important;
+		width: 18px !important;
 		height: 2px !important;
 	}
 	
