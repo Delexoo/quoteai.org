@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		description: "AI study assistant for academic support",
 		category: "Featured",
 		page: "student.html",
-		url: "https://app.cluely.com/"
+		url: "https://cluely.com/"
 	},
 	{
 		name: "BetterCampus",
