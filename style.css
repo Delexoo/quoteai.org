@@ -24,7 +24,7 @@ body {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 5rem 2.5rem 5rem 2.5rem;
+	padding: 4rem 2rem 4rem 2rem;
 	position: relative;
 	z-index: 1000;
 }
@@ -40,7 +40,7 @@ body {
 }
 
 .logo {
-	font-size: 1.8rem;
+	font-size: 1.6rem;
 	font-weight: 700;
 	letter-spacing: 2px;
 	color: #222;
@@ -71,11 +71,11 @@ body {
 }
 
 #global-search {
-	padding: 0.4rem 0.8rem 0.4rem 2.2rem;
+	padding: 0.35rem 0.7rem 0.35rem 2rem;
 	border: 2px solid #e5e5e5;
 	border-radius: 25px;
-	font-size: 0.85rem;
-	width: 220px;
+	font-size: 0.8rem;
+	width: 200px;
 	background: rgba(255, 255, 255, 0.9);
 	backdrop-filter: blur(10px);
 	transition: all 0.3s ease;
@@ -145,7 +145,7 @@ body {
 .minimal-nav {
 	list-style: none;
 	display: flex;
-	gap: 2.5rem;
+	gap: 2rem;
 	margin: 0;
 	padding: 0;
 }
@@ -153,7 +153,7 @@ body {
 	text-decoration: none;
 	color: #222;
 	font-weight: 500;
-	font-size: 1.1rem;
+	font-size: 1rem;
 	letter-spacing: 1px;
 	transition: color 0.2s;
 }
@@ -163,8 +163,8 @@ body {
 
 /* Navigation Icon Styles */
 .nav-icon {
-	width: 24px;
-	height: 24px;
+	width: 22px;
+	height: 22px;
 	transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -350,53 +350,53 @@ body {
 
 .abstract-hero {
 	position: relative;
-	min-height: 80vh;
+	min-height: 75vh;
 	display: flex;
 	align-items: center;
-	padding-left: 5vw;
-	padding-right: 5vw;
+	padding-left: 4vw;
+	padding-right: 4vw;
 	z-index: 1;
 }
 .hero-content {
 	position: relative;
 	z-index: 2;
-	max-width: 640px;
+	max-width: 600px;
 }
 .hero-content h1 {
-	font-size: 4rem;
+	font-size: 3.6rem;
 	font-weight: 700;
-	margin-bottom: 1.2rem;
+	margin-bottom: 1rem;
 	line-height: 1.1;
 	white-space: nowrap;
 }
 .hero-content .thin {
 	font-weight: 300;
 	letter-spacing: 1px;
-	font-size: 1.8rem;
+	font-size: 1.6rem;
 }
 .hero-content .bold {
 	font-weight: 900;
-	font-size: 5.5rem;
+	font-size: 5rem;
 }
 .hero-content h2 {
-	font-size: 2.2rem;
+	font-size: 2rem;
 	font-weight: 600;
-	margin-bottom: 0.8rem;
+	margin-bottom: 0.7rem;
 }
 .hero-content p {
-	font-size: 1.1rem;
-	margin-bottom: 2.5rem;
+	font-size: 1rem;
+	margin-bottom: 2.2rem;
 	color: #222;
 	line-height: 1.6;
 }
 .minimal-btn {
 	display: inline-block;
-	padding: 0.8rem 2.5rem;
+	padding: 0.7rem 2.2rem;
 	background: #222;
 	color: #fff;
-	font-size: 1.6rem;
+	font-size: 1.4rem;
 	font-weight: 500;
-	border-radius: 25px;
+	border-radius: 22px;
 	border: 2px solid #222;
 	box-shadow: 0 2px 16px rgba(0,0,0,0.07);
 	text-decoration: none;
@@ -413,7 +413,7 @@ body {
 }
 
 .content-section {
-	padding: 3rem 5vw;
+	padding: 2.5rem 4vw;
 	position: relative;
 	z-index: 1;
 }
@@ -421,23 +421,23 @@ body {
 	background: #f8fafd;
 }
 .section-content {
-	max-width: 950px;
+	max-width: 900px;
 	margin: 0 auto;
 	background: #fff;
-	padding: 2.5rem;
-	border-radius: 18px;
+	padding: 2.2rem;
+	border-radius: 16px;
 }
 .section-content h2 {
-	font-size: 2.2rem;
+	font-size: 2rem;
 	font-weight: 600;
-	margin-bottom: 1.2rem;
+	margin-bottom: 1rem;
 	color: #222;
 }
 .section-content p {
-	font-size: 1.1rem;
+	font-size: 1rem;
 	line-height: 1.6;
 	color: #555;
-	margin-bottom: 1.8rem;
+	margin-bottom: 1.6rem;
 }
 .feature-grid {
 	display: grid;
@@ -630,52 +630,52 @@ footer {
 /* Landing Page Styles */
 .landing-hero {
 	position: relative;
-	min-height: 75vh;
+	min-height: 70vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	z-index: 1;
-	padding: 1.5rem;
+	padding: 1.2rem;
 }
 
 .landing-content {
 	text-align: center;
-	max-width: 1100px;
+	max-width: 1000px;
 }
 
 .landing-header {
 	background: #fff;
-	padding: 1.8rem 1.3rem;
-	border-radius: 18px;
+	padding: 1.5rem 1.1rem;
+	border-radius: 16px;
 	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-	margin-bottom: 2.5rem;
+	margin-bottom: 2.2rem;
 	border: 1px solid #f0f0f0;
 }
 
 .landing-content h1 {
-	font-size: 3.2rem;
+	font-size: 2.9rem;
 	font-weight: 700;
-	margin-bottom: 0.8rem;
+	margin-bottom: 0.7rem;
 	color: #222;
 }
 
 .landing-content p {
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	color: #555;
-	margin-bottom: 2.5rem;
+	margin-bottom: 2.2rem;
 }
 
 .path-options {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	gap: 1.8rem;
-	margin-top: 1.8rem;
+	gap: 1.5rem;
+	margin-top: 1.5rem;
 }
 
 .path-card {
 	background: #fff;
-	padding: 2.5rem 1.8rem;
-	border-radius: 18px;
+	padding: 2.2rem 1.5rem;
+	border-radius: 16px;
 	text-decoration: none;
 	color: #222;
 	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
@@ -690,75 +690,75 @@ footer {
 }
 
 .path-icon {
-	font-size: 2.7rem;
-	margin-bottom: 0.8rem;
+	font-size: 2.4rem;
+	margin-bottom: 0.7rem;
 }
 
 .path-card h3 {
-	font-size: 1.6rem;
+	font-size: 1.4rem;
 	font-weight: 600;
-	margin-bottom: 0.8rem;
+	margin-bottom: 0.7rem;
 	color: #0078ff;
 }
 
 .path-card p {
-	font-size: 1rem;
+	font-size: 0.95rem;
 	color: #666;
 	line-height: 1.5;
 }
 
 /* Tools Page Styles */
 .tools-page {
-	padding: 1.5rem 5vw;
+	padding: 1.2rem 4vw;
 	position: relative;
 	z-index: 1;
 }
 
 .tools-header {
 	text-align: center;
-	margin-bottom: 2.5rem;
+	margin-bottom: 2.2rem;
 	background: #fff;
-	padding: 1.8rem 1.3rem;
-	border-radius: 18px;
+	padding: 1.5rem 1.1rem;
+	border-radius: 16px;
 	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 	border: 1px solid #f0f0f0;
-	max-width: 750px;
-	margin: 0 auto 2.5rem auto;
+	max-width: 700px;
+	margin: 0 auto 2.2rem auto;
 }
 
 .tools-header h1 {
-	font-size: 2.7rem;
+	font-size: 2.4rem;
 	font-weight: 700;
-	margin-bottom: 0.8rem;
+	margin-bottom: 0.7rem;
 	color: #222;
 }
 
 .tools-header p {
-	font-size: 1.1rem;
+	font-size: 1rem;
 	color: #555;
 }
 
 .tools-grid {
-	max-width: 1150px;
+	max-width: 1100px;
 	margin: 0 auto;
 }
 
 .tool-section {
-	margin-bottom: 3.5rem;
+	margin-bottom: 3rem;
 }
 
 .tool-section h2 {
-	font-size: 2.2rem;
+	font-size: 2rem;
 	font-weight: 700;
-	margin-bottom: 0.4rem;
+	margin-bottom: 0.3rem;
 	color: #0078ff;
 	padding-bottom: 0;
 }
 
 .section-description {
-	font-size: 0.95rem;
+	font-size: 0.9rem;
 	color: #666;
-	margin-bottom: 1.8rem;
+	margin-bottom: 1.5rem;
 	margin-top: 0;
 	line-height: 1.5;
 	font-style: italic;
@@ -766,28 +766,28 @@ footer {
 
 .tool-cards {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-	gap: 1.3rem;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	gap: 1.1rem;
 }
 
 .tool-item {
 	background: #fff;
-	padding: 1.7rem;
-	border-radius: 14px;
+	padding: 1.5rem;
+	border-radius: 12px;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 	transition: all 0.3s ease;
 	border: 1px solid #f0f0f0;
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	min-height: 180px;
+	min-height: 160px;
 	text-decoration: none;
 	color: inherit;
 	cursor: pointer;
 }
 
 .tool-item:hover {
-	transform: translateY(-3px) scale(1.015);
+	transform: translateY(-2px) scale(1.01);
 	box-shadow: 0 8px 24px rgba(0, 120, 255, 0.15);
 	border-color: #0078ff;
 	text-decoration: none;
@@ -795,9 +795,9 @@ footer {
 }
 
 .tool-item h3 {
-	font-size: 1.2rem;
+	font-size: 1.1rem;
 	font-weight: 600;
-	margin-bottom: 0.7rem;
+	margin-bottom: 0.6rem;
 	color: #222;
 	display: flex;
 	align-items: center;
@@ -805,16 +805,16 @@ footer {
 }
 
 .tool-logo {
-	width: 26px;
-	height: 26px;
+	width: 24px;
+	height: 24px;
 	object-fit: contain;
 	vertical-align: middle;
 }
 
 .tool-item p {
-	font-size: 0.95rem;
+	font-size: 0.9rem;
 	color: #666;
-	margin-bottom: 1.3rem;
+	margin-bottom: 1.1rem;
 	line-height: 1.5;
 	flex-grow: 1;
 }
