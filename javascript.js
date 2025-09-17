@@ -159,6 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		
 		{ name: "Mathway", description: "Math problem solver with instant solutions", category: "Student - Extras", url: "https://mathway.com", page: "student.html" },
 		{ name: "Character.ai", description: "AI chatbot for creative conversations and learning", category: "Student - Extras", url: "https://character.ai", page: "student.html" },
+		{ name: "Canva", description: "Easy-to-use design platform for presentations and graphics", category: "Student - Extras", url: "https://canva.com", page: "student.html" },
 		
 		// Professional Tools
 		{ name: "Grammarly", description: "Writing assistant for professional communication", category: "Professional - AI Business Assistants", url: "https://grammarly.com", page: "professional.html" },
