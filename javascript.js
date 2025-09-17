@@ -2,11 +2,14 @@
 document.addEventListener('DOMContentLoaded', function() {
 	// Animated diagonal graph background
 	const canvas = document.getElementById('bg-graph');
+	console.log('Canvas element found:', canvas);
 	if (canvas) {
 		const ctx = canvas.getContext('2d');
+		console.log('Canvas context:', ctx);
 		function resizeCanvas() {
 			canvas.width = window.innerWidth;
 			canvas.height = window.innerHeight;
+			console.log('Canvas resized to:', canvas.width, 'x', canvas.height);
 		}
 		resizeCanvas();
 		window.addEventListener('resize', resizeCanvas);
@@ -15,8 +18,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		function drawGraph() {
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 			ctx.save();
-			ctx.globalAlpha = 0.12;
-			ctx.strokeStyle = '#222';
+			ctx.globalAlpha = 0.15;
+			ctx.strokeStyle = '#0078ff';
 			ctx.lineWidth = 1;
 			
 			let gridSize = 60;
@@ -91,8 +94,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 	// Database of all tools from all categories
 	const toolsDatabase = [
-		// Student Tools
-		const toolsDatabase = [
 	// Featured Tools (Student)
 	{
 		name: "Cluely",

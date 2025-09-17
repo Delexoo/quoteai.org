@@ -29,16 +29,6 @@ body {
 	z-index: 1000;
 }
 
-#bg-graph {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	z-index: 0;
-	pointer-events: none;
-}
-
 .logo {
 	font-size: 1.6rem;
 	font-weight: 700;
