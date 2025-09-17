@@ -116,6 +116,13 @@ document.addEventListener('DOMContentLoaded', function() {
 		page: "student.html",
 		url: "https://elevenlabs.io/"
 	},
+	{
+		name: "Qwen",
+		description: "Advanced AI assistant for comprehensive academic support and research",
+		category: "Featured",
+		page: "student.html",
+		url: "https://chat.qwen.ai/"
+	},
 	// AI Study Assistants (Student)
 	{
 		name: "Cluely",
@@ -131,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		{ name: "Photomath", description: "Camera-based math problem solver with step-by-step solutions", category: "Student - AI Study Assistants", url: "https://photomath.com", page: "student.html" },
 		{ name: "Brainly", description: "Homework help and study community platform", category: "Student - AI Study Assistants", url: "https://brainly.com", page: "student.html" },
 		{ name: "SaveMyGPA", description: "AI-powered study tool for GPA improvement", category: "Student - AI Study Assistants", url: "https://savemygpa.com", page: "student.html" },
+		{ name: "Qwen", description: "Advanced AI assistant for comprehensive academic support and research", category: "Student - AI Study Assistants", url: "https://chat.qwen.ai/", page: "student.html" },
 		
 		{ name: "Citation Machine", description: "Automatic citation generator", category: "Student - Research & Citations", url: "https://citationmachine.net", page: "student.html" },
 		{ name: "Google Scholar", description: "Academic search engine for scholarly literature", category: "Student - Research & Citations", url: "https://scholar.google.com", page: "student.html" },
