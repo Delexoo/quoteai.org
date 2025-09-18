@@ -709,6 +709,27 @@ body.creator-page .tools-header p {
 	color: #222;
 	line-height: 1.6;
 }
+
+.hero-actions {
+	display: flex;
+	align-items: center;
+	gap: 1.5rem;
+}
+
+.learn-more-link {
+	color: #666;
+	text-decoration: none;
+	font-size: 1rem;
+	font-weight: 400;
+	position: relative;
+	transition: color 0.3s ease;
+}
+
+.learn-more-link:hover {
+	color: #222;
+	text-decoration: underline;
+}
+
 .minimal-btn {
 	display: inline-block;
 	padding: 0.7rem 2.2rem;
@@ -831,6 +852,32 @@ body.creator-page .tools-header p {
 .contact-info p {
 	margin-bottom: 0.8rem;
 	font-size: 1.1rem;
+}
+
+.contact-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 1rem;
+}
+
+.feedback-btn {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+	text-decoration: none;
+	padding: 0.8rem 1.5rem;
+	border-radius: 25px;
+	font-size: 0.9rem;
+	font-weight: 500;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+}
+
+.feedback-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
+	text-decoration: none;
+	color: white;
 }
 
 header {
