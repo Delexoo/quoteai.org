@@ -43,12 +43,27 @@ document.addEventListener('DOMContentLoaded', function() {
 			ctx.restore();
 		}
 		function animate() {
-			offset += 0.2; // slow movement for grid
+			offset += 0.1; // slow movement for grid
 			if (offset > 60) offset = 0;
 			drawGraph();
 			requestAnimationFrame(animate);
 		}
 		animate();
+	}
+
+	// Click-to-dismiss notification
+	const notification = document.getElementById('pageNotification');
+	if (notification) {
+		notification.addEventListener('click', function() {
+			notification.classList.add('clicked');
+			// Hide the notification after the animation completes
+			setTimeout(() => {
+				notification.style.display = 'none';
+			}, 400); // Match the CSS animation duration
+		});
+		
+		// Add cursor pointer to indicate clickability
+		notification.style.cursor = 'pointer';
 	}
 
 	// Animated dropdown menu
@@ -66,6 +81,33 @@ document.addEventListener('DOMContentLoaded', function() {
 			if (!menuToggle.contains(event.target) && !dropdownMenu.contains(event.target)) {
 				menuToggle.classList.remove('active');
 				dropdownMenu.classList.remove('active');
+			}
+		});
+	}
+
+	// Secret button functionality
+	const secretButton = document.getElementById('secretButton');
+	const secretBubble = document.getElementById('secretBubble');
+	const bubbleClose = document.getElementById('bubbleClose');
+	
+	if (secretButton && secretBubble) {
+		secretButton.addEventListener('click', function(event) {
+			event.stopPropagation();
+			secretBubble.classList.toggle('show');
+		});
+
+		// Close button functionality
+		if (bubbleClose) {
+			bubbleClose.addEventListener('click', function(event) {
+				event.stopPropagation();
+				secretBubble.classList.remove('show');
+			});
+		}
+
+		// Close bubble when clicking outside
+		document.addEventListener('click', function(event) {
+			if (!secretButton.contains(event.target) && !secretBubble.contains(event.target)) {
+				secretBubble.classList.remove('show');
 			}
 		});
 	}
