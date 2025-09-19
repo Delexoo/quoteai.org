@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		description: "AI study assistant for academic support",
 		category: "AI Study Assistants",
 		page: "student.html",
-		url: "https://app.cluely.com/"
+		url: "https://cluely.com/"
 	},,
 		{ name: "ChatGPT", description: "AI assistant for homework help and explanations", category: "Student - AI Study Assistants", url: "https://chat.openai.com", page: "student.html" },
 		{ name: "Claude", description: "AI assistant for academic writing and research", category: "Student - AI Study Assistants", url: "https://claude.ai", page: "student.html" },

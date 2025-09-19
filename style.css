@@ -719,10 +719,10 @@ body.creator-page .tools-header p {
 .learn-more-link {
 	color: #666;
 	text-decoration: none;
-	font-size: 1rem;
+	font-size: .9rem;
 	font-weight: 400;
 	position: relative;
-	transition: color 0.3s ease;
+	transition: color 1 ease;
 }
 
 .learn-more-link:hover {
@@ -1486,7 +1486,7 @@ footer {
 	.search-container {
 		flex: 1;
 		max-width: 160px;
-		margin: 0;
+		margin: 0 0 0 0.5rem;
 	}
 	
 	#global-search {
@@ -1996,28 +1996,6 @@ footer {
 	overflow: hidden;
 }
 
-.footer-section::before {
-	content: '';
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 3px;
-	background: linear-gradient(90deg, transparent, #0078ff, transparent);
-}
-
-.footer-section::after {
-	content: '';
-	position: absolute;
-	top: -50px;
-	left: -50px;
-	width: 100px;
-	height: 100px;
-	background: radial-gradient(circle, rgba(0, 120, 255, 0.1) 0%, transparent 70%);
-	border-radius: 50%;
-	animation: float 6s ease-in-out infinite;
-}
-
 @keyframes float {
 	0%, 100% { transform: translateY(0px) translateX(0px); }
 	33% { transform: translateY(-20px) translateX(10px); }
@@ -2263,8 +2241,8 @@ footer {
 }
 
 .secret-button:hover {
-	background: #e0e0e0;
-	border-color: #ccc;
+	background: #dddddd00;
+	border-color: #dddddd00;
 	color: #333;
 	transform: translateY(-1px);
 }
