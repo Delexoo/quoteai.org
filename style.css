@@ -1,3 +1,39 @@
+/* All Tools CTA Button Animation */
+.all-tools-cta {
+	background: #fff;
+	color: #111;
+	border: 2px solid #222;
+	font-size: 0.9rem;
+	padding: 0.5rem 1.2rem;
+	border-radius: 20px;
+	display: inline-block;
+	opacity: 0;
+	transform: translateY(40px) scale(0.95);
+	animation: allToolsEaseIn 0.8s cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
+	box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+	transition: box-shadow 0.2s, transform 0.2s;
+}
+.all-tools-cta:hover {
+	box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+	transform: translateY(0) scale(1.03);
+	color: #222;
+	background: #f7f7f7;
+}
+
+@keyframes allToolsEaseIn {
+	0% {
+		opacity: 0;
+		transform: translateY(40px) scale(0.95);
+	}
+	60% {
+		opacity: 1;
+		transform: translateY(-8px) scale(1.04);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+}
 body {
 	margin: 0;
 	font-family: 'Inter', Arial, sans-serif;
