@@ -1,679 +1,554 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>All Tools - Quote</title>
-	<link rel="stylesheet" href="style.css">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Tools | Quote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            --glass-blur: blur(12px);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+        
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+        }
+        
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease;
+        }
+        
+        .hover-effect {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-effect:hover {
+            transform: scale(1.05);
+        }
+        
+        .tool-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .donate-btn {
+            animation: rotateShake 2s ease-in-out infinite;
+        }
+        
+        .donate-btn-footer {
+            animation: none;
+        }
+        
+        @keyframes rotateShake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+            75% { transform: rotate(-1deg); }
+        }
+        
+        .filter-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+    </style>
 </head>
-<body class="all-tools-page">
-	<canvas id="bg-graph"></canvas>
-	<header>
-		<nav class="navbar minimal-navbar">
-			<div class="logo"><a href="index.html">quoteai.org</a></div>
-			<div class="nav-and-menu">
-				<div class="search-container">
-					<img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Search" class="search-icon">
-					<input type="text" id="global-search" placeholder="Search tools..." autocomplete="off">
-					<div class="search-results" id="search-results"></div>
-				</div>
-				<ul class="nav-links minimal-nav">
-					<li><a href="index.html"><img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Home" class="nav-icon"></a></li>
-					<li><a href="index.html#about"><img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="About" class="nav-icon"></a></li>
-					<li><a href="index.html#contact"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Contact" class="nav-icon"></a></li>
-					<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-button">Donate</a></li>
-				</ul>
-				<div class="menu-icon" id="menu-toggle">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			</div>
-		</nav>
-		<div class="dropdown-menu" id="dropdown-menu">
-			<div class="dropdown-content">
-				<div class="dropdown-button-item">
-					<h3>🎓 Student</h3>
-					<p>Academic tools, research resources, and study aids</p>
-					<a href="student.html" class="dropdown-button">Enter Student Hub</a>
-				</div>
-				<div class="dropdown-button-item">
-					<h3>💼 Professional</h3>
-					<p>Business tools, productivity apps, and career resources</p>
-					<a href="professional.html" class="dropdown-button">Enter Professional Hub</a>
-				</div>
-				<div class="dropdown-button-item">
-					<h3>🎨 Creator</h3>
-					<p>Design tools, content creation, and creative resources</p>
-					<a href="creator.html" class="dropdown-button">Enter Creator Hub</a>
-				</div>
-				<div class="dropdown-button-item">
-					<h3>🔧 All Tools</h3>
-					<p>Browse our complete collection of tools and resources</p>
-					<a href="all-tools.html" class="dropdown-button">View All Tools</a>
-				</div>
-			</div>
-		</div>
-	</header>
+<body class="text-gray-800">
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
-	<main>
-		<section class="tools-page">
-			<div class="tools-grid">
-				   <!-- All Tools Aggregated -->
-				   <div class="tool-section">
-					   <h2>Browse for all tools</h2>
-					   <p class="section-description">Discover our gallery of top hand-picked tools!</p>
-					   <div class="tool-cards">
-						   <!-- Aggregated from student.html -->
-						   <a href="https://chat.qwen.ai/" target="_blank" class="tool-item">
-							   <h3>Qwen <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/qwen.ico" alt="Qwen" class="tool-logo"></h3>
-							   <p>Most Advanced AI assistant for comprehensive academic support and research</p>
-							   <span class="tool-tag ai">AI</span>
-						   </a>
-						   <a href="https://cluely.com/" target="_blank" class="tool-item">
-							   <h3>Cluely <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/cluely.ico" alt="Cluely" class="tool-logo"></h3>
-							   <p>Live interactive AI study assistant for academic support</p>
-							   <span class="tool-tag study">Study</span>
-						   </a>
-						   <a href="https://savemygpa.com" target="_blank" class="tool-item">
-							   <h3>SaveMyGPA <img src="https://savemygpa.com/favicon.ico" alt="SaveMyGPA" class="tool-logo"></h3>
-							   <p>AI-powered study tool for GPA improvement</p>
-							   <span class="tool-tag gpa">GPA</span>
-						   </a>
-						   <a href="https://claude.ai" target="_blank" class="tool-item">
-							   <h3>Claude <img src="https://claude.ai/favicon.ico" alt="Claude" class="tool-logo"></h3>
-							   <p>AI assistant for academic writing and research</p>
-							   <span class="tool-tag writing">Writing</span>
-						   </a>
-						   <a href="https://perplexity.ai" target="_blank" class="tool-item">
-							   <h3>Perplexity AI <img src="https://perplexity.ai/favicon.ico" alt="Perplexity" class="tool-logo"></h3>
-							   <p>Research assistant with real-time information</p>
-							   <span class="tool-tag research">Research</span>
-						   </a>
-						   <a href="https://gauthmath.com" target="_blank" class="tool-item">
-							   <h3>Gauth <img src="https://gauthmath.com/favicon.ico" alt="Gauth" class="tool-logo"></h3>
-							   <p>AI-powered study assistant for homework help</p>
-							   <span class="tool-tag homework">Homework</span>
-						   </a>
-						   <a href="https://photomath.com" target="_blank" class="tool-item">
-							   <h3>Photomath <img src="https://photomath.com/favicon.ico" alt="Photomath" class="tool-logo"></h3>
-							   <p>Camera-based math problem solver with step-by-step solutions</p>
-							   <span class="tool-tag math">Math</span>
-						   </a>
-						   <a href="https://brainly.com" target="_blank" class="tool-item">
-							   <h3>Brainly <img src="https://brainly.com/favicon.ico" alt="Brainly" class="tool-logo"></h3>
-							   <p>Homework help and study community platform</p>
-							   <span class="tool-tag community">Community</span>
-						   </a>
-						   <a href="https://chat.openai.com" target="_blank" class="tool-item">
-							   <h3>ChatGPT <img src="https://chat.openai.com/favicon.ico" alt="ChatGPT" class="tool-logo"></h3>
-							   <p>AI assistant for homework help, explanations, and writing</p>
-							   <span class="tool-tag ai">AI Chat</span>
-						   </a>
-						   <a href="https://edx.org" target="_blank" class="tool-item">
-							   <h3>edX <img src="https://edx.org/favicon.ico" alt="edX" class="tool-logo"></h3>
-							   <p>Free university courses from top institutions worldwide</p>
-							   <span class="tool-tag courses">Courses</span>
-						   </a>
-						   <a href="https://khanacademy.org" target="_blank" class="tool-item">
-							   <h3>Khan Academy <img src="https://khanacademy.org/favicon.ico" alt="Khan Academy" class="tool-logo"></h3>
-							   <p>Free courses in math, science, and more</p>
-							   <span class="tool-tag courses">Courses</span>
-						   </a>
-						   <a href="https://coursera.org" target="_blank" class="tool-item">
-							   <h3>Coursera <img src="https://coursera.org/favicon.ico" alt="Coursera" class="tool-logo"></h3>
-							   <p>University courses and certifications</p>
-							   <span class="tool-tag certificates">Certificates</span>
-						   </a>
-						   <a href="https://ocw.mit.edu" target="_blank" class="tool-item">
-							   <h3>MIT OCW <img src="https://ocw.mit.edu/favicon.ico" alt="MIT OpenCourseWare" class="tool-logo"></h3>
-							   <p>Free MIT course materials</p>
-							   <span class="tool-tag mit">MIT</span>
-						   </a>
-						   <a href="https://udemy.com" target="_blank" class="tool-item">
-							   <h3>Udemy <img src="https://github.com/Delexoo/Quote/raw/refs/heads/main/udemy.ico" alt="Udemy" class="tool-logo"></h3>
-							   <p>Online courses on various topics and skills</p>
-							   <span class="tool-tag skills">Skills</span>
-						   </a>
-						   <a href="https://freecodecamp.org" target="_blank" class="tool-item">
-							   <h3>FreeCodeCamp <img src="https://github.com/Delexoo/Quote/raw/refs/heads/main/freecodecamp.ico" alt="FreeCodeCamp" class="tool-logo"></h3>
-							   <p>Free programming and coding tutorials</p>
-							   <span class="tool-tag coding">Coding</span>
-						   </a>
-						   <a href="https://futurelearn.com" target="_blank" class="tool-item">
-							   <h3>FutureLearn <img src="https://futurelearn.com/favicon.ico" alt="FutureLearn" class="tool-logo"></h3>
-							   <p>Online courses from universities and institutions</p>
-							   <span class="tool-tag courses">Courses</span>
-						   </a>
-						   <a href="https://annas-archive.li" target="_blank" class="tool-item">
-							   <h3>Anna's Archive <img src="https://annas-archive.li/favicon.ico" alt="Anna's Archive" class="tool-logo"></h3>
-							   <p>Comprehensive free book and academic resource library</p>
-							   <span class="tool-tag books">Books</span>
-						   </a>
-						   <a href="https://libgen.ac" target="_blank" class="tool-item">
-							   <h3>Library Genesis <img src="https://libgen.ac/favicon.ico" alt="Library Genesis" class="tool-logo"></h3>
-							   <p>Free scientific and academic book repository</p>
-							   <span class="tool-tag books">Books</span>
-						   </a>
-						   <a href="https://webtopdf.com" target="_blank" class="tool-item">
-							   <h3>Website to .pdf <img src="https://webtopdf.com" alt="Webite to .pdf" class="tool-logo"></h3>
-							   <p>Convert a Website (link) into a PDF document</p>
-							   <span class="tool-tag pdf">PDF</span>
-						   </a>
-						   <a href="https://elevenlabs.io/" target="_blank" class="tool-item">
-							   <h3>ElevenLabs <img src="https://elevenlabs.io/favicon.ico" alt="ElevenLabs" class="tool-logo"></h3>
-							   <p>Immersive reader with text-to-speech (mobile free)</p>
-							   <span class="tool-tag audio">Audio</span>
-						   </a>
-						   <a href="https://www.ilovepdf.com/split_pdf" target="_blank" class="tool-item">
-							   <h3>iLovePDF <img src="https://www.ilovepdf.com/favicon.ico" alt="iLovePDF" class="tool-logo"></h3>
-							   <p>PDF splitter and comprehensive PDF editing toolkit</p>
-							   <span class="tool-tag pdf">PDF</span>
-						   </a>
-						   <a href="https://www.ilovepdf.com/word_to_pdf" target="_blank" class="tool-item">
-							   <h3>.docx to .pdf <img src="https://www.ilovepdf.com/favicon.ico" alt="iLovePDF" class="tool-logo"></h3>
-							   <p>Convert Word documents to PDF format easily</p>
-							   <span class="tool-tag converter">Converter</span>
-						   </a>
-						   <a href="https://www.ilovepdf.com/powerpoint_to_pdf" target="_blank" class="tool-item">
-							   <h3>PowerPoint to .pdf <img src="https://www.ilovepdf.com/favicon.ico" alt="iLovePDF" class="tool-logo"></h3>
-							   <p>Convert PowerPoint presentations to PDF format</p>
-							   <span class="tool-tag converter">Converter</span>
-						   </a>
-						   <a href="https://www.microsoft.com/en-us/microsoft-365/onedrive/online-cloud-storage" target="_blank" class="tool-item">
-							   <h3>OneDrive Mobile <img src="https://www.microsoft.com/favicon.ico" alt="Microsoft" class="tool-logo"></h3>
-							   <p>Scan documents to PDF using your mobile device</p>
-							   <span class="tool-tag scanner">Scanner</span>
-						   </a>
-						   <a href="https://cloudconvert.com" target="_blank" class="tool-item">
-							   <h3>CloudConvert <img src="https://cloudconvert.com/favicon.ico" alt="CloudConvert" class="tool-logo"></h3>
-							   <p>Multi-format file converter and processing tool</p>
-							   <span class="tool-tag converter">Converter</span>
-						   </a>
-						   <a href="https://freeconvert.com" target="_blank" class="tool-item">
-							   <h3>FreeConvert <img src="https://freeconvert.com/favicon.ico" alt="FreeConvert" class="tool-logo"></h3>
-							   <p>Multifunctional file converter for various formats</p>
-							   <span class="tool-tag converter">Converter</span>
-						   </a>
-						   <a href="https://speechify.com" target="_blank" class="tool-item">
-							   <h3>Speechify <img src="https://speechify.com/favicon.ico" alt="Speechify" class="tool-logo"></h3>
-							   <p>Text-to-speech tool for listening to documents</p>
-							   <span class="tool-tag audio">Audio</span>
-						   </a>
-						   <a href="https://scribehow.com/" target="_blank" class="tool-item">
-							   <h3>Scribe <img src="https://scribehow.com/favicon.ico" alt="Scribe" class="tool-logo"></h3>
-							   <p>Automatic step-by-step guide and documentation creator</p>
-							   <span class="tool-tag productivity">Docs</span>
-						   </a>
-						   <a href="https://plagly.com/?msclkid=1432e4ea364a1c0292458c23e9dcef4a&utm_source=bing&utm_medium=cpc&utm_campaign=plag&utm_term=free%20plagiarism%20checker&utm_content=plagly" target="_blank" class="tool-item">
-							   <h3>Plagly <img src="https://plagly.com/favicon.ico" alt="Plagly" class="tool-logo"></h3>
-							   <p>Free plagiarism checker for academic writing</p>
-							   <span class="tool-tag plagiarism">Plagiarism</span>
-						   </a>
-						   <a href="https://smallseotools.com/plagiarism-checker/" target="_blank" class="tool-item">
-							   <h3>Small SEO Tools <img src="https://smallseotools.com/favicon.ico" alt="Small SEO Tools" class="tool-logo"></h3>
-							   <p>Free online plagiarism detection and checking tool</p>
-							   <span class="tool-tag plagiarism">Plagiarism</span>
-						   </a>
-						   <a href="https://www.scribbr.com/plagiarism-checker/" target="_blank" class="tool-item">
-							   <h3>Scribbr <img src="https://www.scribbr.com/favicon.ico" alt="Scribbr" class="tool-logo"></h3>
-							   <p>Academic plagiarism checker with detailed reports</p>
-							   <span class="tool-tag plagiarism">Plagiarism</span>
-						   </a>
-						   <a href="https://notion.so" target="_blank" class="tool-item">
-							   <h3>Notion <img src="https://notion.so/favicon.ico" alt="Notion" class="tool-logo"></h3>
-							   <p>All-in-one workspace for notes and planning</p>
-							   <span class="tool-tag notes">Notes</span>
-						   </a>
-                           <a href="https://grammarly.com" target="_blank" class="tool-item">
-							   <h3>Grammarly <img src="https://grammarly.com/favicon.ico" alt="Grammarly" class="tool-logo"></h3>
-							   <p>Writing assistant for professional communication</p>
-							   <span class="tool-tag writing">Writing</span>
-						   </a>
-						   <a href="https://jasper.ai" target="_blank" class="tool-item">
-							   <h3>Jasper AI <img src="https://jasper.ai/favicon.ico" alt="Jasper AI" class="tool-logo"></h3>
-							   <p>AI content creation for marketing</p>
-							   <span class="tool-tag ai">AI</span>
-						   </a>
-						   <a href="https://copy.ai" target="_blank" class="tool-item">
-							   <h3>Copy.ai <img src="https://copy.ai/favicon.ico" alt="Copy.ai" class="tool-logo"></h3>
-							   <p>AI-powered copywriting tool</p>
-							   <span class="tool-tag ai">AI</span>
-						   </a>
-						   <a href="https://claude.ai" target="_blank" class="tool-item">
-							   <h3>Claude <img src="https://claude.ai/favicon.ico" alt="Claude" class="tool-logo"></h3>
-							   <p>AI assistant for business analysis and strategy</p>
-							   <span class="tool-tag ai">AI</span>
-						   </a>
-						   <a href="https://writesonic.com" target="_blank" class="tool-item">
-							   <h3>Writesonic <img src="https://writesonic.com/favicon.ico" alt="Writesonic" class="tool-logo"></h3>
-							   <p>AI writing assistant for marketing content</p>
-							   <span class="tool-tag ai">Content</span>
-						   </a>
-						   <a href="https://tome.app" target="_blank" class="tool-item">
-							   <h3>Tome <img src="https://tome.app/favicon.ico" alt="Tome" class="tool-logo"></h3>
-							   <p>AI-powered presentation creation tool</p>
-							   <span class="tool-tag ai">Presentations</span>
-						   </a>
-						   <a href="https://trello.com" target="_blank" class="tool-item">
-							   <h3>Trello <img src="https://trello.com/favicon.ico" alt="Trello" class="tool-logo"></h3>
-							   <p>Visual project management with boards</p>
-							   <span class="tool-tag tasks">Project</span>
-						   </a>
-						   <a href="https://asana.com" target="_blank" class="tool-item">
-							   <h3>Asana <img src="https://asana.com/favicon.ico" alt="Asana" class="tool-logo"></h3>
-							   <p>Team collaboration and task management</p>
-							   <span class="tool-tag tasks">Project</span>
-						   </a>
-						   <a href="https://monday.com" target="_blank" class="tool-item">
-							   <h3>Monday.com <img src="https://monday.com/favicon.ico" alt="Monday.com" class="tool-logo"></h3>
-							   <p>Work operating system for teams</p>
-							   <span class="tool-tag tasks">Project</span>
-						   </a>
-						   <a href="https://notion.so" target="_blank" class="tool-item">
-							   <h3>Notion <img src="https://notion.so/favicon.ico" alt="Notion" class="tool-logo"></h3>
-							   <p>All-in-one workspace for teams and projects</p>
-							   <span class="tool-tag workspace">Workspace</span>
-						   </a>
-						   <a href="https://clickup.com" target="_blank" class="tool-item">
-							   <h3>ClickUp <img src="https://clickup.com/favicon.ico" alt="ClickUp" class="tool-logo"></h3>
-							   <p>Complete productivity and project management platform</p>
-							   <span class="tool-tag tasks">Productivity</span>
-						   </a>
-						   <a href="https://basecamp.com" target="_blank" class="tool-item">
-							   <h3>Basecamp <img src="https://basecamp.com/favicon.ico" alt="Basecamp" class="tool-logo"></h3>
-							   <p>Simple project management and team collaboration</p>
-							   <span class="tool-tag tasks">Teams</span>
-						   </a>
-						   <a href="https://slack.com" target="_blank" class="tool-item">
-							   <h3>Slack <img src="https://slack.com/favicon.ico" alt="Slack" class="tool-logo"></h3>
-							   <p>Team messaging and collaboration</p>
-							   <span class="tool-tag community">Team</span>
-						   </a>
-						   <a href="https://zoom.us" target="_blank" class="tool-item">
-							   <h3>Zoom <img src="https://zoom.us/favicon.ico" alt="Zoom" class="tool-logo"></h3>
-							   <p>Video conferencing and meetings</p>
-							   <span class="tool-tag community">Video</span>
-						   </a>
-						   <a href="https://calendly.com" target="_blank" class="tool-item">
-							   <h3>Calendly <img src="https://calendly.com/favicon.ico" alt="Calendly" class="tool-logo"></h3>
-							   <p>Automated scheduling tool</p>
-							   <span class="tool-tag tasks">Schedule</span>
-						   </a>
-						   <a href="https://discord.com" target="_blank" class="tool-item">
-							   <h3>Discord <img src="https://discord.com/favicon.ico" alt="Discord" class="tool-logo"></h3>
-							   <p>Team communication and voice chat platform</p>
-							   <span class="tool-tag community">Voice</span>
-						   </a>
-						   <a href="https://microsoft.com/teams" target="_blank" class="tool-item">
-							   <h3>Microsoft Teams <img src="https://microsoft.com/favicon.ico" alt="Microsoft Teams" class="tool-logo"></h3>
-							   <p>Business communication and collaboration platform</p>
-							   <span class="tool-tag community">Business</span>
-						   </a>
-						   <a href="https://whereby.com" target="_blank" class="tool-item">
-							   <h3>Whereby <img src="https://whereby.com/favicon.ico" alt="Whereby" class="tool-logo"></h3>
-							   <p>Simple video meetings and conferencing</p>
-							   <span class="tool-tag community">Video</span>
-						   </a>
-						   <a href="https://funnel.io" target="_blank" class="tool-item">
-							   <h3>Funnel.io <img src="https://funnel.io/favicon.ico" alt="Funnel.io" class="tool-logo"></h3>
-							   <p>Marketing data collection and attribution platform</p>
-							   <span class="tool-tag research">Marketing</span>
-						   </a>
-						   <a href="https://analytics.google.com" target="_blank" class="tool-item">
-							   <h3>Google Analytics <img src="https://analytics.google.com/favicon.ico" alt="Google Analytics" class="tool-logo"></h3>
-							   <p>Web analytics and insights</p>
-							   <span class="tool-tag research">Analytics</span>
-						   </a>
-						   <a href="https://public.tableau.com" target="_blank" class="tool-item">
-							   <h3>Tableau Public <img src="https://public.tableau.com/favicon.ico" alt="Tableau Public" class="tool-logo"></h3>
-							   <p>Free data visualization tool</p>
-							   <span class="tool-tag research">Data</span>
-						   </a>
-						   <a href="https://airtable.com" target="_blank" class="tool-item">
-							   <h3>Airtable <img src="https://airtable.com/favicon.ico" alt="Airtable" class="tool-logo"></h3>
-							   <p>Database and spreadsheet hybrid</p>
-							   <span class="tool-tag workspace">Database</span>
-						   </a>
-						   <a href="https://mixpanel.com" target="_blank" class="tool-item">
-							   <h3>Mixpanel <img src="https://mixpanel.com/favicon.ico" alt="Mixpanel" class="tool-logo"></h3>
-							   <p>Product analytics and user behavior tracking</p>
-							   <span class="tool-tag research">Product</span>
-						   </a>
-						   <a href="https://hotjar.com" target="_blank" class="tool-item">
-							   <h3>Hotjar <img src="https://hotjar.com/favicon.ico" alt="Hotjar" class="tool-logo"></h3>
-							   <p>Website heatmaps and user session recordings</p>
-							   <span class="tool-tag research">UX</span>
-						   </a>
-						   <a href="https://zapier.com" target="_blank" class="tool-item">
-							   <h3>Zapier <img src="https://zapier.com/favicon.ico" alt="Zapier" class="tool-logo"></h3>
-							   <p>Workflow automation and app integration platform</p>
-							   <span class="tool-tag ai">Automation</span>
-						   </a>
-                           <a href="https://midjourney.com" target="_blank" class="tool-item">
-							   <h3>Midjourney <img src="https://midjourney.com/favicon.ico" alt="Midjourney" class="tool-logo"></h3>
-							   <p>High-quality AI art generation</p>
-							   <span class="tool-tag ai">AI Art</span>
-						   </a>
-						   <a href="https://stability.ai" target="_blank" class="tool-item">
-							   <h3>Stable Diffusion <img src="https://stability.ai/favicon.ico" alt="Stable Diffusion" class="tool-logo"></h3>
-							   <p>Open-source AI image generator</p>
-							   <span class="tool-tag ai">AI Art</span>
-						   </a>
-						   <a href="https://leonardo.ai" target="_blank" class="tool-item">
-							   <h3>Leonardo AI <img src="https://leonardo.ai/favicon.ico" alt="Leonardo AI" class="tool-logo"></h3>
-							   <p>AI art generation with advanced controls</p>
-							   <span class="tool-tag ai">AI Art</span>
-						   </a>
-						   <a href="https://playground.ai" target="_blank" class="tool-item">
-							   <h3>Playground AI <img src="https://playground.ai/favicon.ico" alt="Playground AI" class="tool-logo"></h3>
-							   <p>Free AI image generation and editing</p>
-							   <span class="tool-tag ai">AI Art</span>
-						   </a>
-						   <a href="https://firefly.adobe.com" target="_blank" class="tool-item">
-							   <h3>Adobe Firefly <img src="https://firefly.adobe.com/favicon.ico" alt="Adobe Firefly" class="tool-logo"></h3>
-							   <p>Adobe's AI image and text generation tool</p>
-							   <span class="tool-tag ai">AI Creative</span>
-						   </a>
-						   <a href="https://canva.com" target="_blank" class="tool-item">
-							   <h3>Canva <img src="https://canva.com/favicon.ico" alt="Canva" class="tool-logo"></h3>
-							   <p>Easy-to-use design platform</p>
-							   <span class="tool-tag workspace">Design</span>
-						   </a>
-						   <a href="https://figma.com" target="_blank" class="tool-item">
-							   <h3>Figma <img src="https://figma.com/favicon.ico" alt="Figma" class="tool-logo"></h3>
-							   <p>Collaborative design and prototyping</p>
-							   <span class="tool-tag workspace">Design</span>
-						   </a>
-						   <a href="https://gimp.org" target="_blank" class="tool-item">
-							   <h3>GIMP <img src="https://gimp.org/favicon.ico" alt="GIMP" class="tool-logo"></h3>
-							   <p>Free photo editing software</p>
-							   <span class="tool-tag converter">Photo</span>
-						   </a>
-						   <a href="https://www.photopea.com" target="_blank" class="tool-item">
-							   <h3>Photopea <img src="https://www.photopea.com/favicon.ico" alt="Photopea" class="tool-logo"></h3>
-							   <p>Free online photo editor similar to Photoshop</p>
-							   <span class="tool-tag converter">Photo</span>
-						   </a>
-						   <a href="https://sketch.com" target="_blank" class="tool-item">
-							   <h3>Sketch <img src="https://sketch.com/favicon.ico" alt="Sketch" class="tool-logo"></h3>
-							   <p>Vector graphics and UI design tool</p>
-							   <span class="tool-tag workspace">Vector</span>
-						   </a>
-						   <a href="https://www.adobe.com/products/illustrator.html" target="_blank" class="tool-item">
-							   <h3>Adobe Illustrator <img src="https://www.adobe.com/favicon.ico" alt="Adobe Illustrator" class="tool-logo"></h3>
-							   <p>Professional vector graphics software</p>
-							   <span class="tool-tag workspace">Vector</span>
-						   </a>
-						   <a href="https://blackmagicdesign.com/products/davinciresolve" target="_blank" class="tool-item">
-							   <h3>DaVinci Resolve <img src="https://blackmagicdesign.com/favicon.ico" alt="DaVinci Resolve" class="tool-logo"></h3>
-							   <p>Professional free video editor</p>
-							   <span class="tool-tag converter">Video</span>
-						   </a>
-						   <a href="https://audacityteam.org" target="_blank" class="tool-item">
-							   <h3>Audacity <img src="https://audacityteam.org/favicon.ico" alt="Audacity" class="tool-logo"></h3>
-							   <p>Free audio editing software</p>
-							   <span class="tool-tag audio">Audio</span>
-						   </a>
-						   <a href="https://obsproject.com" target="_blank" class="tool-item">
-							   <h3>OBS Studio <img src="https://obsproject.com/favicon.ico" alt="OBS Studio" class="tool-logo"></h3>
-							   <p>Free streaming and recording software</p>
-							   <span class="tool-tag converter">Stream</span>
-						   </a>
-						   <a href="https://loom.com" target="_blank" class="tool-item">
-							   <h3>Loom <img src="https://loom.com/favicon.ico" alt="Loom" class="tool-logo"></h3>
-							   <p>Easy screen recording and video messaging</p>
-							   <span class="tool-tag converter">Screen Record</span>
-						   </a>
-						   <a href="https://clipchamp.com" target="_blank" class="tool-item">
-							   <h3>Clipchamp <img src="https://clipchamp.com/favicon.ico" alt="Clipchamp" class="tool-logo"></h3>
-							   <p>Online video editor and creator</p>
-							   <span class="tool-tag converter">Video</span>
-						   </a>
-						   <a href="https://runway.ml" target="_blank" class="tool-item">
-							   <h3>Runway ML <img src="https://runway.ml/favicon.ico" alt="Runway ML" class="tool-logo"></h3>
-							   <p>AI-powered video editing and generation</p>
-							   <span class="tool-tag ai">AI Video</span>
-						   </a>
-						   <a href="https://reaper.fm" target="_blank" class="tool-item">
-							   <h3>REAPER <img src="https://reaper.fm/favicon.ico" alt="REAPER" class="tool-logo"></h3>
-							   <p>Professional digital audio workstation</p>
-							   <span class="tool-tag audio">DAW</span>
-						   </a>
-						   <a href="https://unsplash.com" target="_blank" class="tool-item">
-							   <h3>Unsplash <img src="https://unsplash.com/favicon.ico" alt="Unsplash" class="tool-logo"></h3>
-							   <p>Free high-quality stock photos</p>
-							   <span class="tool-tag books">Photos</span>
-						   </a>
-						   <a href="https://pexels.com" target="_blank" class="tool-item">
-							   <h3>Pexels <img src="https://pexels.com/favicon.ico" alt="Pexels" class="tool-logo"></h3>
-							   <p>Free stock photos and videos</p>
-							   <span class="tool-tag books">Stock</span>
-						   </a>
-						   <a href="https://remove.bg" target="_blank" class="tool-item">
-							   <h3>Remove.bg <img src="https://remove.bg/favicon.ico" alt="Remove.bg" class="tool-logo"></h3>
-							   <p>AI background removal tool</p>
-							   <span class="tool-tag ai">AI Tool</span>
-						   </a>
-						   <a href="https://www.watermarkremover.io" target="_blank" class="tool-item">
-							   <h3>Watermark Remover <img src="https://www.watermarkremover.io/favicon.ico" alt="Watermark Remover" class="tool-logo"></h3>
-							   <p>Free AI-powered watermark removal tool</p>
-							   <span class="tool-tag ai">AI Tool</span>
-						   </a>
-						   <a href="https://pixabay.com" target="_blank" class="tool-item">
-							   <h3>Pixabay <img src="https://pixabay.com/favicon.ico" alt="Pixabay" class="tool-logo"></h3>
-							   <p>Free images, videos, and music</p>
-							   <span class="tool-tag books">Stock</span>
-						   </a>
-						   <a href="https://iconify.design" target="_blank" class="tool-item">
-							   <h3>Iconify <img src="https://iconify.design/favicon.ico" alt="Iconify" class="tool-logo"></h3>
-							   <p>Free icon library with thousands of icons</p>
-							   <span class="tool-tag workspace">Icons</span>
-						   </a>
-						   <a href="https://coolors.co" target="_blank" class="tool-item">
-							   <h3>Coolors <img src="https://coolors.co/favicon.ico" alt="Coolors" class="tool-logo"></h3>
-							   <p>Color palette generator and design tool</p>
-							   <span class="tool-tag workspace">Colors</span>
-						   </a>
-						   <a href="https://buffer.com" target="_blank" class="tool-item">
-							   <h3>Buffer <img src="https://buffer.com/favicon.ico" alt="Buffer" class="tool-logo"></h3>
-							   <p>Social media management and scheduling</p>
-							   <span class="tool-tag ai">Social</span>
-						   </a>
-                           <a href="https://gemini.google.com/" target="_blank" class="tool-item">
-							<h3>Gemini <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" alt="Gemini" class="tool-logo"></h3>
-							<p>Google's advanced AI assistant</p>
-							<span class="tool-tag ai">AI</span>
-						</a>
-						<a href="https://copilot.microsoft.com/" target="_blank" class="tool-item">
-							<h3>Copilot <img src="https://copilot.microsoft.com/favicon.ico" alt="Copilot" class="tool-logo"></h3>
-							<p>Microsoft's AI-powered assistant</p>
-							<span class="tool-tag ai">AI</span>
-						</a>
-						<a href="https://you.com/" target="_blank" class="tool-item">
-							<h3>You.com <img src="https://you.com/favicon.ico" alt="You.com" class="tool-logo"></h3>
-							<p>AI search engine with conversational interface</p>
-							<span class="tool-tag search">Search</span>
-						</a>
-						<a href="https://consensus.app/" target="_blank" class="tool-item">
-							<h3>Consensus <img src="https://consensus.app/favicon.ico" alt="Consensus" class="tool-logo"></h3>
-							<p>AI-powered academic research tool</p>
-							<span class="tool-tag research">Research</span>
-						</a>
-						<a href="https://elicit.org/" target="_blank" class="tool-item">
-							<h3>Elicit <img src="https://elicit.org/favicon.ico" alt="Elicit" class="tool-logo"></h3>
-							<p>Research assistant that summarizes papers</p>
-							<span class="tool-tag research">Research</span>
-						</a>
-						<a href="https://www.scholarai.io/" target="_blank" class="tool-item">
-							<h3>ScholarAI <img src="https://www.scholarai.io/favicon.ico" alt="ScholarAI" class="tool-logo"></h3>
-							<p>Academic research and citation assistant</p>
-							<span class="tool-tag research">Research</span>
-						</a>
-                        <a href="https://www.figma.com/" target="_blank" class="tool-item">
-							<h3>Figma <img src="https://www.figma.com/favicon.ico" alt="Figma" class="tool-logo"></h3>
-							<p>Collaborative design and prototyping tool</p>
-							<span class="tool-tag design">Design</span>
-						</a>
-						<a href="https://www.adobe.com/products/photoshop.html" target="_blank" class="tool-item">
-							<h3>Photoshop <img src="https://www.adobe.com/favicon.ico" alt="Photoshop" class="tool-logo"></h3>
-							<p>Professional image editing software</p>
-							<span class="tool-tag design">Design</span>
-						</a>
-						<a href="https://www.remove.bg/" target="_blank" class="tool-item">
-							<h3>Remove.bg <img src="https://www.remove.bg/favicon.ico" alt="Remove.bg" class="tool-logo"></h3>
-							<p>AI-powered background removal tool</p>
-							<span class="tool-tag photo">Photo</span>
-						</a>
-						<a href="https://midjourney.com/" target="_blank" class="tool-item">
-							<h3>Midjourney <img src="https://midjourney.com/favicon.ico" alt="Midjourney" class="tool-logo"></h3>
-							<p>AI art generator for creative visuals</p>
-							<span class="tool-tag ai-art">AI Art</span>
-						</a>
-						<a href="https://www.leonardo.ai/" target="_blank" class="tool-item">
-							<h3>Leonardo AI <img src="https://www.leonardo.ai/favicon.ico" alt="Leonardo AI" class="tool-logo"></h3>
-							<p>AI image generation platform</p>
-							<span class="tool-tag ai-art">AI Art</span>
-						</a>
-						<a href="https://www.shutterstock.com/" target="_blank" class="tool-item">
-							<h3>Shutterstock <img src="https://www.shutterstock.com/favicon.ico" alt="Shutterstock" class="tool-logo"></h3>
-							<p>Stock photos, videos, and music library</p>
-							<span class="tool-tag stock">Stock</span>
-						</a>
-                        <a href="https://trello.com/" target="_blank" class="tool-item">
-							<h3>Trello <img src="https://trello.com/favicon.ico" alt="Trello" class="tool-logo"></h3>
-							<p>Visual project management with boards and cards</p>
-							<span class="tool-tag productivity">Productivity</span>
-						</a>
-						<a href="https://asana.com/" target="_blank" class="tool-item">
-							<h3>Asana <img src="https://asana.com/favicon.ico" alt="Asana" class="tool-logo"></h3>
-							<p>Team collaboration and project management</p>
-							<span class="tool-tag productivity">Productivity</span>
-						</a>
-						<a href="https://www.google.com/drive/" target="_blank" class="tool-item">
-							<h3>Google Drive <img src="https://www.google.com/favicon.ico" alt="Google Drive" class="tool-logo"></h3>
-							<p>Cloud storage and document collaboration</p>
-							<span class="tool-tag storage">Storage</span>
-						</a>
-						<a href="https://www.dropbox.com/" target="_blank" class="tool-item">
-							<h3>Dropbox <img src="https://www.dropbox.com/favicon.ico" alt="Dropbox" class="tool-logo"></h3>
-							<p>Cloud storage and file synchronization</p>
-							<span class="tool-tag storage">Storage</span>
-						</a>
-						<a href="https://todoist.com/" target="_blank" class="tool-item">
-							<h3>Todoist <img src="https://todoist.com/favicon.ico" alt="Todoist" class="tool-logo"></h3>
-							<p>Task management and productivity planner</p>
-							<span class="tool-tag productivity">Productivity</span>
-						</a>
-						<a href="https://evernote.com/" target="_blank" class="tool-item">
-							<h3>Evernote <img src="https://evernote.com/favicon.ico" alt="Evernote" class="tool-logo"></h3>
-							<p>Note-taking and information organization</p>
-							<span class="tool-tag notes">Notes</span>
-						</a>
-                        <a href="https://www.coursera.org/" target="_blank" class="tool-item">
-							<h3>Coursera <img src="https://www.coursera.org/favicon.ico" alt="Coursera" class="tool-logo"></h3>
-							<p>Online courses from top universities</p>
-							<span class="tool-tag education">Education</span>
-						</a>
-						<a href="https://www.khanacademy.org/" target="_blank" class="tool-item">
-							<h3>Khan Academy <img src="https://www.khanacademy.org/favicon.ico" alt="Khan Academy" class="tool-logo"></h3>
-							<p>Free educational content for all subjects</p>
-							<span class="tool-tag education">Education</span>
-						</a>
-						<a href="https://www.udemy.com/" target="_blank" class="tool-item">
-							<h3>Udemy <img src="https://www.udemy.com/favicon.ico" alt="Udemy" class="tool-logo"></h3>
-							<p>Online learning platform with diverse courses</p>
-							<span class="tool-tag education">Education</span>
-						</a>
-						<a href="https://www.youtube.com/" target="_blank" class="tool-item">
-							<h3>YouTube <img src="https://www.youtube.com/favicon.ico" alt="YouTube" class="tool-logo"></h3>
-							<p>Video platform with educational content</p>
-							<span class="tool-tag video">Video</span>
-						</a>
-						<a href="https://quizlet.com/" target="_blank" class="tool-item">
-							<h3>Quizlet <img src="https://quizlet.com/favicon.ico" alt="Quizlet" class="tool-logo"></h3>
-							<p>Flashcards and study tools</p>
-							<span class="tool-tag study">Study</span>
-						</a>
-						<a href="https://www.duolingo.com/" target="_blank" class="tool-item">
-							<h3>Duolingo <img src="https://www.duolingo.com/favicon.ico" alt="Duolingo" class="tool-logo"></h3>
-							<p>Language learning platform</p>
-							<span class="tool-tag language">Language</span>
-						</a>
-                        <a href="https://github.com/" target="_blank" class="tool-item">
-							<h3>GitHub <img src="https://github.com/favicon.ico" alt="GitHub" class="tool-logo"></h3>
-							<p>Code hosting and version control platform</p>
-							<span class="tool-tag development">Development</span>
-						</a>
-						<a href="https://stackoverflow.com/" target="_blank" class="tool-item">
-							<h3>Stack Overflow <img src="https://stackoverflow.com/favicon.ico" alt="Stack Overflow" class="tool-logo"></h3>
-							<p>Developer Q&A and knowledge sharing</p>
-							<span class="tool-tag development">Development</span>
-						</a>
-						<a href="https://code.visualstudio.com/" target="_blank" class="tool-item">
-							<h3>VS Code <img src="https://code.visualstudio.com/favicon.ico" alt="VS Code" class="tool-logo"></h3>
-							<p>Popular code editor with extensions</p>
-							<span class="tool-tag development">Development</span>
-						</a>
-						<a href="https://www.postman.com/" target="_blank" class="tool-item">
-							<h3>Postman <img src="https://www.postman.com/favicon.ico" alt="Postman" class="tool-logo"></h3>
-							<p>API development and testing platform</p>
-							<span class="tool-tag development">Development</span>
-						</a>
-						<a href="https://www.npmjs.com/" target="_blank" class="tool-item">
-							<h3>npm <img src="https://www.npmjs.com/favicon.ico" alt="npm" class="tool-logo"></h3>
-							<p>Node.js package manager</p>
-							<span class="tool-tag development">Development</span>
-						</a>
-						<a href="https://www.docker.com/" target="_blank" class="tool-item">
-							<h3>Docker <img src="https://www.docker.com/favicon.ico" alt="Docker" class="tool-logo"></h3>
-							<p>Containerization and deployment platform</p>
-							<span class="tool-tag development">Development</span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</section>
-	</main>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-4 px-6 md:px-12">
+        <div class="flex justify-between items-center glass-card px-6 py-3">
+            <a href="index.html" class="text-xl font-bold text-white hover-effect">QUOTE</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" class="nav-link text-white font-medium">Home</a>
+                <a href="student.html" class="nav-link text-white font-medium">Student</a>
+                <a href="professional.html" class="nav-link text-white font-medium">Professional</a>
+                <a href="creator.html" class="nav-link text-white font-medium">Creator</a>
+                <a href="all-tools.html" class="nav-link text-white font-medium text-yellow-400">All Tools</a>
+                <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full hover:from-orange-400 hover:to-orange-500 transition-all duration-300 transform hover:scale-105">
+                    Donate
+                </a>
+            </div>
+            <button class="md:hidden text-white font-medium">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
 
-	<footer class="footer-section">
-		<div class="footer-content">
-			<div class="footer-links">
-				<div class="footer-column">
-					<h3>Explore</h3>
-					<ul>
-						<li><a href="student.html">Student Hub</a></li>
-						<li><a href="professional.html">Professional Hub</a></li>
-						<li><a href="creator.html">Creator Hub</a></li>
-						<li><a href="landing.html">Get Started</a></li>
-						<li><a href="all-tools.html">All Tools</a></li>
-					</ul>
-				</div>
-				<div class="footer-column">
-					<h3>Legal</h3>
-					<ul>
-						<li><a href="#" onclick="openModal('terms'); return false;">Terms of Service</a></li>
-						<li><a href="#" onclick="openModal('privacy'); return false;">Privacy Policy</a></li>
-						<li><a href="#" onclick="openModal('cookies'); return false;">Cookie Policy</a></li>
-						<li><a href="#" onclick="openModal('disclaimer'); return false;">Disclaimer</a></li>
-					</ul>
-				</div>
-				<div class="footer-column">
-					<h3>Connect</h3>
-					<ul>
-						<li><a href="https://beacons.ai/delexo" target="_blank">Creator Store</a></li>
-						<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank">Donate</a></li>
-						<li><a href="#contact">Contact Us</a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="footer-bottom">
-				<p>&copy; 2025 Quoteai.org. All rights reserved. | "The Internet is your free online university."</p>
-			</div>
-		</div>
-	</footer>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 md:px-12 pt-20">
+        <div class="text-center max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white" data-aos="fade-up">
+                Complete <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Tool Collection</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10" data-aos="fade-up" data-aos-delay="100">
+                Browse our entire collection of curated tools for students, professionals, and creators in one place.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="200">
+                <button class="glass-card px-8 py-3 rounded-full text-white font-medium hover-effect border border-yellow-400 border-opacity-50">
+                    Browse All Tools
+                </button>
+                <button class="glass-card px-8 py-3 rounded-full text-white font-medium hover-effect border border-white border-opacity-20">
+                    Filter by Category
+                </button>
+            </div>
+        </div>
+    </section>
 
-	<script src="javascript.js"></script>
+    <!-- Filter Section -->
+    <section class="py-8 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up">
+                <button class="filter-btn active glass-card px-6 py-2 rounded-full text-white font-medium hover-effect border border-white border-opacity-20" data-filter="all">
+                    All Tools
+                </button>
+                <button class="filter-btn glass-card px-6 py-2 rounded-full text-white font-medium hover-effect border border-white border-opacity-20" data-filter="student">
+                    Student
+                </button>
+                <button class="filter-btn glass-card px-6 py-2 rounded-full text-white font-medium hover-effect border border-white border-opacity-20" data-filter="professional">
+                    Professional
+                </button>
+                <button class="filter-btn glass-card px-6 py-2 rounded-full text-white font-medium hover-effect border border-white border-opacity-20" data-filter="creator">
+                    Creator
+                </button>
+                <button class="filter-btn glass-card px-6 py-2 rounded-full text-white font-medium hover-effect border border-white border-opacity-20" data-filter="ai">
+                    AI Tools
+                </button>
+                <button class="filter-btn glass-card px-6 py-2 rounded-full text-white font-medium hover-effect border border-white border-opacity-20" data-filter="productivity">
+                    Productivity
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section class="py-20 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-white" data-aos="fade-up">
+                All Available Tools
+            </h2>
+            <p class="text-xl text-center text-gray-300 mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Discover the complete collection of handpicked tools across all categories
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="tools-grid">
+                <!-- Tool 1 - Student -->
+                <div class="tool-card glass-card p-6 rounded-xl hover-effect" data-category="student" data-aos="fade-up" data-aos-delay="200">
+                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
+                        <img src="http://static.photos/education/640x360/1" alt="Study Tool" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <span class="bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-2 py-1 rounded">Student</span>
+                        <span class="text-gray-400 text-sm ml-auto">Free</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">StudyFlow</h3>
+                    <p class="text-gray-300 mb-4">AI-powered study planner that creates personalized study schedules and tracks your progress.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-400">4.8/5 Rating</span>
+                        <button class="text-blue-400 text-sm font-medium">Try Now</button>
+                    </div>
+                </div>
+                
+                <!-- Tool 2 - Professional -->
+                <div class="tool-card glass-card p-6 rounded-xl hover-effect" data-category="professional" data-aos="fade-up" data-aos-delay="300">
+                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
+                        <img src="http://static.photos/business/640x360/2" alt="Project Management Tool" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <span class="bg-green-400 bg-opacity-20 text-green-400 text-xs px-2 py-1 rounded">Professional</span>
+                        <span class="text-gray-400 text-sm ml-auto">Premium</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">ProFlow</h3>
+                    <p class="text-gray-300 mb-4">Enterprise-grade project management platform with advanced automation and team collaboration features.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-400">4.9/5 Rating</span>
+                        <button class="text-green-400 text-sm font-medium">Try Now</button>
+                    </div>
+                </div>
+                
+                <!-- Tool 3 - Creator -->
+                <div class="tool-card glass-card p-6 rounded-xl hover-effect" data-category="creator" data-aos="fade-up" data-aos-delay="400">
+                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
+                        <img src="http://static.photos/design/640x360/3" alt="Design Tool" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <span class="bg-pink-400 bg-opacity-20 text-pink-400 text-xs px-2 py-1 rounded">Creator</span>
+                        <span class="text-gray-400 text-sm ml-auto">Premium</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">CreativeStudio Pro</h3>
+                    <p class="text-gray-300 mb-4">Next-generation design suite with AI-powered features for creating stunning visuals and graphics.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-400">4.9/5 Rating</span>
+                        <button class="text-pink-400 text-sm font-medium">Try Now</button>
+                    </div>
+                </div>
+                
+                <!-- Tool 4 - AI -->
+                <div class="tool-card glass-card p-6 rounded-xl hover-effect" data-category="ai" data-aos="fade-up" data-aos-delay="500">
+                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
+                        <img src="http://static.photos/ai/640x360/4" alt="AI Tool" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <span class="bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-2 py-1 rounded">AI Tool</span>
+                        <span class="text-gray-400 text-sm ml-auto">Freemium</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">NovaWrite AI</h3>
+                    <p class="text-gray-300 mb-4">Advanced AI writing assistant that helps craft perfect essays, reports, and creative content.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-400">4.8/5 Rating</span>
+                        <button class="text-purple-400 text-sm font-medium">Try Now</button>
+                    </div>
+                </div>
+                
+                <!-- Tool 5 - Productivity -->
+                <div class="tool-card glass-card p-6 rounded-xl hover-effect" data-category="productivity" data-aos="fade-up" data-aos-delay="600">
+                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
+                        <img src="http://static.photos/productivity/640x360/5" alt="Productivity Tool" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <span class="bg-orange-400 bg-opacity-20 text-orange-400 text-xs px-2 py-1 rounded">Productivity</span>
+                        <span class="text-gray-400 text-sm ml-auto">Free</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">FlowSpace</h3>
+                    <p class="text-gray-300 mb-4">All-in-one workspace that combines task management, notes, and calendar in one intuitive interface.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-400">4.7/5 Rating</span>
+                        <button class="text-orange-400 text-sm font-medium">Try Now</button>
+                    </div>
+                </div>
+                
+                <!-- Tool 6 - Student -->
+                <div class="tool-card glass-card p-6 rounded-xl hover-effect" data-category="student" data-aos="fade-up" data-aos-delay="700">
+                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
+                        <img src="http://static.photos/collaboration/640x360/6" alt="Collaboration Tool" class="w-full h-full object-cover">
+                    </div>
+                    <div class="flex items-center mb-3">
+                        <span class="bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-2 py-1 rounded">Student</span>
+                        <span class="text-gray-400 text-sm ml-auto">Free</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white">GroupSync</h3>
+                    <p class="text-gray-300 mb-4">Seamless collaboration platform designed specifically for student group projects.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-400">4.7/5 Rating</span>
+                        <button class="text-blue-400 text-sm font-medium">Try Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 px-6 md:px-12">
+        <div class="max-w-4xl mx-auto text-center glass-card p-8 rounded-xl" data-aos="fade-up">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Can't Find What You're Looking For?</h2>
+            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+                We're constantly adding new tools to our collection. Let us know what you need and we'll help you find the perfect solution.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <button class="bg-gradient-to-r from-yellow-400 to-orange-500 px-6 py-3 rounded-full text-white font-medium hover-effect">
+                    Request a Tool
+                </button>
+                <button class="glass-card px-6 py-3 rounded-full text-white font-medium hover-effect border border-white border-opacity-20">
+                    Contact Us
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 bg-black">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Pages</h3>
+                    <ul class="space-y-2">
+                        <li><a href="student.html" class="text-gray-300 hover:text-white">University Student</a></li>
+                        <li><a href="professional.html" class="text-gray-300 hover:text-white">Professional</a></li>
+                        <li><a href="creator.html" class="text-gray-300 hover:text-white">Creator</a></li>
+                        <li><a href="all-tools.html" class="text-gray-300 hover:text-white">All Tools</a></li>
+                        <li><a href="dev.html" class="text-gray-300 hover:text-white">Developer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><button onclick="openLegalModal('terms')" class="text-gray-300 hover:text-white cursor-pointer">Terms of Service</button></li>
+                        <li><button onclick="openLegalModal('privacy')" class="text-gray-300 hover:text-white cursor-pointer">Privacy Policy</button></li>
+                        <li><button onclick="openLegalModal('cookie')" class="text-gray-300 hover:text-white cursor-pointer">Cookie Policy</button></li>
+                        <li><button onclick="openLegalModal('disclaimer')" class="text-gray-300 hover:text-white cursor-pointer">Disclaimer</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Connect</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Creator Store</a></li>
+                        <li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn-footer text-gray-300 hover:text-white cursor-pointer">Donate</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdiZ_drgyq8RHPw2pK7gn-ezExGVi0d__g_iny7OaOrERsPUg/viewform" target="_blank" class="text-gray-300 hover:text-white">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Quote. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Legal Modal -->
+    <div id="legalModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="modalTitle" class="text-2xl font-bold text-black"></h2>
+                    <button onclick="closeLegalModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                <div id="modalContent" class="text-gray-700"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Legal Modal Functions
+        function openLegalModal(type) {
+            const modal = document.getElementById('legalModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            const legalContent = {
+                terms: {
+                    title: 'Terms of Service',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. Acceptance of Terms</h3>
+                        <p class="mb-4">By accessing and using Quote, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. Use License</h3>
+                        <p class="mb-4">Permission is granted to temporarily download one copy of Quote for personal, non-commercial transitory viewing only.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Disclaimer</h3>
+                        <p class="mb-4">The materials on Quote are provided on an 'as is' basis. Quote makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Limitations</h3>
+                        <p class="mb-4">In no event shall Quote or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Quote, even if Quote or a Quote authorized representative has been notified orally or in writing of the possibility of such damage.</p>
+                    `
+                },
+                privacy: {
+                    title: 'Privacy Policy',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. Information We Collect</h3>
+                        <p class="mb-4">We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. How We Use Your Information</h3>
+                        <p class="mb-4">We use the information we collect to provide, maintain, and improve our services, process transactions, and communicate with you.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Information Sharing</h3>
+                        <p class="mb-4">We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Data Security</h3>
+                        <p class="mb-4">We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                    `
+                },
+                cookie: {
+                    title: 'Cookie Policy',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. What Are Cookies</h3>
+                        <p class="mb-4">Cookies are small text files that are placed on your computer or mobile device when you visit our website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. How We Use Cookies</h3>
+                        <p class="mb-4">We use cookies to enhance your experience, analyze site traffic, and personalize content and advertisements.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Types of Cookies</h3>
+                        <p class="mb-4">We use both session cookies (which expire when you close your browser) and persistent cookies (which stay on your device until deleted).</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Managing Cookies</h3>
+                        <p class="mb-4">You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and set most browsers to prevent them from being placed.</p>
+                    `
+                },
+                disclaimer: {
+                    title: 'Disclaimer',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. General Disclaimer</h3>
+                        <p class="mb-4">The information on this website is provided on an "as is" basis. To the fullest extent permitted by law, this Company excludes all representations, warranties, conditions and terms relating to our website and the use of this website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. No Liability</h3>
+                        <p class="mb-4">In no event will Quote be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. External Links</h3>
+                        <p class="mb-4">Through this website you are able to link to other websites which are not under the control of Quote. We have no control over the nature, content and availability of those sites.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Tool Recommendations</h3>
+                        <p class="mb-4">All tool recommendations are based on our research and testing. We do not guarantee the performance, availability, or suitability of any recommended tools for your specific needs.</p>
+                    `
+                }
+            };
+            
+            title.textContent = legalContent[type].title;
+            content.innerHTML = legalContent[type].content;
+            modal.classList.remove('hidden');
+        }
+
+        function closeLegalModal() {
+            document.getElementById('legalModal').classList.add('hidden');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('legalModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLegalModal();
+            }
+        });
+        
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            gsap.to(cursorFollower, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        });
+        
+        // Hover effects for cursor
+        const hoverElements = document.querySelectorAll('a, button, .hover-effect, .tool-card, .glass-card');
+        
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+        
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const toolCards = document.querySelectorAll('.tool-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                const filter = button.getAttribute('data-filter');
+                
+                toolCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                        card.style.animation = 'fadeIn 0.5s ease-in-out';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

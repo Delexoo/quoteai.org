@@ -1,210 +1,1068 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Home</title>
-	<link rel="stylesheet" href="style.css">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-	<style>
-		@keyframes shine {
-			0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-			50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-			100% { transform: translateX(200%) translateY(200%) rotate(45deg); }
-		}
-	</style>
-</head>
-<body>
-	<canvas id="bg-graph"></canvas>
-	<header>
-		<nav class="navbar minimal-navbar">
-			<div class="logo">quoteai.org</div>
-			<div class="nav-and-menu">
-				<div class="search-container">
-					<img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Search" class="search-icon">
-					<input type="text" id="global-search" placeholder="Search tools..." autocomplete="off">
-					<div class="search-results" id="search-results"></div>
-				</div>
-				<ul class="nav-links minimal-nav">
-					<li><a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"><img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Home" class="nav-icon"></a></li>
-					<li><a href="#about"><img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="About" class="nav-icon"></a></li>
-					<li><a href="#contact"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Contact" class="nav-icon"></a></li>
-					<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-button">Donate</a></li>
-				</ul>
-				<div class="menu-icon" id="menu-toggle">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			</div>
-		</nav>
-		<div class="dropdown-menu" id="dropdown-menu">
-			<div class="dropdown-content">
-				<div class="dropdown-button-item">
-					<h3>🎓 Student</h3>
-					<p>Academic tools, research resources, and study aids</p>
-					<a href="student.html" class="dropdown-button">Enter Student Hub</a>
-				</div>
-				<div class="dropdown-button-item">
-					<h3>💼 Professional</h3>
-					<p>Business tools, productivity apps, and career resources</p>
-					<a href="professional.html" class="dropdown-button">Enter Professional Hub</a>
-				</div>
-				<div class="dropdown-button-item">
-					<h3>🎨 Creator</h3>
-					<p>Design tools, content creation, and creative resources</p>
-					<a href="creator.html" class="dropdown-button">Enter Creator Hub</a>
-				</div>
-				<div class="dropdown-button-item">
-					<h3>🔧 All Tools</h3>
-					<p>Browse our complete collection of tools and resources</p>
-					<a href="all-tools.html" class="dropdown-button">View All Tools</a>
-				</div>
-			</div>
-		</div>
-	</header>
-	<main>
-		<section class="abstract-hero">
-			<div class="blur-circle blur1"></div>
-			<div class="blur-circle blur2"></div>
-			<div class="blur-circle blur3"></div>
-			<div class="hero-content">
-				<h1>Welcome to Quote</h1>
-				
-				<p>Browse for the latest AI study tools, educational resources, media editors, free books, courses, and tons more tools to enhance your digital experience in 2025. No more wasting time searching, everything you need is here in one place.</p>
-				<div class="hero-actions">
-					<a href="landing.html" class="cta-btn minimal-btn">Start Here!</a>
-					<a href="#about" class="learn-more-link">Learn more</a>
-				</div>
-			</div>
-		</section>
-		
-		<section id="about" class="content-section alt-bg">
-			<div class="section-content">
-				<h2>About Quote</h2>
-				<p>Quote is simply a collection of useful tools & resources for University Students, Professionals, Content Creators, and more! This eliminates the endless search for quality learning tools and resources. Browse through our fully handpicked collection of the finest AI assistants, educational platforms, productivity software, and creative tools available in 2025, organizing them into three specialized pathways for maximum efficiency.</p>
-			
-				
-				<div class="feature-grid">
-					<div class="feature-item">
-						<h3>🤖 ChatGPT, Claude & Perplexity</h3>
-						<p>Get instant homework help, essay writing assistance, and research support from the world's most advanced AI assistants.</p>
-					</div>
-					<div class="feature-item">
-						<h3>📚 MIT, Harvard & Stanford Courses</h3>
-						<p>Access thousands of free university courses, textbooks, and educational materials from top institutions worldwide.</p>
-					</div>
-					<div class="feature-item">
-						<h3>🎨 Canva, Figma & Video Editors</h3>
-						<p>Create stunning presentations, designs, and videos with professional-grade tools that won't cost you a penny.</p>
-					</div>
-					<div class="feature-item" onclick="window.location.href='landing.html'" style="cursor: pointer; border: 2px solid #0078ff; background: linear-gradient(135deg, #0078ff, #00a8ff); color: white !important; box-shadow: 0 8px 25px rgba(0, 120, 255, 0.3); transform: scale(1.02); transition: all 0.3s ease; position: relative; overflow: hidden;" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 12px 35px rgba(0, 120, 255, 0.4)'" onmouseout="this.style.transform='scale(1.02)'; this.style.boxShadow='0 8px 25px rgba(0, 120, 255, 0.3)'">
-						<div style="position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent); transform: rotate(45deg); animation: shine 3s infinite;"></div>
-						<h3 style="color: white !important; position: relative; z-index: 2;">🚀 Get Started</h3>
-						<p style="color: white !important; position: relative; z-index: 2;">Click here to get started and choose your learning path to discover the perfect tools for your needs.</p>
-					</div>
-                    <p>"The Internet is your Free Online University." - Owner</p>
-                    <div class="secret-container">
-					<button class="secret-button" id="secretButton">Secret Button</button>
-					<div class="secret-bubble" id="secretBubble">
-						<div class="bubble-header">
-							<h4>🚀 Behind the Code</h4>
-							<button class="bubble-close" id="bubbleClose">×</button>
-						</div>
-						<div class="bubble-content">
-							<p class="bubble-desc">This website was handcoded, checkout the source code on my Github page!</p>
-							<div class="github-preview">
-								<div class="repo-info">
-									<div class="repo-header">
-										<span class="repo-icon">�</span>
-										<div>
-											<h5>quoteai.org</h5>
-											<p>Open-source educational platform</p>
-										</div>
-									</div>
-									<div class="repo-stats">
-										<span class="stat-item">⭐ Public</span>
-										<span class="stat-item">🌐 HTML/CSS/JS</span>
-									</div>
-								</div>
-								<a href="https://github.com/Delexoo/quoteai.org" target="_blank" class="view-source-btn">
-									View Source Code ->
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				</div>
-			</div>
-		</section>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote | Curated Tools for Modern Creators</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            --glass-blur: blur(12px);
+        }
         
-		<section id="contact" class="content-section">
-			<div class="section-content">
-				<div class="contact-header">
-					<h2>Stay In Touch</h2>
-					<a href="https://docs.google.com/forms/d/e/1FAIpQLSdiZ_drgyq8RHPw2pK7gn-ezExGVi0d__g_iny7OaOrERsPUg/viewform?usp=header" target="_blank" class="feedback-btn">
-						📝 Feedback
-					</a>
-				</div>
-				<p>Have questions or want to contribute to our open-source platform? We'd love to hear from you.</p>
-				<div class="contact-info">
-					<p>Coming Soon!</p>
-				</div>
-			</div>
-		</section>
-		
-		<footer class="footer-section">
-			<div class="footer-content">
-				<div class="footer-links">
-					<div class="footer-column">
-						<h3>Explore</h3>
-						<ul>
-							<li><a href="student.html">Student Hub</a></li>
-							<li><a href="professional.html">Professional Hub</a></li>
-							<li><a href="creator.html">Creator Hub</a></li>
-							<li><a href="landing.html">Get Started</a></li>
-							<li><a href="all-tools.html">All Tools</a></li>
-						</ul>
-					</div>
-					<div class="footer-column">
-						<h3>Legal</h3>
-						<ul>
-							<li><a href="#" onclick="openModal('terms'); return false;">Terms of Service</a></li>
-							<li><a href="#" onclick="openModal('privacy'); return false;">Privacy Policy</a></li>
-							<li><a href="#" onclick="openModal('cookies'); return false;">Cookie Policy</a></li>
-							<li><a href="#" onclick="openModal('disclaimer'); return false;">Disclaimer</a></li>
-						</ul>
-					</div>
-					<div class="footer-column">
-						<h3>Connect</h3>
-						<ul>
-							<li><a href="https://beacons.ai/delexo" target="_blank">Creator Store</a></li>
-							<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank">Donate</a></li>
-							<li><a href="#contact">Contact Us</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="footer-bottom">
-					<p>&copy; 2025 Quoteai.org. All rights reserved. | "The Internet is your free online university."</p>
-				</div>
-			</div>
-		</footer>
-	</main>
-	
-	<!-- Legal Modals -->
-	<div id="modalOverlay" class="modal-overlay" onclick="closeModal()">
-		<div class="modal-content" onclick="event.stopPropagation()">
-			<div class="modal-header">
-				<h2 id="modalTitle">Legal Information</h2>
-				<button class="modal-close" onclick="closeModal()">&times;</button>
-			</div>
-			<div class="modal-body" id="modalBody">
-				<!-- Content will be populated by JavaScript -->
-			</div>
-		</div>
-	</div>
-	
-	<script src="javascript.js"></script>
+        body {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+            position: relative;
+        }
+        
+        /* 3D Background Elements */
+        .bg-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            backdrop-filter: blur(15px);
+            animation: float3d 20s infinite linear;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        
+        .floating-shape:nth-child(odd) {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.08);
+        }
+        
+        .floating-shape:nth-child(even) {
+            background: linear-gradient(225deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.1));
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.12);
+        }
+        
+        .floating-shape:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+        
+        .floating-shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+            animation-duration: 30s;
+        }
+        
+        .floating-shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            right: 30%;
+            animation-delay: -10s;
+            animation-duration: 20s;
+        }
+        
+        .floating-shape:nth-child(4) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -15s;
+            animation-duration: 35s;
+        }
+        
+        .floating-shape:nth-child(5) {
+            width: 120px;
+            height: 120px;
+            top: 70%;
+            left: 60%;
+            animation-delay: -8s;
+            animation-duration: 28s;
+        }
+        
+        .floating-shape:nth-child(6) {
+            width: 60px;
+            height: 60px;
+            top: 15%;
+            right: 50%;
+            animation-delay: -12s;
+            animation-duration: 22s;
+        }
+        
+        .floating-shape:nth-child(7) {
+            width: 90px;
+            height: 90px;
+            top: 45%;
+            left: 5%;
+            animation-delay: -18s;
+            animation-duration: 32s;
+        }
+        
+        .floating-shape:nth-child(8) {
+            width: 70px;
+            height: 70px;
+            top: 25%;
+            right: 10%;
+            animation-delay: -25s;
+            animation-duration: 28s;
+        }
+        
+        .floating-shape:nth-child(9) {
+            width: 110px;
+            height: 110px;
+            bottom: 30%;
+            right: 40%;
+            animation-delay: -30s;
+            animation-duration: 35s;
+        }
+        
+        .floating-shape:nth-child(10) {
+            width: 50px;
+            height: 50px;
+            top: 80%;
+            left: 30%;
+            animation-delay: -35s;
+            animation-duration: 25s;
+        }
+        
+        @keyframes float3d {
+            0% {
+                transform: translateY(0px) translateX(0px) rotate(0deg) translateZ(0px) scale(1);
+            }
+            12.5% {
+                transform: translateY(-30px) translateX(15px) rotate(45deg) translateZ(15px) scale(1.1);
+            }
+            25% {
+                transform: translateY(-60px) translateX(30px) rotate(90deg) translateZ(30px) scale(1.2);
+            }
+            37.5% {
+                transform: translateY(-40px) translateX(45px) rotate(135deg) translateZ(20px) scale(1.1);
+            }
+            50% {
+                transform: translateY(-80px) translateX(60px) rotate(180deg) translateZ(40px) scale(1.3);
+            }
+            62.5% {
+                transform: translateY(-50px) translateX(45px) rotate(225deg) translateZ(25px) scale(1.1);
+            }
+            75% {
+                transform: translateY(-70px) translateX(30px) rotate(270deg) translateZ(35px) scale(1.2);
+            }
+            87.5% {
+                transform: translateY(-30px) translateX(15px) rotate(315deg) translateZ(15px) scale(1.1);
+            }
+            100% {
+                transform: translateY(0px) translateX(0px) rotate(360deg) translateZ(0px) scale(1);
+            }
+        }
+        
+        /* 3D Grid Background */
+        .grid-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: -2;
+        }
+        
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(25px, 25px) rotate(1deg);
+            }
+            50% {
+                transform: translate(50px, 50px) rotate(0deg);
+            }
+            75% {
+                transform: translate(75px, 25px) rotate(-1deg);
+            }
+            100% {
+                transform: translate(100px, 0px) rotate(0deg);
+            }
+        }
+        
+        /* Scroll-based darkening overlay */
+        .dark-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 100%);
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 1.2s ease;
+            pointer-events: none;
+        }
+        
+        .dark-overlay.active {
+            opacity: 1;
+        }
+        
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.25);
+        }
+        
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease;
+        }
+        
+        .hover-effect {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hover-effect:hover {
+            transform: scale(1.15) translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+        
+        .hover-effect::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .hover-effect:hover::before {
+            left: 100%;
+        }
+        
+        .button-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .button-glow::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+        
+        .button-glow:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .pathway-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .pathway-card * {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .pathway-card a {
+            position: relative;
+            z-index: 10;
+            display: inline-block;
+            text-decoration: none;
+            cursor: pointer;
+            padding: 12px 24px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .pathway-card a:hover {
+            background: rgba(0, 0, 0, 0.1);
+            transform: translateX(8px);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .pathway-card:hover {
+            transform: translateY(-18px) scale(1.03) rotateX(8deg) rotateY(8deg) rotateZ(3deg);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 30px rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .pathway-card:nth-child(1):hover {
+            transform: translateY(-18px) scale(1.03) rotateX(10deg) rotateY(-5deg) rotateZ(-2deg);
+        }
+        
+        .pathway-card:nth-child(2):hover {
+            transform: translateY(-18px) scale(1.03) rotateX(5deg) rotateY(10deg) rotateZ(2deg);
+        }
+        
+        .pathway-card:nth-child(3):hover {
+            transform: translateY(-18px) scale(1.03) rotateX(-8deg) rotateY(5deg) rotateZ(-3deg);
+        }
+        
+        
+        
+        /* Professional card enhancements */
+        .pathway-card .gradient-icon {
+            transition: all 0.15s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .pathway-card:hover .gradient-icon {
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pathway-card .status-dots {
+            transition: all 0.15s ease;
+        }
+        
+        .pathway-card:hover .status-dots span {
+            transform: scale(1.3) translateY(-2px);
+        }
+        
+        .pathway-card:hover .status-dots span:nth-child(1) {
+            animation: pulse1 1s ease-in-out infinite;
+        }
+        
+        .pathway-card:hover .status-dots span:nth-child(2) {
+            animation: pulse2 1s ease-in-out infinite 0.2s;
+        }
+        
+        .pathway-card:hover .status-dots span:nth-child(3) {
+            animation: pulse3 1s ease-in-out infinite 0.4s;
+        }
+        
+        @keyframes pulse1 {
+            0%, 100% { opacity: 1; transform: scale(1.3) translateY(-2px); }
+            50% { opacity: 0.7; transform: scale(1.5) translateY(-3px); }
+        }
+        
+        @keyframes pulse2 {
+            0%, 100% { opacity: 1; transform: scale(1.3) translateY(-2px); }
+            50% { opacity: 0.7; transform: scale(1.5) translateY(-3px); }
+        }
+        
+        @keyframes pulse3 {
+            0%, 100% { opacity: 1; transform: scale(1.3) translateY(-2px); }
+            50% { opacity: 0.7; transform: scale(1.5) translateY(-3px); }
+        }
+        
+        /* Featured Resources Card Animations */
+        .resource-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+        
+        .resource-card * {
+            transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: none !important;
+        }
+        
+        .resource-card {
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .resource-card:hover .resource-button {
+            transform: translateX(3px);
+        }
+        
+        .resource-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-15px) rotateX(6deg) rotateY(6deg) rotateZ(2deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 25px rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .resource-card:nth-child(1):hover {
+            transform: translateY(-15px) rotateX(8deg) rotateY(-3deg) rotateZ(-1deg);
+        }
+        
+        .resource-card:nth-child(2):hover {
+            transform: translateY(-15px) rotateX(3deg) rotateY(8deg) rotateZ(2deg);
+        }
+        
+        .resource-card:nth-child(3):hover {
+            transform: translateY(-15px) rotateX(-6deg) rotateY(3deg) rotateZ(-2deg);
+        }
+        
+        
+        
+        
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .donate-btn {
+            animation: rotateShake 2s ease-in-out infinite;
+        }
+        
+        .donate-btn-footer {
+            animation: none;
+        }
+        
+        @keyframes rotateShake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+            75% { transform: rotate(-1deg); }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- 3D Background -->
+    <div class="grid-3d"></div>
+    <div class="bg-3d">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+    </div>
+    
+    <!-- Dark Overlay for Scroll Effect -->
+    <div class="dark-overlay" id="darkOverlay"></div>
+    
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-4 px-6 md:px-12">
+        <div class="flex justify-between items-center glass-card px-6 py-3">
+            <a href="#" class="text-xl font-bold text-white transition-transform duration-300 hover:transform hover:-translate-y-1">QUOTE</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" class="nav-link text-white font-medium">Home</a>
+                <a href="student.html" class="nav-link text-white font-medium">Student</a>
+                <a href="professional.html" class="nav-link text-white font-medium">Professional</a>
+                <a href="creator.html" class="nav-link text-white font-medium">Creator</a>
+                <a href="all-tools.html" class="nav-link text-white font-medium">All Tools</a>
+                <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full hover:from-orange-400 hover:to-orange-500 transition-all duration-300 transform hover:scale-105">
+                    Donate
+                </a>
+            </div>
+            <button class="md:hidden text-white font-medium">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 md:px-12 pt-20">
+        <div class="text-center max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white" data-aos="fade-up">
+                Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-600">Quote</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10" data-aos="fade-up" data-aos-delay="100">
+                Browse for the latest AI study tools, educational resources, media editors, free books, courses, and tons more tools to enhance your digital experience in 2025. No more wasting time searching, everything you need is here in one place.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="200">
+                <a href="landing.html" class="glass-card px-8 py-3 rounded-full text-white font-medium hover-effect button-glow border border-white border-opacity-20 inline-block text-center">
+                    Start Here!
+                </a>
+                <button class="glass-card px-8 py-3 rounded-full text-white font-medium hover-effect button-glow border border-white border-opacity-20" onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})">
+                    Learn More!
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-6 md:px-12 bg-gradient-to-br from-gray-50 to-gray-100 relative overflow-hidden">
+        <!-- Professional Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, rgba(0, 0, 0, 0.1) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(0, 0, 0, 0.05) 0%, transparent 50%);"></div>
+        </div>
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="glass-card p-8 rounded-xl shadow-lg" data-aos="fade-right">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
+                            <i data-feather="target" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <h2 class="text-3xl md:text-4xl font-bold text-black">About Quote</h2>
+                    </div>
+                    <p class="text-gray-800 mb-6 text-lg leading-relaxed">
+                        Quote is simply a collection of useful tools & resources for University Students, Professionals, Content Creators, and more! This eliminates the endless search for quality learning tools and resources.
+
+
+                    </p>
+                    <p class="text-gray-800 mb-8 text-lg leading-relaxed">
+                        Browse through our fully handpicked collection of the finest AI assistants, educational platforms, productivity software, and creative tools available in 2025, organizing them into three specialized pathways for maximum efficiency.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="dev.html" class="glass-card px-6 py-3 rounded-full text-black font-medium hover-effect button-glow inline-flex items-center justify-center">
+                            Meet the Team <i data-feather="users" class="ml-2 w-4 h-4"></i>
+                        </a>
+                        <a href="landing.html" class="glass-card px-6 py-3 rounded-full text-black font-medium hover-effect button-glow inline-flex items-center justify-center">
+                            Get Started <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="relative" data-aos="fade-left">
+                    <div class="glass-card aspect-w-1 aspect-h-1 rounded-xl overflow-hidden floating shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Professional Team Collaboration" class="w-full h-full object-cover">
+                    </div>
+                    <!-- Floating Stats -->
+                    <div class="absolute -top-4 -right-4 glass-card p-4 rounded-lg shadow-lg">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-black">500+</div>
+                            <div class="text-sm text-gray-600">Tools Reviewed</div>
+                </div>
+                    </div>
+                    <div class="absolute -bottom-4 -left-4 glass-card p-4 rounded-lg shadow-lg">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-black">10K+</div>
+                            <div class="text-sm text-gray-600">Users Helped</div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Resources -->
+    <section id="resources" class="py-20 px-6 md:px-12 bg-black relative overflow-hidden">
+        <!-- Diagonal Stripes Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.1) 20px, rgba(255, 255, 255, 0.1) 40px);"></div>
+        </div>
+        <div class="max-w-6xl mx-auto relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-white" data-aos="fade-up">
+                Featured Resources
+            </h2>
+            <p class="text-xl text-center text-gray-300 mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Our latest additions to the collection
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Resource 1 -->
+        <a href="https://cluely.com/" target="_blank" class="resource-card glass-card p-6 rounded-xl block" data-aos="fade-up" data-aos-delay="200">
+            <div class="mb-4 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Study Assistant" class="resource-image">
+                    </div>
+                    <div class="flex items-center mb-3">
+                <h3 class="resource-title text-xl font-bold text-white">Cluely</h3>
+                <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/cluely.ico" alt="Cluely" class="w-8 h-8 rounded-lg ml-3">
+                <span class="resource-badge bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-2 py-1 rounded ml-auto">AI Tool</span>
+                    </div>
+            <p class="text-gray-300 mb-4">Live interactive AI study assistant for academic support and homework help.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-400">Free Plan Available</span>
+                <span class="resource-button text-blue-400 text-sm font-medium">View Details →</span>
+                    </div>
+        </a>
+                
+                <!-- Resource 2 -->
+        <a href="https://www.bettercanvas.org/" target="_blank" class="resource-card glass-card p-6 rounded-xl block" data-aos="fade-up" data-aos-delay="300">
+            <div class="mb-4 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Productivity Tools" class="resource-image">
+                    </div>
+                    <div class="flex items-center mb-3">
+                <h3 class="resource-title text-xl font-bold text-white">BetterCampus</h3>
+                <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/bettercanvas.ico" alt="BetterCampus" class="w-8 h-8 rounded-lg ml-3">
+                <span class="resource-badge bg-green-400 bg-opacity-20 text-green-400 text-xs px-2 py-1 rounded ml-auto">Productivity</span>
+                    </div>
+            <p class="text-gray-300 mb-4">Chrome extension to enhance Canvas LMS experience with better navigation and features.</p>
+                    <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-400">Free</span>
+                <span class="resource-button text-green-400 text-sm font-medium">View Details →</span>
+                    </div>
+        </a>
+                
+                <!-- Resource 3 -->
+        <a href="https://chat.qwen.ai/" target="_blank" class="resource-card glass-card p-6 rounded-xl block" data-aos="fade-up" data-aos-delay="400">
+            <div class="mb-4 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Research Assistant" class="resource-image">
+                    </div>
+                    <div class="flex items-center mb-3">
+                <h3 class="resource-title text-xl font-bold text-white">Qwen</h3>
+                <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/qwen.ico" alt="Qwen" class="w-8 h-8 rounded-lg ml-3">
+                <span class="resource-badge bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-2 py-1 rounded ml-auto">AI Assistant</span>
+                    </div>
+            <p class="text-gray-300 mb-4">Most Advanced AI assistant for comprehensive academic support and research assistance.</p>
+                    <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-400">Free</span>
+                <span class="resource-button text-purple-400 text-sm font-medium">View Details →</span>
+                    </div>
+        </a>
+            </div>
+            
+            <div class="text-center mt-16" data-aos="fade-up">
+                <a href="all-tools.html" class="glass-card px-8 py-3 rounded-full text-white font-medium hover-effect button-glow inline-block">
+                    All Tools
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pathways Section -->
+    <section id="pathways" class="py-20 px-6 md:px-12 bg-white relative overflow-hidden">
+        <!-- Dot Grid Pattern -->
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle, rgba(0, 0, 0, 0.3) 1px, transparent 1px); background-size: 30px 30px;"></div>
+        </div>
+        <div class="max-w-6xl mx-auto relative z-10">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-black" data-aos="fade-up">
+                Specialized Pathways
+            </h2>
+            <p class="text-xl text-center text-gray-800 mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Organized into three specialized pathways for maximum efficiency
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- University Students -->
+                <div class="pathway-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-6">
+                        <div class="gradient-icon w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
+                            <i data-feather="book" class="text-white w-7 h-7"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-black">University Students</h3>
+                            <p class="text-sm text-gray-600">Academic Excellence</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-8 leading-relaxed">
+                        Essential tools for research, writing, collaboration, and time management to excel in academic life.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="status-dots flex space-x-2">
+                            <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
+                            <span class="w-2 h-2 bg-blue-300 rounded-full"></span>
+                            <span class="w-2 h-2 bg-blue-200 rounded-full"></span>
+                        </div>
+                        <a href="student.html" class="text-black font-semibold flex items-center hover-effect whitespace-nowrap">
+                        Explore <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Professionals -->
+                <div class="pathway-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-6">
+                        <div class="gradient-icon w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mr-4">
+                            <i data-feather="briefcase" class="text-white w-7 h-7"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-black">Professionals</h3>
+                            <p class="text-sm text-gray-600">Career Growth</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-8 leading-relaxed">
+                        Productivity boosters, communication tools, and career development resources for the modern workplace.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="status-dots flex space-x-2">
+                            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                            <span class="w-2 h-2 bg-green-300 rounded-full"></span>
+                            <span class="w-2 h-2 bg-green-200 rounded-full"></span>
+                        </div>
+                        <a href="professional.html" class="text-black font-semibold flex items-center hover-effect whitespace-nowrap">
+                        Explore <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Content Creators -->
+                <div class="pathway-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center mb-6">
+                        <div class="gradient-icon w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
+                            <i data-feather="feather" class="text-white w-7 h-7"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-black">Content Creators</h3>
+                            <p class="text-sm text-gray-600">Creative Innovation</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 mb-8 leading-relaxed">
+                        Cutting-edge creative tools, platforms, and resources for digital artists, writers, and creators.
+                    </p>
+                    <div class="flex items-center justify-between">
+                        <div class="status-dots flex space-x-2">
+                            <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
+                            <span class="w-2 h-2 bg-purple-300 rounded-full"></span>
+                            <span class="w-2 h-2 bg-purple-200 rounded-full"></span>
+                </div>
+                        <a href="creator.html" class="text-black font-semibold flex items-center hover-effect whitespace-nowrap">
+                        Explore <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback Section -->
+    <section class="py-16 px-6 md:px-12 bg-gray-900 relative overflow-hidden">
+        <!-- Hexagonal Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: repeating-linear-gradient(60deg, transparent, transparent 25px, rgba(255, 255, 255, 0.1) 25px, rgba(255, 255, 255, 0.1) 50px); background-size: 50px 50px;"></div>
+        </div>
+        <div class="max-w-4xl mx-auto text-center glass-card p-8 rounded-xl relative z-10" data-aos="fade-up">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Share Your Feedback</h2>
+            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Help us improve Quote by sharing your thoughts, suggestions, or reporting any issues you encounter.
+            </p>
+            <div class="flex justify-center">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdiZ_drgyq8RHPw2pK7gn-ezExGVi0d__g_iny7OaOrERsPUg/viewform" target="_blank" class="bg-gradient-to-r from-white to-gray-300 px-8 py-4 rounded-full text-black font-medium hover-effect button-glow text-lg">
+                    Feedback
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 bg-black">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Pages</h3>
+                    <ul class="space-y-2">
+                        <li><a href="student.html" class="text-gray-300 hover:text-white">University Student</a></li>
+                        <li><a href="professional.html" class="text-gray-300 hover:text-white">Professional</a></li>
+                        <li><a href="creator.html" class="text-gray-300 hover:text-white">Creator</a></li>
+                        <li><a href="all-tools.html" class="text-gray-300 hover:text-white">All Tools</a></li>
+                        <li><a href="dev.html" class="text-gray-300 hover:text-white">Developer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><button onclick="openLegalModal('terms')" class="text-gray-300 hover:text-white cursor-pointer">Terms of Service</button></li>
+                        <li><button onclick="openLegalModal('privacy')" class="text-gray-300 hover:text-white cursor-pointer">Privacy Policy</button></li>
+                        <li><button onclick="openLegalModal('cookie')" class="text-gray-300 hover:text-white cursor-pointer">Cookie Policy</button></li>
+                        <li><button onclick="openLegalModal('disclaimer')" class="text-gray-300 hover:text-white cursor-pointer">Disclaimer</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Connect</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Creator Store</a></li>
+                        <li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn-footer text-gray-300 hover:text-white cursor-pointer">Donate</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdiZ_drgyq8RHPw2pK7gn-ezExGVi0d__g_iny7OaOrERsPUg/viewform" target="_blank" class="text-gray-300 hover:text-white">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Quote. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Legal Modal -->
+    <div id="legalModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="modalTitle" class="text-2xl font-bold text-black"></h2>
+                    <button onclick="closeLegalModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                <div id="modalContent" class="text-gray-700"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+
+        // Legal Modal Functions
+        function openLegalModal(type) {
+            const modal = document.getElementById('legalModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            const legalContent = {
+                terms: {
+                    title: 'Terms of Service',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. Acceptance of Terms</h3>
+                        <p class="mb-4">By accessing and using Quote, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. Use License</h3>
+                        <p class="mb-4">Permission is granted to temporarily download one copy of Quote for personal, non-commercial transitory viewing only.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Disclaimer</h3>
+                        <p class="mb-4">The materials on Quote are provided on an 'as is' basis. Quote makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Limitations</h3>
+                        <p class="mb-4">In no event shall Quote or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Quote, even if Quote or a Quote authorized representative has been notified orally or in writing of the possibility of such damage.</p>
+                    `
+                },
+                privacy: {
+                    title: 'Privacy Policy',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. Information We Collect</h3>
+                        <p class="mb-4">We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. How We Use Your Information</h3>
+                        <p class="mb-4">We use the information we collect to provide, maintain, and improve our services, process transactions, and communicate with you.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Information Sharing</h3>
+                        <p class="mb-4">We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Data Security</h3>
+                        <p class="mb-4">We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                    `
+                },
+                cookie: {
+                    title: 'Cookie Policy',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. What Are Cookies</h3>
+                        <p class="mb-4">Cookies are small text files that are placed on your computer or mobile device when you visit our website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. How We Use Cookies</h3>
+                        <p class="mb-4">We use cookies to enhance your experience, analyze site traffic, and personalize content and advertisements.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Types of Cookies</h3>
+                        <p class="mb-4">We use both session cookies (which expire when you close your browser) and persistent cookies (which stay on your device until deleted).</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Managing Cookies</h3>
+                        <p class="mb-4">You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and set most browsers to prevent them from being placed.</p>
+                    `
+                },
+                disclaimer: {
+                    title: 'Disclaimer',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. General Disclaimer</h3>
+                        <p class="mb-4">The information on this website is provided on an "as is" basis. To the fullest extent permitted by law, this Company excludes all representations, warranties, conditions and terms relating to our website and the use of this website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. No Liability</h3>
+                        <p class="mb-4">In no event will Quote be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. External Links</h3>
+                        <p class="mb-4">Through this website you are able to link to other websites which are not under the control of Quote. We have no control over the nature, content and availability of those sites.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Tool Recommendations</h3>
+                        <p class="mb-4">All tool recommendations are based on our research and testing. We do not guarantee the performance, availability, or suitability of any recommended tools for your specific needs.</p>
+                    `
+                }
+            };
+            
+            title.textContent = legalContent[type].title;
+            content.innerHTML = legalContent[type].content;
+            modal.classList.remove('hidden');
+        }
+
+        function closeLegalModal() {
+            document.getElementById('legalModal').classList.add('hidden');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('legalModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLegalModal();
+            }
+        });
+        
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            gsap.to(cursorFollower, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        });
+        
+        // Hover effects for cursor
+        const hoverElements = document.querySelectorAll('a, button, .hover-effect, .pathway-card, .glass-card');
+        
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('button[aria-label="Mobile menu"]');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Scroll-based darkening effect
+        const darkOverlay = document.getElementById('darkOverlay');
+        const pathwaysSection = document.getElementById('pathways');
+        
+        function handleScroll() {
+            const pathwaysRect = pathwaysSection.getBoundingClientRect();
+            const scrollPosition = window.scrollY;
+            const pathwaysTop = pathwaysRect.top + scrollPosition;
+            const pathwaysBottom = pathwaysTop + pathwaysRect.height;
+            
+            // Calculate scroll progress through the pathways section
+            const scrollProgress = Math.max(0, Math.min(1, (scrollPosition - pathwaysTop) / (pathwaysBottom - pathwaysTop)));
+            
+            // Gradually increase opacity based on scroll progress
+            darkOverlay.style.opacity = scrollProgress;
+            
+            // Add active class when fully scrolled past
+            if (scrollPosition > pathwaysBottom) {
+                darkOverlay.classList.add('active');
+            } else {
+                darkOverlay.classList.remove('active');
+            }
+        }
+        
+        // Throttle scroll events for better performance
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(handleScroll);
+                ticking = true;
+            }
+        }
+        
+        function onScroll() {
+            ticking = false;
+            requestTick();
+        }
+        
+        window.addEventListener('scroll', onScroll);
+    </script>
 </body>
 </html>

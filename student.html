@@ -1,455 +1,1274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Student Tools - Quote</title>
-	<link rel="stylesheet" href="style.css">
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Tools | Quote</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            --glass-blur: blur(12px);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+        }
+        
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+        }
+        
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease;
+        }
+        
+        
+        .tool-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-card .tool-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+        
+        .tool-card .tool-title-section {
+            display: flex;
+            align-items: center;
+        }
+        
+        .tool-card .tool-tag {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            white-space: nowrap;
+        }
+        
+        /* Randomized rotation directions */
+        .tool-card.rotate-1:hover {
+            transform: translateY(-12px) scale(1.05) rotateX(3deg) rotateY(3deg) rotateZ(1deg) !important;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .tool-card.rotate-2:hover {
+            transform: translateY(-12px) scale(1.05) rotateX(-3deg) rotateY(3deg) rotateZ(-1deg) !important;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .tool-card.rotate-3:hover {
+            transform: translateY(-12px) scale(1.05) rotateX(3deg) rotateY(-3deg) rotateZ(1deg) !important;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .tool-card.rotate-4:hover {
+            transform: translateY(-12px) scale(1.05) rotateX(-3deg) rotateY(-3deg) rotateZ(-1deg) !important;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .tool-card.rotate-5:hover {
+            transform: translateY(-12px) scale(1.05) rotateX(2deg) rotateY(4deg) rotateZ(-2deg) !important;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        .tool-card.rotate-6:hover {
+            transform: translateY(-12px) scale(1.05) rotateX(-2deg) rotateY(4deg) rotateZ(2deg) !important;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        /* Ensure all tool cards have consistent timing */
+        .tool-card[data-aos] {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        
+        .tool-card[data-aos].aos-animate {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        
+        /* Scroll Indicator Animation */
+        .scroll-indicator {
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .scroll-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounce 2s infinite;
+            transition: transform 0.3s ease;
+        }
+        
+        .scroll-arrow:hover {
+            transform: scale(1.1);
+        }
+        
+        .arrow-line {
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.3));
+            margin-bottom: 5px;
+            border-radius: 1px;
+        }
+        
+        .arrow-head {
+            font-size: 24px;
+            color: #ffffff;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
+        }
+        
+        /* Button Hover Animations - Consistent timing for all elements */
+        .hover-effect {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .hover-effect:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Tool card specific hover - override hover-effect for tool cards */
+        .tool-card.hover-effect:hover {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        /* Ensure all elements have consistent transition timing */
+        .glass-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Mini navigation items */
+        .mini-nav-item {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .mini-nav-item:hover {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            transform: translateY(-2px);
+        }
+        
+        /* Mini Navigation Bar */
+        .mini-nav {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 40;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 8px;
+            max-width: fit-content;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .mini-nav-item {
+            display: inline-block;
+            padding: 8px 16px;
+            margin: 0 4px;
+            border-radius: 25px;
+            color: #9ca3af;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .mini-nav-item:hover {
+            background: rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            transform: translateY(-2px);
+        }
+        
+        .mini-nav-item.active {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .donate-btn {
+            animation: rotateShake 2s ease-in-out infinite;
+        }
+        
+        .donate-btn-footer {
+            animation: none;
+        }
+        
+        @keyframes rotateShake {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+            75% { transform: rotate(-1deg); }
+        }
+    </style>
 </head>
-<body class="student-page">
-	<canvas id="bg-graph"></canvas>
-	<header>
-		<nav class="navbar minimal-navbar">
-			<div class="logo"><a href="index.html">quoteai.org</a></div>
-			<div class="nav-and-menu">
-				<div class="search-container">
-					<img src="https://img.icons8.com/ios-filled/50/000000/search.png" alt="Search" class="search-icon">
-					<input type="text" id="global-search" placeholder="Search tools..." autocomplete="off">
-					<div class="search-results" id="search-results"></div>
-				</div>
-				<ul class="nav-links minimal-nav">
-					<li><a href="index.html"><img src="https://img.icons8.com/ios-filled/50/000000/home.png" alt="Home" class="nav-icon"></a></li>
-					<li><a href="index.html#about"><img src="https://img.icons8.com/ios-filled/50/000000/info.png" alt="About" class="nav-icon"></a></li>
-					<li><a href="index.html#contact"><img src="https://img.icons8.com/ios-filled/50/000000/phone.png" alt="Contact" class="nav-icon"></a></li>
-					<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-button">Donate</a></li>
-				</ul>
-				<div class="menu-icon" id="menu-toggle">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			</div>
-		</nav>
-		<div class="dropdown-menu" id="dropdown-menu">
-			<div class="dropdown-content">
-				<div class="dropdown-button-item">
-					<h3>🎓 Student</h3>
-					<p>Academic tools, research resources, and study aids</p>
-					<a href="student.html" class="dropdown-button">Enter Student Hub</a>
-				</div>
-				<div class="dropdown-button-item">
-					<h3>💼 Professional</h3>
-					<p>Business tools, productivity apps, and career resources</p>
-					<a href="professional.html" class="dropdown-button">Enter Professional Hub</a>
-				</div>
-				<div class="dropdown-button-item">
-					<h3>🎨 Creator</h3>
-					<p>Design tools, content creation, and creative resources</p>
-					<a href="creator.html" class="dropdown-button">Enter Creator Hub</a>
-				</div>
-				<div class="dropdown-button-item">
-					<h3>🔧 All Tools</h3>
-					<p>Browse our complete collection of tools and resources</p>
-					<a href="all-tools.html" class="dropdown-button">View All Tools</a>
-				</div>
-			</div>
-		</div>
-	</header>
-	
-	<!-- Page Notification Sidebar -->
-	<div class="page-notification" id="pageNotification">
-		<div class="notification-icon">🎓</div>
-		<div class="notification-text">
-			<span class="notification-title">You are currently viewing student tools</span>
-		</div>
-	</div>
-	
-	<main>
-		<section class="tools-page">
-			<div class="tools-grid">
-				<div class="tool-section featured">
-					<h2>⭐ Featured Tools</h2>
-					<p class="section-description">Hand-picked premium tools that students love most</p>
-					<div class="tool-cards">
-						<a href="https://cluely.com/" target="_blank" class="tool-item featured-item">
-							<h3>Cluely <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/cluely.ico" alt="Cluely" class="tool-logo"></h3>
-							<p>Live interactive AI study assistant for academic support</p>
-							<span class="tool-tag study">Study</span>
-						</a>
-						<a href="https://chat.qwen.ai/" target="_blank" class="tool-item featured-item">
-							<h3>Qwen <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/qwen.ico" alt="Qwen" class="tool-logo"></h3>
-							<p>Most Advanced AI assistant for comprehensive academic support and research</p>
-							<span class="tool-tag ai">AI</span>
-						</a>
-						<a href="https://www.bettercanvas.org/" target="_blank" class="tool-item featured-item">
-							<h3>BetterCampus <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/bettercanvas.ico" alt="BetterCampus" class="tool-logo"></h3>
-							<p>Chrome extension to enhance Canvas LMS experience</p>
-							<span class="tool-tag canvas">Canvas</span>
-						</a>
-						<a href="https://elevenlabs.io/" target="_blank" class="tool-item featured-item">
-							<h3>ElevenLabs <img src="https://elevenlabs.io/favicon.ico" alt="ElevenLabs" class="tool-logo"></h3>
-							<p>Immersive reader with text-to-speech (mobile free)</p>
-							<span class="tool-tag audio">Audio</span>
-						</a>
-					</div>
-				</div>
+<body class="text-gray-800">
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
 
-				<div class="tool-section">
-					<h2>AI Study Assistants</h2>
-					<p class="section-description">Intelligent AI tools to help with homework, research, and academic writing</p>
-					<div class="tool-cards">
-						<a href="https://cluely.com/" target="_blank" class="tool-item">
-							<h3>Cluely <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/cluely.ico" alt="Cluely" class="tool-logo"></h3>
-							<p>Live interactive AI study assistant for academic support</p>
-							<span class="tool-tag study">Study</span>
-						</a>
-						<a href="https://savemygpa.com" target="_blank" class="tool-item">
-							<h3>SaveMyGPA <img src="https://savemygpa.com/favicon.ico" alt="SaveMyGPA" class="tool-logo"></h3>
-							<p>AI-powered study tool for GPA improvement</p>
-							<span class="tool-tag gpa">GPA</span>
-						</a>
-						<a href="https://chat.qwen.ai/" target="_blank" class="tool-item">
-							<h3>Qwen <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/qwen.ico" alt="Qwen" class="tool-logo"></h3>
-							<p>Most Advanced AI assistant for comprehensive academic support and research</p>
-							<span class="tool-tag ai">AI</span>
-						</a>
-						<a href="https://claude.ai" target="_blank" class="tool-item">
-							<h3>Claude <img src="https://claude.ai/favicon.ico" alt="Claude" class="tool-logo"></h3>
-							<p>AI assistant for academic writing and research</p>
-							<span class="tool-tag writing">Writing</span>
-						</a>
-						<a href="https://perplexity.ai" target="_blank" class="tool-item">
-							<h3>Perplexity AI <img src="https://perplexity.ai/favicon.ico" alt="Perplexity" class="tool-logo"></h3>
-							<p>Research assistant with real-time information</p>
-							<span class="tool-tag research">Research</span>
-						</a>
-						<a href="https://gauthmath.com" target="_blank" class="tool-item">
-							<h3>Gauth <img src="https://gauthmath.com/favicon.ico" alt="Gauth" class="tool-logo"></h3>
-							<p>AI-powered study assistant for homework help</p>
-							<span class="tool-tag homework">Homework</span>
-						</a>
-						<a href="https://photomath.com" target="_blank" class="tool-item">
-							<h3>Photomath <img src="https://photomath.com/favicon.ico" alt="Photomath" class="tool-logo"></h3>
-							<p>Camera-based math problem solver with step-by-step solutions</p>
-							<span class="tool-tag math">Math</span>
-						</a>
-						<a href="https://brainly.com" target="_blank" class="tool-item">
-							<h3>Brainly <img src="https://brainly.com/favicon.ico" alt="Brainly" class="tool-logo"></h3>
-							<p>Homework help and study community platform</p>
-							<span class="tool-tag community">Community</span>
-						</a>
-						<a href="https://chat.openai.com" target="_blank" class="tool-item">
-							<h3>ChatGPT <img src="https://chat.openai.com/favicon.ico" alt="ChatGPT" class="tool-logo"></h3>
-							<p>AI assistant for homework help, explanations, and writing</p>
-							<span class="tool-tag ai">AI Chat</span>
-						</a>
-					</div>
-				</div>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-4 px-6 md:px-12">
+        <div class="flex justify-between items-center glass-card px-6 py-3">
+            <a href="index.html" class="text-xl font-bold text-white hover-effect">QUOTE</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" class="nav-link text-white font-medium">Home</a>
+                <a href="student.html" class="nav-link text-white font-medium text-blue-400">Student</a>
+                <a href="professional.html" class="nav-link text-white font-medium">Professional</a>
+                <a href="creator.html" class="nav-link text-white font-medium">Creator</a>
+                <a href="all-tools.html" class="nav-link text-white font-medium">All Tools</a>
+                <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full hover:from-orange-400 hover:to-orange-500 transition-all duration-300 transform hover:scale-105">
+                    Donate
+                </a>
+            </div>
+            <button class="md:hidden text-white font-medium">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
 
-				<div class="tool-section">
-					<h2>Free Courses & Educational Resources</h2>
-					<p class="section-description">High-quality free courses, lectures, and learning materials from top institutions</p>
-					<div class="tool-cards">
-						<a href="https://edx.org" target="_blank" class="tool-item">
-							<h3>edX <img src="https://edx.org/favicon.ico" alt="edX" class="tool-logo"></h3>
-							<p>Free university courses from top institutions worldwide</p>
-							<span class="tool-tag courses">Courses</span>
-						</a>
-						<a href="https://khanacademy.org" target="_blank" class="tool-item">
-							<h3>Khan Academy <img src="https://khanacademy.org/favicon.ico" alt="Khan Academy" class="tool-logo"></h3>
-							<p>Free courses in math, science, and more</p>
-							<span class="tool-tag courses">Courses</span>
-						</a>
-						<a href="https://coursera.org" target="_blank" class="tool-item">
-							<h3>Coursera <img src="https://coursera.org/favicon.ico" alt="Coursera" class="tool-logo"></h3>
-							<p>University courses and certifications</p>
-							<span class="tool-tag certificates">Certificates</span>
-						</a>
-						<a href="https://ocw.mit.edu" target="_blank" class="tool-item">
-							<h3>MIT OCW <img src="https://ocw.mit.edu/favicon.ico" alt="MIT OpenCourseWare" class="tool-logo"></h3>
-							<p>Free MIT course materials</p>
-							<span class="tool-tag mit">MIT</span>
-						</a>
-						<a href="https://udemy.com" target="_blank" class="tool-item">
-							<h3>Udemy <img src="https://github.com/Delexoo/Quote/raw/refs/heads/main/udemy.ico" alt="Udemy" class="tool-logo"></h3>
-							<p>Online courses on various topics and skills</p>
-							<span class="tool-tag skills">Skills</span>
-						</a>
-						<a href="https://freecodecamp.org" target="_blank" class="tool-item">
-							<h3>FreeCodeCamp <img src="https://github.com/Delexoo/Quote/raw/refs/heads/main/freecodecamp.ico" alt="FreeCodeCamp" class="tool-logo"></h3>
-							<p>Free programming and coding tutorials</p>
-							<span class="tool-tag coding">Coding</span>
-						</a>
-						<a href="https://futurelearn.com" target="_blank" class="tool-item">
-							<h3>FutureLearn <img src="https://futurelearn.com/favicon.ico" alt="FutureLearn" class="tool-logo"></h3>
-							<p>Online courses from universities and institutions</p>
-							<span class="tool-tag courses">Courses</span>
-						</a>
-					</div>
-				</div>
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 md:px-12 pt-20">
+        <div class="text-center max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white" data-aos="fade-up">
+                Essential <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Student Tools</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-10" data-aos="fade-up" data-aos-delay="100">
+                Curated collection of tools designed specifically for university students to excel in their academic journey.
+            </p>
+            <div class="flex justify-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="scroll-indicator">
+                    <div class="scroll-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head">▼</div>
+                    </div>
+                    <p class="text-white text-sm mt-6">Scroll to explore tools</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-				<div class="tool-section">
-					<h2>Free Books</h2>
-					<p class="section-description">Free digital libraries and book repositories for academic research</p>
-					<div class="tool-cards">
-						<a href="https://annas-archive.li" target="_blank" class="tool-item">
-							<h3>Anna's Archive <img src="https://annas-archive.li/favicon.ico" alt="Anna's Archive" class="tool-logo"></h3>
-							<p>Comprehensive free book and academic resource library</p>
-							<span class="tool-tag books">Books</span>
-						</a>
-						<a href="https://libgen.ac" target="_blank" class="tool-item">
-							<h3>Library Genesis <img src="https://libgen.ac/favicon.ico" alt="Library Genesis" class="tool-logo"></h3>
-							<p>Free scientific and academic book repository</p>
-							<span class="tool-tag books">Books</span>
-						</a>
-					</div>
-				</div>
+    <!-- Mini Navigation Bar -->
+    <div class="mini-nav">
+        <a href="#featured" class="mini-nav-item" onclick="scrollToSection('featured')">Featured</a>
+        <a href="#ai-assistants" class="mini-nav-item" onclick="scrollToSection('ai-assistants')">AI Assistants</a>
+        <a href="#courses" class="mini-nav-item" onclick="scrollToSection('courses')">Courses</a>
+        <a href="#books" class="mini-nav-item" onclick="scrollToSection('books')">Books</a>
+        <a href="#pdf-tools" class="mini-nav-item" onclick="scrollToSection('pdf-tools')">PDF Tools</a>
+        <a href="#plagiarism" class="mini-nav-item" onclick="scrollToSection('plagiarism')">Plagiarism</a>
+        <a href="#notes" class="mini-nav-item" onclick="scrollToSection('notes')">Notes</a>
+        <a href="#research" class="mini-nav-item" onclick="scrollToSection('research')">Research</a>
+        <a href="#extras" class="mini-nav-item" onclick="scrollToSection('extras')">Extras</a>
+    </div>
 
-				<div class="tool-section">
-					<h2>PDF & Document Tools</h2>
-					<p class="section-description">PDF editing, splitting, and document management tools for academic work</p>
-					<div class="tool-cards">
-                        <a href="https://webtopdf.com" target="_blank" class="tool-item">
-							<h3>Website to .pdf <img src="https://webtopdf.com" alt="Webite to .pdf" class="tool-logo"></h3>
-							<p>Convert a Website (link) into a PDF document</p>
-							<span class="tool-tag pdf">PDF</span>
-						</a>
-						<a href="https://elevenlabs.io/" target="_blank" class="tool-item">
-							<h3>ElevenLabs <img src="https://elevenlabs.io/favicon.ico" alt="ElevenLabs" class="tool-logo"></h3>
-							<p>Immersive reader with text-to-speech (mobile free)</p>
-							<span class="tool-tag audio">Audio</span>
-						</a>
-						<a href="https://www.ilovepdf.com/split_pdf" target="_blank" class="tool-item">
-							<h3>iLovePDF <img src="https://www.ilovepdf.com/favicon.ico" alt="iLovePDF" class="tool-logo"></h3>
-							<p>PDF splitter and comprehensive PDF editing toolkit</p>
-							<span class="tool-tag pdf">PDF</span>
-						</a>
-						<a href="https://www.ilovepdf.com/word_to_pdf" target="_blank" class="tool-item">
-							<h3>.docx to .pdf <img src="https://www.ilovepdf.com/favicon.ico" alt="iLovePDF" class="tool-logo"></h3>
-							<p>Convert Word documents to PDF format easily</p>
-							<span class="tool-tag converter">Converter</span>
-						</a>
-						<a href="https://www.ilovepdf.com/powerpoint_to_pdf" target="_blank" class="tool-item">
-							<h3>PowerPoint to .pdf <img src="https://www.ilovepdf.com/favicon.ico" alt="iLovePDF" class="tool-logo"></h3>
-							<p>Convert PowerPoint presentations to PDF format</p>
-							<span class="tool-tag converter">Converter</span>
-						</a>
-						<a href="https://www.microsoft.com/en-us/microsoft-365/onedrive/online-cloud-storage" target="_blank" class="tool-item">
-							<h3>OneDrive Mobile <img src="https://www.microsoft.com/favicon.ico" alt="Microsoft" class="tool-logo"></h3>
-							<p>Scan documents to PDF using your mobile device</p>
-							<span class="tool-tag scanner">Scanner</span>
-						</a>
-						<a href="https://cloudconvert.com" target="_blank" class="tool-item">
-							<h3>CloudConvert <img src="https://cloudconvert.com/favicon.ico" alt="CloudConvert" class="tool-logo"></h3>
-							<p>Multi-format file converter and processing tool</p>
-							<span class="tool-tag converter">Converter</span>
-						</a>
-						<a href="https://freeconvert.com" target="_blank" class="tool-item">
-							<h3>FreeConvert <img src="https://freeconvert.com/favicon.ico" alt="FreeConvert" class="tool-logo"></h3>
-							<p>Multifunctional file converter for various formats</p>
-							<span class="tool-tag converter">Converter</span>
-						</a>
-						<a href="https://speechify.com" target="_blank" class="tool-item">
-							<h3>Speechify <img src="https://speechify.com/favicon.ico" alt="Speechify" class="tool-logo"></h3>
-							<p>Text-to-speech tool for listening to documents</p>
-							<span class="tool-tag audio">Audio</span>
-						</a>
-						<a href="https://scribehow.com/" target="_blank" class="tool-item">
-							<h3>Scribe <img src="https://scribehow.com/favicon.ico" alt="Scribe" class="tool-logo"></h3>
-							<p>Automatic step-by-step guide and documentation creator</p>
-							<span class="tool-tag productivity">Docs</span>
-						</a>
-					</div>
-				</div>
+    <!-- Student Tools Section -->
+    <section class="py-20 px-6 md:px-12" style="padding-top: 120px;">
+        <div class="max-w-7xl mx-auto">
+            <!-- Featured Tools -->
+            <div id="featured" class="mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold text-center mb-6 text-white" data-aos="fade-up">
+                    ⭐ Featured Tools
+                </h2>
+                <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Hand-picked premium tools that students love most
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <a href="https://cluely.com/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="tool-header">
+                            <div class="tool-title-section">
+                                <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/cluely.ico" alt="Cluely" class="w-8 h-8 mr-3">
+                                <h3 class="text-xl font-bold text-white">Cluely</h3>
+                            </div>
+                            <span class="tool-tag bg-blue-400 bg-opacity-20 text-blue-400">Study</span>
+                        </div>
+                        <p class="text-gray-300 text-sm">Live interactive AI study assistant for academic support</p>
+                    </a>
+                    
+                    <a href="https://chat.qwen.ai/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="tool-header">
+                            <div class="tool-title-section">
+                                <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/qwen.ico" alt="Qwen" class="w-8 h-8 mr-3">
+                                <h3 class="text-xl font-bold text-white">Qwen</h3>
+                            </div>
+                            <span class="tool-tag bg-purple-400 bg-opacity-20 text-purple-400">AI</span>
+                        </div>
+                        <p class="text-gray-300 text-sm">Most Advanced AI assistant for comprehensive academic support and research</p>
+                    </a>
+                    
+                    <a href="https://www.bettercanvas.org/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="tool-header">
+                            <div class="tool-title-section">
+                                <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/bettercanvas.ico" alt="BetterCampus" class="w-8 h-8 mr-3">
+                                <h3 class="text-xl font-bold text-white">BetterCampus</h3>
+                            </div>
+                            <span class="tool-tag bg-green-400 bg-opacity-20 text-green-400">Canvas</span>
+                        </div>
+                        <p class="text-gray-300 text-sm">Chrome extension to enhance Canvas LMS experience</p>
+                    </a>
+                    
+                    <a href="https://elevenlabs.io/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="500">
+                        <div class="tool-header">
+                            <div class="tool-title-section">
+                                <img src="https://elevenlabs.io/favicon.ico" alt="ElevenLabs" class="w-8 h-8 mr-3">
+                                <h3 class="text-xl font-bold text-white">ElevenLabs</h3>
+                            </div>
+                            <span class="tool-tag bg-orange-400 bg-opacity-20 text-orange-400">Audio</span>
+                        </div>
+                        <p class="text-gray-300 text-sm">Immersive reader with text-to-speech (mobile free)</p>
+                    </a>
+                </div>
+            </div>
 
-				<div class="tool-section">
-					<h2>Plagiarism Checkers</h2>
-					<p class="section-description">Free plagiarism detection tools to ensure academic integrity</p>
-					<div class="tool-cards">
-						<a href="https://plagly.com/?msclkid=1432e4ea364a1c0292458c23e9dcef4a&utm_source=bing&utm_medium=cpc&utm_campaign=plag&utm_term=free%20plagiarism%20checker&utm_content=plagly" target="_blank" class="tool-item">
-							<h3>Plagly <img src="https://plagly.com/favicon.ico" alt="Plagly" class="tool-logo"></h3>
-							<p>Free plagiarism checker for academic writing</p>
-							<span class="tool-tag plagiarism">Plagiarism</span>
-						</a>
-						<a href="https://smallseotools.com/plagiarism-checker/" target="_blank" class="tool-item">
-							<h3>Small SEO Tools <img src="https://smallseotools.com/favicon.ico" alt="Small SEO Tools" class="tool-logo"></h3>
-							<p>Free online plagiarism detection and checking tool</p>
-							<span class="tool-tag plagiarism">Plagiarism</span>
-						</a>
-						<a href="https://www.scribbr.com/plagiarism-checker/" target="_blank" class="tool-item">
-							<h3>Scribbr <img src="https://www.scribbr.com/favicon.ico" alt="Scribbr" class="tool-logo"></h3>
-							<p>Academic plagiarism checker with detailed reports</p>
-							<span class="tool-tag plagiarism">Plagiarism</span>
-						</a>
-					</div>
-				</div>
+            <!-- AI Study Assistants -->
+            <div id="ai-assistants" class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-white" data-aos="fade-up">
+                    🤖 AI Study Assistants
+                </h2>
+                <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Intelligent AI tools to help with homework, research, and academic writing
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <a href="https://cluely.com/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-4">
+                            <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/cluely.ico" alt="Cluely" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Cluely</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Live interactive AI study assistant for academic support</p>
+                        <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Study</span>
+                    </a>
+                    
+                    <a href="https://savemygpa.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center mb-4">
+                            <img src="https://savemygpa.com/favicon.ico" alt="SaveMyGPA" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">SaveMyGPA</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">AI-powered study tool for GPA improvement</p>
+                        <span class="inline-block bg-red-400 bg-opacity-20 text-red-400 text-xs px-3 py-1 rounded-full">GPA</span>
+                    </a>
+                    
+                    <a href="https://chat.qwen.ai/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="flex items-center mb-4">
+                            <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/qwen.ico" alt="Qwen" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Qwen</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Most Advanced AI assistant for comprehensive academic support and research</p>
+                        <span class="inline-block bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-3 py-1 rounded-full">AI</span>
+                    </a>
+                    
+                    <a href="https://claude.ai" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="500">
+                        <div class="flex items-center mb-4">
+                            <img src="https://claude.ai/favicon.ico" alt="Claude" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Claude</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">AI assistant for academic writing and research</p>
+                        <span class="inline-block bg-indigo-400 bg-opacity-20 text-indigo-400 text-xs px-3 py-1 rounded-full">Writing</span>
+                    </a>
+                    
+                    <a href="https://perplexity.ai" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="600">
+                        <div class="flex items-center mb-4">
+                            <img src="https://perplexity.ai/favicon.ico" alt="Perplexity" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Perplexity AI</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Research assistant with real-time information</p>
+                        <span class="inline-block bg-cyan-400 bg-opacity-20 text-cyan-400 text-xs px-3 py-1 rounded-full">Research</span>
+                    </a>
+                    
+                    <a href="https://gauthmath.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="700">
+                        <div class="flex items-center mb-4">
+                            <img src="https://gauthmath.com/favicon.ico" alt="Gauth" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Gauth</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">AI-powered study assistant for homework help</p>
+                        <span class="inline-block bg-yellow-400 bg-opacity-20 text-yellow-400 text-xs px-3 py-1 rounded-full">Homework</span>
+                    </a>
+                    
+                    <a href="https://photomath.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="800">
+                        <div class="flex items-center mb-4">
+                            <img src="https://photomath.com/favicon.ico" alt="Photomath" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Photomath</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Camera-based math problem solver with step-by-step solutions</p>
+                        <span class="inline-block bg-pink-400 bg-opacity-20 text-pink-400 text-xs px-3 py-1 rounded-full">Math</span>
+                    </a>
+                    
+                    <a href="https://brainly.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="900">
+                        <div class="flex items-center mb-4">
+                            <img src="https://brainly.com/favicon.ico" alt="Brainly" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Brainly</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Homework help and study community platform</p>
+                        <span class="inline-block bg-teal-400 bg-opacity-20 text-teal-400 text-xs px-3 py-1 rounded-full">Community</span>
+                    </a>
+                    
+                    <a href="https://chat.openai.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="1000">
+                        <div class="flex items-center mb-4">
+                            <img src="https://chat.openai.com/favicon.ico" alt="ChatGPT" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">ChatGPT</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">AI assistant for homework help, explanations, and writing</p>
+                        <span class="inline-block bg-emerald-400 bg-opacity-20 text-emerald-400 text-xs px-3 py-1 rounded-full">AI Chat</span>
+                    </a>
+                </div>
+            </div>
 
-				<div class="tool-section">
-					<h2>Note Taking & Organization</h2>
-					<p class="section-description">Digital tools for organizing notes, planning studies, and knowledge management</p>
-					<div class="tool-cards">
-						<a href="https://notion.so" target="_blank" class="tool-item">
-							<h3>Notion <img src="https://notion.so/favicon.ico" alt="Notion" class="tool-logo"></h3>
-							<p>All-in-one workspace for notes and planning</p>
-							<span class="tool-tag workspace">Workspace</span>
-						</a>
-						<a href="https://standardnotes.com" target="_blank" class="tool-item">
-							<h3>Standard Notes <img src="https://standardnotes.com/favicon.ico" alt="Standard Notes" class="tool-logo"></h3>
-							<p>Safe note-taking with end-to-end encryption</p>
-							<span class="tool-tag secure">Secure</span>
-						</a>
-						<a href="https://todo.microsoft.com" target="_blank" class="tool-item">
-							<h3>Microsoft To Do <img src="https://todo.microsoft.com/favicon.ico" alt="Microsoft To Do" class="tool-logo"></h3>
-							<p>Task management and to-do list organization</p>
-							<span class="tool-tag tasks">Tasks</span>
-						</a>
-						<a href="https://www.bettercanvas.org/" target="_blank" class="tool-item">
-							<h3>BetterCampus <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/bettercanvas.ico" alt="BetterCampus" class="tool-logo"></h3>
-							<p>Formerly BetterCanvas - Chrome extension to enhance Canvas LMS</p>
-							<span class="tool-tag canvas">Canvas</span>
-						</a>
-					</div>
-				</div>
+            <!-- Free Courses & Educational Resources -->
+            <div id="courses" class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-white" data-aos="fade-up">
+                    📚 Free Courses & Educational Resources
+                </h2>
+                <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    High-quality free courses, lectures, and learning materials from top institutions
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <a href="https://edx.org" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-4">
+                            <img src="https://edx.org/favicon.ico" alt="edX" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">edX</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Free university courses from top institutions worldwide</p>
+                        <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Courses</span>
+                    </a>
+                    
+                    <a href="https://khanacademy.org" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center mb-4">
+                            <img src="https://khanacademy.org/favicon.ico" alt="Khan Academy" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Khan Academy</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Free courses in math, science, and more</p>
+                        <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Courses</span>
+                    </a>
+                    
+                    <a href="https://coursera.org" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="flex items-center mb-4">
+                            <img src="https://coursera.org/favicon.ico" alt="Coursera" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Coursera</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">University courses and certifications</p>
+                        <span class="inline-block bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-3 py-1 rounded-full">Certificates</span>
+                    </a>
+                    
+                    <a href="https://ocw.mit.edu" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="500">
+                        <div class="flex items-center mb-4">
+                            <img src="https://ocw.mit.edu/favicon.ico" alt="MIT OpenCourseWare" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">MIT OCW</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Free MIT course materials</p>
+                        <span class="inline-block bg-red-400 bg-opacity-20 text-red-400 text-xs px-3 py-1 rounded-full">MIT</span>
+                    </a>
+                    
+                    <a href="https://udemy.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="600">
+                        <div class="flex items-center mb-4">
+                            <img src="https://github.com/Delexoo/Quote/raw/refs/heads/main/udemy.ico" alt="Udemy" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Udemy</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Online courses on various topics and skills</p>
+                        <span class="inline-block bg-green-400 bg-opacity-20 text-green-400 text-xs px-3 py-1 rounded-full">Skills</span>
+                    </a>
+                    
+                    <a href="https://freecodecamp.org" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="700">
+                        <div class="flex items-center mb-4">
+                            <img src="https://github.com/Delexoo/Quote/raw/refs/heads/main/freecodecamp.ico" alt="FreeCodeCamp" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">FreeCodeCamp</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Free programming and coding tutorials</p>
+                        <span class="inline-block bg-orange-400 bg-opacity-20 text-orange-400 text-xs px-3 py-1 rounded-full">Coding</span>
+                    </a>
+                    
+                    <a href="https://futurelearn.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="800">
+                        <div class="flex items-center mb-4">
+                            <img src="https://futurelearn.com/favicon.ico" alt="FutureLearn" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">FutureLearn</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Online courses from universities and institutions</p>
+                        <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Courses</span>
+                    </a>
+                </div>
+            </div>
 
-				<div class="tool-section">
-					<h2>Research & Citations</h2>
-					<p class="section-description">Academic search engines and citation management tools for scholarly work</p>
-					<div class="tool-cards">
-						<a href="https://citationmachine.net" target="_blank" class="tool-item">
-							<h3>Citation Machine <img src="https://citationmachine.net/favicon.ico" alt="Citation Machine" class="tool-logo"></h3>
-							<p>Automatic citation generator</p>
-							<span class="tool-tag citations">Citations</span>
-						</a>
-						<a href="https://scholar.google.com" target="_blank" class="tool-item">
-							<h3>Google Scholar <img src="https://scholar.google.com/favicon.ico" alt="Google Scholar" class="tool-logo"></h3>
-							<p>Academic search engine for scholarly literature</p>
-							<span class="tool-tag research">Research</span>
-						</a>
-						<a href="https://zotero.org" target="_blank" class="tool-item">
-							<h3>Zotero <img src="https://zotero.org/favicon.ico" alt="Zotero" class="tool-logo"></h3>
-							<p>Reference management and citation tool</p>
-							<span class="tool-tag references">References</span>
-						</a>
-					</div>
-				</div>
+            <!-- Free Books -->
+            <div id="books" class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-white" data-aos="fade-up">
+                    📖 Free Books
+                </h2>
+                <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Free digital libraries and book repositories for academic research
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <a href="https://annas-archive.li" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-4">
+                            <img src="https://annas-archive.li/favicon.ico" alt="Anna's Archive" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Anna's Archive</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Comprehensive free book and academic resource library</p>
+                        <span class="inline-block bg-indigo-400 bg-opacity-20 text-indigo-400 text-xs px-3 py-1 rounded-full">Books</span>
+                    </a>
+                    
+                    <a href="https://libgen.ac" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center mb-4">
+                            <img src="https://libgen.ac/favicon.ico" alt="Library Genesis" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Library Genesis</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Free scientific and academic book repository</p>
+                        <span class="inline-block bg-indigo-400 bg-opacity-20 text-indigo-400 text-xs px-3 py-1 rounded-full">Books</span>
+                    </a>
+                </div>
+            </div>
 
-				<div class="tool-section">
-					<h2>Extras</h2>
-					<p class="section-description">Additional useful tools for learning, productivity, and academic support</p>
-					<div class="tool-cards">
-						<a href="https://mathway.com" target="_blank" class="tool-item">
-							<h3>Mathway <img src="https://mathway.com/favicon.ico" alt="Mathway" class="tool-logo"></h3>
-							<p>Math problem solver with instant solutions</p>
-							<span class="tool-tag math">Math</span>
-						</a>
-                        <a href="https://canva.com" target="_blank" class="tool-item">
-							<h3>Canva <img src="https://canva.com/favicon.ico" alt="Canva" class="tool-logo"></h3>
-							<p>Easy-to-use design platform for presentations and graphics</p>
-							<span class="tool-tag workspace">Design</span>
-						</a>
-						<a href="https://character.ai" target="_blank" class="tool-item">
-							<h3>Character.ai <img src="https://character.ai/favicon.ico" alt="Character.ai" class="tool-logo"></h3>
-							<p>AI chatbot for creative conversations and learning</p>
-							<span class="tool-tag ai">AI Chat</span>
-						</a>
-						<a href="https://cnvmp3.com" target="_blank" class="tool-item">
-							<h3>CNVMP3 <img src="https://cnvmp3.com/favicon.ico" alt="CNVMP3" class="tool-logo"></h3>
-							<p>YouTube to MP3 or MP4 converter</p>
-							<span class="tool-tag converter">Converter</span>
-						</a>
-						<a href="https://onenote.com" target="_blank" class="tool-item">
-							<h3>OneNote <img src="https://onenote.com/favicon.ico" alt="OneNote" class="tool-logo"></h3>
-							<p>Microsoft's online notepad and collaboration tool</p>
-							<span class="tool-tag notes">Notes</span>
-						</a>
-						<a href="https://coggle.it" target="_blank" class="tool-item">
-							<h3>Coggle <img src="https://coggle.it/favicon.ico" alt="Coggle" class="tool-logo"></h3>
-							<p>Mind mapping tool for visual organization</p>
-							<span class="tool-tag mindmap">Mind Map</span>
-						</a>
-						<a href="https://conceptboard.com" target="_blank" class="tool-item">
-							<h3>ConceptBoard <img src="https://conceptboard.com/favicon.ico" alt="ConceptBoard" class="tool-logo"></h3>
-							<p>Digital whiteboard and mind mapping platform</p>
-							<span class="tool-tag whiteboard">Whiteboard</span>
-						</a>
-						<a href="https://whiteboard.fi" target="_blank" class="tool-item">
-							<h3>Whiteboard.fi <img src="https://whiteboard.fi/favicon.ico" alt="Whiteboard.fi" class="tool-logo"></h3>
-							<p>Interactive online whiteboard for collaboration</p>
-							<span class="tool-tag whiteboard">Whiteboard</span>
-						</a>
-                        <a href="https://instantly.ai/" target="_blank" class="tool-item">
-							<h3>Instantly <img src="https://instantly.ai/favicon.ico" alt="Instantly" class="tool-logo"></h3>
-							<p>AI-powered email outreach and automation platform</p>
-							<span class="tool-tag ai">Email</span>
-						</a>
-					</div>
-				</div>
+            <!-- PDF & Document Tools -->
+            <div id="pdf-tools" class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-white" data-aos="fade-up">
+                    📄 PDF & Document Tools
+                </h2>
+                <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    PDF editing, splitting, and document management tools for academic work
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <a href="https://webtopdf.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-4">
+                            <img src="https://webtopdf.com" alt="Website to .pdf" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Website to .pdf</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Convert a Website (link) into a PDF document</p>
+                        <span class="inline-block bg-red-400 bg-opacity-20 text-red-400 text-xs px-3 py-1 rounded-full">PDF</span>
+                    </a>
+                    
+                    <a href="https://elevenlabs.io/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center mb-4">
+                            <img src="https://elevenlabs.io/favicon.ico" alt="ElevenLabs" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">ElevenLabs</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Immersive reader with text-to-speech (mobile free)</p>
+                        <span class="inline-block bg-orange-400 bg-opacity-20 text-orange-400 text-xs px-3 py-1 rounded-full">Audio</span>
+                    </a>
+                    
+                    <a href="https://www.ilovepdf.com/split_pdf" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="flex items-center mb-4">
+                            <img src="https://www.ilovepdf.com/favicon.ico" alt="iLovePDF" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">iLovePDF</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">PDF splitter and comprehensive PDF editing toolkit</p>
+                        <span class="inline-block bg-red-400 bg-opacity-20 text-red-400 text-xs px-3 py-1 rounded-full">PDF</span>
+                    </a>
+                    
+                    <a href="https://www.ilovepdf.com/word_to_pdf" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="500">
+                        <div class="flex items-center mb-4">
+                            <img src="https://www.ilovepdf.com/favicon.ico" alt="iLovePDF" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">.docx to .pdf</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Convert Word documents to PDF format easily</p>
+                        <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Converter</span>
+                    </a>
+                    
+                    <a href="https://www.ilovepdf.com/powerpoint_to_pdf" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="600">
+                        <div class="flex items-center mb-4">
+                            <img src="https://www.ilovepdf.com/favicon.ico" alt="iLovePDF" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">PowerPoint to .pdf</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Convert PowerPoint presentations to PDF format</p>
+                        <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Converter</span>
+                    </a>
+                    
+                    <a href="https://www.microsoft.com/en-us/microsoft-365/onedrive/online-cloud-storage" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="700">
+                        <div class="flex items-center mb-4">
+                            <img src="https://www.microsoft.com/favicon.ico" alt="Microsoft" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">OneDrive Mobile</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Scan documents to PDF using your mobile device</p>
+                        <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Scanner</span>
+                    </a>
+                    
+                    <a href="https://cloudconvert.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="800">
+                        <div class="flex items-center mb-4">
+                            <img src="https://cloudconvert.com/favicon.ico" alt="CloudConvert" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">CloudConvert</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Multi-format file converter and processing tool</p>
+                        <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Converter</span>
+                    </a>
+                    
+                    <a href="https://freeconvert.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="900">
+                        <div class="flex items-center mb-4">
+                            <img src="https://freeconvert.com/favicon.ico" alt="FreeConvert" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">FreeConvert</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Multifunctional file converter for various formats</p>
+                        <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Converter</span>
+                    </a>
+                    
+                    <a href="https://speechify.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="1000">
+                        <div class="flex items-center mb-4">
+                            <img src="https://speechify.com/favicon.ico" alt="Speechify" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Speechify</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Text-to-speech tool for listening to documents</p>
+                        <span class="inline-block bg-orange-400 bg-opacity-20 text-orange-400 text-xs px-3 py-1 rounded-full">Audio</span>
+                    </a>
+                    
+                    <a href="https://scribehow.com/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="1100">
+                        <div class="flex items-center mb-4">
+                            <img src="https://scribehow.com/favicon.ico" alt="Scribe" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Scribe</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Automatic step-by-step guide and documentation creator</p>
+                        <span class="inline-block bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-3 py-1 rounded-full">Docs</span>
+                    </a>
+                </div>
+            </div>
 
-				<div class="tool-section">
-					<h2>More Coming Soon</h2>
-					<p class="section-description">Additional student tools and resources will be added here soon</p>
-					<div class="tool-cards">
-						<a href="https://noot.space/" target="_blank" class="tool-item">
-							<h3>More Tools Coming <img src="https://example.com/favicon.ico" alt="Coming Soon" class="tool-logo"></h3>
-							<p>We're constantly adding new student tools - check back soon!</p>
-							<span class="tool-tag example">Coming Soon</span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</section>
-		
-		<footer class="landing-footer">
-			<div class="landing-footer-content">
-				<div class="footer-links">
-					<div class="footer-column">
-						<h3>Explore</h3>
-						<ul>
-							<li><a href="student.html">Student Hub</a></li>
-							<li><a href="professional.html">Professional Hub</a></li>
-							<li><a href="creator.html">Creator Hub</a></li>
-							<li><a href="landing.html">Get Started</a></li>
-							<li><a href="all-tools.html">All Tools</a></li>
-						</ul>
-					</div>
-					<div class="footer-column">
-						<h3>Legal</h3>
-						<ul>
-							<li><a href="#" onclick="openModal('terms'); return false;">Terms of Service</a></li>
-							<li><a href="#" onclick="openModal('privacy'); return false;">Privacy Policy</a></li>
-							<li><a href="#" onclick="openModal('cookies'); return false;">Cookie Policy</a></li>
-							<li><a href="#" onclick="openModal('disclaimer'); return false;">Disclaimer</a></li>
-						</ul>
-					</div>
-					<div class="footer-column">
-						<h3>Connect</h3>
-						<ul>
-							<li><a href="https://beacons.ai/delexo" target="_blank">Creator Store</a></li>
-							<li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank">Donate</a></li>
-							<li><a href="index.html#contact">Contact Us</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="footer-bottom">
-					<p>&copy; 2025 Quoteai.org. All rights reserved. | "The Internet is your free online university."</p>
-				</div>
-			</div>
-		</footer>
-		
-		<!-- Legal Modals -->
-		<div id="modalOverlay" class="modal-overlay" onclick="closeModal()">
-			<div class="modal-content" onclick="event.stopPropagation()">
-				<div class="modal-header">
-					<h2 id="modalTitle">Legal Information</h2>
-					<button class="modal-close" onclick="closeModal()">&times;</button>
-				</div>
-				<div class="modal-body" id="modalBody">
-					<!-- Content will be populated by JavaScript -->
-				</div>
-			</div>
-		</div>
-	</main>
-	<script src="javascript.js"></script>
+            <!-- Plagiarism Checkers -->
+            <div id="plagiarism" class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-white" data-aos="fade-up">
+                    🔍 Plagiarism Checkers
+                </h2>
+                <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Free plagiarism detection tools to ensure academic integrity
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <a href="https://plagly.com/?msclkid=1432e4ea364a1c0292458c23e9dcef4a&utm_source=bing&utm_medium=cpc&utm_campaign=plag&utm_term=free%20plagiarism%20checker&utm_content=plagly" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-4">
+                            <img src="https://plagly.com/favicon.ico" alt="Plagly" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Plagly</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Free plagiarism checker for academic writing</p>
+                        <span class="inline-block bg-red-400 bg-opacity-20 text-red-400 text-xs px-3 py-1 rounded-full">Plagiarism</span>
+                    </a>
+                    
+                    <a href="https://smallseotools.com/plagiarism-checker/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center mb-4">
+                            <img src="https://smallseotools.com/favicon.ico" alt="Small SEO Tools" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Small SEO Tools</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Free online plagiarism detection and checking tool</p>
+                        <span class="inline-block bg-red-400 bg-opacity-20 text-red-400 text-xs px-3 py-1 rounded-full">Plagiarism</span>
+                    </a>
+                    
+                    <a href="https://www.scribbr.com/plagiarism-checker/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="flex items-center mb-4">
+                            <img src="https://www.scribbr.com/favicon.ico" alt="Scribbr" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Scribbr</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Academic plagiarism checker with detailed reports</p>
+                        <span class="inline-block bg-red-400 bg-opacity-20 text-red-400 text-xs px-3 py-1 rounded-full">Plagiarism</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Note Taking & Organization -->
+            <div id="notes" class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-white" data-aos="fade-up">
+                    📝 Note Taking & Organization
+                </h2>
+                <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Digital tools for organizing notes, planning studies, and knowledge management
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <a href="https://notion.so" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-4">
+                            <img src="https://notion.so/favicon.ico" alt="Notion" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Notion</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">All-in-one workspace for notes and planning</p>
+                        <span class="inline-block bg-gray-400 bg-opacity-20 text-gray-400 text-xs px-3 py-1 rounded-full">Workspace</span>
+                    </a>
+                    
+                    <a href="https://standardnotes.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center mb-4">
+                            <img src="https://standardnotes.com/favicon.ico" alt="Standard Notes" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Standard Notes</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Safe note-taking with end-to-end encryption</p>
+                        <span class="inline-block bg-green-400 bg-opacity-20 text-green-400 text-xs px-3 py-1 rounded-full">Secure</span>
+                    </a>
+                    
+                    <a href="https://todo.microsoft.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="flex items-center mb-4">
+                            <img src="https://todo.microsoft.com/favicon.ico" alt="Microsoft To Do" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Microsoft To Do</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Task management and to-do list organization</p>
+                        <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Tasks</span>
+                    </a>
+                    
+                    <a href="https://www.bettercanvas.org/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="500">
+                        <div class="flex items-center mb-4">
+                            <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/bettercanvas.ico" alt="BetterCampus" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">BetterCampus</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Formerly BetterCanvas - Chrome extension to enhance Canvas LMS</p>
+                        <span class="inline-block bg-green-400 bg-opacity-20 text-green-400 text-xs px-3 py-1 rounded-full">Canvas</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Research & Citations -->
+            <div id="research" class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-white" data-aos="fade-up">
+                    🔬 Research & Citations
+                </h2>
+                <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Academic search engines and citation management tools for scholarly work
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <a href="https://citationmachine.net" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-4">
+                            <img src="https://citationmachine.net/favicon.ico" alt="Citation Machine" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Citation Machine</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Automatic citation generator</p>
+                        <span class="inline-block bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-3 py-1 rounded-full">Citations</span>
+                    </a>
+                    
+                    <a href="https://scholar.google.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center mb-4">
+                            <img src="https://scholar.google.com/favicon.ico" alt="Google Scholar" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Google Scholar</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Academic search engine for scholarly literature</p>
+                        <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Research</span>
+                    </a>
+                    
+                    <a href="https://zotero.org" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="flex items-center mb-4">
+                            <img src="https://zotero.org/favicon.ico" alt="Zotero" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Zotero</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Reference management and citation tool</p>
+                        <span class="inline-block bg-orange-400 bg-opacity-20 text-orange-400 text-xs px-3 py-1 rounded-full">References</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Extras -->
+            <div id="extras" class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-white" data-aos="fade-up">
+                    🛠️ Extras
+                </h2>
+                <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Additional useful tools for learning, productivity, and academic support
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <a href="https://mathway.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-4">
+                            <img src="https://mathway.com/favicon.ico" alt="Mathway" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Mathway</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Math problem solver with instant solutions</p>
+                        <span class="inline-block bg-pink-400 bg-opacity-20 text-pink-400 text-xs px-3 py-1 rounded-full">Math</span>
+                    </a>
+                    
+                    <a href="https://canva.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="flex items-center mb-4">
+                            <img src="https://canva.com/favicon.ico" alt="Canva" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Canva</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Easy-to-use design platform for presentations and graphics</p>
+                        <span class="inline-block bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-3 py-1 rounded-full">Design</span>
+                    </a>
+                    
+                    <a href="https://character.ai" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="flex items-center mb-4">
+                            <img src="https://character.ai/favicon.ico" alt="Character.ai" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Character.ai</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">AI chatbot for creative conversations and learning</p>
+                        <span class="inline-block bg-indigo-400 bg-opacity-20 text-indigo-400 text-xs px-3 py-1 rounded-full">AI Chat</span>
+                    </a>
+                    
+                    <a href="https://cnvmp3.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="500">
+                        <div class="flex items-center mb-4">
+                            <img src="https://cnvmp3.com/favicon.ico" alt="CNVMP3" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">CNVMP3</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">YouTube to MP3 or MP4 converter</p>
+                        <span class="inline-block bg-red-400 bg-opacity-20 text-red-400 text-xs px-3 py-1 rounded-full">Converter</span>
+                    </a>
+                    
+                    <a href="https://onenote.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="600">
+                        <div class="flex items-center mb-4">
+                            <img src="https://onenote.com/favicon.ico" alt="OneNote" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">OneNote</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Microsoft's online notepad and collaboration tool</p>
+                        <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Notes</span>
+                    </a>
+                    
+                    <a href="https://coggle.it" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="700">
+                        <div class="flex items-center mb-4">
+                            <img src="https://coggle.it/favicon.ico" alt="Coggle" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Coggle</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Mind mapping tool for visual organization</p>
+                        <span class="inline-block bg-green-400 bg-opacity-20 text-green-400 text-xs px-3 py-1 rounded-full">Mind Map</span>
+                    </a>
+                    
+                    <a href="https://conceptboard.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="800">
+                        <div class="flex items-center mb-4">
+                            <img src="https://conceptboard.com/favicon.ico" alt="ConceptBoard" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">ConceptBoard</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Digital whiteboard and mind mapping platform</p>
+                        <span class="inline-block bg-cyan-400 bg-opacity-20 text-cyan-400 text-xs px-3 py-1 rounded-full">Whiteboard</span>
+                    </a>
+                    
+                    <a href="https://whiteboard.fi" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="900">
+                        <div class="flex items-center mb-4">
+                            <img src="https://whiteboard.fi/favicon.ico" alt="Whiteboard.fi" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Whiteboard.fi</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">Interactive online whiteboard for collaboration</p>
+                        <span class="inline-block bg-cyan-400 bg-opacity-20 text-cyan-400 text-xs px-3 py-1 rounded-full">Whiteboard</span>
+                    </a>
+                    
+                    <a href="https://instantly.ai/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="1000">
+                        <div class="flex items-center mb-4">
+                            <img src="https://instantly.ai/favicon.ico" alt="Instantly" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Instantly</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">AI-powered email outreach and automation platform</p>
+                        <span class="inline-block bg-indigo-400 bg-opacity-20 text-indigo-400 text-xs px-3 py-1 rounded-full">Email</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- More Coming Soon -->
+            <div class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-white" data-aos="fade-up">
+                    More Coming Soon
+                </h2>
+                <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Additional student tools and resources will be added here soon
+                </p>
+                <div class="flex justify-center">
+                    <a href="https://noot.space/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group max-w-md" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center mb-4">
+                            <img src="https://example.com/favicon.ico" alt="Coming Soon" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">More Tools Coming</h3>
+                        </div>
+                        <p class="text-gray-300 mb-4 text-sm">We're constantly adding new student tools - check back soon!</p>
+                        <span class="inline-block bg-gray-400 bg-opacity-20 text-gray-400 text-xs px-3 py-1 rounded-full">Coming Soon</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 px-6 md:px-12">
+        <div class="max-w-4xl mx-auto text-center glass-card p-8 rounded-xl" data-aos="fade-up">
+            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Ready to Boost Your Academic Performance?</h2>
+            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
+                Join thousands of students who are already using these tools to excel in their studies.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+                <button class="bg-gradient-to-r from-blue-400 to-blue-600 px-6 py-3 rounded-full text-white font-medium hover-effect">
+                    Start Free Trial
+                </button>
+                <button class="glass-card px-6 py-3 rounded-full text-white font-medium hover-effect border border-white border-opacity-20">
+                    View All Tools
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 bg-black">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Pages</h3>
+                    <ul class="space-y-2">
+                        <li><a href="student.html" class="text-gray-300 hover:text-white">University Student</a></li>
+                        <li><a href="professional.html" class="text-gray-300 hover:text-white">Professional</a></li>
+                        <li><a href="creator.html" class="text-gray-300 hover:text-white">Creator</a></li>
+                        <li><a href="all-tools.html" class="text-gray-300 hover:text-white">All Tools</a></li>
+                        <li><a href="dev.html" class="text-gray-300 hover:text-white">Developer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><button onclick="openLegalModal('terms')" class="text-gray-300 hover:text-white cursor-pointer">Terms of Service</button></li>
+                        <li><button onclick="openLegalModal('privacy')" class="text-gray-300 hover:text-white cursor-pointer">Privacy Policy</button></li>
+                        <li><button onclick="openLegalModal('cookie')" class="text-gray-300 hover:text-white cursor-pointer">Cookie Policy</button></li>
+                        <li><button onclick="openLegalModal('disclaimer')" class="text-gray-300 hover:text-white cursor-pointer">Disclaimer</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Connect</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Creator Store</a></li>
+                        <li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn-footer text-gray-300 hover:text-white cursor-pointer">Donate</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdiZ_drgyq8RHPw2pK7gn-ezExGVi0d__g_iny7OaOrERsPUg/viewform" target="_blank" class="text-gray-300 hover:text-white">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Quote. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Legal Modal -->
+    <div id="legalModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="modalTitle" class="text-2xl font-bold text-black"></h2>
+                    <button onclick="closeLegalModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                <div id="modalContent" class="text-gray-700"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Ensure hover animations work after AOS completes with consistent timing
+        document.addEventListener('aos:in', function (e) {
+            if (e.target.classList.contains('tool-card')) {
+                // Add a small delay to ensure AOS animation is fully complete
+                setTimeout(() => {
+                    e.target.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                }, 50);
+            }
+        });
+        
+        // Apply consistent timing to all interactive elements
+        document.addEventListener('DOMContentLoaded', function() {
+            const allInteractiveElements = document.querySelectorAll('.tool-card, .glass-card, .mini-nav-item, .hover-effect');
+            allInteractiveElements.forEach(element => {
+                element.style.transition = 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            });
+            
+            // Randomize rotation directions for tool cards
+            const toolCards = document.querySelectorAll('.tool-card');
+            const rotationClasses = ['rotate-1', 'rotate-2', 'rotate-3', 'rotate-4', 'rotate-5', 'rotate-6'];
+            
+            console.log('Found tool cards:', toolCards.length);
+            toolCards.forEach((card, index) => {
+                const randomClass = rotationClasses[Math.floor(Math.random() * rotationClasses.length)];
+                card.classList.add(randomClass);
+                console.log(`Card ${index + 1} assigned class: ${randomClass}`);
+                
+                // Update tool card structure to move tags next to names
+                const headerDiv = card.querySelector('.flex.items-center.mb-4');
+                if (headerDiv && !card.querySelector('.tool-header')) {
+                    const tagSpan = card.querySelector('span.inline-block');
+                    if (tagSpan) {
+                        // Create new structure
+                        const newHeader = document.createElement('div');
+                        newHeader.className = 'tool-header';
+                        
+                        const titleSection = document.createElement('div');
+                        titleSection.className = 'tool-title-section';
+                        titleSection.innerHTML = headerDiv.innerHTML;
+                        
+                        newHeader.appendChild(titleSection);
+                        newHeader.appendChild(tagSpan);
+                        
+                        // Replace old header with new one
+                        headerDiv.parentNode.replaceChild(newHeader, headerDiv);
+                        
+                        // Update tag classes
+                        tagSpan.className = 'tool-tag ' + tagSpan.className.replace('inline-block ', '');
+                    }
+                }
+            });
+        });
+
+        // Legal Modal Functions
+        function openLegalModal(type) {
+            const modal = document.getElementById('legalModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            const legalContent = {
+                terms: {
+                    title: 'Terms of Service',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. Acceptance of Terms</h3>
+                        <p class="mb-4">By accessing and using Quote, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. Use License</h3>
+                        <p class="mb-4">Permission is granted to temporarily download one copy of Quote for personal, non-commercial transitory viewing only.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Disclaimer</h3>
+                        <p class="mb-4">The materials on Quote are provided on an 'as is' basis. Quote makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Limitations</h3>
+                        <p class="mb-4">In no event shall Quote or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Quote, even if Quote or a Quote authorized representative has been notified orally or in writing of the possibility of such damage.</p>
+                    `
+                },
+                privacy: {
+                    title: 'Privacy Policy',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. Information We Collect</h3>
+                        <p class="mb-4">We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. How We Use Your Information</h3>
+                        <p class="mb-4">We use the information we collect to provide, maintain, and improve our services, process transactions, and communicate with you.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Information Sharing</h3>
+                        <p class="mb-4">We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Data Security</h3>
+                        <p class="mb-4">We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                    `
+                },
+                cookie: {
+                    title: 'Cookie Policy',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. What Are Cookies</h3>
+                        <p class="mb-4">Cookies are small text files that are placed on your computer or mobile device when you visit our website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. How We Use Cookies</h3>
+                        <p class="mb-4">We use cookies to enhance your experience, analyze site traffic, and personalize content and advertisements.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Types of Cookies</h3>
+                        <p class="mb-4">We use both session cookies (which expire when you close your browser) and persistent cookies (which stay on your device until deleted).</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Managing Cookies</h3>
+                        <p class="mb-4">You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and set most browsers to prevent them from being placed.</p>
+                    `
+                },
+                disclaimer: {
+                    title: 'Disclaimer',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. General Disclaimer</h3>
+                        <p class="mb-4">The information on this website is provided on an "as is" basis. To the fullest extent permitted by law, this Company excludes all representations, warranties, conditions and terms relating to our website and the use of this website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. No Liability</h3>
+                        <p class="mb-4">In no event will Quote be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. External Links</h3>
+                        <p class="mb-4">Through this website you are able to link to other websites which are not under the control of Quote. We have no control over the nature, content and availability of those sites.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Tool Recommendations</h3>
+                        <p class="mb-4">All tool recommendations are based on our research and testing. We do not guarantee the performance, availability, or suitability of any recommended tools for your specific needs.</p>
+                    `
+                }
+            };
+            
+            title.textContent = legalContent[type].title;
+            content.innerHTML = legalContent[type].content;
+            modal.classList.remove('hidden');
+        }
+
+        function closeLegalModal() {
+            document.getElementById('legalModal').classList.add('hidden');
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('legalModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLegalModal();
+            }
+        });
+        
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            gsap.to(cursorFollower, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        });
+        
+        // Hover effects for cursor
+        const hoverElements = document.querySelectorAll('a, button, .hover-effect, .tool-card, .glass-card');
+        
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Scroll to section function for mini navigation
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Update active state
+                updateActiveNavItem(sectionId);
+            }
+        }
+        
+        // Update active navigation item
+        function updateActiveNavItem(activeId) {
+            document.querySelectorAll('.mini-nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const activeItem = document.querySelector(`[onclick="scrollToSection('${activeId}')"]`);
+            if (activeItem) {
+                activeItem.classList.add('active');
+            }
+        }
+        
+        // Scroll indicator click handler
+        document.querySelector('.scroll-indicator').addEventListener('click', function() {
+            document.getElementById('featured').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        });
+        
+        // Update active nav item on scroll
+        window.addEventListener('scroll', function() {
+            const sections = ['featured', 'ai-assistants', 'courses', 'books', 'pdf-tools', 'plagiarism', 'notes', 'research', 'extras'];
+            const scrollPos = window.scrollY + 150;
+            
+            sections.forEach(sectionId => {
+                const element = document.getElementById(sectionId);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    const elementTop = rect.top + window.scrollY;
+                    const elementBottom = elementTop + rect.height;
+                    
+                    if (scrollPos >= elementTop && scrollPos < elementBottom) {
+                        updateActiveNavItem(sectionId);
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
