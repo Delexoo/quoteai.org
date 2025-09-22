@@ -57,6 +57,30 @@
             .cursor, .cursor-follower {
                 display: none;
             }
+            
+            .tool-card {
+                padding: 0.75rem !important;
+            }
+            
+            .tool-card h3 {
+                font-size: 0.875rem !important;
+                line-height: 1.2;
+            }
+            
+            .tool-card p {
+                font-size: 0.75rem !important;
+                line-height: 1.3;
+            }
+            
+            .tool-card img {
+                width: 1.5rem !important;
+                height: 1.5rem !important;
+            }
+            
+            .tool-card .tool-tag {
+                font-size: 0.625rem !important;
+                padding: 0.125rem 0.5rem !important;
+            }
         }
         
         .cursor-follower {
@@ -399,7 +423,7 @@
                 <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
                     AI-powered image generation and artistic creation tools for digital artists
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
             
                     <a href="https://openai.com/dall-e-3" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
                         <div class="tool-header">
@@ -477,7 +501,7 @@
                 <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
                     Professional design platforms and photo editing software for visual content creation
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
                     <a href="https://canva.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
                         <div class="tool-header">
                             <div class="tool-title-section">
@@ -554,7 +578,7 @@
                 <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
                     Professional video editing, audio production, and streaming software for multimedia creators
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
                     <a href="https://blackmagicdesign.com/products/davinciresolve" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
                         <div class="tool-header">
                             <div class="tool-title-section">
@@ -642,7 +666,7 @@
                 <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
                     Stock media resources and specialized tools for content creators and digital marketers
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
                     <a href="https://unsplash.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
                         <div class="tool-header">
                             <div class="tool-title-section">
@@ -741,7 +765,7 @@
                 <p class="text-xl text-center text-gray-300 mb-12 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
                     Additional creator tools and resources will be added here soon
                 </p>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6">
                     <a href="https://noot.space/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-aos="fade-up" data-aos-delay="200">
                         <div class="tool-header">
                             <div class="tool-title-section">
@@ -1018,6 +1042,37 @@
                 mobileMenu.classList.toggle('hidden');
             });
         }
+        
+        // Sticky Mini Navigation - Track current section
+        function updateActiveNavItem() {
+            const sections = document.querySelectorAll('section[id]');
+            const navItems = document.querySelectorAll('.mini-nav-item');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    currentSection = section.id;
+                }
+            });
+            
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === '#' + currentSection) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        // Throttled scroll listener for performance
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(updateActiveNavItem, 10);
+        });
         
         // Custom Cursor
         const cursor = document.querySelector('.cursor');
