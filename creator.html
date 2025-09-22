@@ -53,6 +53,12 @@
             transform: translate(-50%, -50%);
         }
         
+        @media (max-width: 768px) {
+            .cursor, .cursor-follower {
+                display: none;
+            }
+        }
+        
         .cursor-follower {
             width: 40px;
             height: 40px;
@@ -256,6 +262,10 @@
                 gap: 2px;
                 border-radius: 25px;
                 max-width: 95vw;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                white-space: nowrap;
             }
         }
         
