@@ -58,6 +58,49 @@
                 display: none;
             }
             
+            .tool-card {
+                padding: 0.25rem !important;
+                aspect-ratio: 1 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                text-align: center !important;
+            }
+            
+            .tool-card h3 {
+                font-size: 0.5rem !important;
+                line-height: 1.1;
+                margin-bottom: 0.125rem !important;
+            }
+            
+            .tool-card p {
+                font-size: 0.375rem !important;
+                line-height: 1.1;
+                margin-bottom: 0.25rem !important;
+                display: -webkit-box !important;
+                -webkit-line-clamp: 2 !important;
+                -webkit-box-orient: vertical !important;
+                overflow: hidden !important;
+            }
+            
+            .tool-card img {
+                width: 0.75rem !important;
+                height: 0.75rem !important;
+                margin-bottom: 0.125rem !important;
+            }
+            
+            .tool-card .tool-tag {
+                font-size: 0.25rem !important;
+                padding: 0.0625rem 0.125rem !important;
+            }
+            
+            .tool-card .flex {
+                flex-direction: column !important;
+                align-items: center !important;
+                margin-bottom: 0.125rem !important;
+            }
+            
             /* Disable hover effects on mobile */
             .glass-card:hover {
                 transform: none !important;
@@ -79,6 +122,63 @@
             z-index: 9998;
             transform: translate(-50%, -50%);
             transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease;
+        }
+        
+        .scroll-indicator {
+            text-align: center;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .scroll-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: bounce 2s infinite;
+            transition: transform 0.3s ease;
+        }
+        
+        .scroll-arrow:hover {
+            transform: scale(1.1);
+        }
+        
+        .arrow-line {
+            width: 2px;
+            height: 60px;
+            background: linear-gradient(to bottom, #ffffff, rgba(255, 255, 255, 0.3));
+            margin-bottom: 5px;
+            border-radius: 1px;
+        }
+        
+        .arrow-head {
+            font-size: 24px;
+            color: #ffffff;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.1);
+            }
         }
         
         .hover-effect {
@@ -192,42 +292,18 @@
             <p class="text-xl md:text-2xl text-gray-300 mb-10" data-aos="fade-up" data-aos-delay="100">
                 Browse our entire collection of curated tools for students, professionals, and creators in one place.
             </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4" data-aos="fade-up" data-aos-delay="200">
-                <button class="glass-card px-8 py-3 rounded-full text-white font-medium hover-effect border border-yellow-400 border-opacity-50">
-                    Browse All Tools
-                </button>
-                <button class="glass-card px-8 py-3 rounded-full text-white font-medium hover-effect border border-white border-opacity-20">
-                    Filter by Category
-                </button>
+            <div class="flex justify-center" data-aos="fade-up" data-aos-delay="200">
+                <div class="scroll-indicator">
+                    <div class="scroll-arrow">
+                        <div class="arrow-line"></div>
+                        <div class="arrow-head">▼</div>
+                    </div>
+                    <p class="text-white text-sm mt-6">Scroll to explore tools</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Filter Section -->
-    <section class="py-8 px-6 md:px-12">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up">
-                <button class="filter-btn active glass-card px-6 py-2 rounded-full text-white font-medium hover-effect border border-white border-opacity-20" data-filter="all">
-                    All Tools
-                </button>
-                <button class="filter-btn glass-card px-6 py-2 rounded-full text-white font-medium hover-effect border border-white border-opacity-20" data-filter="student">
-                    Student
-                </button>
-                <button class="filter-btn glass-card px-6 py-2 rounded-full text-white font-medium hover-effect border border-white border-opacity-20" data-filter="professional">
-                    Professional
-                </button>
-                <button class="filter-btn glass-card px-6 py-2 rounded-full text-white font-medium hover-effect border border-white border-opacity-20" data-filter="creator">
-                    Creator
-                </button>
-                <button class="filter-btn glass-card px-6 py-2 rounded-full text-white font-medium hover-effect border border-white border-opacity-20" data-filter="ai">
-                    AI Tools
-                </button>
-                <button class="filter-btn glass-card px-6 py-2 rounded-full text-white font-medium hover-effect border border-white border-opacity-20" data-filter="productivity">
-                    Productivity
-                </button>
-            </div>
-        </div>
-    </section>
 
     <!-- Tools Grid -->
     <section class="py-20 px-6 md:px-12">
@@ -239,108 +315,218 @@
                 Discover the complete collection of handpicked tools across all categories
             </p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="tools-grid">
-                <!-- Tool 1 - Student -->
-                <div class="tool-card glass-card p-6 rounded-xl hover-effect" data-category="student" data-aos="fade-up" data-aos-delay="200">
-                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
-                        <img src="http://static.photos/education/640x360/1" alt="Study Tool" class="w-full h-full object-cover">
+            <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-8" id="tools-grid">
+                <!-- Student Tools -->
+                <a href="https://cluely.com/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student ai" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/cluely.ico" alt="Cluely" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Cluely</h3>
                     </div>
-                    <div class="flex items-center mb-3">
-                        <span class="bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-2 py-1 rounded">Student</span>
-                        <span class="text-gray-400 text-sm ml-auto">Free</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">StudyFlow</h3>
-                    <p class="text-gray-300 mb-4">AI-powered study planner that creates personalized study schedules and tracks your progress.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">4.8/5 Rating</span>
-                        <button class="text-blue-400 text-sm font-medium">Try Now</button>
-                    </div>
-                </div>
+                    <p class="text-gray-300 mb-4 text-sm">Live interactive AI study assistant for academic support</p>
+                    <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Study</span>
+                </a>
                 
-                <!-- Tool 2 - Professional -->
-                <div class="tool-card glass-card p-6 rounded-xl hover-effect" data-category="professional" data-aos="fade-up" data-aos-delay="300">
-                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
-                        <img src="http://static.photos/business/640x360/2" alt="Project Management Tool" class="w-full h-full object-cover">
+                <a href="https://chat.qwen.ai/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student ai" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/qwen.ico" alt="Qwen" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Qwen</h3>
                     </div>
-                    <div class="flex items-center mb-3">
-                        <span class="bg-green-400 bg-opacity-20 text-green-400 text-xs px-2 py-1 rounded">Professional</span>
-                        <span class="text-gray-400 text-sm ml-auto">Premium</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">ProFlow</h3>
-                    <p class="text-gray-300 mb-4">Enterprise-grade project management platform with advanced automation and team collaboration features.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">4.9/5 Rating</span>
-                        <button class="text-green-400 text-sm font-medium">Try Now</button>
-                    </div>
-                </div>
+                    <p class="text-gray-300 mb-4 text-sm">Most Advanced AI assistant for comprehensive academic support and research</p>
+                    <span class="inline-block bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-3 py-1 rounded-full">AI</span>
+                </a>
                 
-                <!-- Tool 3 - Creator -->
-                <div class="tool-card glass-card p-6 rounded-xl hover-effect" data-category="creator" data-aos="fade-up" data-aos-delay="400">
-                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
-                        <img src="http://static.photos/design/640x360/3" alt="Design Tool" class="w-full h-full object-cover">
+                <a href="https://www.bettercanvas.org/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student productivity" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center mb-4">
+                        <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/bettercanvas.ico" alt="BetterCampus" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">BetterCampus</h3>
                     </div>
-                    <div class="flex items-center mb-3">
-                        <span class="bg-pink-400 bg-opacity-20 text-pink-400 text-xs px-2 py-1 rounded">Creator</span>
-                        <span class="text-gray-400 text-sm ml-auto">Premium</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">CreativeStudio Pro</h3>
-                    <p class="text-gray-300 mb-4">Next-generation design suite with AI-powered features for creating stunning visuals and graphics.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">4.9/5 Rating</span>
-                        <button class="text-pink-400 text-sm font-medium">Try Now</button>
-                    </div>
-                </div>
+                    <p class="text-gray-300 mb-4 text-sm">Chrome extension to enhance Canvas LMS experience</p>
+                    <span class="inline-block bg-green-400 bg-opacity-20 text-green-400 text-xs px-3 py-1 rounded-full">Canvas</span>
+                </a>
                 
-                <!-- Tool 4 - AI -->
-                <div class="tool-card glass-card p-6 rounded-xl hover-effect" data-category="ai" data-aos="fade-up" data-aos-delay="500">
-                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
-                        <img src="http://static.photos/ai/640x360/4" alt="AI Tool" class="w-full h-full object-cover">
+                <a href="https://elevenlabs.io/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student productivity" data-aos="fade-up" data-aos-delay="500">
+                    <div class="flex items-center mb-4">
+                        <img src="https://elevenlabs.io/favicon.ico" alt="ElevenLabs" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">ElevenLabs</h3>
                     </div>
-                    <div class="flex items-center mb-3">
-                        <span class="bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-2 py-1 rounded">AI Tool</span>
-                        <span class="text-gray-400 text-sm ml-auto">Freemium</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">NovaWrite AI</h3>
-                    <p class="text-gray-300 mb-4">Advanced AI writing assistant that helps craft perfect essays, reports, and creative content.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">4.8/5 Rating</span>
-                        <button class="text-purple-400 text-sm font-medium">Try Now</button>
-                    </div>
-                </div>
+                    <p class="text-gray-300 mb-4 text-sm">Immersive reader with text-to-speech (mobile free)</p>
+                    <span class="inline-block bg-orange-400 bg-opacity-20 text-orange-400 text-xs px-3 py-1 rounded-full">Audio</span>
+                </a>
                 
-                <!-- Tool 5 - Productivity -->
-                <div class="tool-card glass-card p-6 rounded-xl hover-effect" data-category="productivity" data-aos="fade-up" data-aos-delay="600">
-                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
-                        <img src="http://static.photos/productivity/640x360/5" alt="Productivity Tool" class="w-full h-full object-cover">
+                <a href="https://savemygpa.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student ai" data-aos="fade-up" data-aos-delay="600">
+                    <div class="flex items-center mb-4">
+                        <img src="https://savemygpa.com/favicon.ico" alt="SaveMyGPA" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">SaveMyGPA</h3>
                     </div>
-                    <div class="flex items-center mb-3">
-                        <span class="bg-orange-400 bg-opacity-20 text-orange-400 text-xs px-2 py-1 rounded">Productivity</span>
-                        <span class="text-gray-400 text-sm ml-auto">Free</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">FlowSpace</h3>
-                    <p class="text-gray-300 mb-4">All-in-one workspace that combines task management, notes, and calendar in one intuitive interface.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">4.7/5 Rating</span>
-                        <button class="text-orange-400 text-sm font-medium">Try Now</button>
-                    </div>
-                </div>
+                    <p class="text-gray-300 mb-4 text-sm">AI-powered study tool for GPA improvement</p>
+                    <span class="inline-block bg-red-400 bg-opacity-20 text-red-400 text-xs px-3 py-1 rounded-full">GPA</span>
+                </a>
                 
-                <!-- Tool 6 - Student -->
-                <div class="tool-card glass-card p-6 rounded-xl hover-effect" data-category="student" data-aos="fade-up" data-aos-delay="700">
-                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
-                        <img src="http://static.photos/collaboration/640x360/6" alt="Collaboration Tool" class="w-full h-full object-cover">
+                <a href="https://claude.ai" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student ai" data-aos="fade-up" data-aos-delay="700">
+                    <div class="flex items-center mb-4">
+                        <img src="https://claude.ai/favicon.ico" alt="Claude" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Claude</h3>
                     </div>
-                    <div class="flex items-center mb-3">
-                        <span class="bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-2 py-1 rounded">Student</span>
-                        <span class="text-gray-400 text-sm ml-auto">Free</span>
+                    <p class="text-gray-300 mb-4 text-sm">AI assistant for academic writing and research</p>
+                    <span class="inline-block bg-indigo-400 bg-opacity-20 text-indigo-400 text-xs px-3 py-1 rounded-full">Writing</span>
+                </a>
+                
+                <a href="https://perplexity.ai" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student ai" data-aos="fade-up" data-aos-delay="800">
+                    <div class="flex items-center mb-4">
+                        <img src="https://perplexity.ai/favicon.ico" alt="Perplexity" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Perplexity AI</h3>
                     </div>
-                    <h3 class="text-xl font-bold mb-2 text-white">GroupSync</h3>
-                    <p class="text-gray-300 mb-4">Seamless collaboration platform designed specifically for student group projects.</p>
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-400">4.7/5 Rating</span>
-                        <button class="text-blue-400 text-sm font-medium">Try Now</button>
+                    <p class="text-gray-300 mb-4 text-sm">Research assistant with real-time information</p>
+                    <span class="inline-block bg-cyan-400 bg-opacity-20 text-cyan-400 text-xs px-3 py-1 rounded-full">Research</span>
+                </a>
+                
+                <a href="https://gauthmath.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student ai" data-aos="fade-up" data-aos-delay="900">
+                    <div class="flex items-center mb-4">
+                        <img src="https://gauthmath.com/favicon.ico" alt="Gauth" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Gauth</h3>
                     </div>
-                </div>
+                    <p class="text-gray-300 mb-4 text-sm">AI-powered study assistant for homework help</p>
+                    <span class="inline-block bg-yellow-400 bg-opacity-20 text-yellow-400 text-xs px-3 py-1 rounded-full">Homework</span>
+                </a>
+                
+                <a href="https://photomath.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student ai" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="flex items-center mb-4">
+                        <img src="https://photomath.com/favicon.ico" alt="Photomath" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Photomath</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">Camera-based math problem solver with step-by-step solutions</p>
+                    <span class="inline-block bg-pink-400 bg-opacity-20 text-pink-400 text-xs px-3 py-1 rounded-full">Math</span>
+                </a>
+                
+                <a href="https://brainly.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student productivity" data-aos="fade-up" data-aos-delay="1100">
+                    <div class="flex items-center mb-4">
+                        <img src="https://brainly.com/favicon.ico" alt="Brainly" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Brainly</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">Homework help and study community platform</p>
+                    <span class="inline-block bg-green-400 bg-opacity-20 text-green-400 text-xs px-3 py-1 rounded-full">Community</span>
+                </a>
+                
+                <a href="https://chat.openai.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student ai" data-aos="fade-up" data-aos-delay="1200">
+                    <div class="flex items-center mb-4">
+                        <img src="https://chat.openai.com/favicon.ico" alt="ChatGPT" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">ChatGPT</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">AI assistant for homework help, explanations, and writing</p>
+                    <span class="inline-block bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-3 py-1 rounded-full">AI Chat</span>
+                </a>
+                
+                <!-- Professional Tools -->
+                <a href="https://sintra.ai" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="professional ai" data-aos="fade-up" data-aos-delay="1300">
+                    <div class="flex items-center mb-4">
+                        <img src="https://sintra.ai/favicon.ico" alt="Sintra" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Sintra</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">AI-powered professional writing and content creation</p>
+                    <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">AI Writing</span>
+                </a>
+                
+                <a href="https://trello.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="professional productivity" data-aos="fade-up" data-aos-delay="1400">
+                    <div class="flex items-center mb-4">
+                        <img src="https://trello.com/favicon.ico" alt="Trello" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Trello</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">Visual project management and team collaboration</p>
+                    <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Project Mgmt</span>
+                </a>
+                
+                <a href="https://slack.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="professional productivity" data-aos="fade-up" data-aos-delay="1500">
+                    <div class="flex items-center mb-4">
+                        <img src="https://slack.com/favicon.ico" alt="Slack" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Slack</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">Team messaging and collaboration platform</p>
+                    <span class="inline-block bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-3 py-1 rounded-full">Communication</span>
+                </a>
+                
+                <a href="https://funnel.io" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="professional productivity" data-aos="fade-up" data-aos-delay="1600">
+                    <div class="flex items-center mb-4">
+                        <img src="https://funnel.io/favicon.ico" alt="Funnel" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Funnel</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">Marketing analytics and data visualization</p>
+                    <span class="inline-block bg-green-400 bg-opacity-20 text-green-400 text-xs px-3 py-1 rounded-full">Analytics</span>
+                </a>
+                
+                <!-- Creator Tools -->
+                <a href="https://openai.com/dall-e-3" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="creator ai" data-aos="fade-up" data-aos-delay="1700">
+                    <div class="flex items-center mb-4">
+                        <img src="https://openai.com/favicon.ico" alt="DALL-E" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">DALL-E 3</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">AI-powered image generation and artistic creation</p>
+                    <span class="inline-block bg-pink-400 bg-opacity-20 text-pink-400 text-xs px-3 py-1 rounded-full">AI Art</span>
+                </a>
+                
+                <a href="https://canva.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="creator productivity" data-aos="fade-up" data-aos-delay="1800">
+                    <div class="flex items-center mb-4">
+                        <img src="https://canva.com/favicon.ico" alt="Canva" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Canva</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">Professional design platform for visual content</p>
+                    <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Design</span>
+                </a>
+                
+                <a href="https://blackmagicdesign.com/products/davinciresolve" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="creator productivity" data-aos="fade-up" data-aos-delay="1900">
+                    <div class="flex items-center mb-4">
+                        <img src="https://blackmagicdesign.com/favicon.ico" alt="DaVinci Resolve" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">DaVinci Resolve</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">Professional video editing and color grading</p>
+                    <span class="inline-block bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-3 py-1 rounded-full">Video</span>
+                </a>
+                
+                <a href="https://unsplash.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="creator productivity" data-aos="fade-up" data-aos-delay="2000">
+                    <div class="flex items-center mb-4">
+                        <img src="https://unsplash.com/favicon.ico" alt="Unsplash" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Unsplash</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">High-quality stock photos and visual resources</p>
+                    <span class="inline-block bg-green-400 bg-opacity-20 text-green-400 text-xs px-3 py-1 rounded-full">Stock</span>
+                </a>
+                
+                <!-- Additional Student Tools -->
+                <a href="https://edx.org" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student productivity" data-aos="fade-up" data-aos-delay="2100">
+                    <div class="flex items-center mb-4">
+                        <img src="https://edx.org/favicon.ico" alt="edX" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">edX</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">Free university courses from top institutions worldwide</p>
+                    <span class="inline-block bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-3 py-1 rounded-full">Courses</span>
+                </a>
+                
+                <a href="https://khanacademy.org" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student productivity" data-aos="fade-up" data-aos-delay="2200">
+                    <div class="flex items-center mb-4">
+                        <img src="https://khanacademy.org/favicon.ico" alt="Khan Academy" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Khan Academy</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">Free online learning platform with courses in math, science, and more</p>
+                    <span class="inline-block bg-green-400 bg-opacity-20 text-green-400 text-xs px-3 py-1 rounded-full">Learning</span>
+                </a>
+                
+                <!-- Additional Professional Tools -->
+                <a href="https://writesonic.com" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="professional ai" data-aos="fade-up" data-aos-delay="2300">
+                    <div class="flex items-center mb-4">
+                        <img src="https://writesonic.com/favicon.ico" alt="Writesonic" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Writesonic</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">AI writing assistant for marketing content</p>
+                    <span class="inline-block bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-3 py-1 rounded-full">Content</span>
+                </a>
+                
+                <a href="https://tome.app" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="professional ai" data-aos="fade-up" data-aos-delay="2400">
+                    <div class="flex items-center mb-4">
+                        <img src="https://tome.app/favicon.ico" alt="Tome" class="w-8 h-8 mr-3">
+                        <h3 class="text-xl font-bold text-white">Tome</h3>
+                    </div>
+                    <p class="text-gray-300 mb-4 text-sm">AI-powered presentation creation tool</p>
+                    <span class="inline-block bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-3 py-1 rounded-full">Presentations</span>
+                </a>
             </div>
         </div>
     </section>
@@ -589,6 +775,14 @@
                 document.querySelector(this.getAttribute('href')).scrollIntoView({
                     behavior: 'smooth'
                 });
+            });
+        });
+        
+        // Scroll indicator click handler
+        document.querySelector('.scroll-indicator').addEventListener('click', function() {
+            document.querySelector('#tools-grid').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
         });
     </script>
