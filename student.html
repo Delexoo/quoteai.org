@@ -240,6 +240,20 @@
             max-width: fit-content;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .mini-nav {
+                top: 80px;
+                padding: 6px;
+                gap: 2px;
+                border-radius: 25px;
+                max-width: 95vw;
+            }
         }
         
         .mini-nav-item {
@@ -252,7 +266,15 @@
             font-weight: 500;
             transition: all 0.3s ease;
             cursor: pointer;
-            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            .mini-nav-item {
+                padding: 4px 8px;
+                margin: 0 2px;
+                font-size: 12px;
+                border-radius: 15px;
+            }
         }
         
         .mini-nav-item:hover {
@@ -307,9 +329,9 @@
     <div class="cursor-follower"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 py-4 px-6 md:px-12">
-        <div class="flex justify-between items-center glass-card px-6 py-3">
-            <a href="index.html" class="text-xl font-bold text-white hover-effect">QUOTE</a>
+    <nav class="fixed w-full z-50 py-2 md:py-4 px-4 md:px-12">
+        <div class="flex justify-between items-center glass-card px-4 md:px-6 py-2 md:py-3">
+            <a href="index.html" class="text-lg md:text-xl font-bold text-white hover-effect">QUOTE</a>
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="index.html" class="nav-link text-white font-medium">Home</a>
                 <a href="student.html" class="nav-link text-white font-medium text-blue-400">Student</a>
@@ -320,9 +342,25 @@
                     Donate
                 </a>
             </div>
-            <button class="md:hidden text-white font-medium">
-                <i data-feather="menu"></i>
-            </button>
+            <div class="flex items-center space-x-2 md:hidden">
+                <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-2 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full text-xs">
+                    Donate
+                </a>
+                <button id="mobile-menu-btn" class="text-white font-medium p-1">
+                    <i data-feather="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-2 glass-card px-4 py-3">
+            <div class="flex flex-wrap gap-2">
+                <a href="index.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Home</a>
+                <a href="student.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full text-blue-400">Student</a>
+                <a href="professional.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Professional</a>
+                <a href="creator.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Creator</a>
+                <a href="all-tools.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">All Tools</a>
+            </div>
         </div>
     </nav>
 
@@ -1172,6 +1210,16 @@
         
         // Initialize Feather Icons
         feather.replace();
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
         
         // Custom Cursor
         const cursor = document.querySelector('.cursor');
