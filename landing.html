@@ -54,6 +54,27 @@
             transform: translate(-50%, -50%);
         }
         
+        @media (max-width: 768px) {
+            .cursor, .cursor-follower {
+                display: none;
+            }
+            
+            /* Disable hover effects on mobile */
+            .glass-card:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+            
+            .hover-effect:hover {
+                transform: none !important;
+            }
+            
+            .role-card:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+        }
+        
         .cursor-follower {
             width: 40px;
             height: 40px;
