@@ -59,34 +59,58 @@
             }
             
             .tool-card {
-                padding: 0.5rem !important;
+                padding: 0.75rem !important;
                 aspect-ratio: 1 !important;
                 display: flex !important;
                 flex-direction: column !important;
-                justify-content: space-between !important;
+                justify-content: center !important;
                 align-items: center !important;
                 text-align: center !important;
                 position: relative !important;
             }
             
-            .tool-card .flex {
+            .tool-card .tool-header {
+                display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
-                flex-grow: 1 !important;
-                justify-content: flex-start !important;
+                justify-content: center !important;
                 margin-bottom: 0.25rem !important;
+                width: 100% !important;
+            }
+            
+            .tool-card .tool-title-section {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                margin-bottom: 0.25rem !important;
+                width: 100% !important;
+            }
+            
+            .tool-card img {
+                width: 2rem !important;
+                height: 2rem !important;
+                margin-bottom: 0.375rem !important;
+                margin-top: 0 !important;
+                order: 1 !important;
+                display: block !important;
             }
             
             .tool-card h3 {
-                font-size: 0.75rem !important;
-                line-height: 1.2;
-                margin-bottom: 0.25rem !important;
+                font-size: 0.875rem !important;
+                line-height: 1.1 !important;
+                margin-bottom: 0.375rem !important;
+                margin-top: 0 !important;
+                order: 2 !important;
+                text-align: center !important;
+                width: 100% !important;
             }
             
             .tool-card p {
-                font-size: 0.5rem !important;
-                line-height: 1.2;
-                margin-bottom: 0.25rem !important;
+                font-size: 0.625rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 0.125rem !important;
+                margin-top: 0 !important;
                 display: block !important;
                 white-space: normal !important;
                 overflow: visible !important;
@@ -94,14 +118,15 @@
                 -webkit-line-clamp: unset !important;
                 -webkit-box-orient: unset !important;
                 text-align: center !important;
-                order: 2 !important;
+                order: 3 !important;
+                width: 100% !important;
             }
             
-            .tool-card img {
-                width: 1.25rem !important;
-                height: 1.25rem !important;
-                margin-bottom: 0.25rem !important;
+            .tool-card .tool-tag,
+            .tool-card span {
+                display: none !important;
             }
+            
             
             .tool-card .tool-tag,
             .tool-card span {
@@ -1071,23 +1096,6 @@
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-16 px-6 md:px-12">
-        <div class="max-w-4xl mx-auto text-center glass-card p-8 rounded-xl" data-aos="fade-up">
-            <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Ready to Boost Your Academic Performance?</h2>
-            <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
-                Join thousands of students who are already using these tools to excel in their studies.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <button class="bg-gradient-to-r from-blue-400 to-blue-600 px-6 py-3 rounded-full text-white font-medium hover-effect">
-                    Start Free Trial
-                </button>
-                <button class="glass-card px-6 py-3 rounded-full text-white font-medium hover-effect border border-white border-opacity-20">
-                    View All Tools
-                </button>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="py-12 px-6 md:px-12 bg-black">

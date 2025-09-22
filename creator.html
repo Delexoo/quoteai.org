@@ -59,34 +59,58 @@
             }
             
             .tool-card {
-                padding: 0.5rem !important;
+                padding: 0.75rem !important;
                 aspect-ratio: 1 !important;
                 display: flex !important;
                 flex-direction: column !important;
-                justify-content: space-between !important;
+                justify-content: center !important;
                 align-items: center !important;
                 text-align: center !important;
                 position: relative !important;
             }
             
-            .tool-card .flex {
+            .tool-card .tool-header {
+                display: flex !important;
                 flex-direction: column !important;
                 align-items: center !important;
-                flex-grow: 1 !important;
-                justify-content: flex-start !important;
+                justify-content: center !important;
                 margin-bottom: 0.25rem !important;
+                width: 100% !important;
+            }
+            
+            .tool-card .tool-title-section {
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                justify-content: center !important;
+                margin-bottom: 0.25rem !important;
+                width: 100% !important;
+            }
+            
+            .tool-card img {
+                width: 2rem !important;
+                height: 2rem !important;
+                margin-bottom: 0.375rem !important;
+                margin-top: 0 !important;
+                order: 1 !important;
+                display: block !important;
             }
             
             .tool-card h3 {
-                font-size: 0.75rem !important;
-                line-height: 1.2;
-                margin-bottom: 0.25rem !important;
+                font-size: 0.875rem !important;
+                line-height: 1.1 !important;
+                margin-bottom: 0.375rem !important;
+                margin-top: 0 !important;
+                order: 2 !important;
+                text-align: center !important;
+                width: 100% !important;
             }
             
             .tool-card p {
-                font-size: 0.5rem !important;
-                line-height: 1.2;
-                margin-bottom: 0.25rem !important;
+                font-size: 0.625rem !important;
+                line-height: 1.2 !important;
+                margin-bottom: 0.125rem !important;
+                margin-top: 0 !important;
                 display: block !important;
                 white-space: normal !important;
                 overflow: visible !important;
@@ -94,14 +118,15 @@
                 -webkit-line-clamp: unset !important;
                 -webkit-box-orient: unset !important;
                 text-align: center !important;
-                order: 2 !important;
+                order: 3 !important;
+                width: 100% !important;
             }
             
-            .tool-card img {
-                width: 1.25rem !important;
-                height: 1.25rem !important;
-                margin-bottom: 0.25rem !important;
+            .tool-card .tool-tag,
+            .tool-card span {
+                display: none !important;
             }
+            
             
             .tool-card .tool-tag,
             .tool-card span {
