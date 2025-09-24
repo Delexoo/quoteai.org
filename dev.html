@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Portfolio | Quote</title>
+    <link rel="icon" href="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/QuoteLogoCircle.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            --glass-blur: blur(12px);
+        }
+        
+    body {
+        background: #000000;
+        background-image: 
+            radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+        min-height: 100vh;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        overflow-x: hidden;
+        cursor: none;
+    }
+        
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 15px,
+                rgba(255, 255, 255, 0.08) 15px,
+                rgba(255, 255, 255, 0.08) 17px
+            );
+        pointer-events: none;
+        z-index: -1;
+    }
+    
+    /* Terminal typing effect */
+    body::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        pointer-events: none;
+        z-index: -1;
+        animation: terminalFlicker 0.15s infinite linear;
+    }
+    
+    @keyframes terminalFlicker {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.98; }
+    }
+    
+    /* Terminal cursor effect */
+    .terminal-cursor::after {
+        content: '█';
+        color: #22c55e;
+        animation: blink 1s infinite;
+    }
+    
+    @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+    
+    /* Live typing animation */
+    .typing-effect {
+        overflow: hidden;
+        border-right: 2px solid #22c55e;
+        white-space: nowrap;
+        animation: typing 3s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+    
+    @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+    
+    @keyframes blink-caret {
+        from, to { border-color: transparent; }
+        50% { border-color: #22c55e; }
+    }
+    
+    /* Matrix-style falling characters */
+    .matrix-rain {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -2;
+        overflow: hidden;
+    }
+    
+    .matrix-column {
+        position: absolute;
+        top: -100%;
+        color: #ffffff;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        line-height: 14px;
+        opacity: 0.1;
+        animation: matrixFall linear infinite;
+    }
+    
+    @keyframes matrixFall {
+        0% { transform: translateY(-100vh); opacity: 0; }
+        10% { opacity: 0.1; }
+        90% { opacity: 0.1; }
+        100% { transform: translateY(100vh); opacity: 0; }
+    }
+    
+    /* Floating Python Files */
+    .floating-file {
+        position: fixed;
+        pointer-events: none;
+        z-index: -1;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        color: #10b981;
+        opacity: 0.3;
+        font-weight: 500;
+        text-shadow: 0 0 10px rgba(16, 185, 129, 0.3);
+        transform-style: preserve-3d;
+        transition: transform 0.1s ease-out;
+        will-change: transform;
+    }
+    
+    .floating-file::after {
+        content: '.py';
+        color: #3b82f6;
+        text-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+    }
+    
+    /* Static Python files - no floating animation */
+    .python-file {
+        position: fixed;
+        pointer-events: none;
+        z-index: -1;
+        font-family: 'Courier New', monospace;
+        font-size: 14px;
+        color: #ffffff;
+        opacity: 0.3;
+        font-weight: 500;
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        transform-style: preserve-3d;
+        will-change: transform;
+    }
+    
+    .python-file::after {
+        content: '.py';
+        color: #cccccc;
+        text-shadow: 0 0 8px rgba(204, 204, 204, 0.3);
+    }
+        
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(255, 255, 255, 0.25);
+        }
+        
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease;
+        }
+        
+        .hover-effect {
+            transition: transform 0.3s ease;
+        }
+        
+        .hover-effect:hover {
+            transform: scale(1.05);
+        }
+        
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.08);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .skill-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-tag:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .terminal-header {
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            box-shadow: 0 0 20px rgba(34, 197, 94, 0.1);
+        }
+        
+        .terminal-card {
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.05);
+        }
+        
+        .terminal-button {
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .terminal-button:hover {
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+            transform: translateY(-2px);
+        }
+        
+        .terminal-skill {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .terminal-skill:hover {
+            border-color: rgba(34, 197, 94, 0.5);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .terminal-project {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .terminal-project:hover {
+            border-color: rgba(34, 197, 94, 0.3);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .terminal-stat {
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .terminal-stat:hover {
+            border-color: rgba(34, 197, 94, 0.4);
+            box-shadow: 0 0 10px rgba(34, 197, 94, 0.1);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-4 px-6 md:px-12">
+        <div class="flex justify-between items-center glass-card px-6 py-3">
+            <a href="index.html" class="text-xl font-bold text-white hover-effect">QUOTE</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link text-white font-medium">Home</a>
+                <a href="student.html" class="nav-link text-white font-medium">Student</a>
+                <a href="professional.html" class="nav-link text-white font-medium">Professional</a>
+                <a href="creator.html" class="nav-link text-white font-medium">Creator</a>
+                <a href="all-tools.html" class="nav-link text-white font-medium">All Tools</a>
+            </div>
+            <button class="md:hidden text-white font-medium">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Matrix Rain Effect -->
+    <div class="matrix-rain" id="matrixRain"></div>
+    
+    <!-- Static Python Files -->
+    <div class="python-file" style="left: 10%; top: 20%;">main</div>
+    <div class="python-file" style="left: 80%; top: 30%;">utils</div>
+    <div class="python-file" style="left: 20%; top: 60%;">config</div>
+    <div class="python-file" style="left: 70%; top: 10%;">auth</div>
+    <div class="python-file" style="left: 50%; top: 40%;">database</div>
+    <div class="python-file" style="left: 30%; top: 80%;">api</div>
+    <div class="python-file" style="left: 90%; top: 50%;">models</div>
+    <div class="python-file" style="left: 60%; top: 70%;">helpers</div>
+    <div class="python-file" style="left: 15%; top: 40%;">server</div>
+    <div class="python-file" style="left: 85%; top: 15%;">client</div>
+    <div class="python-file" style="left: 25%; top: 25%;">routes</div>
+    <div class="python-file" style="left: 75%; top: 65%;">middleware</div>
+    <div class="python-file" style="left: 40%; top: 10%;">validation</div>
+    <div class="python-file" style="left: 90%; top: 80%;">security</div>
+    <div class="python-file" style="left: 5%; top: 50%;">crypto</div>
+    <div class="python-file" style="left: 95%; top: 35%;">logger</div>
+    <div class="python-file" style="left: 35%; top: 90%;">parser</div>
+    <div class="python-file" style="left: 65%; top: 5%;">generator</div>
+    <div class="python-file" style="left: 45%; top: 75%;">analyzer</div>
+    <div class="python-file" style="left: 55%; top: 25%;">scanner</div>
+    <div class="python-file" style="left: 12%; top: 85%;">app</div>
+    <div class="python-file" style="left: 88%; top: 45%;">core</div>
+    <div class="python-file" style="left: 22%; top: 35%;">tests</div>
+    <div class="python-file" style="left: 78%; top: 55%;">scripts</div>
+    <div class="python-file" style="left: 38%; top: 15%;">plugins</div>
+    <div class="python-file" style="left: 62%; top: 85%;">services</div>
+    <div class="python-file" style="left: 8%; top: 75%;">handler</div>
+    <div class="python-file" style="left: 92%; top: 25%;">controller</div>
+    <div class="python-file" style="left: 28%; top: 5%;">view</div>
+    <div class="python-file" style="left: 72%; top: 95%;">template</div>
+    <div class="python-file" style="left: 42%; top: 45%;">form</div>
+    <div class="python-file" style="left: 58%; top: 15%;">serializer</div>
+    <div class="python-file" style="left: 18%; top: 55%;">decorator</div>
+    <div class="python-file" style="left: 82%; top: 75%;">exception</div>
+    <div class="python-file" style="left: 32%; top: 95%;">constant</div>
+    <div class="python-file" style="left: 68%; top: 35%;">enum</div>
+    <div class="python-file" style="left: 48%; top: 65%;">interface</div>
+    <div class="python-file" style="left: 52%; top: 5%;">abstract</div>
+    <div class="python-file" style="left: 88%; top: 55%;">factory</div>
+    
+    <!-- Additional Python files for lower sections -->
+    <div class="python-file" style="left: 15%; top: 120%;">manager</div>
+    <div class="python-file" style="left: 85%; top: 130%;">processor</div>
+    <div class="python-file" style="left: 25%; top: 140%;">builder</div>
+    <div class="python-file" style="left: 75%; top: 150%;">adapter</div>
+    <div class="python-file" style="left: 40%; top: 160%;">observer</div>
+    <div class="python-file" style="left: 90%; top: 170%;">strategy</div>
+    <div class="python-file" style="left: 5%; top: 180%;">command</div>
+    <div class="python-file" style="left: 95%; top: 190%;">facade</div>
+    <div class="python-file" style="left: 35%; top: 200%;">proxy</div>
+    <div class="python-file" style="left: 65%; top: 210%;">singleton</div>
+    <div class="python-file" style="left: 45%; top: 220%;">prototype</div>
+    <div class="python-file" style="left: 55%; top: 230%;">bridge</div>
+    <div class="python-file" style="left: 12%; top: 240%;">composite</div>
+    <div class="python-file" style="left: 88%; top: 250%;">visitor</div>
+    <div class="python-file" style="left: 22%; top: 260%;">state</div>
+    <div class="python-file" style="left: 78%; top: 270%;">memento</div>
+    <div class="python-file" style="left: 38%; top: 280%;">mediator</div>
+    <div class="python-file" style="left: 62%; top: 290%;">iterator</div>
+    <div class="python-file" style="left: 8%; top: 300%;">chain</div>
+    <div class="python-file" style="left: 92%; top: 310%;">flyweight</div>
+    <div class="python-file" style="left: 28%; top: 320%;">interpreter</div>
+    <div class="python-file" style="left: 72%; top: 330%;">template_method</div>
+    <div class="python-file" style="left: 42%; top: 340%;">data</div>
+    <div class="python-file" style="left: 58%; top: 350%;">types</div>
+    <div class="python-file" style="left: 18%; top: 360%;">classes</div>
+    <div class="python-file" style="left: 82%; top: 370%;">functions</div>
+    <div class="python-file" style="left: 32%; top: 380%;">variables</div>
+    <div class="python-file" style="left: 68%; top: 390%;">constants</div>
+    <div class="python-file" style="left: 48%; top: 400%;">imports</div>
+    <div class="python-file" style="left: 52%; top: 410%;">exports</div>
+    <div class="python-file" style="left: 12%; top: 420%;">modules</div>
+    <div class="python-file" style="left: 88%; top: 430%;">packages</div>
+    <div class="python-file" style="left: 22%; top: 440%;">libraries</div>
+    <div class="python-file" style="left: 78%; top: 450%;">frameworks</div>
+    <div class="python-file" style="left: 38%; top: 460%;">requests</div>
+    <div class="python-file" style="left: 62%; top: 470%;">numpy</div>
+    <div class="python-file" style="left: 8%; top: 480%;">pandas</div>
+    <div class="python-file" style="left: 92%; top: 490%;">django</div>
+    <div class="python-file" style="left: 28%; top: 500%;">flask</div>
+    <div class="python-file" style="left: 72%; top: 510%;">tensorflow</div>
+    <div class="python-file" style="left: 42%; top: 520%;">pytorch</div>
+    <div class="python-file" style="left: 58%; top: 530%;">scikit</div>
+    <div class="python-file" style="left: 18%; top: 540%;">matplotlib</div>
+    <div class="python-file" style="left: 82%; top: 550%;">seaborn</div>
+    <div class="python-file" style="left: 32%; top: 560%;">plotly</div>
+    <div class="python-file" style="left: 68%; top: 570%;">bokeh</div>
+    <div class="python-file" style="left: 48%; top: 580%;">beautifulsoup</div>
+    <div class="python-file" style="left: 52%; top: 590%;">selenium</div>
+    <div class="python-file" style="left: 12%; top: 600%;">scrapy</div>
+    <div class="python-file" style="left: 88%; top: 610%;">celery</div>
+    <div class="python-file" style="left: 22%; top: 620%;">redis</div>
+    <div class="python-file" style="left: 78%; top: 630%;">postgresql</div>
+    <div class="python-file" style="left: 38%; top: 640%;">mongodb</div>
+    <div class="python-file" style="left: 62%; top: 650%;">sqlite</div>
+    <div class="python-file" style="left: 8%; top: 660%;">mysql</div>
+    <div class="python-file" style="left: 92%; top: 670%;">elasticsearch</div>
+    <div class="python-file" style="left: 28%; top: 680%;">kafka</div>
+    <div class="python-file" style="left: 72%; top: 690%;">rabbitmq</div>
+    <div class="python-file" style="left: 42%; top: 700%;">docker</div>
+    <div class="python-file" style="left: 58%; top: 710%;">kubernetes</div>
+    <div class="python-file" style="left: 18%; top: 720%;">aws</div>
+    <div class="python-file" style="left: 82%; top: 730%;">gcp</div>
+    <div class="python-file" style="left: 32%; top: 740%;">azure</div>
+    <div class="python-file" style="left: 68%; top: 750%;">heroku</div>
+    <div class="python-file" style="left: 48%; top: 760%;">vercel</div>
+    <div class="python-file" style="left: 52%; top: 770%;">netlify</div>
+    <div class="python-file" style="left: 12%; top: 780%;">github</div>
+    <div class="python-file" style="left: 88%; top: 790%;">gitlab</div>
+    <div class="python-file" style="left: 22%; top: 800%;">bitbucket</div>
+    <div class="python-file" style="left: 78%; top: 810%;">jenkins</div>
+    <div class="python-file" style="left: 38%; top: 820%;">travis</div>
+    <div class="python-file" style="left: 62%; top: 830%;">circleci</div>
+    <div class="python-file" style="left: 8%; top: 840%;">actions</div>
+    <div class="python-file" style="left: 92%; top: 850%;">pytest</div>
+    <div class="python-file" style="left: 28%; top: 860%;">unittest</div>
+    <div class="python-file" style="left: 72%; top: 870%;">coverage</div>
+    <div class="python-file" style="left: 42%; top: 880%;">black</div>
+    <div class="python-file" style="left: 58%; top: 890%;">flake8</div>
+    <div class="python-file" style="left: 18%; top: 900%;">mypy</div>
+    <div class="python-file" style="left: 82%; top: 910%;">isort</div>
+    <div class="python-file" style="left: 32%; top: 920%;">pre_commit</div>
+    <div class="python-file" style="left: 68%; top: 930%;">bandit</div>
+    <div class="python-file" style="left: 48%; top: 940%;">safety</div>
+    <div class="python-file" style="left: 52%; top: 950%;">snyk</div>
+    <div class="python-file" style="left: 12%; top: 960%;">sonarqube</div>
+    <div class="python-file" style="left: 88%; top: 970%;">codeql</div>
+    <div class="python-file" style="left: 22%; top: 980%;">semgrep</div>
+    <div class="python-file" style="left: 78%; top: 990%;">trivy</div>
+    <div class="python-file" style="left: 38%; top: 1000%;">clair</div>
+    <div class="python-file" style="left: 62%; top: 1010%;">anchore</div>
+    <div class="python-file" style="left: 8%; top: 1020%;">twistlock</div>
+    <div class="python-file" style="left: 92%; top: 1030%;">prisma</div>
+    <div class="python-file" style="left: 28%; top: 1040%;">falco</div>
+    <div class="python-file" style="left: 72%; top: 1050%;">osquery</div>
+    <div class="python-file" style="left: 42%; top: 1060%;">wazuh</div>
+    <div class="python-file" style="left: 58%; top: 1070%;">suricata</div>
+    <div class="python-file" style="left: 18%; top: 1080%;">snort</div>
+    <div class="python-file" style="left: 82%; top: 1090%;">zeek</div>
+    <div class="python-file" style="left: 32%; top: 1100%;">bro</div>
+    <div class="python-file" style="left: 68%; top: 1110%;">yara</div>
+    <div class="python-file" style="left: 48%; top: 1120%;">capa</div>
+    <div class="python-file" style="left: 52%; top: 1130%;">flare</div>
+    <div class="python-file" style="left: 12%; top: 1140%;">ghidra</div>
+    <div class="python-file" style="left: 88%; top: 1150%;">ida</div>
+    <div class="python-file" style="left: 22%; top: 1160%;">radare2</div>
+    <div class="python-file" style="left: 78%; top: 1170%;">cutter</div>
+    <div class="python-file" style="left: 38%; top: 1180%;">x64dbg</div>
+    <div class="python-file" style="left: 62%; top: 1190%;">ollydbg</div>
+    <div class="python-file" style="left: 8%; top: 1200%;">windbg</div>
+    <div class="python-file" style="left: 92%; top: 1210%;">gdb</div>
+    <div class="python-file" style="left: 28%; top: 1220%;">lldb</div>
+    <div class="python-file" style="left: 72%; top: 1230%;">valgrind</div>
+    <div class="python-file" style="left: 42%; top: 1240%;">strace</div>
+    <div class="python-file" style="left: 58%; top: 1250%;">ltrace</div>
+    <div class="python-file" style="left: 18%; top: 1260%;">perf</div>
+    <div class="python-file" style="left: 82%; top: 1270%;">htop</div>
+    <div class="python-file" style="left: 32%; top: 1280%;">iotop</div>
+    <div class="python-file" style="left: 68%; top: 1290%;">nethogs</div>
+    <div class="python-file" style="left: 48%; top: 1300%;">iftop</div>
+    <div class="python-file" style="left: 52%; top: 1310%;">nload</div>
+    <div class="python-file" style="left: 12%; top: 1320%;">vnstat</div>
+    <div class="python-file" style="left: 88%; top: 1330%;">bmon</div>
+    <div class="python-file" style="left: 22%; top: 1340%;">slurm</div>
+    <div class="python-file" style="left: 78%; top: 1350%;">bwm_ng</div>
+    <div class="python-file" style="left: 38%; top: 1360%;">speedtest</div>
+    <div class="python-file" style="left: 62%; top: 1370%;">iperf</div>
+    <div class="python-file" style="left: 8%; top: 1380%;">netperf</div>
+    <div class="python-file" style="left: 92%; top: 1390%;">qperf</div>
+    <div class="python-file" style="left: 28%; top: 1400%;">fio</div>
+    <div class="python-file" style="left: 72%; top: 1410%;">bonnie</div>
+    <div class="python-file" style="left: 42%; top: 1420%;">dd</div>
+    <div class="python-file" style="left: 58%; top: 1430%;">hdparm</div>
+    <div class="python-file" style="left: 18%; top: 1440%;">smartctl</div>
+    <div class="python-file" style="left: 82%; top: 1450%;">badblocks</div>
+    <div class="python-file" style="left: 32%; top: 1460%;">fsck</div>
+    <div class="python-file" style="left: 68%; top: 1470%;">e2fsck</div>
+    <div class="python-file" style="left: 48%; top: 1480%;">xfs_repair</div>
+    <div class="python-file" style="left: 52%; top: 1490%;">ntfsfix</div>
+    <div class="python-file" style="left: 12%; top: 1500%;">chkdsk</div>
+    <div class="python-file" style="left: 88%; top: 1510%;">sfc</div>
+    <div class="python-file" style="left: 22%; top: 1520%;">dism</div>
+    <div class="python-file" style="left: 78%; top: 1530%;">sfc_scannow</div>
+    <div class="python-file" style="left: 38%; top: 1540%;">gpupdate</div>
+    <div class="python-file" style="left: 62%; top: 1550%;">gpresult</div>
+    <div class="python-file" style="left: 8%; top: 1560%;">rsop</div>
+    <div class="python-file" style="left: 92%; top: 1570%;">gpedit</div>
+    <div class="python-file" style="left: 28%; top: 1580%;">regedit</div>
+    <div class="python-file" style="left: 72%; top: 1590%;">regsvr32</div>
+    <div class="python-file" style="left: 42%; top: 1600%;">rundll32</div>
+    <div class="python-file" style="left: 58%; top: 1610%;">msconfig</div>
+    <div class="python-file" style="left: 18%; top: 1620%;">msinfo32</div>
+    <div class="python-file" style="left: 82%; top: 1630%;">dxdiag</div>
+    <div class="python-file" style="left: 32%; top: 1640%;">eventvwr</div>
+    <div class="python-file" style="left: 68%; top: 1650%;">perfmon</div>
+    <div class="python-file" style="left: 48%; top: 1660%;">resmon</div>
+    <div class="python-file" style="left: 52%; top: 1670%;">taskmgr</div>
+    <div class="python-file" style="left: 12%; top: 1680%;">devmgmt</div>
+    <div class="python-file" style="left: 88%; top: 1690%;">compmgmt</div>
+    <div class="python-file" style="left: 22%; top: 1700%;">lusrmgr</div>
+    <div class="python-file" style="left: 78%; top: 1710%;">secpol</div>
+    <div class="python-file" style="left: 38%; top: 1720%;">gpmc</div>
+    <div class="python-file" style="left: 62%; top: 1730%;">adsiedit</div>
+    <div class="python-file" style="left: 8%; top: 1740%;">ldp</div>
+    <div class="python-file" style="left: 92%; top: 1750%;">dnscmd</div>
+    <div class="python-file" style="left: 28%; top: 1760%;">nslookup</div>
+    <div class="python-file" style="left: 72%; top: 1770%;">ipconfig</div>
+    <div class="python-file" style="left: 42%; top: 1780%;">ping</div>
+    <div class="python-file" style="left: 58%; top: 1790%;">tracert</div>
+    <div class="python-file" style="left: 18%; top: 1800%;">pathping</div>
+    <div class="python-file" style="left: 82%; top: 1810%;">netstat</div>
+    <div class="python-file" style="left: 32%; top: 1820%;">ss</div>
+    <div class="python-file" style="left: 68%; top: 1830%;">lsof</div>
+    <div class="python-file" style="left: 48%; top: 1840%;">fuser</div>
+    <div class="python-file" style="left: 52%; top: 1850%;">lsof</div>
+    <div class="python-file" style="left: 12%; top: 1860%;">fuser</div>
+    <div class="python-file" style="left: 88%; top: 1870%;">ps</div>
+    <div class="python-file" style="left: 22%; top: 1880%;">top</div>
+    <div class="python-file" style="left: 78%; top: 1890%;">htop</div>
+    <div class="python-file" style="left: 38%; top: 1900%;">atop</div>
+    <div class="python-file" style="left: 62%; top: 1910%;">iotop</div>
+    <div class="python-file" style="left: 8%; top: 1920%;">nethogs</div>
+    <div class="python-file" style="left: 92%; top: 1930%;">iftop</div>
+    <div class="python-file" style="left: 28%; top: 1940%;">nload</div>
+    <div class="python-file" style="left: 72%; top: 1950%;">vnstat</div>
+    <div class="python-file" style="left: 42%; top: 1960%;">bmon</div>
+    <div class="python-file" style="left: 58%; top: 1970%;">slurm</div>
+    <div class="python-file" style="left: 18%; top: 1980%;">bwm_ng</div>
+    <div class="python-file" style="left: 82%; top: 1990%;">speedtest</div>
+    <div class="python-file" style="left: 32%; top: 2000%;">iperf</div>
+    
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 md:px-12 pt-20 relative">
+        <div class="absolute top-60 left-1/2 transform -translate-x-1/2 z-20">
+            <h1 class="text-4xl md:text-6xl font-bold text-white text-center font-mono">
+                <span class="text-green-400">$</span> 
+                <span class="text-yellow-400">whoami</span>
+            </h1>
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10 mt-48">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Developer Info -->
+                <div class="text-center lg:text-left" data-aos="fade-right">
+                    <div class="glass-card p-8 rounded-xl backdrop-blur-md bg-white bg-opacity-10 h-96 flex flex-col justify-center">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
+                            Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">DELEXO</span>
+                        </h1>
+                        <p class="text-xl text-gray-300 mb-6 leading-relaxed">
+                            Computer Science student at California State University, specializing in Cybersecurity. Passionate about educating others and keeping people safe online. 3+ years experience, 30+ projects completed.
+                        </p>
+                        <div class="flex justify-center lg:justify-start">
+                            <button onclick="openContactModal()" class="bg-gradient-to-r from-blue-500 to-purple-600 px-8 py-3 rounded-lg text-white font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">
+                                Contact Me
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Developer Image/Stats -->
+                <div class="relative" data-aos="fade-left">
+                    <div class="glass-card aspect-w-1 aspect-h-1 rounded-full overflow-hidden backdrop-blur-md bg-white bg-opacity-10 w-48 h-48 mx-auto">
+                        <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/D.png" alt="DELEXO Profile" class="w-full h-full object-cover">
+                    </div>
+                    <div class="text-center mt-4">
+                        <p class="text-white text-xl font-bold">@delexo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-20 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-white font-mono">
+                    <span class="text-green-400">#</span> 
+                    <span class="text-yellow-400">about_me.py</span>
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-stretch">
+                <div class="relative" data-aos="fade-right">
+                    <div class="glass-card aspect-w-1 aspect-h-1 rounded-xl overflow-hidden backdrop-blur-md bg-white bg-opacity-10 h-full">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Professional Workspace" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="terminal-card glass-card p-8 rounded-xl backdrop-blur-md bg-white bg-opacity-10 h-full flex flex-col justify-between" data-aos="fade-left">
+                    <div class="font-mono text-sm text-gray-400 mb-4">
+                        <span class="text-yellow-400">#</span> 
+                        <span class="text-gray-300">about_me.py</span>
+                    </div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6 text-white font-mono">
+                        <span class="text-purple-400">def</span> 
+                        <span class="text-yellow-400">about_me</span>
+                        <span class="text-white">():</span>
+                    </h2>
+                    <div class="font-mono text-gray-300 mb-6 space-y-3">
+                        <div class="text-gray-500"># Name</div>
+                        <div class="text-blue-400">print(<span class="text-green-400">"DELEXO"</span>)</div>
+                        
+                        <div class="text-gray-500"># University</div>
+                        <div class="text-blue-400">print(<span class="text-green-400">"California State University"</span>)</div>
+                        
+                        <div class="text-gray-500"># Specialization</div>
+                        <div class="text-blue-400">print(<span class="text-green-400">"Cybersecurity Specialist"</span>)</div>
+                        
+                        <div class="text-gray-500"># Experience</div>
+                        <div class="text-blue-400">print(<span class="text-green-400">"30+ projects completed"</span>)</div>
+                        
+                        <div class="text-gray-500"># Mission</div>
+                        <div class="text-blue-400">print(<span class="text-green-400">"Educating others about cybersecurity"</span>)</div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6 mt-8">
+                        <div class="terminal-stat text-center glass-card p-4 rounded-lg backdrop-blur-md bg-white bg-opacity-10">
+                            <div class="text-3xl font-bold text-green-400 mb-2 font-mono">30+</div>
+                            <div class="text-gray-300 font-mono text-sm">projects_completed</div>
+                        </div>
+                        <div class="terminal-stat text-center glass-card p-4 rounded-lg backdrop-blur-md bg-white bg-opacity-10">
+                            <div class="text-3xl font-bold text-blue-400 mb-2 font-mono">3+</div>
+                            <div class="text-gray-300 font-mono text-sm">years_experience</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-20 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-white font-mono">
+                    <span class="text-green-400">#</span> 
+                    <span class="text-yellow-400">skills.py</span>
+                </h2>
+            </div>
+            <div class="terminal-card glass-card p-8 rounded-xl mb-12" data-aos="fade-up">
+                <div class="font-mono text-sm text-gray-400 mb-4">
+                    <span class="text-yellow-400">#</span> 
+                    <span class="text-gray-300">skills.py</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-white font-mono" data-aos="fade-up">
+                    <span class="text-purple-400">def</span> 
+                    <span class="text-yellow-400">technical_skills</span>
+                    <span class="text-white">():</span>
+                </h2>
+                <div class="text-center mb-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="font-mono text-gray-300">
+                        <div class="text-gray-500 mb-2"># Technologies and tools I work with to bring ideas to life</div>
+                        <div class="text-blue-400">print(<span class="text-green-400">"Full-stack development with modern technologies"</span>)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="terminal-skill glass-card p-6 rounded-xl hover-effect" data-aos="fade-up" data-aos-delay="200">
+                    <div class="font-mono text-gray-500 mb-2"># 🌐 Frontend Development</div>
+                    <div class="text-blue-400">print(<span class="text-green-400">"JavaScript"</span>)</div>
+                </div>
+                <div class="terminal-skill glass-card p-6 rounded-xl hover-effect" data-aos="fade-up" data-aos-delay="300">
+                    <div class="font-mono text-gray-500 mb-2"># ⚙️ Backend & Automation</div>
+                    <div class="text-blue-400">print(<span class="text-green-400">"Python"</span>)</div>
+                </div>
+                <div class="terminal-skill glass-card p-6 rounded-xl hover-effect" data-aos="fade-up" data-aos-delay="400">
+                    <div class="font-mono text-gray-500 mb-2"># 🔒 Cybersecurity Tools</div>
+                    <div class="text-blue-400">print(<span class="text-green-400">"Kali Linux"</span>)</div>
+                </div>
+                <div class="terminal-skill glass-card p-6 rounded-xl hover-effect" data-aos="fade-up" data-aos-delay="500">
+                    <div class="font-mono text-gray-500 mb-2"># 💻 Virtualization</div>
+                    <div class="text-blue-400">print(<span class="text-green-400">"Virtual Machines"</span>)</div>
+                </div>
+                <div class="terminal-skill glass-card p-6 rounded-xl hover-effect" data-aos="fade-up" data-aos-delay="600">
+                    <div class="font-mono text-gray-500 mb-2"># 🤖 AI & Data Science</div>
+                    <div class="text-blue-400">print(<span class="text-green-400">"Machine Learning"</span>)</div>
+                </div>
+                <div class="terminal-skill glass-card p-6 rounded-xl hover-effect" data-aos="fade-up" data-aos-delay="700">
+                    <div class="font-mono text-gray-500 mb-2"># 📚 Continuous Learning</div>
+                    <div class="text-blue-400">print(<span class="text-green-400">"And More!"</span>)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="py-20 px-6 md:px-12">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold text-white font-mono">
+                    <span class="text-green-400">#</span> 
+                    <span class="text-yellow-400">projects.py</span>
+                </h2>
+            </div>
+            <div class="terminal-card glass-card p-8 rounded-xl mb-12" data-aos="fade-up">
+                <div class="font-mono text-sm text-gray-400 mb-4">
+                    <span class="text-yellow-400">#</span> 
+                    <span class="text-gray-300">projects.py</span>
+                </div>
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-white font-mono" data-aos="fade-up">
+                    <span class="text-purple-400">def</span> 
+                    <span class="text-yellow-400">featured_projects</span>
+                    <span class="text-white">():</span>
+                </h2>
+                <div class="text-center mb-8" data-aos="fade-up" data-aos-delay="100">
+                    <div class="font-mono text-gray-300">
+                        <div class="text-gray-500 mb-2"># Some of my recent work that I'm particularly proud of</div>
+                        <div class="text-blue-400">print(<span class="text-green-400">"Featured projects showcasing my skills"</span>)</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="terminal-project glass-card p-6 rounded-xl hover-effect" data-aos="fade-up" data-aos-delay="200">
+                    <div class="font-mono text-sm text-gray-500 mb-4">
+                        <span class="text-yellow-400">#</span> 
+                        <span class="text-gray-300">Web Development Project</span>
+                    </div>
+                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Quote Platform" class="w-full h-full object-cover">
+                    </div>
+                    <div class="font-mono text-gray-300 mb-4 space-y-2">
+                        <div class="text-blue-400">print(<span class="text-green-400">"Quote Platform"</span>)</div>
+                        <div class="text-gray-500 text-sm"># A curated tool collection platform</div>
+                        <div class="text-blue-400">print(<span class="text-green-400">"Glass morphism design"</span>)</div>
+                        <div class="text-gray-500 text-sm"># JavaScript, Tailwind, HTML</div>
+                    </div>
+                    <div class="flex justify-between items-center font-mono text-sm">
+                        <a href="#" class="text-green-400 hover:text-green-300">view_project</a>
+                        <a href="#" class="text-gray-400 hover:text-gray-300">github</a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="terminal-project glass-card p-6 rounded-xl hover-effect" data-aos="fade-up" data-aos-delay="300">
+                    <div class="font-mono text-sm text-gray-400 mb-4">
+                        <span class="text-yellow-400">#</span> 
+                        <span class="text-gray-300">cyber_tool/</span>
+                    </div>
+                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Cybersecurity Project" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white font-mono">
+                        <span class="text-purple-400">class</span> 
+                        <span class="text-yellow-400">CyberTool</span>
+                        <span class="text-white">:</span>
+                    </h3>
+                    <p class="text-gray-300 mb-4 font-mono text-sm">Advanced security analysis tool with penetration testing capabilities and vulnerability assessment.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-red-400 bg-opacity-20 text-red-400 text-xs px-2 py-1 rounded font-mono">KL</span>
+                        <span class="bg-green-400 bg-opacity-20 text-green-400 text-xs px-2 py-1 rounded font-mono">PY</span>
+                        <span class="bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-2 py-1 rounded font-mono">SEC</span>
+                    </div>
+                    <div class="flex justify-between items-center font-mono text-sm">
+                        <a href="#" class="text-green-400 hover:text-green-300">view_project</a>
+                        <a href="#" class="text-gray-400 hover:text-gray-300">github</a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="terminal-project glass-card p-6 rounded-xl hover-effect" data-aos="fade-up" data-aos-delay="400">
+                    <div class="font-mono text-sm text-gray-400 mb-4">
+                        <span class="text-yellow-400">#</span> 
+                        <span class="text-gray-300">ml_security/</span>
+                    </div>
+                    <div class="aspect-w-16 aspect-h-9 mb-4 rounded-lg overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Machine Learning Project" class="w-full h-full object-cover">
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-white font-mono">
+                        <span class="text-purple-400">class</span> 
+                        <span class="text-yellow-400">MLSecurity</span>
+                        <span class="text-white">:</span>
+                    </h3>
+                    <p class="text-gray-300 mb-4 font-mono text-sm">Machine learning model for detecting security threats and anomalies in network traffic.</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-orange-400 bg-opacity-20 text-orange-400 text-xs px-2 py-1 rounded font-mono">PY</span>
+                        <span class="bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-2 py-1 rounded font-mono">TF</span>
+                        <span class="bg-green-400 bg-opacity-20 text-green-400 text-xs px-2 py-1 rounded font-mono">ML</span>
+                    </div>
+                    <div class="flex justify-between items-center font-mono text-sm">
+                        <a href="#" class="text-green-400 hover:text-green-300">view_project</a>
+                        <a href="#" class="text-gray-400 hover:text-gray-300">github</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 bg-black">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Pages</h3>
+                    <ul class="space-y-2">
+                        <li><a href="student.html" class="text-gray-300 hover:text-white">University Student</a></li>
+                        <li><a href="professional.html" class="text-gray-300 hover:text-white">Professional</a></li>
+                        <li><a href="creator.html" class="text-gray-300 hover:text-white">Creator</a></li>
+                        <li><a href="all-tools.html" class="text-gray-300 hover:text-white">All Tools</a></li>
+                        <li><a href="dev.html" class="text-gray-300 hover:text-white">Developer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><button onclick="openLegalModal('terms')" class="text-gray-300 hover:text-white cursor-pointer">Terms of Service</button></li>
+                        <li><button onclick="openLegalModal('privacy')" class="text-gray-300 hover:text-white cursor-pointer">Privacy Policy</button></li>
+                        <li><button onclick="openLegalModal('cookie')" class="text-gray-300 hover:text-white cursor-pointer">Cookie Policy</button></li>
+                        <li><button onclick="openLegalModal('disclaimer')" class="text-gray-300 hover:text-white cursor-pointer">Disclaimer</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Connect</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white">Creator Store</a></li>
+                        <li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn text-gray-300 hover:text-white cursor-pointer">Donate</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdiZ_drgyq8RHPw2pK7gn-ezExGVi0d__g_iny7OaOrERsPUg/viewform" target="_blank" class="text-gray-300 hover:text-white">Contact us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Quote. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Legal Modal -->
+    <div id="legalModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 id="modalTitle" class="text-2xl font-bold text-black"></h2>
+                    <button onclick="closeLegalModal()" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+                </div>
+                <div id="modalContent" class="text-gray-700"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-60 hidden z-50 flex items-center justify-center p-4">
+        <div class="contact-modal-content glass-card rounded-2xl max-w-md w-full p-8 text-center transform scale-0 transition-all duration-500 ease-out">
+            <div class="mb-6">
+                <div class="w-20 h-20 bg-gradient-to-r from-blue-400 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+                    <i data-feather="mail" class="w-10 h-10 text-white"></i>
+                </div>
+                <h2 class="text-3xl font-bold text-white mb-2">Coming Soon</h2>
+                <p class="text-gray-300 text-lg">Contact functionality is currently under development. Stay tuned for updates!</p>
+            </div>
+            <button onclick="closeContactModal()" class="glass-card px-8 py-3 rounded-full text-white font-medium hover-effect border border-white border-opacity-20">
+                <i data-feather="x" class="w-4 h-4 inline mr-2"></i>
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true
+        });
+        
+        // Initialize Python files with random scroll speeds
+        function initializePythonFiles() {
+            const pythonFiles = document.querySelectorAll('.python-file');
+            pythonFiles.forEach((file, index) => {
+                // Assign random scroll speed to each file
+                const scrollSpeed = 0.2 + Math.random() * 0.8; // 0.2 to 1.0
+                file.dataset.scrollSpeed = scrollSpeed;
+            });
+        }
+        
+        // Initialize files on page load
+        initializePythonFiles();
+        
+        // Scroll-based movement for Python files
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.python-file');
+            
+            parallaxElements.forEach((element, index) => {
+                // Get the random scroll speed assigned to this file
+                const scrollSpeed = parseFloat(element.dataset.scrollSpeed) || 0.5;
+                const yPos = -(scrolled * scrollSpeed);
+                
+                // Barely smaller scale effect
+                const scale = Math.max(0.85, 1 - (scrolled * 0.00005));
+                
+                // Opacity changes based on scroll position
+                const opacity = Math.max(0.1, 0.4 - (scrolled * 0.0002));
+                
+                // X-axis movement for more 3D effect
+                const xPos = Math.sin(scrolled * 0.0005 + index) * 30 * scrollSpeed;
+                
+                element.style.transform = `translate3d(${xPos}px, ${yPos}px, 0) scale(${scale})`;
+                element.style.opacity = opacity;
+                element.style.zIndex = Math.floor(scrolled / 100) - index;
+            });
+        }
+        
+        // Throttled scroll event for performance
+        let ticking = false;
+        function requestTick() {
+            if (!ticking) {
+                requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }
+        
+        function handleScroll() {
+            requestTick();
+            ticking = false;
+        }
+        
+        window.addEventListener('scroll', handleScroll);
+
+        // Legal Modal Functions
+        function openLegalModal(type) {
+            const modal = document.getElementById('legalModal');
+            const title = document.getElementById('modalTitle');
+            const content = document.getElementById('modalContent');
+            
+            const legalContent = {
+                terms: {
+                    title: 'Terms of Service',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. Acceptance of Terms</h3>
+                        <p class="mb-4">By accessing and using Quote, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. Use License</h3>
+                        <p class="mb-4">Permission is granted to temporarily download one copy of Quote for personal, non-commercial transitory viewing only.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Disclaimer</h3>
+                        <p class="mb-4">The materials on Quote are provided on an 'as is' basis. Quote makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Limitations</h3>
+                        <p class="mb-4">In no event shall Quote or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Quote, even if Quote or a Quote authorized representative has been notified orally or in writing of the possibility of such damage.</p>
+                    `
+                },
+                privacy: {
+                    title: 'Privacy Policy',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. Information We Collect</h3>
+                        <p class="mb-4">We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. How We Use Your Information</h3>
+                        <p class="mb-4">We use the information we collect to provide, maintain, and improve our services, process transactions, and communicate with you.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Information Sharing</h3>
+                        <p class="mb-4">We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Data Security</h3>
+                        <p class="mb-4">We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                    `
+                },
+                cookie: {
+                    title: 'Cookie Policy',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. What Are Cookies</h3>
+                        <p class="mb-4">Cookies are small text files that are placed on your computer or mobile device when you visit our website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. How We Use Cookies</h3>
+                        <p class="mb-4">We use cookies to enhance your experience, analyze site traffic, and personalize content and advertisements.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Types of Cookies</h3>
+                        <p class="mb-4">We use both session cookies (which expire when you close your browser) and persistent cookies (which stay on your device until deleted).</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Managing Cookies</h3>
+                        <p class="mb-4">You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and set most browsers to prevent them from being placed.</p>
+                    `
+                },
+                disclaimer: {
+                    title: 'Disclaimer',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. General Disclaimer</h3>
+                        <p class="mb-4">The information on this website is provided on an "as is" basis. To the fullest extent permitted by law, this Company excludes all representations, warranties, conditions and terms relating to our website and the use of this website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. No Liability</h3>
+                        <p class="mb-4">In no event will Quote be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. External Links</h3>
+                        <p class="mb-4">Through this website you are able to link to other websites which are not under the control of Quote. We have no control over the nature, content and availability of those sites.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Tool Recommendations</h3>
+                        <p class="mb-4">All tool recommendations are based on our research and testing. We do not guarantee the performance, availability, or suitability of any recommended tools for your specific needs.</p>
+                    `
+                }
+            };
+            
+            title.textContent = legalContent[type].title;
+            content.innerHTML = legalContent[type].content;
+            modal.classList.remove('hidden');
+        }
+
+        function closeLegalModal() {
+            document.getElementById('legalModal').classList.add('hidden');
+        }
+
+        // Contact Modal Functions
+        function openContactModal() {
+            const modal = document.getElementById('contactModal');
+            const modalContent = document.querySelector('.contact-modal-content');
+            
+            modal.classList.remove('hidden');
+            
+            // Reset animation state
+            modalContent.style.transform = 'scale(0.8)';
+            modalContent.style.transition = 'none';
+            
+            // Force reflow to ensure reset is applied
+            modalContent.offsetHeight;
+            
+            // Animate modal opening
+            setTimeout(() => {
+                modalContent.style.transition = 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                modalContent.style.transform = 'scale(1)';
+            }, 10);
+        }
+
+        function closeContactModal() {
+            const modal = document.getElementById('contactModal');
+            const modalContent = document.querySelector('.contact-modal-content');
+            
+            // Animate modal closing
+            modalContent.style.transform = 'scale(0)';
+            modalContent.style.transition = 'all 0.3s ease-in';
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modalContent.style.transform = 'scale(0)';
+                modalContent.style.transition = 'all 0.5s ease-out';
+            }, 300);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('legalModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLegalModal();
+            }
+        });
+
+        document.getElementById('contactModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeContactModal();
+            }
+        });
+        
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            gsap.to(cursorFollower, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        });
+        
+        // Hover effects for cursor
+        const hoverElements = document.querySelectorAll('a, button, .hover-effect, .project-card, .glass-card, .skill-tag');
+        
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

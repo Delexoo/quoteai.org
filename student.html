@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Tools | Quote</title>
+    <link rel="icon" href="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/QuoteLogoCircle.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -344,9 +345,12 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease;
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: center;
             gap: 4px;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
         }
         
         @media (max-width: 768px) {
@@ -359,7 +363,27 @@
                 flex-direction: row;
                 flex-wrap: nowrap;
                 overflow-x: auto;
+                overflow-y: hidden;
                 white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+            
+            .mini-nav::-webkit-scrollbar {
+                display: none;
+            }
+            
+            .mini-nav .flex {
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                white-space: nowrap !important;
+            }
+            
+            .mini-nav .flex > * {
+                flex-shrink: 0 !important;
+                white-space: nowrap !important;
             }
         }
         
@@ -377,10 +401,12 @@
         
         @media (max-width: 768px) {
             .mini-nav-item {
-                padding: 4px 8px;
-                margin: 0 2px;
-                font-size: 12px;
-                border-radius: 15px;
+                padding: 8px 16px;
+                margin: 0 4px;
+                font-size: 14px;
+                border-radius: 25px;
+                flex-shrink: 0;
+                white-space: nowrap;
             }
         }
         

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quote | Curated Tools for Modern Creators</title>
+    <link rel="icon" href="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/QuoteLogoCircle.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -538,6 +539,83 @@
         .floating {
             animation: float 6s ease-in-out infinite;
         }
+        
+        /* Coming Soon Modal Animations */
+        .coming-soon-modal {
+            animation: modalFadeIn 0.3s ease-out;
+        }
+        
+        .coming-soon-content {
+            animation: modalSlideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes modalSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.8) rotateX(-15deg);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1) rotateX(0deg);
+            }
+        }
+        
+        .coming-soon-icon {
+            animation: iconBounce 0.6s ease-out 0.2s both;
+        }
+        
+        @keyframes iconBounce {
+            from {
+                opacity: 0;
+                transform: scale(0.3) rotate(-180deg);
+            }
+            50% {
+                transform: scale(1.1) rotate(-90deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+        
+        .coming-soon-text {
+            animation: textSlideIn 0.5s ease-out 0.3s both;
+        }
+        
+        @keyframes textSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .coming-soon-button {
+            animation: buttonSlideIn 0.4s ease-out 0.5s both;
+        }
+        
+        @keyframes buttonSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -643,9 +721,9 @@
                         Browse through our fully handpicked collection of the finest AI assistants, educational platforms, productivity software, and creative tools available in 2025, organizing them into three specialized pathways for maximum efficiency.
                     </p>
                     <div class="flex flex-row gap-2 md:gap-4">
-                        <a href="dev.html" class="glass-card px-3 md:px-6 py-2 md:py-3 rounded-full text-black font-medium hover-effect button-glow inline-flex items-center justify-center text-sm md:text-base">
+                        <button onclick="openComingSoonModal('team')" class="glass-card px-3 md:px-6 py-2 md:py-3 rounded-full text-black font-medium hover-effect button-glow inline-flex items-center justify-center text-sm md:text-base">
                             Meet the Team <i data-feather="users" class="ml-1 md:ml-2 w-3 h-3 md:w-4 md:h-4"></i>
-                        </a>
+                        </button>
                         <a href="landing.html" class="glass-card px-3 md:px-6 py-2 md:py-3 rounded-full text-black font-medium hover-effect button-glow inline-flex items-center justify-center text-sm md:text-base">
                             Get Started <i data-feather="arrow-right" class="ml-1 md:ml-2 w-3 h-3 md:w-4 md:h-4"></i>
                         </a>
@@ -914,6 +992,24 @@
         </div>
     </div>
 
+    <!-- Coming Soon Modal -->
+    <div id="comingSoonModal" class="coming-soon-modal fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="coming-soon-content bg-white rounded-xl max-w-md w-full">
+            <div class="p-8 text-center">
+                <div class="mb-6">
+                    <div class="coming-soon-icon w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-feather="clock" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <h2 id="comingSoonTitle" class="coming-soon-text text-2xl font-bold text-black mb-2"></h2>
+                    <p id="comingSoonMessage" class="coming-soon-text text-gray-600"></p>
+                </div>
+                <button onclick="closeComingSoonModal()" class="coming-soon-button bg-gradient-to-r from-blue-500 to-purple-600 px-6 py-2 rounded-full text-white font-medium hover:from-blue-400 hover:to-purple-500 transition-all duration-300">
+                    Got it!
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // Initialize AOS
         AOS.init({
@@ -1008,6 +1104,72 @@
         document.getElementById('legalModal').addEventListener('click', function(e) {
             if (e.target === this) {
                 closeLegalModal();
+            }
+        });
+
+        // Coming Soon Modal Functions
+        function openComingSoonModal(type) {
+            const modal = document.getElementById('comingSoonModal');
+            const title = document.getElementById('comingSoonTitle');
+            const message = document.getElementById('comingSoonMessage');
+            const content = modal.querySelector('.coming-soon-content');
+            const icon = modal.querySelector('.coming-soon-icon');
+            const textElements = modal.querySelectorAll('.coming-soon-text');
+            const button = modal.querySelector('.coming-soon-button');
+            
+            const comingSoonContent = {
+                team: {
+                    title: 'Meet the Team',
+                    message: 'We\'re working hard to introduce our amazing team behind Quote. Stay tuned for updates!'
+                }
+            };
+            
+            title.textContent = comingSoonContent[type].title;
+            message.textContent = comingSoonContent[type].message;
+            
+            // Reset animations
+            content.style.animation = 'none';
+            icon.style.animation = 'none';
+            textElements.forEach(el => el.style.animation = 'none');
+            button.style.animation = 'none';
+            
+            // Force reflow
+            content.offsetHeight;
+            icon.offsetHeight;
+            textElements.forEach(el => el.offsetHeight);
+            button.offsetHeight;
+            
+            // Show modal and restart animations
+            modal.classList.remove('hidden');
+            
+            // Restart animations with slight delays
+            setTimeout(() => {
+                content.style.animation = 'modalSlideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            }, 50);
+            
+            setTimeout(() => {
+                icon.style.animation = 'iconBounce 0.6s ease-out both';
+            }, 200);
+            
+            setTimeout(() => {
+                textElements.forEach(el => {
+                    el.style.animation = 'textSlideIn 0.5s ease-out both';
+                });
+            }, 300);
+            
+            setTimeout(() => {
+                button.style.animation = 'buttonSlideIn 0.4s ease-out both';
+            }, 500);
+        }
+
+        function closeComingSoonModal() {
+            document.getElementById('comingSoonModal').classList.add('hidden');
+        }
+
+        // Close coming soon modal when clicking outside
+        document.getElementById('comingSoonModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeComingSoonModal();
             }
         });
         
