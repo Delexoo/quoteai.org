@@ -239,6 +239,26 @@
             transition: all 0.3s ease;
         }
         
+        /* Search Bar Styling */
+        .search-container input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .search-container input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        #searchResults {
+            backdrop-filter: blur(20px);
+            background: rgba(17, 24, 39, 0.95);
+        }
+        
+        #searchResults a:hover {
+            background: rgba(55, 65, 81, 0.8);
+        }
+        
         .glass-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.25);
@@ -302,7 +322,7 @@
         
         .hover-effect:hover {
             transform: scale(1.15) translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(0, 0, 0, 0.3);
         }
         
         .hover-effect::before {
@@ -476,8 +496,8 @@
         
         .resource-card:hover {
             transform: translateY(-15px) rotateX(6deg) rotateY(6deg) rotateZ(2deg);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 25px rgba(255, 255, 255, 0.1);
-            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(0, 0, 0, 0.3);
         }
         
         .resource-card:nth-child(1):hover {
@@ -498,6 +518,11 @@
         
         .nav-link {
             position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .nav-logo {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
         
         .nav-link::after {
@@ -522,7 +547,294 @@
         }
         
         .donate-btn {
-            animation: rotateShake 2s ease-in-out infinite;
+            animation: rotateShake 1s ease-in-out infinite;
+        }
+        
+        /* Mobile Horizontal Scroll */
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+        
+        /* Mobile Resource Cards */
+        @media (max-width: 768px) {
+            .mobile-resource-card {
+                width: 16rem; /* 256px - fits 1.5 cards */
+                flex-shrink: 0;
+            }
+        }
+        
+        /* New Pathway Cards */
+        .pathway-card-new {
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Mobile compact styling */
+        @media (max-width: 768px) {
+            .pathway-card-new {
+                aspect-ratio: 1;
+                height: 150px;
+                width: 100%;
+                overflow: hidden;
+            }
+            
+            .pathway-card-new .bg-gradient-to-br {
+                display: none;
+            }
+            
+            .pathway-card-new .p-8 {
+                padding: 0.5rem;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                text-align: left;
+                background: white;
+                box-sizing: border-box;
+            }
+            
+            /* University Students - Blue theme */
+            .pathway-card-new:nth-child(1) .p-8 {
+                background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+            }
+            
+            .pathway-card-new:nth-child(1) h3 {
+                color: #1e40af;
+            }
+            
+            .pathway-card-new:nth-child(1) p {
+                color: #1e3a8a;
+            }
+            
+            .pathway-card-new:nth-child(1) .w-16 {
+                background: #3b82f6;
+                color: white;
+            }
+            
+            /* Professionals - Green theme */
+            .pathway-card-new:nth-child(2) .p-8 {
+                background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+            }
+            
+            .pathway-card-new:nth-child(2) h3 {
+                color: #166534;
+            }
+            
+            .pathway-card-new:nth-child(2) p {
+                color: #14532d;
+            }
+            
+            .pathway-card-new:nth-child(2) .w-16 {
+                background: #22c55e;
+                color: white;
+            }
+            
+            /* Content Creators - Purple theme */
+            .pathway-card-new:nth-child(3) .p-8 {
+                background: linear-gradient(135deg, #f3e8ff, #e9d5ff);
+            }
+            
+            .pathway-card-new:nth-child(3) h3 {
+                color: #7c3aed;
+            }
+            
+            .pathway-card-new:nth-child(3) p {
+                color: #6b21a8;
+            }
+            
+            .pathway-card-new:nth-child(3) .w-16 {
+                background: #a855f7;
+                color: white;
+            }
+            
+            .pathway-card-new h3 {
+                font-size: 0.75rem;
+                margin-bottom: 0.125rem;
+                font-weight: 700;
+            }
+            
+            .pathway-card-new p {
+                font-size: 0.625rem;
+                line-height: 1.2;
+                margin-bottom: 0.25rem;
+            }
+            
+            .pathway-card-new .w-16 {
+                width: 2rem;
+                height: 2rem;
+            }
+            
+            .pathway-card-new .w-8 {
+                width: 1rem;
+                height: 1rem;
+            }
+            
+            .pathway-card-new .text-2xl {
+                font-size: 1.125rem;
+            }
+            
+            .pathway-card-new .text-sm {
+                font-size: 0.625rem;
+            }
+            
+            .pathway-card-new .text-xs {
+                font-size: 0.5rem;
+            }
+            
+            .pathway-card-new .mb-6 {
+                margin-bottom: 0.5rem;
+            }
+            
+            .pathway-card-new .mb-3 {
+                margin-bottom: 0.25rem;
+            }
+            
+            .pathway-card-new .pathway-button {
+                display: none;
+            }
+            
+            .pathway-card-new .pathway-button i {
+                display: none !important;
+            }
+            
+            .pathway-card-new [data-feather="arrow-right"] {
+                display: none !important;
+            }
+            
+            .pathway-card-new .ml-2 {
+                display: none !important;
+            }
+            
+            /* Hide stats and extra elements on mobile */
+            .pathway-card-new .flex.items-center.justify-between {
+                display: none;
+            }
+            
+            .pathway-card-new .text-right {
+                display: none;
+            }
+            
+            /* Add icons to titles */
+            .pathway-card-new h3 {
+                display: flex;
+                align-items: center;
+                gap: 0.25rem;
+            }
+            
+            .pathway-card-new h3::before {
+                content: '';
+                width: 0.75rem;
+                height: 0.75rem;
+                border-radius: 0.125rem;
+                flex-shrink: 0;
+            }
+            
+            /* University Students icon */
+            .pathway-card-new:nth-child(1) h3::before {
+                background: #3b82f6;
+                content: '📚';
+                font-size: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Professionals icon */
+            .pathway-card-new:nth-child(2) h3::before {
+                background: #22c55e;
+                content: '💼';
+                font-size: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            /* Content Creators icon */
+            .pathway-card-new:nth-child(3) h3::before {
+                background: #a855f7;
+                content: '🎨';
+                font-size: 0.5rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .pathway-card-new .flex {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.25rem;
+            }
+            
+            .pathway-card-new .space-x-3 {
+                gap: 0.5rem;
+            }
+            
+            .pathway-card-new .text-right {
+                text-align: center;
+            }
+            
+            .pathway-card-new .justify-between {
+                justify-content: center;
+                flex-direction: column;
+                gap: 0.25rem;
+            }
+            
+            /* Center Creator card on mobile */
+            .pathway-card-new.col-start-1.col-end-3 {
+                justify-self: center;
+                max-width: 180px;
+            }
+        }
+        
+        .pathway-card-new:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pathway-card-new:hover .pathway-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .pathway-card-new:hover .pathway-button {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .pathway-icon {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .pathway-button {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        /* Floating background elements animation */
+        .pathway-card-new:hover .floating-bg-1 {
+            animation: float1 3s ease-in-out infinite;
+        }
+        
+        .pathway-card-new:hover .floating-bg-2 {
+            animation: float2 3s ease-in-out infinite 0.5s;
+        }
+        
+        @keyframes float1 {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(-10px) translateX(5px); }
+        }
+        
+        @keyframes float2 {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            50% { transform: translateY(5px) translateX(-8px); }
         }
         
         .donate-btn-footer {
@@ -644,18 +956,44 @@
     <!-- Navigation -->
     <nav class="fixed w-full z-50 py-2 md:py-4 px-4 md:px-12">
         <div class="flex justify-between items-center glass-card px-4 md:px-6 py-2 md:py-3">
-            <a href="#" class="text-lg md:text-xl font-bold text-white transition-transform duration-300 hover:transform hover:-translate-y-1">QUOTE</a>
+            <a href="#" class="nav-logo text-lg md:text-xl font-bold text-white transition-transform duration-300 hover:transform hover:-translate-y-1">quoteai.org</a>
+            
+            <!-- Search Bar -->
+            <div class="hidden md:flex flex-1 max-w-md mx-8 relative">
+                <div class="search-container w-full relative">
+                    <input type="text" id="searchInput" placeholder="Search tools, pages..." 
+                           class="w-full px-4 py-2 pl-10 pr-4 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300">
+                    <i data-feather="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-300"></i>
+                    <div id="searchResults" class="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-gray-700 rounded-xl shadow-lg max-h-96 overflow-y-auto z-50 hidden">
+                        <!-- Search results will be populated here -->
+                    </div>
+                </div>
+            </div>
+            
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="index.html" class="nav-link text-white font-medium">Home</a>
-                <a href="student.html" class="nav-link text-white font-medium">Student</a>
-                <a href="professional.html" class="nav-link text-white font-medium">Professional</a>
-                <a href="creator.html" class="nav-link text-white font-medium">Creator</a>
-                <a href="all-tools.html" class="nav-link text-white font-medium">All Tools</a>
+                <a href="index.html" class="nav-link text-white font-bold">Home</a>
+                <a href="student.html" class="nav-link text-white font-bold">Student</a>
+                <a href="professional.html" class="nav-link text-white font-bold">Professional</a>
+                <a href="creator.html" class="nav-link text-white font-bold">Creator</a>
+                <a href="all-tools.html" class="nav-link text-white font-bold">All Tools</a>
+                <a href="leaderboard.html" class="nav-link text-white font-bold">Leaderboard</a>
                 <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full hover:from-orange-400 hover:to-orange-500 transition-all duration-300 transform hover:scale-105">
                     Donate
                 </a>
             </div>
             <div class="flex items-center space-x-2 md:hidden">
+                <!-- Mobile Search Bar -->
+                <div class="flex-1 max-w-xs mr-2 relative">
+                    <div class="search-container w-full relative">
+                        <input type="text" id="mobileNavSearchInput" placeholder="Search..." 
+                               class="w-full px-3 py-1.5 pl-8 pr-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-xs">
+                        <i data-feather="search" class="absolute left-2.5 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-300"></i>
+                        <div id="mobileNavSearchResults" class="absolute top-full left-0 right-0 mt-1 bg-gray-900 border border-gray-700 rounded-lg shadow-lg max-h-48 overflow-y-auto z-50 hidden">
+                            <!-- Mobile nav search results will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                
                 <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-2 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full text-xs">
                     Donate
                 </a>
@@ -668,11 +1006,12 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden mt-2 glass-card px-4 py-3">
             <div class="flex flex-wrap gap-2">
-                <a href="index.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Home</a>
-                <a href="student.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Student</a>
-                <a href="professional.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Professional</a>
-                <a href="creator.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Creator</a>
-                <a href="all-tools.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">All Tools</a>
+                <a href="index.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Home</a>
+                <a href="student.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Student</a>
+                <a href="professional.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Professional</a>
+                <a href="creator.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Creator</a>
+                <a href="all-tools.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">All Tools</a>
+                <a href="leaderboard.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Leaderboard</a>
             </div>
         </div>
     </nav>
@@ -687,10 +1026,10 @@
                 Browse for the latest AI study tools, educational resources, media editors, free books, courses, and tons more tools to enhance your digital experience in 2025. No more wasting time searching, everything you need is here in one place.
             </p>
             <div class="flex flex-row justify-center gap-2 md:gap-4" data-aos="fade-up" data-aos-delay="200">
-                <a href="landing.html" class="glass-card px-4 md:px-8 py-2 md:py-3 rounded-full text-white font-medium hover-effect button-glow border border-white border-opacity-20 inline-block text-center text-sm md:text-base">
+                <a href="landing.html" class="glass-card px-6 md:px-8 py-3 md:py-3 rounded-full text-white font-medium hover-effect button-glow border border-white border-opacity-20 inline-block text-center text-base md:text-base">
                     Start Here!
                 </a>
-                <button class="glass-card px-4 md:px-8 py-2 md:py-3 rounded-full text-white font-medium hover-effect button-glow border border-white border-opacity-20 text-sm md:text-base" onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})">
+                <button class="glass-card px-6 md:px-8 py-3 md:py-3 rounded-full text-white font-medium hover-effect button-glow border border-white border-opacity-20 text-base md:text-base" onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})">
                     Learn More!
                 </button>
             </div>
@@ -707,9 +1046,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="glass-card p-8 rounded-xl shadow-lg" data-aos="fade-right">
                     <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center mr-4">
-                            <i data-feather="target" class="w-6 h-6 text-white"></i>
-                        </div>
+                        <img src="https://github.com/Delexoo/quoteai.org/blob/main/Quote.png?raw=true" alt="Quote" class="w-16 h-16 rounded-xl mr-4 shadow-lg">
                         <h2 class="text-3xl md:text-4xl font-bold text-black">About Quote</h2>
                     </div>
                     <p class="text-gray-800 mb-6 text-lg leading-relaxed">
@@ -721,28 +1058,28 @@
                         Browse through our fully handpicked collection of the finest AI assistants, educational platforms, productivity software, and creative tools available in 2025, organizing them into three specialized pathways for maximum efficiency.
                     </p>
                     <div class="flex flex-row gap-2 md:gap-4">
-                        <button onclick="openComingSoonModal('team')" class="glass-card px-3 md:px-6 py-2 md:py-3 rounded-full text-black font-medium hover-effect button-glow inline-flex items-center justify-center text-sm md:text-base">
-                            Meet the Team <i data-feather="users" class="ml-1 md:ml-2 w-3 h-3 md:w-4 md:h-4"></i>
-                        </button>
+                        <a href="dev.html" class="glass-card px-3 md:px-6 py-2 md:py-3 rounded-full text-black font-medium hover-effect button-glow inline-flex items-center justify-center text-sm md:text-base">
+                            Meet the Owner <i data-feather="users" class="ml-1 md:ml-2 w-3 h-3 md:w-4 md:h-4"></i>
+                        </a>
                         <a href="landing.html" class="glass-card px-3 md:px-6 py-2 md:py-3 rounded-full text-black font-medium hover-effect button-glow inline-flex items-center justify-center text-sm md:text-base">
                             Get Started <i data-feather="arrow-right" class="ml-1 md:ml-2 w-3 h-3 md:w-4 md:h-4"></i>
                         </a>
                     </div>
                 </div>
-                <div class="relative" data-aos="fade-left">
+                <div class="relative hidden md:block" data-aos="fade-left">
                     <div class="glass-card aspect-w-1 aspect-h-1 rounded-xl overflow-hidden floating shadow-2xl">
                         <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Professional Team Collaboration" class="w-full h-full object-cover">
                     </div>
                     <!-- Floating Stats -->
                     <div class="absolute -top-4 -right-4 glass-card p-4 rounded-lg shadow-lg">
                         <div class="text-center">
-                            <div class="text-2xl font-bold text-black">500+</div>
+                            <div class="text-2xl font-bold text-black">100+</div>
                             <div class="text-sm text-gray-600">Tools Reviewed</div>
                 </div>
                     </div>
                     <div class="absolute -bottom-4 -left-4 glass-card p-4 rounded-lg shadow-lg">
                         <div class="text-center">
-                            <div class="text-2xl font-bold text-black">10K+</div>
+                            <div class="text-2xl font-bold text-black">1K+</div>
                             <div class="text-sm text-gray-600">Users Helped</div>
                 </div>
                     </div>
@@ -765,8 +1102,74 @@
                 Our latest additions to the collection
             </p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Resource 1 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-8">
+                <!-- Mobile Horizontal Scroll Container -->
+                <div class="md:hidden">
+                    <div class="flex gap-4 overflow-x-auto pb-4 scrollbar-hide" style="scrollbar-width: none; -ms-overflow-style: none;">
+                        <div class="flex gap-4">
+                            <!-- Resource 1 - Mobile -->
+                            <div class="flex-shrink-0 w-64">
+                                <a href="https://cluely.com/" target="_blank" class="resource-card glass-card p-4 rounded-xl block h-full" data-aos="fade-up" data-aos-delay="200">
+            <div class="mb-4 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Study Assistant" class="resource-image">
+                    </div>
+                    <div class="flex items-center mb-3">
+                <h3 class="resource-title text-xl font-bold text-white">Cluely</h3>
+                <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/cluely.ico" alt="Cluely" class="w-8 h-8 rounded-lg ml-3">
+                <span class="resource-badge bg-blue-400 bg-opacity-20 text-blue-400 text-xs px-2 py-1 rounded ml-auto">AI Tool</span>
+                    </div>
+            <p class="text-gray-300 mb-4">Live interactive AI study assistant for academic support and homework help.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-400">Free Plan Available</span>
+                <span class="resource-button text-blue-400 text-sm font-medium">View Details →</span>
+                    </div>
+                                </a>
+                            </div>
+                            
+                            <!-- Resource 2 - Mobile -->
+                            <div class="flex-shrink-0 w-64">
+                                <a href="https://www.bettercanvas.org/" target="_blank" class="resource-card glass-card p-4 rounded-xl block h-full" data-aos="fade-up" data-aos-delay="300">
+            <div class="mb-4 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Productivity Tools" class="resource-image">
+                    </div>
+                    <div class="flex items-center mb-3">
+                <h3 class="resource-title text-xl font-bold text-white">BetterCampus</h3>
+                <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/bettercanvas.ico" alt="BetterCampus" class="w-8 h-8 rounded-lg ml-3">
+                <span class="resource-badge bg-green-400 bg-opacity-20 text-green-400 text-xs px-2 py-1 rounded ml-auto">Productivity</span>
+                    </div>
+            <p class="text-gray-300 mb-4">Chrome extension to enhance Canvas LMS experience with better navigation and features.</p>
+                    <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-400">Free</span>
+                <span class="resource-button text-green-400 text-sm font-medium">View Details →</span>
+                    </div>
+                                </a>
+                            </div>
+                            
+                            <!-- Resource 3 - Mobile -->
+                            <div class="flex-shrink-0 w-64">
+                                <a href="https://chat.qwen.ai/" target="_blank" class="resource-card glass-card p-4 rounded-xl block h-full" data-aos="fade-up" data-aos-delay="400">
+            <div class="mb-4 rounded-lg overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Research Assistant" class="resource-image">
+                    </div>
+                    <div class="flex items-center mb-3">
+                <h3 class="resource-title text-xl font-bold text-white">Qwen</h3>
+                <img src="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/qwen.ico" alt="Qwen" class="w-8 h-8 rounded-lg ml-3">
+                <span class="resource-badge bg-purple-400 bg-opacity-20 text-purple-400 text-xs px-2 py-1 rounded ml-auto">AI Assistant</span>
+                    </div>
+            <p class="text-gray-300 mb-4">Most Advanced AI assistant for comprehensive academic support and research assistance.</p>
+                    <div class="flex justify-between items-center">
+                <span class="text-sm text-gray-400">Free</span>
+                <span class="resource-button text-purple-400 text-sm font-medium">View Details →</span>
+                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Desktop Grid -->
+                <div class="hidden md:contents">
+                    <!-- Resource 1 - Desktop -->
         <a href="https://cluely.com/" target="_blank" class="resource-card glass-card p-6 rounded-xl block" data-aos="fade-up" data-aos-delay="200">
             <div class="mb-4 rounded-lg overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Study Assistant" class="resource-image">
@@ -783,7 +1186,7 @@
                     </div>
         </a>
                 
-                <!-- Resource 2 -->
+                    <!-- Resource 2 - Desktop -->
         <a href="https://www.bettercanvas.org/" target="_blank" class="resource-card glass-card p-6 rounded-xl block" data-aos="fade-up" data-aos-delay="300">
             <div class="mb-4 rounded-lg overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Productivity Tools" class="resource-image">
@@ -800,7 +1203,7 @@
                     </div>
         </a>
                 
-                <!-- Resource 3 -->
+                    <!-- Resource 3 - Desktop -->
         <a href="https://chat.qwen.ai/" target="_blank" class="resource-card glass-card p-6 rounded-xl block" data-aos="fade-up" data-aos-delay="400">
             <div class="mb-4 rounded-lg overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Research Assistant" class="resource-image">
@@ -816,12 +1219,191 @@
                 <span class="resource-button text-purple-400 text-sm font-medium">View Details →</span>
                     </div>
         </a>
+                </div>
             </div>
             
             <div class="text-center mt-16" data-aos="fade-up">
                 <a href="all-tools.html" class="glass-card px-8 py-3 rounded-full text-white font-medium hover-effect button-glow inline-block">
                     All Tools
                 </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Preview -->
+    <section class="py-16 px-6 md:px-12 bg-gray-50 relative overflow-hidden">
+        <div class="max-w-4xl mx-auto relative z-10">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-aos="fade-up">
+                    Donation Leaderboard
+                </h2>
+                <p class="text-lg text-gray-600 mb-8" data-aos="fade-up" data-aos-delay="100">
+                    See our amazing supporters who help keep Quote running!
+                </p>
+            </div>
+            
+            <!-- Blurred Leaderboard Preview -->
+            <div class="relative bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-8" data-aos="fade-up" data-aos-delay="200">
+                <div class="blur-sm">
+                    <!-- Top 3 Preview -->
+                    <div class="space-y-3">
+                        <!-- Rank 1 -->
+                        <div class="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-12 h-12 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full flex items-center justify-center text-white font-bold text-lg">1</div>
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" alt="Profile" class="w-10 h-10 rounded-lg">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-gray-900">Supporter Name</h3>
+                                <p class="text-sm text-gray-500">🎓 University</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-lg font-bold text-green-600">$500</div>
+                                <p class="text-xs text-gray-500">"Amazing platform!"</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Rank 2 -->
+                        <div class="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-12 h-12 bg-gradient-to-r from-gray-400 to-gray-500 rounded-full flex items-center justify-center text-white font-bold text-lg">2</div>
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" alt="Profile" class="w-10 h-10 rounded-lg">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-gray-900">Supporter Name</h3>
+                                <p class="text-sm text-gray-500">💼 Professional</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-lg font-bold text-green-600">$250</div>
+                                <p class="text-xs text-gray-500">"Love the tools!"</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Rank 3 -->
+                        <div class="flex items-center space-x-4 p-3 bg-gray-50 rounded-lg">
+                            <div class="w-12 h-12 bg-gradient-to-r from-orange-400 to-orange-500 rounded-full flex items-center justify-center text-white font-bold text-lg">3</div>
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" alt="Profile" class="w-10 h-10 rounded-lg">
+                            <div class="flex-1">
+                                <h3 class="font-semibold text-gray-900">Supporter Name</h3>
+                                <p class="text-sm text-gray-500">🎨 Creator</p>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-lg font-bold text-green-600">$100</div>
+                                <p class="text-xs text-gray-500">"Great resources!"</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Overlay with CTA -->
+                <div class="absolute inset-0 bg-white bg-opacity-80 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+                    <div class="text-center">
+                        <div class="mb-4">
+                            <i data-feather="eye" class="w-12 h-12 text-gray-400 mx-auto"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">View Full Leaderboard</h3>
+                        <p class="text-gray-600 mb-4">See all our amazing supporters</p>
+                        <a href="leaderboard.html" class="inline-block bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                            View Leaderboard
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Source Code Section -->
+    <section class="py-20 px-6 md:px-12 bg-black relative overflow-hidden">
+        <!-- Animated Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle, rgba(59, 130, 246, 0.3) 1px, transparent 1px); background-size: 50px 50px; animation: gridMove 20s linear infinite;"></div>
+        </div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">
+                    Open Source
+                </h2>
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    This website is open source and available on GitHub. View the code, contribute, or fork the project.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch" data-aos="fade-up" data-aos-delay="200">
+                <!-- Left Side - Code Preview -->
+                <div class="flex flex-col">
+                    <div class="bg-gray-900 rounded-2xl p-6 border border-gray-700 shadow-2xl flex-1 flex flex-col relative">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                            <span class="text-gray-400 text-sm ml-4">quoteai.org</span>
+                        </div>
+                        
+                        <div class="space-y-3 font-mono text-sm flex-1" id="code-animation">
+                            <div class="text-blue-400 opacity-0" data-text="&lt;!-- Modern Web Design --&gt;">
+                                <span class="text-gray-500">&lt;!--</span> Modern Web Design <span class="text-gray-500">--&gt;</span>
+                            </div>
+                            <div class="text-purple-400 opacity-0" data-text="&lt;div class=&quot;glass-card&quot;&gt;">
+                                <span class="text-gray-500">&lt;</span>div class="<span class="text-green-400">glass-card</span>"<span class="text-gray-500">&gt;</span>
+                            </div>
+                            <div class="text-yellow-300 ml-4 opacity-0" data-text="&lt;h1&gt;Quote&lt;/h1&gt;">
+                                <span class="text-gray-500">&lt;</span>h1<span class="text-gray-500">&gt;</span>Quote<span class="text-gray-500">&lt;/</span>h1<span class="text-gray-500">&gt;</span>
+                            </div>
+                            <div class="text-purple-400 ml-4 opacity-0" data-text="&lt;p&gt;AI-powered tools&lt;/p&gt;">
+                                <span class="text-gray-500">&lt;</span>p<span class="text-gray-500">&gt;</span>AI-powered tools<span class="text-gray-500">&lt;/</span>p<span class="text-gray-500">&gt;</span>
+                            </div>
+                            <div class="text-purple-400 opacity-0" data-text="&lt;/div&gt;">
+                                <span class="text-gray-500">&lt;/</span>div<span class="text-gray-500">&gt;</span>
+                            </div>
+                            <div class="text-gray-400 opacity-0" data-text="// Built with ❤️">
+                                <span class="text-gray-500">//</span> Built with ❤️
+                            </div>
+                        </div>
+                        
+                        
+                        <!-- Easter Egg Button -->
+                        <div class="absolute bottom-4 right-4">
+                            <button id="easter-egg-btn" class="bg-gray-600 text-white text-xs px-3 py-1 rounded-full hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 opacity-0" style="transition: opacity 0.5s ease-in-out;">
+                                Easter Egg
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - GitHub Info -->
+                <div class="flex flex-col">
+                    <div class="glass-card p-8 rounded-2xl border border-gray-700 flex-1 flex flex-col">
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-16 h-16 bg-gray-800 rounded-2xl flex items-center justify-center">
+                                <i data-feather="github" class="w-8 h-8 text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-white">GitHub Repository</h3>
+                                <p class="text-gray-400">Delexoo/quoteai.org</p>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4 flex-1">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-300">Language</span>
+                                <span class="text-blue-400 font-mono">HTML 100%</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-300">Commits</span>
+                                <span class="text-green-400 font-mono">84+</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-300">License</span>
+                                <span class="text-purple-400 font-mono">Open Source</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-auto">
+                            <a href="https://github.com/Delexoo/quoteai.org" target="_blank" 
+                               class="w-full bg-gradient-to-r from-gray-800 to-gray-700 text-white font-semibold py-4 px-6 rounded-xl hover:from-gray-700 hover:to-gray-600 transition-all duration-300 transform hover:scale-105 hover:shadow-lg flex items-center justify-center space-x-3">
+                                <i data-feather="external-link" class="w-5 h-5"></i>
+                                <span>View Source Code</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -840,82 +1422,157 @@
                 Organized into three specialized pathways for maximum efficiency
             </p>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8">
                 <!-- University Students -->
-                <div class="pathway-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center mb-6">
-                        <div class="gradient-icon w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mr-4">
-                            <i data-feather="book" class="text-white w-7 h-7"></i>
+                <div class="pathway-card-new p-0 rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative">
+                        <!-- Header with gradient background -->
+                        <div class="bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 p-8 text-white relative overflow-hidden">
+                            <div class="floating-bg-1 absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
+                            <div class="floating-bg-2 absolute bottom-0 left-0 w-24 h-24 bg-white opacity-5 rounded-full translate-y-12 -translate-x-12"></div>
+                            
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                                        <i data-feather="book" class="text-white w-8 h-8"></i>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-black">University Students</h3>
-                            <p class="text-sm text-gray-600">Academic Excellence</p>
+                                    <div class="text-right">
+                                        <div class="text-sm opacity-90">Academic Excellence</div>
+                                        <div class="text-xs opacity-70">University Students</div>
                         </div>
                     </div>
-                    <p class="text-gray-700 mb-8 leading-relaxed">
+                                
+                                <h3 class="text-2xl font-bold mb-3">University Students</h3>
+                                <p class="text-blue-100 leading-relaxed">
                         Essential tools for research, writing, collaboration, and time management to excel in academic life.
                     </p>
-                    <div class="flex items-center justify-between">
-                        <div class="status-dots flex space-x-2">
-                            <span class="w-2 h-2 bg-blue-500 rounded-full"></span>
-                            <span class="w-2 h-2 bg-blue-300 rounded-full"></span>
-                            <span class="w-2 h-2 bg-blue-200 rounded-full"></span>
                         </div>
-                        <a href="student.html" class="text-black font-semibold flex items-center hover-effect whitespace-nowrap">
-                        Explore <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                        </a>
+                        </div>
+                        
+                        <!-- Content section -->
+                        <div class="p-8 bg-white">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex space-x-1">
+                                        <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                        <div class="w-2 h-2 bg-blue-300 rounded-full"></div>
+                                        <div class="w-2 h-2 bg-blue-200 rounded-full"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-500">Active Tools</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-blue-600">25+</div>
+                                    <div class="text-xs text-gray-500">Resources</div>
+                                </div>
+                            </div>
+                            
+                            <a href="student.html" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold py-4 px-6 rounded-2xl flex items-center justify-center hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                                Explore Pathway
+                                <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Professionals -->
-                <div class="pathway-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-center mb-6">
-                        <div class="gradient-icon w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mr-4">
-                            <i data-feather="briefcase" class="text-white w-7 h-7"></i>
+                <div class="pathway-card-new p-0 rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative">
+                        <!-- Header with gradient background -->
+                        <div class="bg-gradient-to-br from-green-500 via-green-600 to-green-700 p-8 text-white relative overflow-hidden">
+                            <div class="floating-bg-1 absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
+                            <div class="floating-bg-2 absolute bottom-0 left-0 w-24 h-24 bg-white opacity-5 rounded-full translate-y-12 -translate-x-12"></div>
+                            
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                                        <i data-feather="briefcase" class="text-white w-8 h-8"></i>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-black">Professionals</h3>
-                            <p class="text-sm text-gray-600">Career Growth</p>
+                                    <div class="text-right">
+                                        <div class="text-sm opacity-90">Career Growth</div>
+                                        <div class="text-xs opacity-70">Professionals</div>
                         </div>
                     </div>
-                    <p class="text-gray-700 mb-8 leading-relaxed">
+                                
+                                <h3 class="text-2xl font-bold mb-3">Professionals</h3>
+                                <p class="text-green-100 leading-relaxed">
                         Productivity boosters, communication tools, and career development resources for the modern workplace.
                     </p>
-                    <div class="flex items-center justify-between">
-                        <div class="status-dots flex space-x-2">
-                            <span class="w-2 h-2 bg-green-500 rounded-full"></span>
-                            <span class="w-2 h-2 bg-green-300 rounded-full"></span>
-                            <span class="w-2 h-2 bg-green-200 rounded-full"></span>
                         </div>
-                        <a href="professional.html" class="text-black font-semibold flex items-center hover-effect whitespace-nowrap">
-                        Explore <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                        </a>
+                        </div>
+                        
+                        <!-- Content section -->
+                        <div class="p-8 bg-white">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex space-x-1">
+                                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                        <div class="w-2 h-2 bg-green-300 rounded-full"></div>
+                                        <div class="w-2 h-2 bg-green-200 rounded-full"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-500">Active Tools</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-green-600">30+</div>
+                                    <div class="text-xs text-gray-500">Resources</div>
+                                </div>
+                            </div>
+                            
+                            <a href="professional.html" class="w-full bg-gradient-to-r from-green-500 to-green-600 text-white font-semibold py-4 px-6 rounded-2xl flex items-center justify-center hover:from-green-600 hover:to-green-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                                Explore Pathway
+                                <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Content Creators -->
-                <div class="pathway-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="400">
-                    <div class="flex items-center mb-6">
-                        <div class="gradient-icon w-14 h-14 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mr-4">
-                            <i data-feather="feather" class="text-white w-7 h-7"></i>
+                <div class="pathway-card-new p-0 rounded-3xl overflow-hidden md:col-span-1" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative">
+                        <!-- Header with gradient background -->
+                        <div class="bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 p-8 text-white relative overflow-hidden">
+                            <div class="floating-bg-1 absolute top-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full -translate-y-16 translate-x-16"></div>
+                            <div class="floating-bg-2 absolute bottom-0 left-0 w-24 h-24 bg-white opacity-5 rounded-full translate-y-12 -translate-x-12"></div>
+                            
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-between mb-6">
+                                    <div class="w-16 h-16 bg-white bg-opacity-20 rounded-2xl flex items-center justify-center backdrop-blur-sm">
+                                        <i data-feather="feather" class="text-white w-8 h-8"></i>
                         </div>
-                        <div>
-                            <h3 class="text-xl font-bold text-black">Content Creators</h3>
-                            <p class="text-sm text-gray-600">Creative Innovation</p>
+                                    <div class="text-right">
+                                        <div class="text-sm opacity-90">Creative Innovation</div>
+                                        <div class="text-xs opacity-70">Content Creators</div>
                         </div>
                     </div>
-                    <p class="text-gray-700 mb-8 leading-relaxed">
+                                
+                                <h3 class="text-2xl font-bold mb-3">Content Creators</h3>
+                                <p class="text-purple-100 leading-relaxed">
                         Cutting-edge creative tools, platforms, and resources for digital artists, writers, and creators.
                     </p>
-                    <div class="flex items-center justify-between">
-                        <div class="status-dots flex space-x-2">
-                            <span class="w-2 h-2 bg-purple-500 rounded-full"></span>
-                            <span class="w-2 h-2 bg-purple-300 rounded-full"></span>
-                            <span class="w-2 h-2 bg-purple-200 rounded-full"></span>
                 </div>
-                        <a href="creator.html" class="text-black font-semibold flex items-center hover-effect whitespace-nowrap">
-                        Explore <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                        </a>
+                        </div>
+                        
+                        <!-- Content section -->
+                        <div class="p-8 bg-white">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center space-x-3">
+                                    <div class="flex space-x-1">
+                                        <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                        <div class="w-2 h-2 bg-purple-300 rounded-full"></div>
+                                        <div class="w-2 h-2 bg-purple-200 rounded-full"></div>
+                                    </div>
+                                    <span class="text-sm text-gray-500">Active Tools</span>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-purple-600">20+</div>
+                                    <div class="text-xs text-gray-500">Resources</div>
+                                </div>
+                            </div>
+                            
+                            <a href="creator.html" class="w-full bg-gradient-to-r from-purple-500 to-purple-600 text-white font-semibold py-4 px-6 rounded-2xl flex items-center justify-center hover:from-purple-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg">
+                                Explore Pathway
+                                <i data-feather="arrow-right" class="ml-2 w-5 h-5"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -952,6 +1609,7 @@
                         <li><a href="professional.html" class="text-gray-300 hover:text-white">Professional</a></li>
                         <li><a href="creator.html" class="text-gray-300 hover:text-white">Creator</a></li>
                         <li><a href="all-tools.html" class="text-gray-300 hover:text-white">All Tools</a></li>
+                        <li><a href="leaderboard.html" class="text-gray-300 hover:text-white">Leaderboard</a></li>
                         <li><a href="dev.html" class="text-gray-300 hover:text-white">Developer</a></li>
                     </ul>
                 </div>
@@ -978,6 +1636,19 @@
             </div>
         </div>
     </footer>
+
+    <!-- Mobile Notification -->
+    <div id="mobile-notification" class="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 shadow-lg transform translate-y-full transition-transform duration-300 z-50 md:hidden">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center">
+                <i data-feather="monitor" class="w-5 h-5 mr-3"></i>
+                <span class="text-sm font-medium">View website on Desktop for best results</span>
+            </div>
+            <button onclick="closeMobileNotification()" class="text-white hover:text-gray-200 transition-colors duration-200">
+                <i data-feather="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+    </div>
 
     <!-- Legal Modal -->
     <div id="legalModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
@@ -1016,6 +1687,147 @@
             duration: 800,
             easing: 'ease-in-out',
             once: true
+        });
+
+        // Easter Egg functionality - only triggers on button click
+        document.addEventListener('DOMContentLoaded', function() {
+            // Show Easter Egg button immediately
+            setTimeout(() => {
+                const easterEggBtn = document.getElementById('easter-egg-btn');
+                if (easterEggBtn) {
+                    easterEggBtn.style.opacity = '1';
+                }
+            }, 1000); // Show after 1 second
+            
+            // Easter Egg functionality
+            const easterEggBtn = document.getElementById('easter-egg-btn');
+            if (easterEggBtn) {
+                easterEggBtn.addEventListener('click', function() {
+                    // Keep button visible
+                    
+                    // Clear existing content and start typing animation
+                    const codeContainer = document.getElementById('code-animation');
+                    
+                    // Clear the container
+                    codeContainer.innerHTML = '';
+                    
+                    // Define the HTML code to type letter by letter
+                    const htmlCode = [
+                        { text: '<!-- Modern Web Design -->', color: 'text-blue-400', indent: 0 },
+                        { text: 'glass-card"text-gray-500"><div class=glass-card">', color: 'text-purple-400', indent: 0 },
+                        { text: '<h1>Quote</h1>', color: 'text-yellow-300', indent: 0 },
+                        { text: '<p>AI-powered tools</p>', color: 'text-purple-400', indent: 0 },
+                        { text: '</div>', color: 'text-purple-400', indent: 0 },
+                        { text: '<!-- K I see u fine shyt, Have a great day! ;) -->', color: 'text-blue-400', indent: 0 }
+                    ];
+                    
+                    let currentLine = 0;
+                    let currentChar = 0;
+                    let currentLineDiv = null;
+                    
+                    function typeNextChar() {
+                        if (currentLine < htmlCode.length) {
+                            const line = htmlCode[currentLine];
+                            
+                            // Create line div if it doesn't exist
+                            if (!currentLineDiv) {
+                                currentLineDiv = document.createElement('div');
+                                currentLineDiv.className = `${line.color}`;
+                                currentLineDiv.style.marginLeft = `${line.indent * 0.5}rem`;
+                                currentLineDiv.innerHTML = '';
+                                codeContainer.appendChild(currentLineDiv);
+                            }
+                            
+                            if (currentChar < line.text.length) {
+                                const char = line.text[currentChar];
+                                
+                                // Add character with proper syntax highlighting
+                                if (char === '<' && line.text.includes('<!--')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&lt;</span>';
+                                } else if (char === '>' && line.text.includes('<!--')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&gt;</span>';
+                                } else if (char === '<' && line.text.includes('<div')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&lt;</span>';
+                                } else if (char === '>' && line.text.includes('<div')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&gt;</span>';
+                                } else if (char === '<' && line.text.includes('<h1')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&lt;</span>';
+                                } else if (char === '>' && line.text.includes('<h1')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&gt;</span>';
+                                } else if (char === '<' && line.text.includes('<p')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&lt;</span>';
+                                } else if (char === '>' && line.text.includes('<p')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&gt;</span>';
+                                } else if (char === '<' && line.text.includes('</div')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&lt;</span>';
+                                } else if (char === '>' && line.text.includes('</div')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&gt;</span>';
+                                } else if (char === '<' && line.text.includes('</h1')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&lt;</span>';
+                                } else if (char === '>' && line.text.includes('</h1')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&gt;</span>';
+                                } else if (char === '<' && line.text.includes('</p')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&lt;</span>';
+                                } else if (char === '>' && line.text.includes('</p')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&gt;</span>';
+                                } else if (line.text.includes('class=') && char === '"') {
+                                    // Highlight class attribute
+                                    const beforeClass = currentLineDiv.innerHTML;
+                                    if (beforeClass.includes('class=') && !beforeClass.includes('glass-card')) {
+                                        currentLineDiv.innerHTML = beforeClass.replace('class="', 'class="<span class="text-green-400">glass-card</span>"');
+                                    } else {
+                                        currentLineDiv.innerHTML += char;
+                                    }
+                                } else if (char === '<' && line.text.includes('<!-- K I see')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">&lt;!--</span>';
+                                } else if (char === '>' && line.text.includes('<!-- K I see')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">--&gt;</span>';
+                                } else if (char === '/' && line.text.includes('//')) {
+                                    currentLineDiv.innerHTML += '<span class="text-gray-500">//</span>';
+                                } else {
+                                    currentLineDiv.innerHTML += char;
+                                }
+                                
+                                currentChar++;
+                                setTimeout(typeNextChar, 80); // Type each character with 80ms delay
+                            } else {
+                                // Line complete, move to next line
+                                currentLine++;
+                                currentChar = 0;
+                                currentLineDiv = null;
+                                setTimeout(typeNextChar, 300); // Pause between lines
+                            }
+                        } else {
+                            // All lines complete
+                        }
+                    }
+                    
+                    // Start the letter-by-letter typing animation
+                    typeNextChar();
+                });
+            }
+        });
+
+        // Mobile Notification Functions
+        function showMobileNotification() {
+            const notification = document.getElementById('mobile-notification');
+            if (notification && window.innerWidth < 768) {
+                setTimeout(() => {
+                    notification.classList.remove('translate-y-full');
+                }, 2000); // Show after 2 seconds
+            }
+        }
+
+        function closeMobileNotification() {
+            const notification = document.getElementById('mobile-notification');
+            if (notification) {
+                notification.classList.add('translate-y-full');
+            }
+        }
+
+        // Show mobile notification on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            showMobileNotification();
         });
 
         // Legal Modal Functions
@@ -1270,6 +2082,160 @@
         }
         
         window.addEventListener('scroll', onScroll);
+        
+        // Search functionality
+        const searchData = {
+            pages: [
+                { name: 'Home', url: 'index.html', type: 'page' },
+                { name: 'University Student', url: 'student.html', type: 'page' },
+                { name: 'Professional', url: 'professional.html', type: 'page' },
+                { name: 'Creator', url: 'creator.html', type: 'page' },
+                { name: 'All Tools', url: 'all-tools.html', type: 'page' },
+                { name: 'Leaderboard', url: 'leaderboard.html', type: 'page' },
+                { name: 'Developer', url: 'dev.html', type: 'page' },
+                { name: 'Creator Store', url: '#', type: 'page' },
+                { name: 'Donate', url: 'https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00', type: 'page' },
+                { name: 'Contact us', url: '#', type: 'page' }
+            ],
+            tools: [
+                { name: 'ChatGPT', category: 'AI', description: 'AI-powered conversational assistant' },
+                { name: 'Claude', category: 'AI', description: 'Anthropic\'s AI assistant' },
+                { name: 'Gemini', category: 'AI', description: 'Google\'s AI model' },
+                { name: 'Qwen', category: 'AI', description: 'Alibaba\'s AI assistant' },
+                { name: 'Mindgrasp', category: 'Study', description: 'AI study tool for note-taking' },
+                { name: 'ElevenReader', category: 'Audio', description: 'Text-to-speech reader' },
+                { name: 'Grammarly', category: 'Writing', description: 'AI writing assistant' },
+                { name: 'Jasper AI', category: 'Writing', description: 'AI content creation' },
+                { name: 'Copy.ai', category: 'Writing', description: 'AI copywriting tool' },
+                { name: 'Writesonic', category: 'Writing', description: 'AI writing assistant' },
+                { name: 'Tome', category: 'Presentations', description: 'AI presentation creator' },
+                { name: 'Canva', category: 'Design', description: 'Design platform' },
+                { name: 'DALL-E', category: 'AI Art', description: 'AI image generation' },
+                { name: 'DaVinci Resolve', category: 'Video', description: 'Video editing software' },
+                { name: 'Unsplash', category: 'Stock', description: 'Stock photos' },
+                { name: 'Notion', category: 'Productivity', description: 'All-in-one workspace' },
+                { name: 'Asana', category: 'Project Management', description: 'Project management tool' },
+                { name: 'Zoom', category: 'Communication', description: 'Video conferencing' },
+                { name: 'Discord', category: 'Communication', description: 'Voice and text chat' },
+                { name: 'Google Analytics', category: 'Analytics', description: 'Web analytics' }
+            ]
+        };
+        
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const mobileNavSearchInput = document.getElementById('mobileNavSearchInput');
+        const mobileNavSearchResults = document.getElementById('mobileNavSearchResults');
+        
+        // Desktop search
+        searchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            handleSearch(query, searchResults);
+        });
+        
+        // Mobile navigation search
+        mobileNavSearchInput.addEventListener('input', function() {
+            const query = this.value.toLowerCase().trim();
+            handleSearch(query, mobileNavSearchResults);
+        });
+        
+        function handleSearch(query, resultsContainer) {
+            if (query.length < 2) {
+                resultsContainer.classList.add('hidden');
+                return;
+            }
+            
+            const results = [];
+            
+            // Search pages
+            searchData.pages.forEach(page => {
+                if (page.name.toLowerCase().includes(query)) {
+                    results.push({
+                        ...page,
+                        matchType: 'page'
+                    });
+                }
+            });
+            
+            // Search tools
+            searchData.tools.forEach(tool => {
+                if (tool.name.toLowerCase().includes(query) || 
+                    tool.category.toLowerCase().includes(query) || 
+                    tool.description.toLowerCase().includes(query)) {
+                    results.push({
+                        ...tool,
+                        matchType: 'tool'
+                    });
+                }
+            });
+            
+            displayResults(results, resultsContainer);
+        }
+        
+        function displayResults(results, resultsContainer) {
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="p-4 text-gray-400 text-center">No results found</div>';
+                resultsContainer.classList.remove('hidden');
+                return;
+            }
+            
+            const html = results.slice(0, 8).map(result => {
+                if (result.matchType === 'page') {
+                    return `
+                        <a href="${result.url}" class="block p-3 hover:bg-gray-800 transition-colors border-b border-gray-700 last:border-b-0">
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="file" class="w-4 h-4 text-blue-400"></i>
+                                <div>
+                                    <div class="text-white font-medium">${result.name}</div>
+                                    <div class="text-xs text-gray-400">Page</div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                } else {
+                    return `
+                        <a href="all-tools.html" class="block p-3 hover:bg-gray-800 transition-colors border-b border-gray-700 last:border-b-0">
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="tool" class="w-4 h-4 text-green-400"></i>
+                                <div>
+                                    <div class="text-white font-medium">${result.name}</div>
+                                    <div class="text-xs text-gray-400">${result.category} • ${result.description}</div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                }
+            }).join('');
+            
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.remove('hidden');
+            
+            // Re-initialize feather icons
+            feather.replace();
+        }
+        
+        // Hide search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                searchResults.classList.add('hidden');
+                mobileNavSearchResults.classList.add('hidden');
+            }
+        });
+        
+        // Handle desktop search result clicks
+        searchResults.addEventListener('click', function(e) {
+            if (e.target.closest('a')) {
+                searchResults.classList.add('hidden');
+                searchInput.value = '';
+            }
+        });
+        
+        // Handle mobile navigation search result clicks
+        mobileNavSearchResults.addEventListener('click', function(e) {
+            if (e.target.closest('a')) {
+                mobileNavSearchResults.classList.add('hidden');
+                mobileNavSearchInput.value = '';
+            }
+        });
     </script>
 </body>
 </html>

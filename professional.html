@@ -39,7 +39,7 @@
         
         .glass-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 40px 0 rgba(31, 38, 135, 0.25);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
         }
         
         .cursor {
@@ -91,10 +91,11 @@
             .tool-card img {
                 width: 1.5rem !important;
                 height: 1.5rem !important;
-                margin-bottom: 0.375rem !important;
-                margin-top: 0 !important;
+                margin: 0 auto 0.375rem auto !important;
                 order: 1 !important;
                 display: block !important;
+                align-self: center !important;
+                border-radius: 0.25rem !important;
             }
             
             .tool-card h3 {
@@ -188,6 +189,11 @@
         
         .nav-link {
             position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .nav-logo {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
         }
         
         .nav-link::after {
@@ -206,7 +212,7 @@
         }
         
         .donate-btn {
-            animation: rotateShake 2s ease-in-out infinite;
+            animation: rotateShake 1s ease-in-out infinite;
         }
         
         .donate-btn-footer {
@@ -424,13 +430,14 @@
     <!-- Navigation -->
     <nav class="fixed w-full z-50 py-2 md:py-4 px-4 md:px-12">
         <div class="flex justify-between items-center glass-card px-4 md:px-6 py-2 md:py-3">
-            <a href="index.html" class="text-lg md:text-xl font-bold text-white hover-effect">QUOTE</a>
+            <a href="index.html" class="nav-logo text-lg md:text-xl font-bold text-white hover-effect">quoteai.org</a>
             <div class="hidden md:flex space-x-8 items-center">
-                <a href="index.html" class="nav-link text-white font-medium">Home</a>
-                <a href="student.html" class="nav-link text-white font-medium">Student</a>
-                <a href="professional.html" class="nav-link text-white font-medium text-green-400">Professional</a>
-                <a href="creator.html" class="nav-link text-white font-medium">Creator</a>
-                <a href="all-tools.html" class="nav-link text-white font-medium">All Tools</a>
+                <a href="index.html" class="nav-link text-white font-bold">Home</a>
+                <a href="student.html" class="nav-link text-white font-bold">Student</a>
+                <a href="professional.html" class="nav-link text-white font-bold text-green-400">Professional</a>
+                <a href="creator.html" class="nav-link text-white font-bold">Creator</a>
+                <a href="all-tools.html" class="nav-link text-white font-bold">All Tools</a>
+                <a href="leaderboard.html" class="nav-link text-white font-bold">Leaderboard</a>
                 <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full hover:from-orange-400 hover:to-orange-500 transition-all duration-300 transform hover:scale-105">
                     Donate
                 </a>
@@ -453,6 +460,7 @@
                 <a href="professional.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full text-green-400">Professional</a>
                 <a href="creator.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Creator</a>
                 <a href="all-tools.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">All Tools</a>
+                <a href="leaderboard.html" class="nav-link text-white font-medium px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Leaderboard</a>
             </div>
         </div>
     </nav>
@@ -856,6 +864,7 @@
                         <li><a href="professional.html" class="text-gray-300 hover:text-white">Professional</a></li>
                         <li><a href="creator.html" class="text-gray-300 hover:text-white">Creator</a></li>
                         <li><a href="all-tools.html" class="text-gray-300 hover:text-white">All Tools</a></li>
+                        <li><a href="leaderboard.html" class="text-gray-300 hover:text-white">Leaderboard</a></li>
                         <li><a href="dev.html" class="text-gray-300 hover:text-white">Developer</a></li>
                     </ul>
                 </div>

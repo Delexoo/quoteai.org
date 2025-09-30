@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Leaderboard | Quote</title>
+    <link rel="icon" href="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/QuoteLogoCircle.ico" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <style>
+        :root {
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            --glass-blur: blur(12px);
+        }
+
+        body {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow-x: hidden;
+            cursor: none;
+            position: relative;
+        }
+        
+        /* 3D Background Elements */
+        .bg-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+            backdrop-filter: blur(15px);
+            animation: float3d 20s infinite linear;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        
+        .floating-shape:nth-child(odd) {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06));
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.08);
+        }
+        
+        .floating-shape:nth-child(even) {
+            background: linear-gradient(225deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.1));
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.12);
+        }
+        
+        .floating-shape:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+        
+        .floating-shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 15%;
+            animation-delay: -5s;
+            animation-duration: 30s;
+        }
+        
+        .floating-shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 30%;
+            right: 30%;
+            animation-delay: -10s;
+            animation-duration: 20s;
+        }
+        
+        .floating-shape:nth-child(4) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 20%;
+            animation-delay: -15s;
+            animation-duration: 35s;
+        }
+        
+        .floating-shape:nth-child(5) {
+            width: 120px;
+            height: 120px;
+            top: 70%;
+            left: 60%;
+            animation-delay: -8s;
+            animation-duration: 28s;
+        }
+        
+        .floating-shape:nth-child(6) {
+            width: 60px;
+            height: 60px;
+            top: 15%;
+            right: 50%;
+            animation-delay: -12s;
+            animation-duration: 22s;
+        }
+        
+        .floating-shape:nth-child(7) {
+            width: 90px;
+            height: 90px;
+            top: 45%;
+            left: 5%;
+            animation-delay: -18s;
+            animation-duration: 32s;
+        }
+        
+        .floating-shape:nth-child(8) {
+            width: 70px;
+            height: 70px;
+            top: 25%;
+            right: 10%;
+            animation-delay: -25s;
+            animation-duration: 28s;
+        }
+        
+        .floating-shape:nth-child(9) {
+            width: 110px;
+            height: 110px;
+            bottom: 30%;
+            right: 40%;
+            animation-delay: -30s;
+            animation-duration: 35s;
+        }
+        
+        .floating-shape:nth-child(10) {
+            width: 50px;
+            height: 50px;
+            top: 80%;
+            left: 30%;
+            animation-delay: -35s;
+            animation-duration: 25s;
+        }
+        
+        @keyframes float3d {
+            0% {
+                transform: translateY(0px) translateX(0px) rotate(0deg) translateZ(0px) scale(1);
+            }
+            12.5% {
+                transform: translateY(-30px) translateX(15px) rotate(45deg) translateZ(15px) scale(1.1);
+            }
+            25% {
+                transform: translateY(-60px) translateX(30px) rotate(90deg) translateZ(30px) scale(1.2);
+            }
+            37.5% {
+                transform: translateY(-40px) translateX(45px) rotate(135deg) translateZ(20px) scale(1.1);
+            }
+            50% {
+                transform: translateY(-80px) translateX(60px) rotate(180deg) translateZ(40px) scale(1.3);
+            }
+            62.5% {
+                transform: translateY(-50px) translateX(45px) rotate(225deg) translateZ(25px) scale(1.1);
+            }
+            75% {
+                transform: translateY(-70px) translateX(30px) rotate(270deg) translateZ(35px) scale(1.2);
+            }
+            87.5% {
+                transform: translateY(-30px) translateX(15px) rotate(315deg) translateZ(15px) scale(1.1);
+            }
+            100% {
+                transform: translateY(0px) translateX(0px) rotate(360deg) translateZ(0px) scale(1);
+            }
+        }
+        
+        /* 3D Grid Background */
+        .grid-3d {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+            z-index: -2;
+        }
+        
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(25px, 25px) rotate(1deg);
+            }
+            50% {
+                transform: translate(50px, 50px) rotate(0deg);
+            }
+            75% {
+                transform: translate(75px, 25px) rotate(-1deg);
+            }
+            100% {
+                transform: translate(100px, 0px) rotate(0deg);
+            }
+        }
+        
+        .glass-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.25);
+        }
+        
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.9);
+            position: fixed;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+        }
+        
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: transform 0.2s ease-out, width 0.3s ease, height 0.3s ease;
+        }
+        
+        /* Compact Leaderboard Layout */
+        .leaderboard-entry {
+            background: #1f2937;
+            border: 1px solid #374151;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            display: grid;
+            grid-template-columns: 80px 1fr 70px;
+            grid-template-rows: auto auto auto;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        
+        .leaderboard-entry::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #feca57);
+            border-radius: 30px;
+            padding: 2px;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: xor;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .leaderboard-entry:hover {
+            transform: translateY(-4px) scale(1.05) rotate(2deg);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border-color: #d1d5db;
+        }
+        
+        .rank-badge {
+            grid-column: 1;
+            grid-row: 1 / 3;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            position: relative;
+            align-self: center;
+        }
+        
+        /* Top 3 Golden Badges - Only ranks 1, 2, 3 */
+        .leaderboard-entry:nth-child(1) .rank-badge,
+        .leaderboard-entry:nth-child(2) .rank-badge,
+        .leaderboard-entry:nth-child(3) .rank-badge {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+        }
+        
+        @keyframes rankPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .rank-badge::after {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: conic-gradient(from 0deg, #ff0080, #00d4ff, #00ff88, #ffaa00, #ff0080);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            animation: spin 3s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        
+        .profile-section {
+            grid-column: 2;
+            grid-row: 1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .profile-pic {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        
+        .profile-pic::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        
+        .supporter-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .supporter-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .school-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: #374151;
+            color: #d1d5db;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            border: 1px solid #4b5563;
+            width: fit-content;
+        }
+
+        .donation-amount {
+            grid-column: 3;
+            grid-row: 1;
+            background: #10b981;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1rem;
+            border: 1px solid #059669;
+            align-self: start;
+            justify-self: end;
+        }
+        
+        @keyframes amountBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        .donation-amount::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.8s ease;
+        }
+        
+        
+        .quote-text {
+            grid-column: 2 / 4;
+            grid-row: 2;
+            color: #d1d5db;
+            font-size: 0.75rem;
+            font-style: italic;
+            background: #374151;
+            padding: 6px 10px;
+            border-radius: 8px;
+            border-left: 3px solid #6b7280;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .social-tags {
+            grid-column: 2 / 4;
+            grid-row: 3;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-top: 4px;
+        }
+        
+        .social-tag {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            font-size: 0.6rem;
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .social-tag:hover {
+            transform: scale(1.05);
+            box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+        }
+        
+        .social-tag.instagram {
+            background: linear-gradient(135deg, #e4405f, #c13584);
+        }
+        
+        .social-tag.tiktok {
+            background: #000000;
+        }
+        
+        .social-tag.linkedin {
+            background: linear-gradient(135deg, #0077b5, #005885);
+        }
+        
+        
+        .quick-apply-btn {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .quick-apply-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.4);
+        }
+        
+        .quick-apply-btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transition: all 0.6s ease;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+        }
+        
+        .quick-apply-btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .nav-link {
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .nav-logo {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @media (max-width: 768px) {
+            .cursor, .cursor-follower {
+                display: none;
+            }
+            
+            .leaderboard-entry:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+            
+            .glass-card:hover {
+                transform: none !important;
+                box-shadow: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- 3D Background -->
+    <div class="grid-3d"></div>
+    <div class="bg-3d">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 py-2 md:py-4 px-4 md:px-12">
+        <div class="flex justify-between items-center glass-card px-4 md:px-6 py-2 md:py-3">
+            <a href="index.html" class="nav-logo text-lg md:text-xl font-bold text-white transition-transform duration-300 hover:transform hover:-translate-y-1">quoteai.org</a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="index.html" class="nav-link text-white font-bold">Home</a>
+                <a href="student.html" class="nav-link text-white font-bold">Student</a>
+                <a href="professional.html" class="nav-link text-white font-bold">Professional</a>
+                <a href="creator.html" class="nav-link text-white font-bold">Creator</a>
+                <a href="all-tools.html" class="nav-link text-white font-bold">All Tools</a>
+                <a href="leaderboard.html" class="nav-link text-white font-bold">Leaderboard</a>
+                <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full hover:from-orange-400 hover:to-orange-500 transition-all duration-300 transform hover:scale-105">
+                    Donate
+                </a>
+            </div>
+            <div class="flex items-center space-x-2 md:hidden">
+                <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="px-2 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full text-xs">
+                    Donate
+                </a>
+                <button id="mobile-menu-btn" class="text-white font-medium p-1">
+                    <i data-feather="menu" class="w-5 h-5"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-2 glass-card px-4 py-3">
+            <div class="flex flex-wrap gap-2">
+                <a href="index.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Home</a>
+                <a href="student.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Student</a>
+                <a href="professional.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Professional</a>
+                <a href="creator.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Creator</a>
+                <a href="all-tools.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">All Tools</a>
+                <a href="leaderboard.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Leaderboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Leaderboard Section -->
+    <section class="py-20 px-6 md:px-12 pt-48">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-gray-900 border border-gray-700 p-8 rounded-2xl shadow-lg">
+                <h1 class="text-5xl md:text-7xl font-bold text-center mb-6 text-white">
+                    <span class="font-serif italic text-blue-400">Donation</span> <span class="font-serif italic text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-red-400">Leaderboard</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-12 text-center">
+                    Thank you to our amazing supporters!
+                </p>
+                
+                <div class="space-y-2" id="topSupporters">
+                    <!-- ========================================== -->
+                    <!-- RANK 1 - EDIT USER INFORMATION BELOW -->
+                    <!-- ========================================== -->
+                    <div class="leaderboard-entry">
+                        <div class="rank-badge">1</div>
+                        <div class="profile-section">
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/duck.png?raw=true" 
+                                 alt="Profile" class="profile-pic">
+                            <div class="supporter-info">
+                                <!-- NAME: Replace with actual supporter name -->
+                                <h3 class="supporter-name">Bri</h3>
+                                <div class="school-badge">
+                                    <span>🎓</span>
+                                    <!-- SCHOOL: Replace with actual school name -->
+                                    <span>Cal State University San Marcos</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DONATION AMOUNT: Replace with actual amount -->
+                        <div class="donation-amount">$3</div>
+                        <!-- QUOTE: Replace with supporter's personal quote -->
+                        <p class="quote-text">"tysm i will save this website forever youre an actual life saver"</p>
+                        <!-- <div class="social-tags">
+                            
+                            <span class="social-tag instagram" onclick="alert('Instagram link coming soon!')">
+                                <i data-feather="instagram" class="w-3 h-3"></i>
+                                @username
+                            </span>
+                            <span class="social-tag tiktok" onclick="alert('TikTok link coming soon!')">
+                                <i data-feather="video" class="w-3 h-3"></i>
+                                @handle
+                            </span>
+                            <span class="social-tag linkedin" onclick="alert('LinkedIn link coming soon!')">
+                                <i data-feather="linkedin" class="w-3 h-3"></i>
+                                @profile
+                            </span>
+                        </div> -->
+                    </div>
+
+                    <!-- ========================================== -->
+                    <!-- RANK 2 - EDIT USER INFORMATION BELOW -->
+                    <!-- ========================================== --> <!--
+                    <div class="leaderboard-entry">
+                        <div class="rank-badge">2</div>
+                        <div class="profile-section">
+                           
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" 
+                                 alt="Profile" class="profile-pic">
+                            <div class="supporter-info">
+                               
+                                <h3 class="supporter-name">Name Here</h3>
+                                <div class="school-badge">
+                                    <span>🎓</span>
+                                   
+                                    <span>School</span>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="donation-amount">$0</div>
+                       
+                        <p class="quote-text">Insert your own quote here</p>
+                        <div class="social-tags">
+                           
+                            <span class="social-tag instagram" onclick="alert('Instagram link coming soon!')">
+                                <i data-feather="instagram" class="w-3 h-3"></i>
+                                @username
+                            </span>
+                            <span class="social-tag tiktok" onclick="alert('TikTok link coming soon!')">
+                                <i data-feather="video" class="w-3 h-3"></i>
+                                @handle
+                            </span>
+                            <span class="social-tag linkedin" onclick="alert('LinkedIn link coming soon!')">
+                                <i data-feather="linkedin" class="w-3 h-3"></i>
+                                @profile
+                            </span>
+                        </div>
+                    </div> -->
+
+                    <!-- ========================================== -->
+                    <!-- RANK 3 - EDIT USER INFORMATION BELOW -->
+                    <!-- ========================================== --> <!--
+                    <div class="leaderboard-entry">
+                        <div class="rank-badge">3</div>
+                        <div class="profile-section">
+                           
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" 
+                                 alt="Profile" class="profile-pic">
+                            <div class="supporter-info">
+                              
+                                <h3 class="supporter-name">Name Here</h3>
+                                <div class="school-badge">
+                                    <span>🎓</span>
+                                 
+                                    <span>School</span>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="donation-amount">$0</div>
+                       
+                        <p class="quote-text">Insert your own quote here</p>
+                        <div class="social-tags">
+                            
+                            <span class="social-tag instagram" onclick="alert('Instagram link coming soon!')">
+                                <i data-feather="instagram" class="w-3 h-3"></i>
+                                @username
+                            </span>
+                            <span class="social-tag tiktok" onclick="alert('TikTok link coming soon!')">
+                                <i data-feather="video" class="w-3 h-3"></i>
+                                @handle
+                            </span>
+                            <span class="social-tag linkedin" onclick="alert('LinkedIn link coming soon!')">
+                                <i data-feather="linkedin" class="w-3 h-3"></i>
+                                @profile
+                            </span>
+                        </div>
+                    </div> -->
+
+                    <!-- Rank 4 --> <!--
+                    <div class="leaderboard-entry">
+                        <div class="rank-badge">4</div>
+                        <div class="profile-section">
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" 
+                                 alt="Profile" class="profile-pic">
+                            <div class="supporter-info">
+                                <h3 class="supporter-name">Name Here</h3>
+                                <div class="school-badge">
+                                    <span>🎓</span>
+                                    <span>School</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="donation-amount">$0</div>
+                        <p class="quote-text">Insert your own quote here</p>
+                        <div class="social-tags">
+                            <span class="social-tag instagram" onclick="alert('Instagram link coming soon!')">
+                                <i data-feather="instagram" class="w-3 h-3"></i>
+                                @username
+                            </span>
+                            <span class="social-tag tiktok" onclick="alert('TikTok link coming soon!')">
+                                <i data-feather="video" class="w-3 h-3"></i>
+                                @handle
+                            </span>
+                            <span class="social-tag linkedin" onclick="alert('LinkedIn link coming soon!')">
+                                <i data-feather="linkedin" class="w-3 h-3"></i>
+                                @profile
+                            </span>
+                        </div>
+                    </div> -->
+
+                    <!-- Rank 5 --> <!--
+                    <div class="leaderboard-entry">
+                        <div class="rank-badge">5</div>
+                        <div class="profile-section">
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" 
+                                 alt="Profile" class="profile-pic">
+                            <div class="supporter-info">
+                                <h3 class="supporter-name">Name Here</h3>
+                                <div class="school-badge">
+                                    <span>🎓</span>
+                                    <span>School</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="donation-amount">$0</div>
+                        <p class="quote-text">Insert your own quote here</p>
+                        <div class="social-tags">
+                            <span class="social-tag instagram" onclick="alert('Instagram link coming soon!')">
+                                <i data-feather="instagram" class="w-3 h-3"></i>
+                                @username
+                            </span>
+                            <span class="social-tag tiktok" onclick="alert('TikTok link coming soon!')">
+                                <i data-feather="video" class="w-3 h-3"></i>
+                                @handle
+                            </span>
+                            <span class="social-tag linkedin" onclick="alert('LinkedIn link coming soon!')">
+                                <i data-feather="linkedin" class="w-3 h-3"></i>
+                                @profile
+                            </span>
+                        </div>
+                    </div> -->
+
+                    <!--
+                    <div class="leaderboard-entry">
+                        <div class="rank-badge">6</div>
+                        <div class="profile-section">
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" 
+                                 alt="Profile" class="profile-pic">
+                            <div class="supporter-info">
+                                <h3 class="supporter-name">Name Here</h3>
+                                <div class="school-badge">
+                                    <span>🎓</span>
+                                    <span>School</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="donation-amount">$0</div>
+                        <p class="quote-text">Insert your own quote here</p>
+                        <div class="social-tags">
+                            <span class="social-tag instagram" onclick="alert('Instagram link coming soon!')">
+                                <i data-feather="instagram" class="w-3 h-3"></i>
+                                @username
+                            </span>
+                            <span class="social-tag tiktok" onclick="alert('TikTok link coming soon!')">
+                                <i data-feather="video" class="w-3 h-3"></i>
+                                @handle
+                            </span>
+                            <span class="social-tag linkedin" onclick="alert('LinkedIn link coming soon!')">
+                                <i data-feather="linkedin" class="w-3 h-3"></i>
+                                @profile
+                            </span>
+                        </div>
+                    </div>
+
+                  
+                    <div class="leaderboard-entry">
+                        <div class="rank-badge">7</div>
+                        <div class="profile-section">
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" 
+                                 alt="Profile" class="profile-pic">
+                            <div class="supporter-info">
+                                <h3 class="supporter-name">Name Here</h3>
+                                <div class="school-badge">
+                                    <span>🎓</span>
+                                    <span>School</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="donation-amount">$0</div>
+                        <p class="quote-text">Insert your own quote here</p>
+                        <div class="social-tags">
+                            <span class="social-tag instagram" onclick="alert('Instagram link coming soon!')">
+                                <i data-feather="instagram" class="w-3 h-3"></i>
+                                @username
+                            </span>
+                            <span class="social-tag tiktok" onclick="alert('TikTok link coming soon!')">
+                                <i data-feather="video" class="w-3 h-3"></i>
+                                @handle
+                            </span>
+                            <span class="social-tag linkedin" onclick="alert('LinkedIn link coming soon!')">
+                                <i data-feather="linkedin" class="w-3 h-3"></i>
+                                @profile
+                            </span>
+                        </div>
+                    </div>
+
+                  
+                    <div class="leaderboard-entry">
+                        <div class="rank-badge">8</div>
+                        <div class="profile-section">
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" 
+                                 alt="Profile" class="profile-pic">
+                            <div class="supporter-info">
+                                <h3 class="supporter-name">Name Here</h3>
+                                <div class="school-badge">
+                                    <span>🎓</span>
+                                    <span>School</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="donation-amount">$0</div>
+                        <p class="quote-text">Insert your own quote here</p>
+                        <div class="social-tags">
+                            <span class="social-tag instagram" onclick="alert('Instagram link coming soon!')">
+                                <i data-feather="instagram" class="w-3 h-3"></i>
+                                @username
+                            </span>
+                            <span class="social-tag tiktok" onclick="alert('TikTok link coming soon!')">
+                                <i data-feather="video" class="w-3 h-3"></i>
+                                @handle
+                            </span>
+                            <span class="social-tag linkedin" onclick="alert('LinkedIn link coming soon!')">
+                                <i data-feather="linkedin" class="w-3 h-3"></i>
+                                @profile
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="leaderboard-entry">
+                        <div class="rank-badge">9</div>
+                        <div class="profile-section">
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" 
+                                 alt="Profile" class="profile-pic">
+                            <div class="supporter-info">
+                                <h3 class="supporter-name">Name Here</h3>
+                                <div class="school-badge">
+                                    <span>🎓</span>
+                                    <span>School</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="donation-amount">$0</div>
+                        <p class="quote-text">Insert your own quote here</p>
+                        <div class="social-tags">
+                            <span class="social-tag instagram" onclick="alert('Instagram link coming soon!')">
+                                <i data-feather="instagram" class="w-3 h-3"></i>
+                                @username
+                            </span>
+                            <span class="social-tag tiktok" onclick="alert('TikTok link coming soon!')">
+                                <i data-feather="video" class="w-3 h-3"></i>
+                                @handle
+                            </span>
+                            <span class="social-tag linkedin" onclick="alert('LinkedIn link coming soon!')">
+                                <i data-feather="linkedin" class="w-3 h-3"></i>
+                                @profile
+                            </span>
+                        </div>
+                    </div>
+
+                    
+                    <div class="leaderboard-entry">
+                        <div class="rank-badge">10</div>
+                        <div class="profile-section">
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" 
+                                 alt="Profile" class="profile-pic">
+                            <div class="supporter-info">
+                                <h3 class="supporter-name">Name Here</h3>
+                                <div class="school-badge">
+                                    <span>🎓</span>
+                                    <span>School</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="donation-amount">$0</div>
+                        <p class="quote-text">Insert your own quote here</p>
+                        <div class="social-tags">
+                            <span class="social-tag instagram" onclick="alert('Instagram link coming soon!')">
+                                <i data-feather="instagram" class="w-3 h-3"></i>
+                                @username
+                            </span>
+                            <span class="social-tag tiktok" onclick="alert('TikTok link coming soon!')">
+                                <i data-feather="video" class="w-3 h-3"></i>
+                                @handle
+                            </span>
+                            <span class="social-tag linkedin" onclick="alert('LinkedIn link coming soon!')">
+                                <i data-feather="linkedin" class="w-3 h-3"></i>
+                                @profile
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expand Button 
+                <div class="text-center mt-8">
+                    <button id="expandBtn" class="glass-card px-6 py-3 rounded-full text-white font-medium hover-effect button-glow border border-gray-300 transition-all duration-300">
+                        <i data-feather="chevron-down" class="w-5 h-5 mr-2 inline"></i>
+                        View All Supporters (Top 50)
+                        <i data-feather="chevron-down" class="w-5 h-5 ml-2 inline"></i>
+                    </button>
+                </div> -->
+
+                <!-- Additional Supporters (Hidden by default) -->
+                <div id="additionalSupporters" class="space-y-6 mt-8 hidden">
+                    <!-- Ranks 11-50 will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leave a Legacy Section -->
+    <section id="legacy-section" class="py-16 px-6 md:px-12">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-gray-900 rounded-2xl shadow-lg border border-gray-700 overflow-hidden">
+                <!-- Header Section -->
+                <div class="bg-gradient-to-r from-gray-900 to-gray-800 px-8 py-12 text-center">
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-3">
+                        Leave a Legacy
+                    </h2>
+                    <p class="text-base text-gray-400 max-w-2xl mx-auto">
+                        Join our supporters! Donate any amount to help keep Quote running and growing.
+                    </p>
+                </div>
+                
+                <!-- Content Section -->
+                <div class="px-8 py-12">
+                    <div class="max-w-2xl mx-auto">
+                        
+                        <!-- Reasons -->
+                        <div class="grid grid-cols-3 gap-2 md:gap-6 mb-8">
+                            <div class="text-center">
+                                <div class="w-8 h-8 md:w-12 md:h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-3">
+                                    <i data-feather="heart" class="w-4 h-4 md:w-6 md:h-6 text-blue-600"></i>
+                                </div>
+                                <h4 class="font-semibold text-white mb-1 md:mb-2 text-xs md:text-base">Make a Difference</h4>
+                                <p class="text-xs md:text-sm text-gray-300">Help students and professionals succeed</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-8 h-8 md:w-12 md:h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-3">
+                                    <i data-feather="users" class="w-4 h-4 md:w-6 md:h-6 text-green-600"></i>
+                                </div>
+                                <h4 class="font-semibold text-white mb-1 md:mb-2 text-xs md:text-base">Join the Community</h4>
+                                <p class="text-xs md:text-sm text-gray-300">Be part of our growing supporter network</p>
+                            </div>
+                            
+                            <div class="text-center">
+                                <div class="w-8 h-8 md:w-12 md:h-12 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-2 md:mb-3">
+                                    <i data-feather="trending-up" class="w-4 h-4 md:w-6 md:h-6 text-purple-600"></i>
+                                </div>
+                                <h4 class="font-semibold text-white mb-1 md:mb-2 text-xs md:text-base">Drive Innovation</h4>
+                                <p class="text-xs md:text-sm text-gray-300">Help us develop new tools and features</p>
+                            </div>
+                        </div>
+                        
+                        <!-- CTA Button -->
+                        <div class="text-center">
+                            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdpGdX4A3sVWo7bGiQw5du-9jLM4SDrlqkGklUfYScOr9h96A/viewform?usp=header" target="_blank"
+                               class="inline-block bg-blue-600 text-white font-semibold py-5 px-12 rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-lg">
+                                <div class="flex items-center justify-center space-x-2">
+                                    <i data-feather="edit-3" class="w-4 h-4"></i>
+                                    <span>Quick Apply</span>
+                                </div>
+                            </a>
+                            
+                            <p class="text-xs text-gray-400 mt-4">
+                                <i data-feather="shield" class="w-3 h-3 inline mr-1"></i>
+                                Secure payment processing
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 md:px-12 bg-black">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Pages</h3>
+                    <ul class="space-y-2">
+                        <li><a href="student.html" class="text-gray-300 hover:text-white">University Student</a></li>
+                        <li><a href="professional.html" class="text-gray-300 hover:text-white">Professional</a></li>
+                        <li><a href="creator.html" class="text-gray-300 hover:text-white">Creator</a></li>
+                        <li><a href="all-tools.html" class="text-gray-300 hover:text-white">All Tools</a></li>
+                        <li><a href="leaderboard.html" class="text-gray-300 hover:text-white">Leaderboard</a></li>
+                        <li><a href="dev.html" class="text-gray-300 hover:text-white">Developer</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="text-gray-300 hover:text-white">Donate</a></li>
+                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdiZ_drgyq8RHPw2pK7gn-ezExGVi0d__g_iny7OaOrERsPUg/viewform" target="_blank" class="text-gray-300 hover:text-white">Contact us</a></li>
+                        <li><a href="leaderboard.html" class="text-gray-300 hover:text-white">Leaderboard</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4 text-white">Connect</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white">Home</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white">About</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 Quote. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+        
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const cursorFollower = document.querySelector('.cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            gsap.to(cursorFollower, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.5,
+                ease: 'power2.out'
+            });
+        });
+        
+        // Hover effects for cursor
+        const hoverElements = document.querySelectorAll('a, button, .leaderboard-entry, .glass-card');
+        
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.3)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursor.style.backgroundColor = 'rgba(255, 255, 255, 0.7)';
+                cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
+        });
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Generate additional supporters (ranks 11-50)
+        function generateAdditionalSupporters() {
+            const additionalContainer = document.getElementById('additionalSupporters');
+            let html = '';
+            
+            for (let i = 11; i <= 50; i++) {
+                html += `
+                    <div class="leaderboard-entry">
+                        <div class="rank-badge">${i}</div>
+                        <div class="profile-section">
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/default.jpg?raw=true" 
+                                 alt="Profile" class="profile-pic">
+                            <div class="supporter-info">
+                                <h3 class="supporter-name">Name Here</h3>
+                                <div class="school-badge">
+                                    <span>🎓</span>
+                                    <span>School</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="donation-amount">$0</div>
+                        <p class="quote-text">Insert your own quote here</p>
+                        <div class="social-tags">
+                            <span class="social-tag instagram" onclick="alert('Instagram link coming soon!')">
+                                <i data-feather="instagram" class="w-3 h-3"></i>
+                                @username
+                            </span>
+                            <span class="social-tag tiktok" onclick="alert('TikTok link coming soon!')">
+                                <i data-feather="video" class="w-3 h-3"></i>
+                                @handle
+                            </span>
+                            <span class="social-tag linkedin" onclick="alert('LinkedIn link coming soon!')">
+                                <i data-feather="linkedin" class="w-3 h-3"></i>
+                                @profile
+                            </span>
+                        </div>
+    </div>
+                `;
+            }
+            
+            additionalContainer.innerHTML = html;
+        }
+
+        // Expand/Collapse functionality
+        const expandBtn = document.getElementById('expandBtn');
+        const additionalSupporters = document.getElementById('additionalSupporters');
+        let isExpanded = false;
+
+        expandBtn.addEventListener('click', () => {
+            if (!isExpanded) {
+                // Generate supporters if not already generated
+                if (additionalSupporters.children.length === 0) {
+                    generateAdditionalSupporters();
+                }
+                
+                // Show additional supporters
+                additionalSupporters.classList.remove('hidden');
+                expandBtn.innerHTML = `
+                    <i data-feather="chevron-up" class="w-5 h-5 mr-2 inline"></i>
+                    Show Less
+                    <i data-feather="chevron-up" class="w-5 h-5 ml-2 inline"></i>
+                `;
+                isExpanded = true;
+            } else {
+                // Hide additional supporters
+                additionalSupporters.classList.add('hidden');
+                expandBtn.innerHTML = `
+                    <i data-feather="chevron-down" class="w-5 h-5 mr-2 inline"></i>
+                    View All Supporters (Top 50)
+                    <i data-feather="chevron-down" class="w-5 h-5 ml-2 inline"></i>
+                `;
+                isExpanded = false;
+            }
+            
+            // Refresh feather icons
+            feather.replace();
+        });
+    </script>
+
+    <!-- Notification -->
+    <div id="legacy-notification" class="fixed right-4 top-1/2 md:top-1/2 md:right-4 top-20 left-1/2 md:left-auto transform -translate-y-1/2 md:-translate-y-1/2 -translate-x-1/2 md:translate-x-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-3 rounded-lg shadow-lg opacity-0 transition-all duration-300 z-50 cursor-pointer">
+        <div class="flex items-center space-x-2">
+            <i data-feather="arrow-left" class="w-4 h-4 hidden md:block"></i>
+            <i data-feather="star" class="w-4 h-4 md:hidden"></i>
+            <span class="font-medium text-sm">Put your name on the board!</span>
+        </div>
+    </div>
+
+    <script>
+        // Show notification after page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const notification = document.getElementById('legacy-notification');
+            
+            // Show notification after 2 seconds
+            setTimeout(() => {
+                notification.classList.remove('opacity-0');
+            }, 2000);
+            
+            // Click to scroll to legacy section
+            notification.addEventListener('click', function() {
+                document.getElementById('legacy-section').scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            });
+            
+            // Auto-hide after 8 seconds
+            setTimeout(() => {
+                notification.classList.add('opacity-0');
+            }, 10000);
+            
+            // Make notification follow scroll and hide when past legacy section
+            window.addEventListener('scroll', function() {
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                const windowHeight = window.innerHeight;
+                const legacySection = document.getElementById('legacy-section');
+                const legacySectionTop = legacySection.offsetTop;
+                const legacySectionBottom = legacySectionTop + legacySection.offsetHeight;
+                
+                // Hide notification if scrolled past legacy section
+                if (scrollTop + windowHeight > legacySectionBottom) {
+                    notification.classList.add('opacity-0');
+                    return;
+                }
+                
+                // Show notification if not past legacy section
+                if (scrollTop + windowHeight < legacySectionTop) {
+                    notification.classList.remove('opacity-0');
+                }
+                
+                // Only move notification on desktop (not mobile)
+                if (window.innerWidth >= 768) {
+                    // Calculate position based on scroll (only when visible)
+                    const documentHeight = document.documentElement.scrollHeight;
+                    const maxScroll = documentHeight - windowHeight;
+                    const scrollPercent = Math.min(scrollTop / maxScroll, 1);
+                    const newTop = 50 + (scrollPercent * 20); // Move from 50% to 70% of viewport
+                    
+                    notification.style.top = newTop + '%';
+                }
+            });
+            
+            // Refresh feather icons
+            feather.replace();
+        });
+    </script>
+</body>
+</html>
