@@ -350,8 +350,8 @@
         }
         
         .profile-pic {
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             border-radius: 12px;
             object-fit: cover;
             border: 3px solid rgba(255, 255, 255, 0.2);
@@ -406,10 +406,10 @@
             grid-row: 1;
             background: #10b981;
             color: white;
-            padding: 8px 12px;
+            padding: 10px 14px;
             border-radius: 12px;
             font-weight: 800;
-            font-size: 1rem;
+            font-size: 1.1rem;
             border: 1px solid #059669;
             align-self: start;
             justify-self: end;
@@ -552,6 +552,26 @@
             50% { transform: translateY(-10px); }
             100% { transform: translateY(0px); }
         }
+
+        /* Search Bar Styling */
+        .search-container input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .search-container input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        #searchResults, #mobileSearchResults {
+            backdrop-filter: blur(20px);
+            background: rgba(17, 24, 39, 0.95);
+        }
+        
+        #searchResults a:hover, #mobileSearchResults a:hover {
+            background: rgba(55, 65, 81, 0.8);
+        }
         
         @media (max-width: 768px) {
             .cursor, .cursor-follower {
@@ -566,6 +586,266 @@
             .glass-card:hover {
                 transform: none !important;
                 box-shadow: none !important;
+            }
+
+            /* Mobile Leaderboard Optimizations */
+            .leaderboard-entry {
+                padding: 8px;
+                margin-bottom: 6px;
+                grid-template-columns: 50px 1fr 50px;
+                gap: 6px;
+            }
+
+            .rank-badge {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .profile-pic {
+                width: 40px;
+                height: 40px;
+            }
+
+            .supporter-name {
+                font-size: 0.8rem;
+            }
+
+            .school-badge {
+                font-size: 0.6rem;
+                padding: 1px 4px;
+            }
+
+            .donation-amount {
+                font-size: 0.85rem;
+                padding: 5px 7px;
+            }
+
+            .quote-text {
+                font-size: 0.65rem;
+                padding: 3px 6px;
+                margin-top: 2px;
+            }
+
+            .social-tag {
+                font-size: 0.5rem;
+                padding: 1px 3px;
+            }
+
+            /* Reduce section padding */
+            section {
+                padding: 12px 8px;
+            }
+
+            .py-20 {
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+            }
+
+            .pt-48 {
+                padding-top: 4rem;
+            }
+
+            /* Compact header */
+            h1 {
+                font-size: 2rem;
+                margin-bottom: 0.75rem;
+            }
+
+            p {
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            /* Compact legacy section */
+            .px-8 {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .py-12 {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+
+            /* Compact grid in legacy section */
+            .grid-cols-3 {
+                gap: 0.5rem;
+            }
+
+            .w-8.h-8 {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+
+            .w-4.h-4 {
+                width: 0.875rem;
+                height: 0.875rem;
+            }
+
+            /* Compact buttons */
+            .py-5.px-12 {
+                padding: 0.75rem 1.5rem;
+            }
+
+            /* Reduce footer spacing */
+            .py-12 {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+
+            .mb-12 {
+                margin-bottom: 2rem;
+            }
+
+            /* Compact notification */
+            #legacy-notification {
+                padding: 0.5rem;
+                font-size: 0.8rem;
+            }
+        }
+
+        /* Extra small mobile screens */
+        @media (max-width: 480px) {
+            .leaderboard-entry {
+                padding: 6px;
+                margin-bottom: 4px;
+                grid-template-columns: 40px 1fr 40px;
+                gap: 4px;
+            }
+
+            .rank-badge {
+                width: 32px;
+                height: 32px;
+                font-size: 0.85rem;
+            }
+
+            .profile-pic {
+                width: 32px;
+                height: 32px;
+            }
+
+            .supporter-name {
+                font-size: 0.75rem;
+            }
+
+            .school-badge {
+                font-size: 0.55rem;
+                padding: 1px 3px;
+            }
+
+            .donation-amount {
+                font-size: 0.8rem;
+                padding: 4px 6px;
+            }
+
+            .quote-text {
+                font-size: 0.6rem;
+                padding: 2px 4px;
+            }
+
+            .social-tag {
+                font-size: 0.45rem;
+                padding: 1px 2px;
+            }
+
+            /* Even more compact sections */
+            section {
+                padding: 8px 6px;
+            }
+
+            .py-20 {
+                padding-top: 2rem;
+                padding-bottom: 2rem;
+            }
+
+            .pt-48 {
+                padding-top: 3rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            p {
+                font-size: 0.85rem;
+            }
+
+            /* Compact navigation */
+            .px-4 {
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
+            }
+
+            .py-2 {
+                padding-top: 0.5rem;
+                padding-bottom: 0.5rem;
+            }
+        }
+
+        /* Ultra compact for very small screens */
+        @media (max-width: 360px) {
+            .leaderboard-entry {
+                padding: 4px;
+                margin-bottom: 3px;
+                grid-template-columns: 30px 1fr 30px;
+                gap: 3px;
+            }
+
+            .rank-badge {
+                width: 28px;
+                height: 28px;
+                font-size: 0.75rem;
+            }
+
+            .profile-pic {
+                width: 28px;
+                height: 28px;
+            }
+
+            .supporter-name {
+                font-size: 0.7rem;
+            }
+
+            .school-badge {
+                font-size: 0.5rem;
+                padding: 1px 2px;
+            }
+
+            .donation-amount {
+                font-size: 0.75rem;
+                padding: 3px 5px;
+            }
+
+            .quote-text {
+                font-size: 0.55rem;
+                padding: 2px 3px;
+            }
+
+            .social-tag {
+                font-size: 0.4rem;
+                padding: 1px 2px;
+            }
+
+            section {
+                padding: 6px 4px;
+            }
+
+            .py-20 {
+                padding-top: 1.5rem;
+                padding-bottom: 1.5rem;
+            }
+
+            .pt-48 {
+                padding-top: 2.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 0.8rem;
             }
         }
     </style>
@@ -594,18 +874,42 @@
     <nav class="fixed w-full z-50 py-2 md:py-4 px-4 md:px-12">
         <div class="flex justify-between items-center glass-card px-4 md:px-6 py-2 md:py-3">
             <a href="index.html" class="nav-logo text-lg md:text-xl font-bold text-white transition-transform duration-300 hover:transform hover:-translate-y-1">quoteai.org</a>
+            
+            <!-- Search Bar -->
+            <div class="hidden md:flex flex-1 max-w-md mx-8 relative">
+                <div class="search-container w-full relative">
+                    <input type="text" id="searchInput" placeholder="Search tools, pages..." 
+                           class="w-full px-4 py-2 pl-10 pr-4 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300">
+                    <i data-feather="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-300"></i>
+                    <div id="searchResults" class="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-gray-700 rounded-xl shadow-lg max-h-96 overflow-y-auto z-50 hidden">
+                        <!-- Search results will be populated here -->
+                    </div>
+                </div>
+            </div>
+            
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="index.html" class="nav-link text-white font-bold">Home</a>
                 <a href="student.html" class="nav-link text-white font-bold">Student</a>
                 <a href="professional.html" class="nav-link text-white font-bold">Professional</a>
                 <a href="creator.html" class="nav-link text-white font-bold">Creator</a>
                 <a href="all-tools.html" class="nav-link text-white font-bold">All Tools</a>
-                <a href="leaderboard.html" class="nav-link text-white font-bold">Leaderboard</a>
+                <a href="leaderboard.html" class="nav-link text-white font-bold text-blue-400">Leaderboard</a>
                 <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full hover:from-orange-400 hover:to-orange-500 transition-all duration-300 transform hover:scale-105">
                     Donate
                 </a>
             </div>
             <div class="flex items-center space-x-2 md:hidden">
+                <!-- Mobile Search Bar -->
+                <div class="flex-1 max-w-xs mr-2 relative">
+                    <div class="search-container w-full relative">
+                        <input type="text" id="mobileNavSearchInput" placeholder="Search..." 
+                               class="w-full px-3 py-1.5 pl-8 pr-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-xs">
+                        <i data-feather="search" class="absolute left-2.5 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-300"></i>
+                        <div id="mobileSearchResults" class="absolute top-full left-0 right-0 mt-1 bg-gray-900 border border-gray-700 rounded-lg shadow-lg max-h-64 overflow-y-auto z-50 hidden">
+                            <!-- Mobile search results will be populated here -->
+                        </div>
+                    </div>
+                </div>
                 <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="px-2 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full text-xs">
                     Donate
                 </a>
@@ -1116,6 +1420,156 @@
         if (mobileMenuBtn && mobileMenu) {
             mobileMenuBtn.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
+            });
+        }
+
+        // Search functionality
+        const searchData = {
+            pages: [
+                { name: 'Home', url: 'index.html' },
+                { name: 'Student', url: 'student.html' },
+                { name: 'Professional', url: 'professional.html' },
+                { name: 'Creator', url: 'creator.html' },
+                { name: 'All Tools', url: 'all-tools.html' },
+                { name: 'Leaderboard', url: 'leaderboard.html' },
+                { name: 'Developer', url: 'dev.html' }
+            ],
+            tools: [
+                { name: 'ChatGPT', category: 'AI Assistant', description: 'AI-powered conversation' },
+                { name: 'Claude', category: 'AI Assistant', description: 'Anthropic AI assistant' },
+                { name: 'Gemini', category: 'AI Assistant', description: 'Google AI model' },
+                { name: 'Perplexity', category: 'Research', description: 'AI-powered search engine' },
+                { name: 'Notion', category: 'Productivity', description: 'All-in-one workspace' },
+                { name: 'Obsidian', category: 'Note-taking', description: 'Knowledge management' },
+                { name: 'Figma', category: 'Design', description: 'Collaborative design tool' },
+                { name: 'Canva', category: 'Design', description: 'Graphic design platform' },
+                { name: 'GitHub', category: 'Development', description: 'Code repository hosting' },
+                { name: 'VS Code', category: 'Development', description: 'Code editor' },
+                { name: 'Google Analytics', category: 'Analytics', description: 'Web analytics' }
+            ]
+        };
+        
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const mobileNavSearchInput = document.getElementById('mobileNavSearchInput');
+        const mobileNavSearchResults = document.getElementById('mobileNavSearchResults');
+        
+        // Desktop search
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                handleSearch(query, searchResults);
+            });
+        }
+        
+        // Mobile navigation search
+        if (mobileNavSearchInput) {
+            mobileNavSearchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                handleSearch(query, mobileNavSearchResults);
+            });
+        }
+        
+        function handleSearch(query, resultsContainer) {
+            if (query.length < 2) {
+                resultsContainer.classList.add('hidden');
+                return;
+            }
+            
+            const results = [];
+            
+            // Search pages
+            searchData.pages.forEach(page => {
+                if (page.name.toLowerCase().includes(query)) {
+                    results.push({
+                        ...page,
+                        matchType: 'page'
+                    });
+                }
+            });
+            
+            // Search tools
+            searchData.tools.forEach(tool => {
+                if (tool.name.toLowerCase().includes(query) || 
+                    tool.category.toLowerCase().includes(query) || 
+                    tool.description.toLowerCase().includes(query)) {
+                    results.push({
+                        ...tool,
+                        matchType: 'tool'
+                    });
+                }
+            });
+            
+            displayResults(results, resultsContainer);
+        }
+        
+        function displayResults(results, resultsContainer) {
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="p-4 text-gray-400 text-center">No results found</div>';
+                resultsContainer.classList.remove('hidden');
+                return;
+            }
+            
+            const html = results.slice(0, 8).map(result => {
+                if (result.matchType === 'page') {
+                    return `
+                        <a href="${result.url}" class="block p-3 hover:bg-gray-800 transition-colors border-b border-gray-700 last:border-b-0">
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="file" class="w-4 h-4 text-blue-400"></i>
+                                <div>
+                                    <div class="text-white font-medium">${result.name}</div>
+                                    <div class="text-xs text-gray-400">Page</div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                } else {
+                    return `
+                        <a href="all-tools.html" class="block p-3 hover:bg-gray-800 transition-colors border-b border-gray-700 last:border-b-0">
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="tool" class="w-4 h-4 text-green-400"></i>
+                                <div>
+                                    <div class="text-white font-medium">${result.name}</div>
+                                    <div class="text-xs text-gray-400">${result.category} • ${result.description}</div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                }
+            }).join('');
+            
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.remove('hidden');
+            
+            // Re-initialize feather icons
+            feather.replace();
+        }
+        
+        // Hide search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                if (searchResults) searchResults.classList.add('hidden');
+                if (mobileNavSearchResults) mobileNavSearchResults.classList.add('hidden');
+            }
+        });
+        
+        // Handle desktop search result clicks
+        if (searchResults) {
+            searchResults.addEventListener('click', function(e) {
+                if (e.target.closest('a')) {
+                    searchResults.classList.add('hidden');
+                    searchInput.value = '';
+                }
+            });
+        }
+        
+        // Handle mobile navigation search result clicks
+        if (mobileNavSearchResults) {
+            mobileNavSearchResults.addEventListener('click', function(e) {
+                if (e.target.closest('a')) {
+                    mobileNavSearchResults.classList.add('hidden');
+                    mobileNavSearchInput.value = '';
+                }
             });
         }
         
