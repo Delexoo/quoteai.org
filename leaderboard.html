@@ -1365,11 +1365,12 @@
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-bold mb-4 text-white">Support</h3>
+                    <h3 class="text-xl font-bold mb-4 text-white">Legal</h3>
                     <ul class="space-y-2">
-                        <li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="text-gray-300 hover:text-white">Donate</a></li>
-                        <li><a href="dev.html" class="text-gray-300 hover:text-white">Contact us</a></li>
-                        <li><a href="leaderboard.html" class="text-gray-300 hover:text-white">Leaderboard</a></li>
+                        <li><a href="#" onclick="openLegalModal('terms')" class="text-gray-300 hover:text-white">Terms of Service</a></li>
+                        <li><a href="#" onclick="openLegalModal('privacy')" class="text-gray-300 hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" onclick="openLegalModal('cookie')" class="text-gray-300 hover:text-white">Cookie Policy</a></li>
+                        <li><a href="#" onclick="openLegalModal('disclaimer')" class="text-gray-300 hover:text-white">Disclaimer</a></li>
                     </ul>
                 </div>
                 <div>
@@ -1739,6 +1740,108 @@
             // Refresh feather icons
             feather.replace();
         });
+
+        // Legal Modal Functions
+        function openLegalModal(type) {
+            const modal = document.getElementById('legalModal');
+            const title = document.getElementById('legalTitle');
+            const content = document.getElementById('legalContent');
+            
+            const legalContent = {
+                terms: {
+                    title: 'Terms of Service',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. Acceptance of Terms</h3>
+                        <p class="mb-4">By accessing and using Quote, you accept and agree to be bound by the terms and provision of this agreement.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. Use License</h3>
+                        <p class="mb-4">Permission is granted to temporarily download one copy of Quote per device for personal, non-commercial transitory viewing only.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Disclaimer</h3>
+                        <p class="mb-4">The materials on Quote are provided on an 'as is' basis. Quote makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Limitations</h3>
+                        <p class="mb-4">In no event shall Quote or its suppliers be liable for any damages (including, without limitation, damages for loss of data or profit, or due to business interruption) arising out of the use or inability to use the materials on Quote, even if Quote or an authorized representative has been notified orally or in writing of the possibility of such damage.</p>
+                    `
+                },
+                privacy: {
+                    title: 'Privacy Policy',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. Information We Collect</h3>
+                        <p class="mb-4">We collect information you provide directly to us, such as when you create an account, use our services, or contact us for support.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. How We Use Your Information</h3>
+                        <p class="mb-4">We use the information we collect to provide, maintain, and improve our services, process transactions, and communicate with you.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Information Sharing</h3>
+                        <p class="mb-4">We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Data Security</h3>
+                        <p class="mb-4">We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.</p>
+                    `
+                },
+                cookie: {
+                    title: 'Cookie Policy',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. What Are Cookies</h3>
+                        <p class="mb-4">Cookies are small text files that are placed on your computer or mobile device when you visit our website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. How We Use Cookies</h3>
+                        <p class="mb-4">We use cookies to enhance your experience, analyze site traffic, and personalize content and advertisements.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. Types of Cookies</h3>
+                        <p class="mb-4">We use both session cookies (which expire when you close your browser) and persistent cookies (which stay on your device until deleted).</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Managing Cookies</h3>
+                        <p class="mb-4">You can control and/or delete cookies as you wish. You can delete all cookies that are already on your computer and set most browsers to prevent them from being placed.</p>
+                    `
+                },
+                disclaimer: {
+                    title: 'Disclaimer',
+                    content: `
+                        <h3 class="font-bold text-lg mb-3">1. No Warranty</h3>
+                        <p class="mb-4">The information on this website is provided on an "as is" basis. To the fullest extent permitted by law, this Company excludes all representations, warranties, conditions and terms relating to our website and the use of this website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">2. No Liability</h3>
+                        <p class="mb-4">In no event will Quote be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">3. External Links</h3>
+                        <p class="mb-4">Through this website you are able to link to other websites which are not under the control of Quote. We have no control over the nature, content and availability of those sites.</p>
+                        
+                        <h3 class="font-bold text-lg mb-3">4. Tool Recommendations</h3>
+                        <p class="mb-4">All tool recommendations are based on our research and testing. We do not guarantee the performance, availability, or suitability of any recommended tools for your specific needs.</p>
+                    `
+                }
+            };
+            
+            title.textContent = legalContent[type].title;
+            content.innerHTML = legalContent[type].content;
+            modal.classList.remove('hidden');
+        }
+
+        function closeLegalModal() {
+            document.getElementById('legalModal').classList.add('hidden');
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'legalModal') {
+                closeLegalModal();
+            }
+        });
     </script>
+
+    <!-- Legal Modal -->
+    <div id="legalModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-96 overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h2 id="legalTitle" class="text-2xl font-bold text-gray-900"></h2>
+                <button onclick="closeLegalModal()" class="text-gray-500 hover:text-gray-700">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            <div id="legalContent" class="text-gray-700"></div>
+        </div>
+    </div>
 </body>
 </html>
