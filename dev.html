@@ -381,6 +381,80 @@
                 box-shadow: none !important;
             }
         }
+        
+        /* Golden Animated Gradient Button */
+        .magenta-gradient-btn {
+            background: linear-gradient(45deg, #ffd700, #f4d03f, #ffa726, #ff7043, #ff5722, #ff9800, #ffc107, #f9ca24);
+            background-size: 400% 400%;
+            animation: goldenGradient 2.8s ease infinite;
+            color: white;
+            font-weight: bold;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        
+        .magenta-gradient-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255, 193, 7, 0.4);
+        }
+        
+        @keyframes goldenGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Modern Notification Animations */
+        @keyframes bounce-in {
+            0% {
+                transform: translateY(100px) scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                transform: translateY(-10px) scale(1.05);
+                opacity: 0.8;
+            }
+            70% {
+                transform: translateY(5px) scale(0.98);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(147, 51, 234, 0.5), 0 0 40px rgba(236, 72, 153, 0.3);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .animate-bounce-in {
+            animation: bounce-in 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+        }
+
+        .animate-glow-pulse {
+            animation: glow-pulse 2s ease-in-out infinite;
+        }
+
+        .animate-shimmer {
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
     </style>
 </head>
 <body>
@@ -408,6 +482,19 @@
     <nav class="fixed w-full z-50 py-2 md:py-4 px-4 md:px-12">
         <div class="flex justify-between items-center glass-card px-4 md:px-6 py-2 md:py-3">
             <a href="index.html" class="nav-logo text-lg md:text-xl font-bold text-white hover-effect">quoteai.org</a>
+            
+            <!-- Search Bar -->
+            <div class="hidden md:flex flex-1 max-w-md mx-8 relative">
+                <div class="search-container w-full relative">
+                    <input type="text" id="searchInput" placeholder="Search tools, pages..." 
+                           class="w-full px-4 py-2 pl-10 pr-4 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300">
+                    <i data-feather="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-300"></i>
+                    <div id="searchResults" class="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-gray-700 rounded-xl shadow-lg max-h-96 overflow-y-auto z-50 hidden">
+                        <!-- Search results will be populated here -->
+                    </div>
+                </div>
+            </div>
+            
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="index.html" class="nav-link text-white font-bold">Home</a>
                 <a href="student.html" class="nav-link text-white font-bold">Student</a>
@@ -420,13 +507,24 @@
                 </a>
                     </div>
             <div class="flex items-center space-x-2 md:hidden">
+                <!-- Mobile Search Bar -->
+                <div class="flex-1 max-w-xs mr-2 relative">
+                    <div class="search-container w-full relative">
+                        <input type="text" id="mobileNavSearchInput" placeholder="Search..." 
+                               class="w-full px-3 py-1.5 pl-8 pr-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-xs">
+                        <i data-feather="search" class="absolute left-2.5 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-300"></i>
+                        <div id="mobileNavSearchResults" class="absolute top-full left-0 right-0 mt-1 bg-gray-900 border border-gray-700 rounded-lg shadow-lg max-h-48 overflow-y-auto z-50 hidden">
+                            <!-- Mobile nav search results will be populated here -->
+                        </div>
+                    </div>
+                </div>
                 <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-2 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full text-xs">
                     Donate
                 </a>
                 <button id="mobile-menu-btn" class="text-white font-medium p-1">
                     <i data-feather="menu" class="w-5 h-5"></i>
-            </button>
-                    </div>
+                </button>
+            </div>
                 </div>
                 
         <!-- Mobile Menu -->
@@ -457,9 +555,14 @@
                     <p class="text-sm text-gray-700 leading-relaxed mb-4">
                         Student at Cal State University San Marcos pursuing a BA in Comp-Sci/Cybersecurity. Passionate about educating others and keeping people safe online.
                     </p>
-                    <button onclick="openContactModal()" class="contact-btn bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg">
-                        Contact
-                            </button>
+                    <div class="flex gap-3">
+                        <button onclick="openContactModal()" class="contact-btn bg-blue-500 hover:bg-blue-600 text-white text-sm px-4 py-2 rounded-lg font-bold">
+                            Contact
+                        </button>
+                        <a href="https://beacons.ai/delexo" target="_blank" class="magenta-gradient-btn text-sm px-4 py-2 rounded-lg font-bold">
+                            My Store
+                        </a>
+                    </div>
                     </div>
             </div>
         </div>
@@ -492,9 +595,9 @@
                 <div>
                     <h3 class="text-xl font-bold mb-4 text-white">Connect</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-300 hover:text-white">Creator Store</a></li>
+                        <li><a href="http://beacons.ai/delexo" target="_blank" class="donate-btn-footer text-gray-300 hover:text-white cursor-pointer">Creator Store</a></li>
                         <li><a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn-footer text-gray-300 hover:text-white cursor-pointer">Donate</a></li>
-                        <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSdiZ_drgyq8RHPw2pK7gn-ezExGVi0d__g_iny7OaOrERsPUg/viewform" target="_blank" class="text-gray-300 hover:text-white">Contact us</a></li>
+                        <li><a href="dev.html" class="text-gray-300 hover:text-white">Contact us</a></li>
                     </ul>
                 </div>
             </div>
@@ -711,6 +814,65 @@
                 closeLegalModal();
             }
         });
+
+        // Feedback Notification
+        function showFeedbackNotification() {
+            const notification = document.getElementById('feedbackNotification');
+            notification.classList.remove('translate-y-full', 'opacity-0', 'scale-95');
+            notification.classList.add('translate-y-0', 'opacity-100', 'scale-100');
+            
+            // Add bounce animation
+            setTimeout(() => {
+                notification.classList.add('animate-bounce-in');
+            }, 100);
+        }
+
+        function hideFeedbackNotification() {
+            const notification = document.getElementById('feedbackNotification');
+            notification.classList.add('translate-y-full', 'opacity-0', 'scale-95');
+            notification.classList.remove('translate-y-0', 'opacity-100', 'scale-100', 'animate-bounce-in');
+        }
+
+        function handleFeedbackClick() {
+            // Redirect to Google Form when feedback button is clicked
+            window.open('https://docs.google.com/forms/d/e/1FAIpQLSdiZ_drgyq8RHPw2pK7gn-ezExGVi0d__g_iny7OaOrERsPUg/viewform', '_blank');
+            hideFeedbackNotification();
+        }
+
+        // Show notification after 3 seconds
+        setTimeout(showFeedbackNotification, 3000);
     </script>
+
+    <!-- Feedback Notification -->
+    <div id="feedbackNotification" class="fixed bottom-4 left-4 right-4 md:left-auto md:right-4 md:w-72 z-50 transform translate-y-full opacity-0 scale-95 transition-all duration-700 ease-out">
+        <div class="relative">
+            <!-- Compact glassmorphism card -->
+            <div class="bg-white bg-opacity-10 backdrop-blur-xl rounded-xl shadow-xl border border-white border-opacity-20 p-3 overflow-hidden animate-glow-pulse">
+                <!-- Animated background gradient -->
+                <div class="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-15 animate-pulse"></div>
+                <!-- Shimmer effect -->
+                <div class="absolute inset-0 animate-shimmer"></div>
+                
+                <!-- Content -->
+                <div class="relative z-10 flex items-center justify-between">
+                    <div class="flex-1">
+                        <h4 class="text-white font-semibold text-sm">Got Feedback?</h4>
+                    </div>
+                    
+                    <div class="flex items-center space-x-2">
+                        <!-- Compact feedback button -->
+                        <button onclick="handleFeedbackClick()" class="bg-gradient-to-r from-indigo-500 to-purple-500 hover:from-indigo-600 hover:to-purple-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300 hover:scale-105 hover:shadow-md transform">
+                            Click Here!
+                        </button>
+                        
+                        <!-- Compact X button -->
+                        <button onclick="hideFeedbackNotification()" class="w-6 h-6 bg-white bg-opacity-25 hover:bg-opacity-40 rounded-md flex items-center justify-center transition-all duration-300 hover:scale-110 group border border-white border-opacity-30">
+                            <i data-feather="x" class="w-3 h-3 text-white group-hover:text-red-300 transition-colors duration-300 stroke-2"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
