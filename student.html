@@ -460,6 +460,22 @@
             50% { transform: rotate(2deg); }
             75% { transform: rotate(-1deg); }
         }
+
+        /* Search Bar Styling */
+        .search-container input:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .search-container input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        #searchResults, #mobileNavSearchResults {
+            backdrop-filter: blur(20px);
+            background: rgba(17, 24, 39, 0.95);
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -471,6 +487,19 @@
     <nav class="fixed w-full z-50 py-2 md:py-4 px-4 md:px-12">
         <div class="flex justify-between items-center glass-card px-4 md:px-6 py-2 md:py-3">
             <a href="index.html" class="nav-logo text-lg md:text-xl font-bold text-white hover-effect">quoteai.org</a>
+            
+            <!-- Search Bar -->
+            <div class="hidden md:flex flex-1 max-w-md mx-8 relative">
+                <div class="search-container w-full relative">
+                    <input type="text" id="searchInput" placeholder="Search tools, pages..." 
+                           class="w-full px-4 py-2 pl-10 pr-4 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300">
+                    <i data-feather="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-300"></i>
+                    <div id="searchResults" class="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-gray-700 rounded-xl shadow-lg max-h-96 overflow-y-auto z-50 hidden">
+                        <!-- Search results will be populated here -->
+                    </div>
+                </div>
+            </div>
+            
             <div class="hidden md:flex space-x-8 items-center">
                 <a href="index.html" class="nav-link text-white font-bold">Home</a>
                 <a href="student.html" class="nav-link text-white font-bold text-blue-400">Student</a>
@@ -483,6 +512,18 @@
                 </a>
             </div>
             <div class="flex items-center space-x-2 md:hidden">
+                <!-- Mobile Search Bar -->
+                <div class="flex-1 max-w-xs mr-2 relative">
+                    <div class="search-container w-full relative">
+                        <input type="text" id="mobileNavSearchInput" placeholder="Search..." 
+                               class="w-full px-3 py-1.5 pl-8 pr-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-xs">
+                        <i data-feather="search" class="absolute left-2.5 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-300"></i>
+                        <div id="mobileNavSearchResults" class="absolute top-full left-0 right-0 mt-1 bg-gray-900 border border-gray-700 rounded-lg shadow-lg max-h-48 overflow-y-auto z-50 hidden">
+                            <!-- Mobile nav search results will be populated here -->
+                        </div>
+                    </div>
+                </div>
+                
                 <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-2 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full text-xs">
                     Donate
                 </a>
@@ -1463,6 +1504,168 @@
                 }
             });
         });
+
+        // Search functionality
+        const searchData = {
+            pages: [
+                { name: 'Home', url: 'index.html', type: 'page' },
+                { name: 'University Student', url: 'student.html', type: 'page' },
+                { name: 'Professional', url: 'professional.html', type: 'page' },
+                { name: 'Creator', url: 'creator.html', type: 'page' },
+                { name: 'All Tools', url: 'all-tools.html', type: 'page' },
+                { name: 'Leaderboard', url: 'leaderboard.html', type: 'page' },
+                { name: 'Developer', url: 'dev.html', type: 'page' },
+                { name: 'Creator Store', url: 'http://beacons.ai/delexo', type: 'page' },
+                { name: 'Donate', url: 'https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00', type: 'page' },
+                { name: 'Contact us', url: 'dev.html', type: 'page' }
+            ],
+            tools: [
+                { name: 'ChatGPT', category: 'AI', description: 'AI-powered conversational assistant' },
+                { name: 'Claude', category: 'AI', description: 'Anthropic\'s AI assistant' },
+                { name: 'Gemini', category: 'AI', description: 'Google\'s AI model' },
+                { name: 'Qwen', category: 'AI', description: 'Alibaba\'s AI assistant' },
+                { name: 'Mindgrasp', category: 'Study', description: 'AI study tool for note-taking' },
+                { name: 'ElevenReader', category: 'Audio', description: 'Text-to-speech reader' },
+                { name: 'Grammarly', category: 'Writing', description: 'AI writing assistant' },
+                { name: 'Jasper AI', category: 'Writing', description: 'AI content creation' },
+                { name: 'Copy.ai', category: 'Writing', description: 'AI copywriting tool' },
+                { name: 'Writesonic', category: 'Writing', description: 'AI writing assistant' },
+                { name: 'Tome', category: 'Presentations', description: 'AI presentation creator' },
+                { name: 'Canva', category: 'Design', description: 'Design platform' },
+                { name: 'DALL-E', category: 'AI Art', description: 'AI image generation' },
+                { name: 'DaVinci Resolve', category: 'Video', description: 'Video editing software' },
+                { name: 'Unsplash', category: 'Stock', description: 'Stock photos' },
+                { name: 'Notion', category: 'Productivity', description: 'All-in-one workspace' },
+                { name: 'Asana', category: 'Project Management', description: 'Project management tool' },
+                { name: 'Zoom', category: 'Communication', description: 'Video conferencing' },
+                { name: 'Discord', category: 'Communication', description: 'Voice and text chat' },
+                { name: 'Google Analytics', category: 'Analytics', description: 'Web analytics' }
+            ]
+        };
+        
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const mobileNavSearchInput = document.getElementById('mobileNavSearchInput');
+        const mobileNavSearchResults = document.getElementById('mobileNavSearchResults');
+        
+        // Desktop search
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                handleSearch(query, searchResults);
+            });
+        }
+        
+        // Mobile navigation search
+        if (mobileNavSearchInput) {
+            mobileNavSearchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                handleSearch(query, mobileNavSearchResults);
+            });
+        }
+        
+        function handleSearch(query, resultsContainer) {
+            if (query.length < 2) {
+                resultsContainer.classList.add('hidden');
+                return;
+            }
+            
+            const results = [];
+            
+            // Search pages
+            searchData.pages.forEach(page => {
+                if (page.name.toLowerCase().includes(query)) {
+                    results.push({
+                        ...page,
+                        matchType: 'page'
+                    });
+                }
+            });
+            
+            // Search tools
+            searchData.tools.forEach(tool => {
+                if (tool.name.toLowerCase().includes(query) || 
+                    tool.category.toLowerCase().includes(query) || 
+                    tool.description.toLowerCase().includes(query)) {
+                    results.push({
+                        ...tool,
+                        matchType: 'tool'
+                    });
+                }
+            });
+            
+            displayResults(results, resultsContainer);
+        }
+        
+        function displayResults(results, resultsContainer) {
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="p-4 text-gray-400 text-center">No results found</div>';
+                resultsContainer.classList.remove('hidden');
+                return;
+            }
+            
+            const html = results.slice(0, 8).map(result => {
+                if (result.matchType === 'page') {
+                    return `
+                        <a href="${result.url}" class="block p-3 hover:bg-gray-800 transition-colors border-b border-gray-700 last:border-b-0">
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="file" class="w-4 h-4 text-blue-400"></i>
+                                <div>
+                                    <div class="text-white font-medium">${result.name}</div>
+                                    <div class="text-xs text-gray-400">Page</div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                } else {
+                    return `
+                        <a href="all-tools.html" class="block p-3 hover:bg-gray-800 transition-colors border-b border-gray-700 last:border-b-0">
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="tool" class="w-4 h-4 text-green-400"></i>
+                                <div>
+                                    <div class="text-white font-medium">${result.name}</div>
+                                    <div class="text-xs text-gray-400">${result.category} • ${result.description}</div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                }
+            }).join('');
+            
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.remove('hidden');
+            
+            // Re-initialize feather icons
+            feather.replace();
+        }
+        
+        // Hide search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                if (searchResults) searchResults.classList.add('hidden');
+                if (mobileNavSearchResults) mobileNavSearchResults.classList.add('hidden');
+            }
+        });
+        
+        // Handle desktop search result clicks
+        if (searchResults) {
+            searchResults.addEventListener('click', function(e) {
+                if (e.target.closest('a')) {
+                    searchResults.classList.add('hidden');
+                    searchInput.value = '';
+                }
+            });
+        }
+        
+        // Handle mobile navigation search result clicks
+        if (mobileNavSearchResults) {
+            mobileNavSearchResults.addEventListener('click', function(e) {
+                if (e.target.closest('a')) {
+                    mobileNavSearchResults.classList.add('hidden');
+                    mobileNavSearchInput.value = '';
+                }
+            });
+        }
     </script>
 </body>
 </html>

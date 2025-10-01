@@ -928,6 +928,226 @@
                 transform: translateY(0) scale(1);
             }
         }
+
+        /* What's New Feature Styles - Professional Version */
+        .news-icon {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .news-icon:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.15);
+        }
+
+        .news-icon i {
+            color: black !important;
+            font-size: 22px;
+            font-weight: 500;
+        }
+
+        .news-icon svg {
+            color: black !important;
+            fill: black !important;
+            stroke: black !important;
+        }
+
+        .news-icon-text {
+            color: black;
+            font-size: 22px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .news-badge {
+            position: absolute;
+            top: -6px;
+            right: -6px;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            border-radius: 12px;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(220, 38, 38, 0.3);
+            border: 2px solid white;
+        }
+
+        .whats-new-popup {
+            position: fixed;
+            bottom: 100px;
+            right: 24px;
+            width: 420px;
+            max-height: 640px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(24px);
+            border-radius: 24px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            z-index: 1001;
+            transform: translateY(120px) scale(0.85);
+            opacity: 0;
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            overflow: hidden;
+        }
+
+        .whats-new-popup.show {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .whats-new-header {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 24px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .whats-new-header h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .whats-new-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .whats-new-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        .whats-new-content {
+            padding: 24px;
+            max-height: 520px;
+            overflow-y: auto;
+        }
+
+        .news-section {
+            margin-bottom: 28px;
+        }
+
+        .news-section h4 {
+            color: #1e293b;
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: -0.025em;
+        }
+
+        .news-item {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 16px 18px;
+            margin-bottom: 12px;
+            border-radius: 12px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .news-item:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .news-item h5 {
+            color: #1e293b;
+            font-size: 15px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            line-height: 1.4;
+        }
+
+        .news-item p {
+            color: #64748b;
+            font-size: 14px;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .news-date {
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* Animations */
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 8px 32px rgba(102, 126, 234, 0.3);
+            }
+            50% {
+                box-shadow: 0 8px 32px rgba(102, 126, 234, 0.6);
+            }
+        }
+
+        @keyframes bounce-badge {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        /* Mobile Responsive - Hide What's New on mobile */
+        @media (max-width: 768px) {
+            .news-icon {
+                display: none !important;
+            }
+            
+            .whats-new-popup {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -2236,6 +2456,133 @@
                 mobileNavSearchInput.value = '';
             }
         });
+
+        // What's New Feature
+        function toggleWhatsNew() {
+            const popup = document.getElementById('whatsNewPopup');
+            popup.classList.toggle('show');
+        }
+
+        function closeWhatsNew() {
+            const popup = document.getElementById('whatsNewPopup');
+            popup.classList.remove('show');
+        }
+
+        // Close popup when clicking outside
+        document.addEventListener('click', function(e) {
+            const popup = document.getElementById('whatsNewPopup');
+            const icon = document.getElementById('newsIcon');
+            
+            if (!popup.contains(e.target) && !icon.contains(e.target)) {
+                closeWhatsNew();
+            }
+        });
+
+        // Initialize feather icons for What's New feature
+        feather.replace();
+        
+        // Ensure What's New icon is properly initialized
+        document.addEventListener('DOMContentLoaded', function() {
+            feather.replace();
+            
+            // Force replace icons after a short delay to ensure they render
+            setTimeout(() => {
+                feather.replace();
+            }, 100);
+        });
     </script>
+
+    <!-- What's New Icon -->
+    <div id="newsIcon" class="news-icon" onclick="toggleWhatsNew()">
+        <i data-feather="bell" style="color: black !important;"></i>
+        <div class="news-badge">3</div>
+    </div>
+
+    <!-- What's New Popup -->
+    <div id="whatsNewPopup" class="whats-new-popup">
+        <div class="whats-new-header">
+            <h3>What's New</h3>
+            <button class="whats-new-close" onclick="closeWhatsNew()">
+                <i data-feather="x"></i>
+            </button>
+        </div>
+        <div class="whats-new-content">
+            <!-- New Features Section -->
+            <div class="news-section">
+                <h4>
+                    <i data-feather="star" class="w-4 h-4"></i>
+                    New Features
+                </h4>
+                
+                <div class="news-item">
+                    <h5>🏆 Donation Leaderboard</h5>
+                    <p>Introduced a comprehensive donation leaderboard showcasing top supporters with rankings, amounts, and personalized profiles.</p>
+                    <div class="news-date">December 2024</div>
+                </div>
+                
+                <div class="news-item">
+                    <h5>📰 What's New Button (Desktop)</h5>
+                    <p>Added an interactive "What's New" notification system for desktop users to stay updated with latest features and improvements.</p>
+                    <div class="news-date">December 2024</div>
+                </div>
+                
+                <div class="news-item">
+                    <h5>🔍 Enhanced Search Bar</h5>
+                    <p>Implemented comprehensive search functionality across all pages with real-time results for tools, pages, and content discovery.</p>
+                    <div class="news-date">December 2024</div>
+                </div>
+                
+                <div class="news-item">
+                    <h5>🎯 Feedback Notification System</h5>
+                    <p>Added an interactive feedback notification on the developer page with beautiful animations and direct Google Form integration.</p>
+                    <div class="news-date">December 2024</div>
+                </div>
+                
+                <div class="news-item">
+                    <h5>🛍️ Creator Store Integration</h5>
+                    <p>Added "My Store" button with golden animated gradient linking to your creator store for seamless shopping experience.</p>
+                    <div class="news-date">December 2024</div>
+                </div>
+            </div>
+
+            <!-- Bug Fixes Section -->
+            <div class="news-section">
+                <h4>
+                    <i data-feather="tool" class="w-4 h-4"></i>
+                    Bug Fixes & Improvements
+                </h4>
+                
+                <div class="news-item">
+                    <h5>🔗 Creator Store Link Fix</h5>
+                    <p>Fixed the footer "Creator Store" link to now properly redirect to the working beacon.ai/delexo store page.</p>
+                    <div class="news-date">December 2024</div>
+                </div>
+                
+                <div class="news-item">
+                    <h5>📞 Contact Us Redirect</h5>
+                    <p>Updated "Contact Us" links across all pages to redirect users to the developer page instead of external forms.</p>
+                    <div class="news-date">December 2024</div>
+                </div>
+                
+                <div class="news-item">
+                    <h5>🎨 CSS Override Issues</h5>
+                    <p>Resolved Tailwind CSS class conflicts that were preventing custom button styling from working properly.</p>
+                    <div class="news-date">December 2024</div>
+                </div>
+                
+                <div class="news-item">
+                    <h5>📐 Mobile Responsiveness</h5>
+                    <p>Improved mobile layout for search bars and notifications to ensure optimal experience on all devices.</p>
+                    <div class="news-date">December 2024</div>
+                </div>
+                
+                <div class="news-item">
+                    <h5>⚡ Performance Optimizations</h5>
+                    <p>Enhanced animation performance and reduced layout shifts for smoother user experience across all pages.</p>
+                    <div class="news-date">December 2024</div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
