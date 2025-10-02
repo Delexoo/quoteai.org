@@ -480,7 +480,17 @@
                 { name: 'Asana', category: 'Project Management', description: 'Project management tool' },
                 { name: 'Zoom', category: 'Communication', description: 'Video conferencing' },
                 { name: 'Discord', category: 'Communication', description: 'Voice and text chat' },
-                { name: 'Google Analytics', category: 'Analytics', description: 'Web analytics' }
+                { name: 'Google Analytics', category: 'Analytics', description: 'Web analytics' },
+                { name: 'Audible', category: 'Books', description: 'Audiobooks and spoken-word content' },
+                { name: 'Kindle', category: 'Books', description: 'Digital books and e-reader' },
+                { name: 'Google Books', category: 'Books', description: 'Digital book library and search' },
+                { name: 'Goodreads', category: 'Books', description: 'Book reviews and recommendations' },
+                { name: 'BookFinder', category: 'Books', description: 'Find and compare book prices' },
+                { name: 'Libby', category: 'Books', description: 'Free library ebooks and audiobooks' },
+                { name: 'Project Gutenberg', category: 'Books', description: 'Free public domain ebooks' },
+                { name: 'Scribd', category: 'Books', description: 'Digital library with books and audiobooks' },
+                { name: 'OverDrive', category: 'Books', description: 'Library digital content platform' },
+                { name: 'Z-Library', category: 'Books', description: 'Free digital library' }
             ]
         };
         
@@ -505,6 +515,163 @@
             });
         }
         
+        // Helper functions for improved search
+        function generateSearchTerms(query) {
+            const terms = [query];
+            
+            // Add related terms and synonyms
+            const synonyms = {
+                'book': ['books', 'ebook', 'ebooks', 'audiobook', 'audiobooks', 'novel', 'novels', 'literature', 'reading', 'library'],
+                'read': ['reading', 'reader', 'books', 'text'],
+                'write': ['writing', 'writer', 'content', 'text', 'document'],
+                'study': ['studying', 'education', 'learning', 'academic', 'school'],
+                'ai': ['artificial intelligence', 'machine learning', 'chatbot', 'assistant'],
+                'design': ['designing', 'graphics', 'visual', 'creative'],
+                'video': ['videos', 'movie', 'movies', 'film', 'films', 'media'],
+                'photo': ['photos', 'picture', 'pictures', 'image', 'images'],
+                'music': ['audio', 'sound', 'audio', 'podcast', 'podcasts'],
+                'work': ['working', 'job', 'career', 'professional', 'business'],
+                'create': ['creating', 'creation', 'creative', 'maker'],
+                'manage': ['management', 'organize', 'organization', 'planning'],
+                'communicate': ['communication', 'chat', 'message', 'social']
+            };
+            
+            // Add synonyms if found
+            Object.keys(synonyms).forEach(key => {
+                if (query.includes(key)) {
+                    terms.push(...synonyms[key]);
+                }
+                // Also check if any synonym matches
+                synonyms[key].forEach(synonym => {
+                    if (query.includes(synonym)) {
+                        terms.push(key, ...synonyms[key]);
+                    }
+                });
+            });
+            
+            // Add fuzzy variations (simple character substitutions)
+            const fuzzyVariations = generateFuzzyVariations(query);
+            terms.push(...fuzzyVariations);
+            
+            return [...new Set(terms)]; // Remove duplicates
+        }
+        
+        function generateFuzzyVariations(query) {
+            const variations = [];
+            const commonMistakes = {
+                'a': ['e', 'o'],
+                'e': ['a', 'i'],
+                'i': ['e', 'y'],
+                'o': ['a', 'u'],
+                'u': ['o'],
+                's': ['z'],
+                'z': ['s'],
+                'c': ['k', 's'],
+                'k': ['c'],
+                'ph': ['f'],
+                'f': ['ph']
+            };
+            
+            // Generate variations with common character substitutions
+            for (let i = 0; i < query.length; i++) {
+                const char = query[i];
+                if (commonMistakes[char]) {
+                    commonMistakes[char].forEach(replacement => {
+                        const variation = query.substring(0, i) + replacement + query.substring(i + 1);
+                        variations.push(variation);
+                    });
+                }
+            }
+            
+            return variations;
+        }
+        
+        function matchesSearch(text, searchTerms) {
+            const lowerText = text.toLowerCase();
+            
+            // Check for exact matches first (highest priority)
+            for (const term of searchTerms) {
+                if (lowerText.includes(term.toLowerCase())) {
+                    return true;
+                }
+            }
+            
+            // Check for fuzzy matches (word similarity)
+            const words = lowerText.split(/\s+/);
+            for (const word of words) {
+                for (const term of searchTerms) {
+                    if (calculateSimilarity(word, term.toLowerCase()) > 0.7) {
+                        return true;
+                    }
+                }
+            }
+            
+            return false;
+        }
+        
+        function calculateSimilarity(str1, str2) {
+            const longer = str1.length > str2.length ? str1 : str2;
+            const shorter = str1.length > str2.length ? str2 : str1;
+            
+            if (longer.length === 0) return 1.0;
+            
+            const distance = levenshteinDistance(longer, shorter);
+            return (longer.length - distance) / longer.length;
+        }
+        
+        function levenshteinDistance(str1, str2) {
+            const matrix = [];
+            
+            for (let i = 0; i <= str2.length; i++) {
+                matrix[i] = [i];
+            }
+            
+            for (let j = 0; j <= str1.length; j++) {
+                matrix[0][j] = j;
+            }
+            
+            for (let i = 1; i <= str2.length; i++) {
+                for (let j = 1; j <= str1.length; j++) {
+                    if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
+                    }
+                }
+            }
+            
+            return matrix[str2.length][str1.length];
+        }
+        
+        function calculateScore(text, searchTerms) {
+            const lowerText = text.toLowerCase();
+            let score = 0;
+            
+            // Higher score for exact matches
+            for (const term of searchTerms) {
+                if (lowerText.includes(term.toLowerCase())) {
+                    score += 10;
+                }
+            }
+            
+            // Check for word matches
+            const words = lowerText.split(/\s+/);
+            for (const word of words) {
+                for (const term of searchTerms) {
+                    const similarity = calculateSimilarity(word, term.toLowerCase());
+                    if (similarity > 0.7) {
+                        score += similarity * 5;
+                    }
+                }
+            }
+            
+            return score;
+        }
+        
         function handleSearch(query, resultsContainer) {
             if (query.length < 2) {
                 resultsContainer.classList.add('hidden');
@@ -513,24 +680,28 @@
             
             const results = [];
             
+            // Create search terms with related words and variations
+            const searchTerms = generateSearchTerms(query);
+            
             // Search pages
             searchData.pages.forEach(page => {
-                if (page.name.toLowerCase().includes(query)) {
+                if (matchesSearch(page.name, searchTerms)) {
                     results.push({
                         ...page,
-                        matchType: 'page'
+                        matchType: 'page',
+                        score: calculateScore(page.name, searchTerms)
                     });
                 }
             });
             
             // Search tools
             searchData.tools.forEach(tool => {
-                if (tool.name.toLowerCase().includes(query) || 
-                    tool.category.toLowerCase().includes(query) || 
-                    tool.description.toLowerCase().includes(query)) {
+                const searchableText = `${tool.name} ${tool.category} ${tool.description}`;
+                if (matchesSearch(searchableText, searchTerms)) {
                     results.push({
                         ...tool,
-                        matchType: 'tool'
+                        matchType: 'tool',
+                        score: calculateScore(searchableText, searchTerms)
                     });
                 }
             });
@@ -544,6 +715,9 @@
                 resultsContainer.classList.remove('hidden');
                 return;
             }
+            
+            // Sort results by score (highest first)
+            results.sort((a, b) => (b.score || 0) - (a.score || 0));
             
             const html = results.slice(0, 8).map(result => {
                 if (result.matchType === 'page') {

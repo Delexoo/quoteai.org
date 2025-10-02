@@ -20,7 +20,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            background: #1a1a1a;
             min-height: 100vh;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             overflow-x: hidden;
@@ -68,6 +68,12 @@
                 align-items: center !important;
                 text-align: center !important;
                 position: relative !important;
+            }
+            
+            /* Disable hover effects on mobile */
+            .tool-card:hover {
+                transform: none !important;
+                box-shadow: none !important;
             }
             
             .tool-card .tool-header {
@@ -142,6 +148,62 @@
             .hover-effect:hover {
                 transform: none !important;
             }
+        }
+        
+        /* Desktop: Static cards with hover animations only */
+        @media (min-width: 768px) {
+            .tool-card {
+                transform: none !important;
+                transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            }
+            
+            .tool-card:hover {
+                transform: translateY(-8px) scale(1.05) rotateX(2deg) rotateY(2deg) rotateZ(1deg) !important;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+            }
+            
+            /* Remove AOS animations on desktop */
+            .tool-card[data-aos] {
+                transform: none !important;
+                opacity: 1 !important;
+            }
+        }
+        
+        /* Mobile: Keep existing animations */
+        @media (max-width: 767px) {
+            .tool-card {
+                transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            }
+            
+            .tool-card:hover {
+                transform: translateY(-8px) scale(1.05) !important;
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+            }
+        }
+        
+        .tool-card[data-aos].aos-animate {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+        }
+        
+        /* Button Hover Animations - Consistent timing for all elements */
+        .hover-effect {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .hover-effect:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Tool card specific hover - override hover-effect for tool cards */
+        .tool-card.hover-effect:hover {
+            transform: translateY(-12px) scale(1.05);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3) !important;
+        }
+        
+        /* Ensure all elements have consistent transition timing */
+        .glass-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         /* Desktop tool card styling */
@@ -336,9 +398,9 @@
                     Donate
                 </a>
             </div>
-            <div class="flex items-center space-x-2 md:hidden">
+            <div class="flex items-center justify-between w-full md:hidden">
                 <!-- Mobile Search Bar -->
-                <div class="flex-1 max-w-xs mr-2 relative">
+                <div class="flex-1 max-w-sm mr-3 relative">
                     <div class="search-container w-full relative">
                         <input type="text" id="mobileNavSearchInput" placeholder="Search..." 
                                class="w-full px-3 py-1.5 pl-8 pr-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-xs">
@@ -348,12 +410,15 @@
                         </div>
                     </div>
                 </div>
-                <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-2 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full text-xs">
-                    Donate
-                </a>
-                <button id="mobile-menu-btn" class="text-white font-medium p-1">
-                    <i data-feather="menu" class="w-5 h-5"></i>
-                </button>
+                
+                <div class="flex items-center space-x-2">
+                    <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-2 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full text-xs">
+                        Donate
+                    </a>
+                    <button id="mobile-menu-btn" class="text-white font-medium p-1">
+                        <i data-feather="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
             </div>
         </div>
         
@@ -402,7 +467,7 @@
                 Discover the complete collection of handpicked tools across all categories
             </p>
             
-            <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-2 md:gap-8" id="tools-grid">
+            <div class="grid grid-cols-3 md:grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6" id="tools-grid">
                 <!-- Student Tools -->
                 <a href="https://cluely.com/" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="student ai" data-aos="fade-up" data-aos-delay="200">
                     <div class="tool-header">
@@ -535,6 +600,17 @@
                     </div>
                     <p class="text-gray-300 text-sm">AI assistant for homework help, explanations, and writing</p>
                 </a>
+                
+                <div class="tool-card glass-card p-6 rounded-xl opacity-75 cursor-not-allowed" data-category="student entertainment" data-aos="fade-up" data-aos-delay="1250">
+                    <div class="tool-header">
+                        <div class="tool-title-section">
+                            <img src="https://github.com/Delexoo/quoteai.org/blob/main/clip.png?raw=true" alt="Free Movies" class="w-8 h-8 mr-3">
+                            <h3 class="text-xl font-bold text-white">Free Movies</h3>
+                        </div>
+                        <span class="tool-tag bg-red-400 bg-opacity-20 text-red-400">Movies</span>
+                    </div>
+                    <p class="text-gray-300 text-sm">Coming Very Soon! Stay Tuned!</p>
+                </div>
                 
                 <!-- Professional Tools -->
                 <a href="https://sintra.ai" target="_blank" class="tool-card glass-card p-6 rounded-xl hover-effect group" data-category="professional ai" data-aos="fade-up" data-aos-delay="1300">
@@ -916,12 +992,22 @@
     </div>
 
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            easing: 'ease-in-out',
-            once: true
-        });
+        // Initialize AOS only on mobile devices
+        if (window.innerWidth <= 768) {
+            AOS.init({
+                duration: 800,
+                easing: 'ease-in-out',
+                once: true
+            });
+        } else {
+            // Remove AOS attributes on desktop for static display
+            document.querySelectorAll('[data-aos]').forEach(element => {
+                element.removeAttribute('data-aos');
+                element.removeAttribute('data-aos-delay');
+                element.removeAttribute('data-aos-duration');
+                element.removeAttribute('data-aos-easing');
+            });
+        }
 
         // Legal Modal Functions
         function openLegalModal(type) {
@@ -1100,6 +1186,332 @@
                 block: 'start'
             });
         });
+        
+        // Search functionality
+        const searchData = {
+            pages: [
+                { name: 'Home', url: 'index.html', type: 'page' },
+                { name: 'University Student', url: 'student.html', type: 'page' },
+                { name: 'Professional', url: 'professional.html', type: 'page' },
+                { name: 'Creator', url: 'creator.html', type: 'page' },
+                { name: 'All Tools', url: 'all-tools.html', type: 'page' },
+                { name: 'Leaderboard', url: 'leaderboard.html', type: 'page' },
+                { name: 'Developer', url: 'dev.html', type: 'page' },
+                { name: 'Creator Store', url: 'http://beacons.ai/delexo', type: 'page' },
+                { name: 'Donate', url: 'https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00', type: 'page' },
+                { name: 'Contact us', url: 'dev.html', type: 'page' }
+            ],
+            tools: [
+                { name: 'ChatGPT', category: 'AI', description: 'AI-powered conversational assistant' },
+                { name: 'Claude', category: 'AI', description: 'Anthropic\'s AI assistant' },
+                { name: 'Gemini', category: 'AI', description: 'Google\'s AI model' },
+                { name: 'Qwen', category: 'AI', description: 'Alibaba\'s AI assistant' },
+                { name: 'Mindgrasp', category: 'Study', description: 'AI study tool for note-taking' },
+                { name: 'ElevenReader', category: 'Audio', description: 'Text-to-speech reader' },
+                { name: 'Grammarly', category: 'Writing', description: 'AI writing assistant' },
+                { name: 'Jasper AI', category: 'Writing', description: 'AI content creation' },
+                { name: 'Copy.ai', category: 'Writing', description: 'AI copywriting tool' },
+                { name: 'Writesonic', category: 'Writing', description: 'AI writing assistant' },
+                { name: 'Tome', category: 'Presentations', description: 'AI presentation creator' },
+                { name: 'Canva', category: 'Design', description: 'Design platform' },
+                { name: 'DALL-E', category: 'AI Art', description: 'AI image generation' },
+                { name: 'DaVinci Resolve', category: 'Video', description: 'Video editing software' },
+                { name: 'Unsplash', category: 'Stock', description: 'Stock photos' },
+                { name: 'Notion', category: 'Productivity', description: 'All-in-one workspace' },
+                { name: 'Asana', category: 'Project Management', description: 'Project management tool' },
+                { name: 'Zoom', category: 'Communication', description: 'Video conferencing' },
+                { name: 'Discord', category: 'Communication', description: 'Voice and text chat' },
+                { name: 'Google Analytics', category: 'Analytics', description: 'Web analytics' },
+                { name: 'Audible', category: 'Books', description: 'Audiobooks and spoken-word content' },
+                { name: 'Kindle', category: 'Books', description: 'Digital books and e-reader' },
+                { name: 'Google Books', category: 'Books', description: 'Digital book library and search' },
+                { name: 'Goodreads', category: 'Books', description: 'Book reviews and recommendations' },
+                { name: 'BookFinder', category: 'Books', description: 'Find and compare book prices' },
+                { name: 'Libby', category: 'Books', description: 'Free library ebooks and audiobooks' },
+                { name: 'Project Gutenberg', category: 'Books', description: 'Free public domain ebooks' },
+                { name: 'Scribd', category: 'Books', description: 'Digital library with books and audiobooks' },
+                { name: 'OverDrive', category: 'Books', description: 'Library digital content platform' },
+                { name: 'Z-Library', category: 'Books', description: 'Free digital library' }
+            ]
+        };
+        
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const mobileNavSearchInput = document.getElementById('mobileNavSearchInput');
+        const mobileNavSearchResults = document.getElementById('mobileNavSearchResults');
+        
+        // Desktop search
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                handleSearch(query, searchResults);
+            });
+        }
+        
+        // Mobile navigation search
+        if (mobileNavSearchInput) {
+            mobileNavSearchInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                handleSearch(query, mobileNavSearchResults);
+            });
+        }
+        
+        // Helper functions for improved search
+        function generateSearchTerms(query) {
+            const terms = [query];
+            
+            // Add related terms and synonyms
+            const synonyms = {
+                'book': ['books', 'ebook', 'ebooks', 'audiobook', 'audiobooks', 'novel', 'novels', 'literature', 'reading', 'library'],
+                'read': ['reading', 'reader', 'books', 'text'],
+                'write': ['writing', 'writer', 'content', 'text', 'document'],
+                'study': ['studying', 'education', 'learning', 'academic', 'school'],
+                'ai': ['artificial intelligence', 'machine learning', 'chatbot', 'assistant'],
+                'design': ['designing', 'graphics', 'visual', 'creative'],
+                'video': ['videos', 'movie', 'movies', 'film', 'films', 'media'],
+                'photo': ['photos', 'picture', 'pictures', 'image', 'images'],
+                'music': ['audio', 'sound', 'audio', 'podcast', 'podcasts'],
+                'work': ['working', 'job', 'career', 'professional', 'business'],
+                'create': ['creating', 'creation', 'creative', 'maker'],
+                'manage': ['management', 'organize', 'organization', 'planning'],
+                'communicate': ['communication', 'chat', 'message', 'social']
+            };
+            
+            // Add synonyms if found
+            Object.keys(synonyms).forEach(key => {
+                if (query.includes(key)) {
+                    terms.push(...synonyms[key]);
+                }
+                // Also check if any synonym matches
+                synonyms[key].forEach(synonym => {
+                    if (query.includes(synonym)) {
+                        terms.push(key, ...synonyms[key]);
+                    }
+                });
+            });
+            
+            // Add fuzzy variations (simple character substitutions)
+            const fuzzyVariations = generateFuzzyVariations(query);
+            terms.push(...fuzzyVariations);
+            
+            return [...new Set(terms)]; // Remove duplicates
+        }
+        
+        function generateFuzzyVariations(query) {
+            const variations = [];
+            const commonMistakes = {
+                'a': ['e', 'o'],
+                'e': ['a', 'i'],
+                'i': ['e', 'y'],
+                'o': ['a', 'u'],
+                'u': ['o'],
+                's': ['z'],
+                'z': ['s'],
+                'c': ['k', 's'],
+                'k': ['c'],
+                'ph': ['f'],
+                'f': ['ph']
+            };
+            
+            // Generate variations with common character substitutions
+            for (let i = 0; i < query.length; i++) {
+                const char = query[i];
+                if (commonMistakes[char]) {
+                    commonMistakes[char].forEach(replacement => {
+                        const variation = query.substring(0, i) + replacement + query.substring(i + 1);
+                        variations.push(variation);
+                    });
+                }
+            }
+            
+            return variations;
+        }
+        
+        function matchesSearch(text, searchTerms) {
+            const lowerText = text.toLowerCase();
+            
+            // Check for exact matches first (highest priority)
+            for (const term of searchTerms) {
+                if (lowerText.includes(term.toLowerCase())) {
+                    return true;
+                }
+            }
+            
+            // Check for fuzzy matches (word similarity)
+            const words = lowerText.split(/\s+/);
+            for (const word of words) {
+                for (const term of searchTerms) {
+                    if (calculateSimilarity(word, term.toLowerCase()) > 0.7) {
+                        return true;
+                    }
+                }
+            }
+            
+            return false;
+        }
+        
+        function calculateSimilarity(str1, str2) {
+            const longer = str1.length > str2.length ? str1 : str2;
+            const shorter = str1.length > str2.length ? str2 : str1;
+            
+            if (longer.length === 0) return 1.0;
+            
+            const distance = levenshteinDistance(longer, shorter);
+            return (longer.length - distance) / longer.length;
+        }
+        
+        function levenshteinDistance(str1, str2) {
+            const matrix = [];
+            
+            for (let i = 0; i <= str2.length; i++) {
+                matrix[i] = [i];
+            }
+            
+            for (let j = 0; j <= str1.length; j++) {
+                matrix[0][j] = j;
+            }
+            
+            for (let i = 1; i <= str2.length; i++) {
+                for (let j = 1; j <= str1.length; j++) {
+                    if (str2.charAt(i - 1) === str1.charAt(j - 1)) {
+                        matrix[i][j] = matrix[i - 1][j - 1];
+                    } else {
+                        matrix[i][j] = Math.min(
+                            matrix[i - 1][j - 1] + 1,
+                            matrix[i][j - 1] + 1,
+                            matrix[i - 1][j] + 1
+                        );
+                    }
+                }
+            }
+            
+            return matrix[str2.length][str1.length];
+        }
+        
+        function calculateScore(text, searchTerms) {
+            const lowerText = text.toLowerCase();
+            let score = 0;
+            
+            // Higher score for exact matches
+            for (const term of searchTerms) {
+                if (lowerText.includes(term.toLowerCase())) {
+                    score += 10;
+                }
+            }
+            
+            // Check for word matches
+            const words = lowerText.split(/\s+/);
+            for (const word of words) {
+                for (const term of searchTerms) {
+                    const similarity = calculateSimilarity(word, term.toLowerCase());
+                    if (similarity > 0.7) {
+                        score += similarity * 5;
+                    }
+                }
+            }
+            
+            return score;
+        }
+        
+        function handleSearch(query, resultsContainer) {
+            if (query.length < 2) {
+                resultsContainer.classList.add('hidden');
+                return;
+            }
+            
+            const results = [];
+            
+            // Create search terms with related words and variations
+            const searchTerms = generateSearchTerms(query);
+            
+            // Search pages
+            searchData.pages.forEach(page => {
+                if (matchesSearch(page.name, searchTerms)) {
+                    results.push({
+                        ...page,
+                        matchType: 'page',
+                        score: calculateScore(page.name, searchTerms)
+                    });
+                }
+            });
+            
+            // Search tools
+            searchData.tools.forEach(tool => {
+                const searchableText = `${tool.name} ${tool.category} ${tool.description}`;
+                if (matchesSearch(searchableText, searchTerms)) {
+                    results.push({
+                        ...tool,
+                        matchType: 'tool',
+                        score: calculateScore(searchableText, searchTerms)
+                    });
+                }
+            });
+            
+            displayResults(results, resultsContainer);
+        }
+        
+        function displayResults(results, resultsContainer) {
+            if (results.length === 0) {
+                resultsContainer.innerHTML = '<div class="p-4 text-gray-400 text-center">No results found</div>';
+                resultsContainer.classList.remove('hidden');
+                return;
+            }
+            
+            // Sort results by score (highest first)
+            results.sort((a, b) => (b.score || 0) - (a.score || 0));
+            
+            const html = results.slice(0, 8).map(result => {
+                if (result.matchType === 'page') {
+                    return `
+                        <a href="${result.url}" class="block p-3 hover:bg-gray-800 transition-colors border-b border-gray-700 last:border-b-0">
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="file" class="w-4 h-4 text-blue-400"></i>
+                                <div>
+                                    <div class="text-white font-medium">${result.name}</div>
+                                    <div class="text-xs text-gray-400">Page</div>
+                                </div>
+                            </div>
+                        </a>
+                    `;
+                } else {
+                    return `
+                        <div class="block p-3 hover:bg-gray-800 transition-colors border-b border-gray-700 last:border-b-0">
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="tool" class="w-4 h-4 text-green-400"></i>
+                                <div>
+                                    <div class="text-white font-medium">${result.name}</div>
+                                    <div class="text-xs text-gray-400">${result.category} • ${result.description}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }).join('');
+            
+            resultsContainer.innerHTML = html;
+            resultsContainer.classList.remove('hidden');
+            feather.replace();
+        }
+        
+        // Handle search result clicks
+        if (searchResults) {
+            searchResults.addEventListener('click', function(e) {
+                if (e.target.closest('a')) {
+                    searchResults.classList.add('hidden');
+                    searchInput.value = '';
+                }
+            });
+        }
+        
+        // Handle mobile navigation search result clicks
+        if (mobileNavSearchResults) {
+            mobileNavSearchResults.addEventListener('click', function(e) {
+                if (e.target.closest('a')) {
+                    mobileNavSearchResults.classList.add('hidden');
+                    mobileNavSearchInput.value = '';
+                }
+            });
+        }
     </script>
 </body>
 </html>
