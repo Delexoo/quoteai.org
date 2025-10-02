@@ -996,17 +996,17 @@
             position: fixed;
             bottom: 100px;
             right: 24px;
-            width: 420px;
-            max-height: 640px;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(24px);
-            border-radius: 24px;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 320px;
+            max-height: 400px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(16px);
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             z-index: 1001;
-            transform: translateY(120px) scale(0.85);
+            transform: translateY(20px) scale(0.95);
             opacity: 0;
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: all 0.3s ease;
             overflow: hidden;
         }
 
@@ -1016,9 +1016,9 @@
         }
 
         .whats-new-header {
-            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            background: #1e293b;
             color: white;
-            padding: 24px;
+            padding: 16px 20px;
             text-align: center;
             position: relative;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -1054,8 +1054,8 @@
         }
 
         .whats-new-content {
-            padding: 24px;
-            max-height: 520px;
+            padding: 20px;
+            max-height: 280px;
             overflow-y: auto;
         }
 
@@ -1077,14 +1077,11 @@
         }
 
         .news-item {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            padding: 16px 18px;
-            margin-bottom: 12px;
-            border-radius: 12px;
+            background: rgba(248, 250, 252, 0.8);
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 8px;
             transition: all 0.2s ease;
-            cursor: pointer;
-            position: relative;
         }
 
         .news-item:hover {
@@ -2681,79 +2678,30 @@
             </button>
         </div>
         <div class="whats-new-content">
-            <!-- New Features Section -->
             <div class="news-section">
-                <h4>
-                    <i data-feather="star" class="w-4 h-4"></i>
-                    New Features
-                </h4>
+                <div class="news-item">
+                    <h5>🎬 Free Movies - Coming Soon!</h5>
+                    <p>Watch free movies and TV shows online. Stay tuned!</p>
+                </div>
+                
+                <div class="news-item">
+                    <h5>📰 What's New Feature</h5>
+                    <p>Stay updated with the latest features and improvements!</p>
+                </div>
+                
+                <div class="news-item">
+                    <h5>🛍️ Creator Store</h5>
+                    <p>Check out our store for exclusive content and tools.</p>
+                </div>
                 
                 <div class="news-item">
                     <h5>🏆 Donation Leaderboard</h5>
-                    <p>Introduced a comprehensive donation leaderboard showcasing top supporters with rankings, amounts, and personalized profiles.</p>
-                    <div class="news-date">December 2024</div>
+                    <p>Support our project and see your name on the leaderboard!</p>
                 </div>
                 
                 <div class="news-item">
-                    <h5>📰 What's New Button (Desktop)</h5>
-                    <p>Added an interactive "What's New" notification system for desktop users to stay updated with latest features and improvements.</p>
-                    <div class="news-date">December 2024</div>
-                </div>
-                
-                <div class="news-item">
-                    <h5>🔍 Enhanced Search Bar</h5>
-                    <p>Implemented comprehensive search functionality across all pages with real-time results for tools, pages, and content discovery.</p>
-                    <div class="news-date">December 2024</div>
-                </div>
-                
-                <div class="news-item">
-                    <h5>🎯 Feedback Notification System</h5>
-                    <p>Added an interactive feedback notification on the developer page with beautiful animations and direct Google Form integration.</p>
-                    <div class="news-date">December 2024</div>
-                </div>
-                
-                <div class="news-item">
-                    <h5>🛍️ Creator Store Integration</h5>
-                    <p>Added "My Store" button with golden animated gradient linking to your creator store for seamless shopping experience.</p>
-                    <div class="news-date">December 2024</div>
-                </div>
-            </div>
-
-            <!-- Bug Fixes Section -->
-            <div class="news-section">
-                <h4>
-                    <i data-feather="tool" class="w-4 h-4"></i>
-                    Bug Fixes & Improvements
-                </h4>
-                
-                <div class="news-item">
-                    <h5>🔗 Creator Store Link Fix</h5>
-                    <p>Fixed the footer "Creator Store" link to now properly redirect to the working beacon.ai/delexo store page.</p>
-                    <div class="news-date">December 2024</div>
-                </div>
-                
-                <div class="news-item">
-                    <h5>📞 Contact Us Redirect</h5>
-                    <p>Updated "Contact Us" links across all pages to redirect users to the developer page instead of external forms.</p>
-                    <div class="news-date">December 2024</div>
-                </div>
-                
-                <div class="news-item">
-                    <h5>🎨 CSS Override Issues</h5>
-                    <p>Resolved Tailwind CSS class conflicts that were preventing custom button styling from working properly.</p>
-                    <div class="news-date">December 2024</div>
-                </div>
-                
-                <div class="news-item">
-                    <h5>📐 Mobile Responsiveness</h5>
-                    <p>Improved mobile layout for search bars and notifications to ensure optimal experience on all devices.</p>
-                    <div class="news-date">December 2024</div>
-                </div>
-                
-                <div class="news-item">
-                    <h5>⚡ Performance Optimizations</h5>
-                    <p>Enhanced animation performance and reduced layout shifts for smoother user experience across all pages.</p>
-                    <div class="news-date">December 2024</div>
+                    <h5>🔍 Enhanced Search</h5>
+                    <p>Find tools and pages faster with our improved search.</p>
                 </div>
             </div>
         </div>
