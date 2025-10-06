@@ -9,12 +9,19 @@
     <style>
         body {
             background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%);
+            background-color: #0a0a0a; /* Fallback for mobile */
             min-height: 100vh;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             overflow-x: hidden;
-            cursor: none;
             position: relative;
             letter-spacing: -0.01em;
+        }
+        
+        /* Hide cursor only on desktop */
+        @media (min-width: 769px) {
+            body {
+                cursor: none;
+            }
         }
         
         /* 3D Background Elements */
@@ -32,9 +39,15 @@
             position: absolute;
             border-radius: 50%;
             background: linear-gradient(45deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
-            backdrop-filter: blur(15px);
             animation: float3d 20s infinite linear;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Add backdrop-filter only on desktop */
+        @media (min-width: 769px) {
+            .floating-shape {
+                backdrop-filter: blur(15px);
+            }
         }
         
         .floating-shape:nth-child(odd) {
@@ -285,14 +298,27 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
             border-radius: 16px;
+        }
+        
+        /* Add backdrop-filter only on desktop */
+        @media (min-width: 769px) {
+            .glass-card {
+                backdrop-filter: blur(12px);
+                -webkit-backdrop-filter: blur(12px);
+            }
         }
 
         .nav-blur {
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
+            /* backdrop-filter removed for mobile compatibility */
+        }
+        
+        /* Add backdrop-filter only on desktop */
+        @media (min-width: 769px) {
+            .nav-blur {
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+            }
         }
 
         .nav-link {
@@ -343,9 +369,15 @@
         .card-professional {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        /* Add backdrop-filter only on desktop */
+        @media (min-width: 769px) {
+            .card-professional {
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
         }
         
         .card-professional:hover {
@@ -358,9 +390,15 @@
         .tool-card {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        /* Add backdrop-filter only on desktop */
+        @media (min-width: 769px) {
+            .tool-card {
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
         }
         
             .tool-card:hover {
@@ -395,7 +433,6 @@
             transform: translateX(-50%);
             z-index: 40;
             background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(15px);
             border-radius: 50px;
             padding: 8px;
             max-width: 90vw;
@@ -408,6 +445,13 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             overflow-x: auto;
             white-space: nowrap;
+        }
+        
+        /* Add backdrop-filter only on desktop */
+        @media (min-width: 769px) {
+            .mini-nav {
+                backdrop-filter: blur(15px);
+            }
         }
         
         @media (max-width: 768px) {
@@ -674,12 +718,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/cluely2.png" alt="AI Study Assistant Interface" class="w-64 h-48 object-cover rounded-lg border border-white border-opacity-20">
+                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/cluely2.png" alt="AI Study Assistant Interface" class="w-64 h-48 object-cover rounded-lg border border-white border-opacity-20">
                         </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/cluely.jpg" alt="Cluely" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/cluely.jpg" alt="Cluely" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Cluely</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -705,12 +749,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/qwen2.png" alt="AI Research Interface" class="w-64 h-48 object-cover rounded-lg border border-white border-opacity-20">
+                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/qwen2.png" alt="AI Research Interface" class="w-64 h-48 object-cover rounded-lg border border-white border-opacity-20">
                         </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/qwen.jpg" alt="Qwen" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/qwen.jpg" alt="Qwen" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Qwen</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -736,12 +780,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                              <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/mindgrasp2.png" alt="Study Notes Interface" class="w-64 h-48 object-cover rounded-lg border border-white border-opacity-20">
+                              <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/mindgrasp2.png" alt="Study Notes Interface" class="w-64 h-48 object-cover rounded-lg border border-white border-opacity-20">
                         </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/mindgrasp.jpg" alt="Mindgrasp" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/mindgrasp.jpg" alt="Mindgrasp" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Mindgrasp</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -767,12 +811,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/claude2.png" alt="AI Writing Assistant Interface" class="w-64 h-48 object-cover rounded-lg border border-white border-opacity-20">
+                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/claude2.png" alt="AI Writing Assistant Interface" class="w-64 h-48 object-cover rounded-lg border border-white border-opacity-20">
                        </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/claude.jpg" alt="Claude" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/claude.jpg" alt="Claude" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Claude</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -798,12 +842,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/perplexity.jpg" alt="Research Assistant Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/perplexity.jpg" alt="Research Assistant Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                        </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/perplexity.jpg" alt="Perplexity" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/perplexity.jpg" alt="Perplexity" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Perplexity AI</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -829,12 +873,12 @@
                     <div class="flex items-start space-x-6">
                        <!-- Promotional Image -->
                        <div class="flex-shrink-0">
-                           <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/chatgpt.png" alt="AI Chat Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                           <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/chatgpt.png" alt="AI Chat Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                       </div>
                        <!-- Content -->
                        <div class="flex-1">
                            <div class="flex items-center space-x-3 mb-2">
-                               <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/chatgpt.png" alt="ChatGPT" class="w-12 h-12 rounded-lg">
+                               <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/chatgpt.png" alt="ChatGPT" class="w-12 h-12 rounded-lg">
                                <h3 class="text-xl font-semibold text-white">ChatGPT</h3>
                                <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -861,12 +905,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/gauth.png" alt="Homework Help Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/gauth.png" alt="Homework Help Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                        </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/gauth.png" alt="Gauth" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/gauth.png" alt="Gauth" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Gauth</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -892,12 +936,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/photomath.png" alt="Math Solver Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/photomath.png" alt="Math Solver Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                        </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/photomath.png" alt="Photomath" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/photomath.png" alt="Photomath" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Photomath</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -923,12 +967,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/brainly.jpg" alt="Study Community Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/brainly.jpg" alt="Study Community Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                        </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/brainly.jpg" alt="Brainly" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/brainly.jpg" alt="Brainly" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Brainly</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -954,12 +998,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/characterai.jpg" alt="AI Chat Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/characterai.jpg" alt="AI Chat Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                         </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/characterai.jpg" alt="Character.ai" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/characterai.jpg" alt="Character.ai" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Character.ai</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -985,12 +1029,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/instantly.jpg" alt="Email Automation Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/instantly.jpg" alt="Email Automation Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                         </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/instantly.jpg" alt="Instantly" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/instantly.jpg" alt="Instantly" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Instantly</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -1023,7 +1067,7 @@
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/clip.jpg" alt="Free Movies" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/clip.jpg" alt="Free Movies" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Free Movies</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -1051,12 +1095,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/annasarchive.png" alt="Book Library Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/annasarchive.png" alt="Book Library Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                         </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/annasarchive.png" alt="Anna's Archive" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/annasarchive.png" alt="Anna's Archive" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Anna's Archive</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -1082,12 +1126,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/libgen.png" alt="Scientific Books Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/libgen.png" alt="Scientific Books Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                         </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/libgen.png" alt="Library Genesis" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/libgen.png" alt="Library Genesis" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Library Genesis</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -1113,12 +1157,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/bettercanvas.jpg" alt="Canvas LMS Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/bettercanvas.jpg" alt="Canvas LMS Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                         </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/bettercanvas.jpg" alt="BetterCampus" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/bettercanvas.jpg" alt="BetterCampus" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">BetterCampus</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -1144,7 +1188,7 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/elevenreader.ico" alt="Audio Reading Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/elevenreader.ico" alt="Audio Reading Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                         </div>
                         <!-- Content -->
                         <div class="flex-1">
@@ -1176,12 +1220,12 @@
                     <div class="flex items-start space-x-6">
                          <!-- Promotional Image -->
                          <div class="flex-shrink-0">
-                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/SaveMyGPA.png" alt="GPA Calculator Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/SaveMyGPA.png" alt="GPA Calculator Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                         </div>
                          <!-- Content -->
                          <div class="flex-1">
                              <div class="flex items-center space-x-3 mb-2">
-                                 <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/SaveMyGPA.png" alt="SaveMyGPA" class="w-12 h-12 rounded-lg">
+                                 <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/SaveMyGPA.png" alt="SaveMyGPA" class="w-12 h-12 rounded-lg">
                                  <h3 class="text-xl font-semibold text-white">SaveMyGPA</h3>
                                  <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                      <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -1337,12 +1381,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/udemy.png" alt="Skills Learning Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/udemy.png" alt="Skills Learning Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                         </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/udemy.png" alt="Udemy" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/udemy.png" alt="Udemy" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">Udemy</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -1368,12 +1412,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/freecodecamp.png" alt="Coding Tutorial Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/freecodecamp.png" alt="Coding Tutorial Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                         </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/freecodecamp.png" alt="FreeCodeCamp" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/freecodecamp.png" alt="FreeCodeCamp" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">FreeCodeCamp</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -1586,12 +1630,12 @@
                     <div class="flex items-start space-x-6">
                         <!-- Promotional Image -->
                         <div class="flex-shrink-0">
-                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/cloudconvert.jpg" alt="File Converter Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
+                             <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/cloudconvert.jpg" alt="File Converter Interface" class="w-64 h-48 object-contain rounded-lg border border-white border-opacity-20">
                         </div>
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/cloudconvert.jpg" alt="CloudConvert" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/cloudconvert.jpg" alt="CloudConvert" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">CloudConvert</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -2061,7 +2105,7 @@
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/cnvmp3.png" alt="CNVMP3" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/cnvmp3.png" alt="CNVMP3" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">CNVMP3</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
@@ -2092,7 +2136,7 @@
                         <!-- Content -->
                         <div class="flex-1">
                             <div class="flex items-center space-x-3 mb-2">
-                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/OneNote.jpg" alt="OneNote" class="w-12 h-12 rounded-lg">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/OneNote.jpg" alt="OneNote" class="w-12 h-12 rounded-lg">
                                 <h3 class="text-xl font-semibold text-white">OneNote</h3>
                                 <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
