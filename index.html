@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quote | Curated Tools for Modern Creators</title>
+    <title>Quote AI</title>
     <link rel="icon" href="https://github.com/Delexoo/quoteai.org/raw/refs/heads/main/QuoteLogoCircle.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -20,12 +20,13 @@
         }
         
         body {
-            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2d2d2d 100%);
             min-height: 100vh;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             overflow-x: hidden;
             cursor: none;
             position: relative;
+            letter-spacing: -0.01em;
         }
         
         /* 3D Background Elements */
@@ -249,6 +250,7 @@
         .search-container input::placeholder {
             color: rgba(255, 255, 255, 0.6);
         }
+
         
         #searchResults {
             backdrop-filter: blur(20px);
@@ -529,15 +531,41 @@
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
-            bottom: -4px;
+            height: 1px;
+            bottom: -2px;
             left: 0;
-            background-color: #ffffff;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
             transition: width 0.3s ease;
         }
         
         .nav-link:hover::after {
             width: 100%;
+        }
+        
+        /* Professional spacing and typography */
+        .section-spacing {
+            padding: 5rem 0;
+        }
+        
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #e5e7eb 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .card-professional {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .card-professional:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
         }
         
         @keyframes float {
@@ -1171,84 +1199,100 @@
     <div class="cursor-follower"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 py-2 md:py-4 px-4 md:px-12">
-        <div class="flex justify-between items-center glass-card px-4 md:px-6 py-2 md:py-3">
-            <a href="#" class="nav-logo text-lg md:text-xl font-bold text-white transition-transform duration-300 hover:transform hover:-translate-y-1">quoteai.org</a>
+    <nav class="fixed w-full z-50 py-3 md:py-4 px-4 md:px-12">
+        <div class="flex justify-between items-center bg-white bg-opacity-5 backdrop-blur-md px-6 md:px-8 py-4 rounded-2xl border border-white border-opacity-10 shadow-xl">
+            <a href="#" class="nav-logo text-xl md:text-2xl font-light text-white transition-all duration-300 hover:text-blue-300">quoteai.org</a>
             
-            <!-- Search Bar -->
-            <div class="hidden md:flex flex-1 max-w-md mx-8 relative">
-                <div class="search-container w-full relative">
-                    <input type="text" id="searchInput" placeholder="Search tools, pages..." 
-                           class="w-full px-4 py-2 pl-10 pr-4 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300">
-                    <i data-feather="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-300"></i>
-                    <div id="searchResults" class="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-gray-700 rounded-xl shadow-lg max-h-96 overflow-y-auto z-50 hidden">
-                        <!-- Search results will be populated here -->
-                    </div>
-                </div>
+            <!-- Navigation Links - Equally Distributed -->
+            <div class="hidden lg:flex justify-between items-center flex-1 mx-8">
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Student</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Professional</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Automation</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Creator</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Prosumer</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Social Media</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Audio</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Chatbot</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Dev</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Website</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Design</a>
+                <a href="all-tools.html" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">All</a>
+                <a href="leaderboard.html" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Leaderboard</a>
             </div>
             
-            <div class="hidden md:flex space-x-8 items-center">
-                <a href="index.html" class="nav-link text-white font-bold">Home</a>
-                <a href="student.html" class="nav-link text-white font-bold">Student</a>
-                <a href="professional.html" class="nav-link text-white font-bold">Professional</a>
-                <a href="creator.html" class="nav-link text-white font-bold">Creator</a>
-                <a href="all-tools.html" class="nav-link text-white font-bold">All Tools</a>
-                <a href="leaderboard.html" class="nav-link text-white font-bold">Leaderboard</a>
-                <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full hover:from-orange-400 hover:to-orange-500 transition-all duration-300 transform hover:scale-105">
+            <!-- Donate Button -->
+            <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg">
+                Donate
+            </a>
+            
+            <!-- Medium screen navigation (shows fewer items) -->
+            <div class="hidden md:flex lg:hidden space-x-6 items-center">
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300">Student</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300">Professional</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300">Automation</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300">Creator</a>
+                <a href="all-tools.html" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300">All</a>
+                <a href="leaderboard.html" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300">Leaderboard</a>
+                <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-400 hover:to-orange-400 text-white font-medium px-4 py-2 rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-lg">
                     Donate
                 </a>
             </div>
             <div class="flex items-center space-x-2 md:hidden">
-                <!-- Mobile Search Bar -->
-                <div class="flex-1 max-w-xs mr-2 relative">
-                    <div class="search-container w-full relative">
-                        <input type="text" id="mobileNavSearchInput" placeholder="Search..." 
-                               class="w-full px-3 py-1.5 pl-8 pr-3 bg-white bg-opacity-10 border border-white border-opacity-20 rounded-full text-white placeholder-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-transparent transition-all duration-300 text-xs">
-                        <i data-feather="search" class="absolute left-2.5 top-1/2 transform -translate-y-1/2 w-3 h-3 text-gray-300"></i>
-                        <div id="mobileNavSearchResults" class="absolute top-full left-0 right-0 mt-1 bg-gray-900 border border-gray-700 rounded-lg shadow-lg max-h-48 overflow-y-auto z-50 hidden">
-                            <!-- Mobile nav search results will be populated here -->
-                        </div>
-                    </div>
-                </div>
-                
-                <a href="https://buy.stripe.com/9B63cu3RE2ouaKgcHLcjS00" target="_blank" class="donate-btn px-2 py-1 bg-gradient-to-r from-orange-500 to-orange-600 text-white font-bold rounded-full text-xs">
-                    Donate
-                </a>
-                <button id="mobile-menu-btn" class="text-white font-medium p-1">
-                    <i data-feather="menu" class="w-5 h-5"></i>
+                <button id="mobile-menu-btn" class="text-white font-medium p-3">
+                    <i data-feather="menu" class="w-7 h-7"></i>
             </button>
             </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden mt-2 glass-card px-4 py-3">
-            <div class="flex flex-wrap gap-2">
-                <a href="index.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Home</a>
-                <a href="student.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Student</a>
-                <a href="professional.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Professional</a>
-                <a href="creator.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Creator</a>
-                <a href="all-tools.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">All Tools</a>
-                <a href="leaderboard.html" class="nav-link text-white font-bold px-3 py-1.5 text-sm bg-white bg-opacity-10 rounded-full">Leaderboard</a>
+        <div id="mobile-menu" class="hidden md:hidden mt-3 bg-white bg-opacity-5 backdrop-blur-md px-6 py-4 rounded-2xl border border-white border-opacity-10 shadow-xl">
+            <div class="grid grid-cols-2 gap-3">
+                <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Student</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Professional</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Automation</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Creator</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Prosumer</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Social Media</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Audio</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Chatbot</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Dev</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Website</a>
+                <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Design</a>
+                <a href="all-tools.html" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">All</a>
+                <a href="leaderboard.html" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Leaderboard</a>
             </div>
         </div>
     </nav>
 
+
     <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center px-6 md:px-12 pt-20">
-        <div class="text-center max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white" data-aos="fade-up">
-                Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-600">Quote</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-gray-300 mb-10" data-aos="fade-up" data-aos-delay="100">
-                Browse for the latest AI study tools, educational resources, media editors, free books, courses, and tons more tools to enhance your digital experience in 2025. No more wasting time searching, everything you need is here in one place.
-            </p>
-            <div class="flex flex-row justify-center gap-2 md:gap-4" data-aos="fade-up" data-aos-delay="200">
-                <a href="landing.html" class="glass-card px-6 md:px-8 py-3 md:py-3 rounded-full text-white font-medium hover-effect button-glow border border-white border-opacity-20 inline-block text-center text-base md:text-base">
-                    Start Here!
-                </a>
-                <button class="glass-card px-6 md:px-8 py-3 md:py-3 rounded-full text-white font-medium hover-effect button-glow border border-white border-opacity-20 text-base md:text-base" onclick="document.querySelector('#about').scrollIntoView({behavior: 'smooth'})">
-                    Learn More!
-                </button>
+    <section class="min-h-screen flex items-center px-6 md:px-12 pt-20">
+        <div class="max-w-7xl mx-auto w-full">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Left side - Welcome text -->
+                <div class="text-left" data-aos="fade-right">
+                    <h1 class="text-3xl md:text-5xl lg:text-6xl font-light mb-8 text-white leading-tight">
+                        Welcome to <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 via-orange-400 to-amber-500 font-bold">Quote AI</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-gray-200 mb-12 leading-relaxed max-w-2xl font-light">
+                        Browse for the latest AI study tools, educational resources, media editors, free books, courses, and tons more tools to enhance your digital experience in 2025. No more wasting time searching, everything you need is here in one place.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4" data-aos="fade-up" data-aos-delay="200">
+                        <a href="student.html" class="group bg-white bg-opacity-10 backdrop-blur-sm px-8 py-4 rounded-lg text-white font-medium hover:bg-opacity-20 border border-white border-opacity-20 inline-flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                            <i data-feather="book" class="mr-3 h-5 w-5 group-hover:rotate-12 transition-transform duration-300"></i>
+                            <span class="text-lg">I'm a Student</span>
+                        </a>
+                        <a href="landing.html" class="group bg-transparent backdrop-blur-sm px-8 py-4 rounded-lg text-white font-medium hover:bg-white hover:bg-opacity-10 border border-white border-opacity-30 inline-flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-xl">
+                            <i data-feather="user" class="mr-3 h-5 w-5 group-hover:rotate-12 transition-transform duration-300"></i>
+                            <span class="text-lg">Other</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Right side - Rotating cube -->
+                <div class="hidden md:flex justify-center lg:justify-end" data-aos="fade-left">
+                    <div id="cube-container" class="w-80 h-80 lg:w-96 lg:h-96"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -1312,10 +1356,10 @@
             <div class="absolute inset-0" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(255, 255, 255, 0.1) 20px, rgba(255, 255, 255, 0.1) 40px);"></div>
         </div>
         <div class="max-w-6xl mx-auto relative z-10">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-white" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-white">
                 Featured Resources
             </h2>
-            <p class="text-xl text-center text-gray-300 mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <p class="text-xl text-center text-gray-300 mb-16 max-w-3xl mx-auto">
                 Our latest additions to the collection
             </p>
             
@@ -1326,7 +1370,7 @@
                         <div class="flex gap-4">
                             <!-- Resource 1 - Mobile -->
                             <div class="flex-shrink-0 w-64">
-                                <a href="https://cluely.com/" target="_blank" class="resource-card glass-card p-4 rounded-xl block h-full" data-aos="fade-up" data-aos-delay="200">
+                                <a href="https://cluely.com/" target="_blank" class="resource-card glass-card p-4 rounded-xl block h-full">
             <div class="mb-4 rounded-lg overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Study Assistant" class="resource-image">
                     </div>
@@ -1345,7 +1389,7 @@
                             
                             <!-- Resource 2 - Mobile -->
                             <div class="flex-shrink-0 w-64">
-                                <a href="https://www.bettercanvas.org/" target="_blank" class="resource-card glass-card p-4 rounded-xl block h-full" data-aos="fade-up" data-aos-delay="300">
+                                <a href="https://www.bettercanvas.org/" target="_blank" class="resource-card glass-card p-4 rounded-xl block h-full">
             <div class="mb-4 rounded-lg overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Productivity Tools" class="resource-image">
                     </div>
@@ -1364,7 +1408,7 @@
                             
                             <!-- Resource 3 - Mobile -->
                             <div class="flex-shrink-0 w-64">
-                                <a href="https://chat.qwen.ai/" target="_blank" class="resource-card glass-card p-4 rounded-xl block h-full" data-aos="fade-up" data-aos-delay="400">
+                                <a href="https://chat.qwen.ai/" target="_blank" class="resource-card glass-card p-4 rounded-xl block h-full">
             <div class="mb-4 rounded-lg overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Research Assistant" class="resource-image">
                     </div>
@@ -1387,7 +1431,7 @@
                 <!-- Desktop Grid -->
                 <div class="hidden md:contents">
                     <!-- Resource 1 - Desktop -->
-        <a href="https://cluely.com/" target="_blank" class="resource-card glass-card p-6 rounded-xl block" data-aos="fade-up" data-aos-delay="200">
+        <a href="https://cluely.com/" target="_blank" class="resource-card glass-card p-6 rounded-xl block">
             <div class="mb-4 rounded-lg overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Study Assistant" class="resource-image">
                     </div>
@@ -1404,7 +1448,7 @@
         </a>
                 
                     <!-- Resource 2 - Desktop -->
-        <a href="https://www.bettercanvas.org/" target="_blank" class="resource-card glass-card p-6 rounded-xl block" data-aos="fade-up" data-aos-delay="300">
+        <a href="https://www.bettercanvas.org/" target="_blank" class="resource-card glass-card p-6 rounded-xl block">
             <div class="mb-4 rounded-lg overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Productivity Tools" class="resource-image">
                     </div>
@@ -1421,7 +1465,7 @@
         </a>
                 
                     <!-- Resource 3 - Desktop -->
-        <a href="https://chat.qwen.ai/" target="_blank" class="resource-card glass-card p-6 rounded-xl block" data-aos="fade-up" data-aos-delay="400">
+        <a href="https://chat.qwen.ai/" target="_blank" class="resource-card glass-card p-6 rounded-xl block">
             <div class="mb-4 rounded-lg overflow-hidden">
                 <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="AI Research Assistant" class="resource-image">
                     </div>
@@ -1439,7 +1483,7 @@
                 </div>
             </div>
             
-            <div class="text-center mt-16" data-aos="fade-up">
+            <div class="text-center mt-16">
                 <a href="all-tools.html" class="glass-card px-8 py-3 rounded-full text-white font-medium hover-effect button-glow inline-block">
                     All Tools
                 </a>
@@ -1451,16 +1495,16 @@
     <section class="py-16 px-6 md:px-12 bg-gray-50 relative overflow-hidden">
         <div class="max-w-4xl mx-auto relative z-10">
             <div class="text-center mb-8">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
                     Donation Leaderboard
                 </h2>
-                <p class="text-lg text-gray-600 mb-8" data-aos="fade-up" data-aos-delay="100">
+                <p class="text-lg text-gray-600 mb-8">
                     See our amazing supporters who help keep Quote running!
                 </p>
             </div>
             
             <!-- Blurred Leaderboard Preview -->
-            <div class="relative bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-8" data-aos="fade-up" data-aos-delay="200">
+            <div class="relative bg-white rounded-2xl shadow-lg border border-gray-200 p-6 mb-8">
                 <div class="blur-sm">
                     <!-- Top 3 Preview -->
                     <div class="space-y-3">
@@ -1534,15 +1578,15 @@
         
         <div class="max-w-6xl mx-auto relative z-10">
             <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">
                     Open Source
                 </h2>
-                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                <p class="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
                     This website is open source and available on GitHub. View the code, contribute, or fork the project.
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch" data-aos="fade-up" data-aos-delay="200">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
                 <!-- Left Side - Code Preview -->
                 <div class="flex flex-col">
                     <div class="bg-gray-900 rounded-2xl p-6 border border-gray-700 shadow-2xl flex-1 flex flex-col relative">
@@ -1632,16 +1676,16 @@
             <div class="absolute inset-0" style="background-image: radial-gradient(circle, rgba(0, 0, 0, 0.3) 1px, transparent 1px); background-size: 30px 30px;"></div>
         </div>
         <div class="max-w-6xl mx-auto relative z-10">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-black" data-aos="fade-up">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-black">
                 Specialized Pathways
             </h2>
-            <p class="text-xl text-center text-gray-800 mb-16 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+            <p class="text-xl text-center text-gray-800 mb-16 max-w-3xl mx-auto">
                 Organized into three specialized pathways for maximum efficiency
             </p>
             
             <div class="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8">
                 <!-- University Students -->
-                <div class="pathway-card-new p-0 rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-delay="200">
+                <div class="pathway-card-new p-0 rounded-3xl overflow-hidden">
                     <div class="relative">
                         <!-- Header with gradient background -->
                         <div class="bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 p-8 text-white relative overflow-hidden">
@@ -1692,7 +1736,7 @@
                 </div>
                 
                 <!-- Professionals -->
-                <div class="pathway-card-new p-0 rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-delay="300">
+                <div class="pathway-card-new p-0 rounded-3xl overflow-hidden">
                     <div class="relative">
                         <!-- Header with gradient background -->
                         <div class="bg-gradient-to-br from-green-500 via-green-600 to-green-700 p-8 text-white relative overflow-hidden">
@@ -1743,7 +1787,7 @@
                 </div>
                 
                 <!-- Content Creators -->
-                <div class="pathway-card-new p-0 rounded-3xl overflow-hidden md:col-span-1" data-aos="fade-up" data-aos-delay="400">
+                <div class="pathway-card-new p-0 rounded-3xl overflow-hidden md:col-span-1">
                     <div class="relative">
                         <!-- Header with gradient background -->
                         <div class="bg-gradient-to-br from-purple-500 via-purple-600 to-purple-700 p-8 text-white relative overflow-hidden">
@@ -1802,7 +1846,7 @@
         <div class="absolute inset-0 opacity-10">
             <div class="absolute inset-0" style="background-image: repeating-linear-gradient(60deg, transparent, transparent 25px, rgba(255, 255, 255, 0.1) 25px, rgba(255, 255, 255, 0.1) 50px); background-size: 50px 50px;"></div>
         </div>
-        <div class="max-w-4xl mx-auto text-center glass-card p-8 rounded-xl relative z-10" data-aos="fade-up">
+        <div class="max-w-4xl mx-auto text-center glass-card p-8 rounded-xl relative z-10">
             <h2 class="text-2xl md:text-3xl font-bold mb-4 text-white">Share Your Feedback</h2>
             <p class="text-gray-300 mb-8 max-w-2xl mx-auto">
                 Help us improve Quote by sharing your thoughts, suggestions, or reporting any issues you encounter.
@@ -1898,12 +1942,70 @@
         </div>
     </div>
 
+    <!-- Three.js for 3D Cube -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
     <script>
         // Initialize AOS
         AOS.init({
             duration: 800,
             easing: 'ease-in-out',
             once: true
+        });
+
+        // 3D Cube Animation
+        function initCube() {
+            const container = document.getElementById('cube-container');
+            if (!container) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setClearColor(0x000000, 0);
+            container.appendChild(renderer.domElement);
+
+            // Create cube geometry
+            const geometry = new THREE.BoxGeometry(3, 3, 3);
+            const material = new THREE.MeshBasicMaterial({ 
+                color: 0xffffff,
+                wireframe: true,
+                wireframeLinewidth: 2,
+                transparent: true,
+                opacity: 0.9
+            });
+            const cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+
+            // Add some ambient lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+            scene.add(ambientLight);
+
+            // Position camera
+            camera.position.z = 5;
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+                cube.rotation.x += 0.01;
+                cube.rotation.y += 0.01;
+                renderer.render(scene, camera);
+            }
+
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
+
+            animate();
+        }
+
+        // Initialize cube when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            initCube();
         });
 
         // Easter Egg functionality - only triggers on button click
@@ -2348,22 +2450,6 @@
             ]
         };
         
-        const searchInput = document.getElementById('searchInput');
-        const searchResults = document.getElementById('searchResults');
-        const mobileNavSearchInput = document.getElementById('mobileNavSearchInput');
-        const mobileNavSearchResults = document.getElementById('mobileNavSearchResults');
-        
-        // Desktop search
-        searchInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase().trim();
-            handleSearch(query, searchResults);
-        });
-        
-        // Mobile navigation search
-        mobileNavSearchInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase().trim();
-            handleSearch(query, mobileNavSearchResults);
-        });
         
         // Helper functions for improved search
         function generateSearchTerms(query) {
@@ -2604,29 +2690,6 @@
             feather.replace();
         }
         
-        // Hide search results when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.search-container')) {
-                searchResults.classList.add('hidden');
-                mobileNavSearchResults.classList.add('hidden');
-            }
-        });
-        
-        // Handle desktop search result clicks
-        searchResults.addEventListener('click', function(e) {
-            if (e.target.closest('a')) {
-                searchResults.classList.add('hidden');
-                searchInput.value = '';
-            }
-        });
-        
-        // Handle mobile navigation search result clicks
-        mobileNavSearchResults.addEventListener('click', function(e) {
-            if (e.target.closest('a')) {
-                mobileNavSearchResults.classList.add('hidden');
-                mobileNavSearchInput.value = '';
-            }
-        });
 
         // What's New Feature
         function toggleWhatsNew() {
@@ -2666,13 +2729,13 @@
     <!-- What's New Icon -->
     <div id="newsIcon" class="news-icon" onclick="toggleWhatsNew()">
         <i data-feather="bell" style="color: black !important;"></i>
-        <div class="news-badge">3</div>
+        <div class="news-badge">7</div>
     </div>
 
     <!-- What's New Popup -->
     <div id="whatsNewPopup" class="whats-new-popup">
         <div class="whats-new-header">
-            <h3>What's New</h3>
+            <h3>What's New?</h3>
             <button class="whats-new-close" onclick="closeWhatsNew()">
                 <i data-feather="x"></i>
             </button>
@@ -2680,31 +2743,56 @@
         <div class="whats-new-content">
             <div class="news-section">
                 <div class="news-item">
-                    <h5>🎬 Free Movies - Coming Soon!</h5>
-                    <p>Watch free movies and TV shows online. Stay tuned!</p>
+                    <h5>🎬 Free Movies! It's finally here!</h5>
+                    <p>Watch free movies and TV shows online with safety recommendations! Available in the "Student" and "All" pages.</p>
+                    <div class="news-date">October 4, 2025</div>
                 </div>
                 
                 <div class="news-item">
-                    <h5>📰 What's New Feature</h5>
-                    <p>Stay updated with the latest features and improvements!</p>
+                    <h5>📱 Instagram Account</h5>
+                    <p>Follow us @quoteaiorg for updates and behind-the-scenes content!</p>
+                    <div class="news-date">October 1, 2025</div>
+                </div>
+                
+                <div class="news-item">
+                    <h5>🎨 Professional UI Update</h5>
+                    <p>We've redesigned the interface with a more professional and modern look.</p>
+                    <div class="news-date">September 29, 2025</div>
+                </div>
+                
+                <div class="news-item">
+                    <h5>📚 New Navigation Pages</h5>
+                    <p>Added 9 new categories: Student, Automation, Prosumer, Social Media, Audio, Chatbot, Dev, Website, and Design.</p>
+                    <div class="news-date">September 27, 2025</div>
                 </div>
                 
                 <div class="news-item">
                     <h5>🛍️ Creator Store</h5>
                     <p>Check out our store for exclusive content and tools.</p>
+                    <div class="news-date">September 24, 2025</div>
                 </div>
                 
                 <div class="news-item">
                     <h5>🏆 Donation Leaderboard</h5>
                     <p>Support our project and see your name on the leaderboard!</p>
+                    <div class="news-date">September 22, 2025</div>
                 </div>
                 
                 <div class="news-item">
-                    <h5>🔍 Enhanced Search</h5>
-                    <p>Find tools and pages faster with our improved search.</p>
+                    <h5>🚀 Quote AI Launch</h5>
+                    <p>Welcome to Quote AI! We're excited to bring you the ultimate platform for AI tools and resources.</p>
+                    <div class="news-date">September 20, 2025</div>
                 </div>
             </div>
         </div>
+    </div>
+
+    <!-- Instagram Link - Bottom Left Corner -->
+    <div class="fixed bottom-6 left-6 z-40">
+        <a href="https://www.instagram.com/quoteaiorg/?utm_source=ig_web_button_share_sheet" target="_blank" class="flex items-center space-x-2 bg-white bg-opacity-10 backdrop-blur-md px-3 py-3 md:px-4 rounded-lg border border-white border-opacity-20 hover:bg-opacity-20 transition-all duration-300 hover:scale-105 group">
+            <i data-feather="instagram" class="w-5 h-5 text-white group-hover:text-pink-400 transition-colors duration-300" style="filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.8));"></i>
+            <span class="hidden md:inline text-white text-sm font-medium group-hover:text-pink-400 transition-colors duration-300" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">@quoteaiorg</span>
+        </a>
     </div>
 </body>
 </html>
