@@ -454,6 +454,29 @@
             }
         }
         
+        /* Remove backdrop-blur on mobile for product cards and navigation */
+        @media (max-width: 768px) {
+            .tool-card,
+            .tool-card.backdrop-blur-md {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+            
+            /* Remove backdrop-blur from navigation on mobile */
+            .nav-blur,
+            .nav-blur.backdrop-blur-md {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+            
+            /* Remove backdrop-blur from mobile menu */
+            #mobile-menu,
+            #mobile-menu.backdrop-blur-md {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+            }
+        }
+        
         @media (max-width: 768px) {
             .mini-nav {
                 top: 100px;
@@ -605,7 +628,7 @@
             
             <!-- Desktop Navigation Links - Equally Distributed -->
             <div class="hidden lg:flex justify-between items-center flex-1 mx-8">
-                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Student</a>
+                <a href="student.html" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Student</a>
                 <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Professional</a>
                 <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Automation</a>
                 <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300 hover:scale-105">Creator</a>
@@ -627,7 +650,7 @@
             
             <!-- Medium screen navigation (shows fewer items) -->
             <div class="hidden md:flex lg:hidden space-x-6 items-center">
-                <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300">Student</a>
+                <a href="student.html" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300">Student</a>
                 <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300">Professional</a>
                 <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300">Automation</a>
                 <a href="#" class="text-gray-200 hover:text-white font-medium text-sm transition-colors duration-300">Creator</a>
@@ -649,7 +672,7 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden mt-3 bg-white bg-opacity-5 backdrop-blur-md px-6 py-4 rounded-2xl border border-white border-opacity-10 shadow-xl">
             <div class="grid grid-cols-2 gap-3">
-                <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Student</a>
+                <a href="student.html" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Student</a>
                 <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Professional</a>
                 <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Automation</a>
                 <a href="#" class="text-gray-200 hover:text-white font-medium px-4 py-3 text-sm bg-white bg-opacity-5 hover:bg-opacity-10 rounded-lg transition-all duration-300 text-center">Creator</a>
@@ -2292,10 +2315,10 @@
 
     <!-- Movie Caution Modal -->
     <div id="movieCautionModal" class="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
+        <div class="bg-white rounded-2xl p-4 md:p-8 max-w-sm md:max-w-md w-full mx-2 md:mx-4 shadow-2xl max-h-[90vh] overflow-y-auto">
             <!-- Page 1 -->
             <div id="cautionPage1" class="caution-page">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">⚠️ Important Safety Notice</h2>
+                <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">⚠️ Important Safety Notice</h2>
                 <p class="text-gray-700 mb-6 leading-relaxed text-left">
                     <strong>Disclaimer:</strong> QuoteAI is not responsible for any activity, content, or consequences related to external movie streaming sites. We have no control over third-party websites and their content.<br><br>
                     
@@ -2318,7 +2341,7 @@
 
             <!-- Page 2 -->
             <div id="cautionPage2" class="caution-page hidden">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">🛡️ Recommended Security Tools</h2>
+                <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">🛡️ Recommended Security Tools</h2>
                 <p class="text-gray-700 mb-4 leading-relaxed text-left">
                     <strong>Security Advisory:</strong> While these measures are not mandatory, we strongly recommend implementing the following security protocols to enhance your protection against potential threats, including third-party site vulnerabilities and phishing attempts:
                 </p>
@@ -2355,7 +2378,7 @@
 
             <!-- Page 3 -->
             <div id="cautionPage3" class="caution-page hidden">
-                <h2 class="text-2xl font-bold text-gray-900 mb-4">✅ Terms of Access Agreement</h2>
+                <h2 class="text-xl md:text-2xl font-bold text-gray-900 mb-4">✅ Terms of Access Agreement</h2>
                 <p class="text-gray-700 mb-4 leading-relaxed text-left">
                     <strong>Final Authorization Required:</strong> Before proceeding to the external movie streaming site, you must explicitly acknowledge and agree to the terms outlined in this security advisory. Your acceptance indicates that you have read, understood, and agree to assume full responsibility for your actions.
                 </p>
