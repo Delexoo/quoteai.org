@@ -272,11 +272,79 @@
             }
         }
         
-        /* Make checkbox bigger */
+        /* Make checkbox bigger on desktop, smaller on mobile */
         #acknowledgeCheckbox {
             width: 32px !important;
             height: 32px !important;
             transform: scale(1.5);
+        }
+        
+        /* Smaller checkbox on mobile */
+        @media (max-width: 768px) {
+            #acknowledgeCheckbox {
+                width: 20px !important;
+                height: 20px !important;
+                transform: scale(1);
+            }
+        }
+        
+        /* Make movie caution modal content smaller on mobile */
+        @media (max-width: 768px) {
+            #movieCautionModal .caution-page h2 {
+                font-size: 1.125rem !important; /* text-lg instead of text-xl */
+                margin-bottom: 0.75rem !important;
+            }
+            
+            #movieCautionModal .caution-page p {
+                font-size: 0.875rem !important; /* text-sm */
+                margin-bottom: 1rem !important;
+                line-height: 1.4 !important;
+            }
+            
+            #movieCautionModal .caution-page ul {
+                font-size: 0.875rem !important; /* text-sm */
+                margin-bottom: 0.75rem !important;
+            }
+            
+            #movieCautionModal .caution-page li {
+                margin-bottom: 0.5rem !important;
+            }
+            
+            #movieCautionModal .caution-page .bg-gray-50 {
+                padding: 0.75rem !important;
+                margin-bottom: 0.75rem !important;
+            }
+            
+            #movieCautionModal .caution-page .bg-gray-50 p,
+            #movieCautionModal .caution-page .bg-gray-50 ul {
+                font-size: 0.75rem !important; /* text-xs */
+            }
+            
+            #movieCautionModal .caution-page button {
+                padding: 0.5rem 1rem !important; /* py-2 px-4 */
+                font-size: 0.875rem !important; /* text-sm */
+            }
+            
+            #movieCautionModal .caution-page .text-sm {
+                font-size: 0.75rem !important; /* text-xs */
+            }
+            
+            #movieCautionModal .caution-page .text-xs {
+                font-size: 0.625rem !important; /* text-2xs */
+            }
+            
+            #movieCautionModal .caution-page .border-t {
+                padding-top: 0.75rem !important;
+            }
+            
+            #movieCautionModal .caution-page .flex.items-start {
+                gap: 0.5rem !important;
+            }
+            
+            #movieCautionModal .caution-page label {
+                font-size: 0.875rem !important; /* text-sm */
+                line-height: 1.3 !important;
+            }
         }
         
         /* Custom gradient for Student Tools heading only */
@@ -454,26 +522,26 @@
             }
         }
         
-        /* Remove backdrop-blur on mobile for product cards and navigation */
+        /* Enhanced blur effects for mobile */
         @media (max-width: 768px) {
             .tool-card,
             .tool-card.backdrop-blur-md {
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
+                backdrop-filter: blur(20px) !important;
+                -webkit-backdrop-filter: blur(20px) !important;
             }
             
-            /* Remove backdrop-blur from navigation on mobile */
+            /* Enhanced blur for navigation on mobile */
             .nav-blur,
             .nav-blur.backdrop-blur-md {
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
+                backdrop-filter: blur(25px) !important;
+                -webkit-backdrop-filter: blur(25px) !important;
             }
             
-            /* Remove backdrop-blur from mobile menu */
+            /* Enhanced blur for mobile menu */
             #mobile-menu,
             #mobile-menu.backdrop-blur-md {
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
+                backdrop-filter: blur(20px) !important;
+                -webkit-backdrop-filter: blur(20px) !important;
             }
         }
         
