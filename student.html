@@ -378,7 +378,9 @@
         }
 
         .nav-blur {
-            /* backdrop-filter removed for mobile compatibility */
+            /* No backdrop-filter on mobile to avoid heavy effects and to satisfy linters */
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
         }
         
         /* Add backdrop-filter only on desktop */
@@ -791,7 +793,7 @@
             <!-- Tools Header -->
                 <div class="text-center mb-8">
                     <h2 class="text-4xl md:text-5xl font-bold mb-4 text-white" data-aos="fade-up">
-                        53 Products
+                        54 Products
                     </h2>
     </div>
 
@@ -800,6 +802,37 @@
             <div class="space-y-6">
                 <!-- AI Assistants Section -->
                 <div id="ai-assistants" class="section-marker"></div>
+                <!-- You Learn -->
+                <div class="tool-card bg-white bg-opacity-5 backdrop-blur-md rounded-xl p-6 border border-white border-opacity-10 hover:bg-opacity-10 transition-all duration-300 relative">
+                    <!-- Tag -->
+                    <div class="absolute top-4 right-4">
+                        <span class="tag-study px-3 py-1 rounded-full text-xs font-medium">Study</span>
+                            </div>
+                    <div class="flex items-start space-x-6">
+                        <!-- Promotional Image -->
+                        <div class="flex-shrink-0">
+                            <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/youlearn2.png" alt="AI Study Assistant Interface" class="w-64 h-48 object-cover rounded-lg border border-white border-opacity-20">
+                        </div>
+                        <!-- Content -->
+                        <div class="flex-1">
+                            <div class="flex items-center space-x-3 mb-2">
+                                <img src="https://raw.githubusercontent.com/Delexoo/quoteai.org/refs/heads/main/docs/youlearn.png" alt="You Learn" class="w-12 h-12 rounded-lg">
+                                <h3 class="text-xl font-semibold text-white">YouLearn</h3>
+                                <svg class="w-5 h-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <p class="text-gray-300 text-sm mb-3">Personalized learning paths and study aids powered by AI to help you master topics faster with quizzes, explanations, and flashcards.</p>
+                            <div class="flex items-center space-x-4 text-xs text-gray-400">
+                                <span>Personalized • AI Assistant • Education</span>
+                        </div>
+                            <div class="flex items-center space-x-3 mt-4">
+                                <a href="https://cluely.com/" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">Visit Website</a>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+
                 <!-- Cluely -->
                 <div class="tool-card bg-white bg-opacity-5 backdrop-blur-md rounded-xl p-6 border border-white border-opacity-10 hover:bg-opacity-10 transition-all duration-300 relative">
                     <!-- Tag -->
